@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vacation Packages - DreamsTour</title>
+
+    <meta name="description" content="Book your dream vacation with DreamsTour. Luxury resort stays and cruise packages to destinations worldwide.">
+    <meta name="keywords" content="vacation packages, resort booking, cruise booking, holiday packages, luxury travel">
+    <meta name="author" content="Dreams Technologies">
+    <meta name="robots" content="index, follow">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+    <!-- Theme Settings Js -->
+    <script src="assets/js/theme-script.js"></script>
+
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <!-- Main.css -->
+    <link rel="stylesheet" href="assets/css/meanmenu.css">
+
+    <!-- Tabler Icon CSS -->
+    <link rel="stylesheet" href="assets/plugins/tabler-icons/tabler-icons.css">
+
+    <!-- Fontawesome Icon CSS -->
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Owlcarousel CSS -->
+    <link rel="stylesheet" href="assets/plugins/owlcarousel/owl.carousel.min.css">
+
+    <!-- Rangeslider CSS -->
+    <link rel="stylesheet" href="assets/plugins/ion-rangeslider/css/ion.rangeSlider.css">
+    <link rel="stylesheet" href="assets/plugins/ion-rangeslider/css/ion.rangeSlider.min.css">
+
+    <!-- Iconsax CSS -->
+    <link rel="stylesheet" href="assets/css/iconsax.css">
+
+    <!-- Datepicker CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        .vacation-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .vacation-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        .vacation-card .card-img {
+            height: 220px;
+            object-fit: cover;
+        }
+        .vacation-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .vacation-badge.resort {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .vacation-badge.cruise {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+        }
+        .feature-tag {
+            display: inline-block;
+            background: #f0f5ff;
+            color: #4f46e5;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            margin: 2px;
+        }
+        .price-tag {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--bs-primary);
+        }
+        .price-tag .original {
+            font-size: 16px;
+            color: #999;
+            text-decoration: line-through;
+            font-weight: 400;
+        }
+        .filter-tabs .nav-link {
+            padding: 10px 24px;
+            border-radius: 25px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            background: #f5f5f5;
+            color: #333;
+            border: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .filter-tabs .nav-link:hover {
+            background: #e0e0e0;
+        }
+        .filter-tabs .nav-link.active {
+            background: var(--bs-primary);
+            color: #fff;
+        }
+        .search-vacation {
+            position: relative;
+        }
+        .search-vacation input {
+            padding-left: 50px;
+            padding-right: 120px;
+            height: 56px;
+            border-radius: 30px;
+        }
+        .search-vacation .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+        .search-vacation .btn {
+            position: absolute;
+            right: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 25px;
+            padding: 10px 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-header">
+        <!-- Header Topbar-->
+        <div class="header-topbar text-center bg-transparent">
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-between flex-wrap">
+                    <p class="d-flex align-items-center fw-medium fs-14 mb-2"><i class="isax isax-call5 me-2"></i>Toll Free : +1 56565 56594</p>
+                    <div class="d-flex align-items-center">
+                        <p class="mb-2 me-3 d-flex align-items-center fw-medium fs-14"><i class="isax isax-message-text-15 me-2"></i>Email : info@dreamstour.com</p>
+                        <div class="dropdown flag-dropdown mb-2 me-3">
+                            <a href="javascript:void(0);" class="dropdown-toggle d-inline-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG
+                            </a>
+                            <ul class="dropdown-menu p-2 mt-2">
+                                <li><a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);"><img src="assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG</a></li>
+                                <li><a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);"><img src="assets/img/flags/arab-flag.svg" class="me-2" alt="flag">ARA</a></li>
+                                <li><a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);"><img src="assets/img/flags/france-flag.svg" class="me-2" alt="flag">FRA</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown mb-2 me-3">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">USD</a>
+                            <ul class="dropdown-menu p-2 mt-2">
+                                <li><a class="dropdown-item rounded" href="javascript:void(0);">USD</a></li>
+                                <li><a class="dropdown-item rounded" href="javascript:void(0);">EUR</a></li>
+                                <li><a class="dropdown-item rounded" href="javascript:void(0);">GBP</a></li>
+                            </ul>
+                        </div>
+                        <div class="fav-dropdown mb-2">
+                            <a href="wishlist.html" class="position-relative">
+                                <i class="isax isax-heart"></i><span class="count-icon bg-secondary text-gray-9">0</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Header Topbar-->
+
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <div class="offcanvas-info">
+                    <div class="offcanvas-wrap">
+                        <div class="offcanvas-detail">
+                            <div class="offcanvas-head">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <a href="index.html" class="black-logo-responsive">
+                                        <img src="assets/img/logo-dark.svg" alt="logo-img">
+                                    </a>
+                                    <a href="index.html" class="white-logo-responsive">
+                                        <img src="assets/img/logo.svg" alt="logo-img">
+                                    </a>
+                                    <div class="offcanvas-close">
+                                        <i class="ti ti-x"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mobile-menu fix mb-3"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="offcanvas-overlay"></div>
+                <div class="header-nav">
+                    <div class="main-menu-wrapper">
+                        <div class="navbar-logo">
+                            <a class="logo-white header-logo" href="index.html">
+                                <img src="assets/img/logo.svg" class="logo" alt="Logo">
+                            </a>
+                            <a class="logo-dark header-logo" href="index.html">
+                                <img src="assets/img/logo-dark.svg" class="logo" alt="Logo">
+                            </a>
+                        </div>
+                        <nav id="mobile-menu">
+                            <ul class="main-nav">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="flight-grid.html">Flight</a></li>
+                                <li><a href="hotel-grid.html">Hotel</a></li>
+                                <li><a href="car-grid.html">Car</a></li>
+                                <li><a href="cruise-grid.html">Cruise</a></li>
+                                <li><a href="tour-grid.html">Tour</a></li>
+                                <li class="active"><a href="vacation.html">Vacation</a></li>
+                                <li><a href="fan-card.html">Fan Card</a></li>
+                            </ul>
+                        </nav>
+                        <div class="header-btn d-flex align-items-center">
+                            <div class="me-3">
+                                <a href="javascript:void(0);" id="dark-mode-toggle" class="theme-toggle">
+                                    <i class="isax isax-moon"></i>
+                                </a>
+                                <a href="javascript:void(0);" id="light-mode-toggle" class="theme-toggle">
+                                    <i class="isax isax-sun-1"></i>
+                                </a>
+                            </div>
+                            <a href="login.html" class="btn btn-outline-light me-2 d-none d-md-block"><i class="isax isax-login me-2"></i>Sign In</a>
+                            <a href="register.html" class="btn btn-primary d-none d-md-block"><i class="isax isax-user-add me-2"></i>Sign Up</a>
+                            <div class="header__hamburger d-xl-none my-auto">
+                                <div class="sidebar-menu">
+                                    <i class="isax isax-menu5"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- /Header -->
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-bar breadcrumb-bg-01 text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-12">
+                    <h2 class="breadcrumb-title mb-2">Vacation Packages</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center mb-0">
+                            <li class="breadcrumb-item"><a href="index.html"><i class="isax isax-home5"></i></a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Vacation Packages</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Breadcrumb -->
+
+    <!-- Page Content -->
+    <div class="content">
+        <div class="container">
+            <!-- Header Section -->
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8 text-center">
+                    <h2 class="mb-3">Find Your Perfect Vacation</h2>
+                    <p class="text-muted mb-4">Discover handpicked luxury resort stays and unforgettable cruise experiences. From tropical beaches to Arctic glaciers, your dream vacation awaits.</p>
+                    
+                    <!-- Search Box -->
+                    <div class="search-vacation mb-4">
+                        <i class="isax isax-search-normal-1 search-icon fs-20"></i>
+                        <input type="text" id="vacation-search" class="form-control" placeholder="Search destinations, resorts, cruises...">
+                        <button type="button" id="search-btn" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="filter-tabs d-flex flex-wrap justify-content-center" id="type-filter">
+                        <a href="javascript:void(0);" class="nav-link active" data-type="all">
+                            <i class="isax isax-global me-1"></i>All Packages
+                        </a>
+                        <a href="javascript:void(0);" class="nav-link" data-type="resort">
+                            <i class="isax isax-building-4 me-1"></i>Resort Stays
+                        </a>
+                        <a href="javascript:void(0);" class="nav-link" data-type="cruise">
+                            <i class="isax isax-ship me-1"></i>Cruises
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sort Options -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                        <p class="mb-2"><span id="results-count">12</span> vacation packages found</p>
+                        <div class="d-flex align-items-center">
+                            <label class="me-2 text-nowrap">Sort by:</label>
+                            <select class="form-select form-select-sm" id="sort-select" style="width: 180px;">
+                                <option value="default">Featured</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="rating">Highest Rated</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vacation Cards Grid -->
+            <div class="row" id="vacation-grid">
+                <!-- Cards will be dynamically loaded here -->
+            </div>
+
+            <!-- Loading State -->
+            <div class="row d-none" id="loading-state">
+                <div class="col-12 text-center py-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-3 text-muted">Loading vacation packages...</p>
+                </div>
+            </div>
+
+            <!-- No Results State -->
+            <div class="row d-none" id="no-results">
+                <div class="col-12 text-center py-5">
+                    <i class="isax isax-search-status fs-48 text-muted mb-3 d-block"></i>
+                    <h4>No packages found</h4>
+                    <p class="text-muted">Try adjusting your search or filter criteria</p>
+                    <button class="btn btn-primary" onclick="resetFilters()">Reset Filters</button>
+                </div>
+            </div>
+
+            <!-- Why Book With Us -->
+            <div class="row mt-5">
+                <div class="col-lg-12">
+                    <div class="card bg-light-400">
+                        <div class="card-body p-4">
+                            <div class="text-center mb-4">
+                                <h3>Why Book With DreamsTour</h3>
+                                <p class="text-muted">We make vacation planning effortless</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <div class="text-center">
+                                        <span class="avatar avatar-xl bg-primary mb-3">
+                                            <i class="isax isax-shield-tick fs-28"></i>
+                                        </span>
+                                        <h5>Best Price Guarantee</h5>
+                                        <p class="text-muted fs-14">Find a lower price? We'll match it plus give you 10% off</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="text-center">
+                                        <span class="avatar avatar-xl bg-success mb-3">
+                                            <i class="isax isax-24-support fs-28"></i>
+                                        </span>
+                                        <h5>24/7 Support</h5>
+                                        <p class="text-muted fs-14">Our travel experts are available around the clock</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="text-center">
+                                        <span class="avatar avatar-xl bg-warning mb-3">
+                                            <i class="isax isax-medal-star fs-28"></i>
+                                        </span>
+                                        <h5>Handpicked Properties</h5>
+                                        <p class="text-muted fs-14">Every resort and cruise is personally vetted for quality</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <div class="text-center">
+                                        <span class="avatar avatar-xl bg-info mb-3">
+                                            <i class="isax isax-refresh-circle fs-28"></i>
+                                        </span>
+                                        <h5>Free Cancellation</h5>
+                                        <p class="text-muted fs-14">Flexible booking with free cancellation on most packages</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Content -->
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="footer-widget">
+                        <a href="index.html" class="mb-4 d-block">
+                            <img src="assets/img/logo.svg" alt="Logo">
+                        </a>
+                        <p class="mb-3">Your trusted partner for unforgettable vacation experiences around the world.</p>
+                        <ul class="social-icon">
+                            <li><a href="javascript:void(0);"><i class="fa-brands fa-facebook"></i></a></li>
+                            <li><a href="javascript:void(0);"><i class="fa-brands fa-x-twitter"></i></a></li>
+                            <li><a href="javascript:void(0);"><i class="fa-brands fa-instagram"></i></a></li>
+                            <li><a href="javascript:void(0);"><i class="fa-brands fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-widget">
+                        <h5 class="mb-3">Quick Links</h5>
+                        <ul class="footer-links">
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="contact-us.html">Contact</a></li>
+                            <li><a href="faq.html">FAQs</a></li>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-widget">
+                        <h5 class="mb-3">Bookings</h5>
+                        <ul class="footer-links">
+                            <li><a href="flight-grid.html">Flights</a></li>
+                            <li><a href="hotel-grid.html">Hotels</a></li>
+                            <li><a href="cruise-grid.html">Cruises</a></li>
+                            <li><a href="tour-grid.html">Tours</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-6 mb-4">
+                    <div class="footer-widget">
+                        <h5 class="mb-3">Newsletter</h5>
+                        <p class="mb-3">Subscribe for exclusive deals and travel tips</p>
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your email address">
+                            <button class="btn btn-primary" type="button">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-center py-3">
+                            <p class="fs-14 mb-0">Copyright &copy; 2025. All Rights Reserved, <a href="index.html" class="text-primary fw-medium">DreamsTour</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /Footer -->
+
+    <!-- Back to Top -->
+    <div class="back-to-top">
+        <a class="back-to-top-icon align-items-center justify-content-center d-flex" href="#top"><i class="fa-solid fa-arrow-up"></i></a>
+    </div>
+
+    <!-- Jquery JS -->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Wow JS -->
+    <script src="assets/js/wow.min.js"></script>
+
+    <!-- MeanMenu Js -->
+    <script src="assets/js/jquery.meanmenu.min.js"></script>
+
+    <!-- Owlcarousel Js -->
+    <script src="assets/plugins/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Script JS -->
+    <script src="assets/js/script.js"></script>
+
+    <!-- Vacation Data -->
+    <script src="assets/js/vacation-data.js"></script>
+
+    <!-- Vacation Page Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const grid = document.getElementById('vacation-grid');
+            const searchInput = document.getElementById('vacation-search');
+            const searchBtn = document.getElementById('search-btn');
+            const filterBtns = document.querySelectorAll('#type-filter .nav-link');
+            const sortSelect = document.getElementById('sort-select');
+            const resultsCount = document.getElementById('results-count');
+            const noResults = document.getElementById('no-results');
+            
+            let currentFilter = 'all';
+            let currentSearch = '';
+            let currentSort = 'default';
+
+            // Generate vacation card HTML
+            function generateCard(pkg) {
+                const features = pkg.features.slice(0, 3).map(f => `<span class="feature-tag">${f}</span>`).join('');
+                const stars = vacationData.generateStarRating(pkg.rating);
+                
+                return `
+                    <div class="col-lg-4 col-md-6 mb-4 vacation-item" data-type="${pkg.type}" data-name="${pkg.name.toLowerCase()}">
+                        <div class="card vacation-card h-100">
+                            <div class="position-relative">
+                                <img src="${pkg.image}" class="card-img-top card-img" alt="${pkg.name}">
+                                <span class="vacation-badge ${pkg.type}">${pkg.type === 'resort' ? '🏨 Resort' : '🚢 Cruise'}</span>
+                                <a href="javascript:void(0);" class="btn btn-icon btn-white btn-sm position-absolute" style="top: 15px; right: 15px;">
+                                    <i class="isax isax-heart"></i>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <span class="d-flex align-items-center">
+                                        ${stars}
+                                        <span class="ms-2 text-muted fs-13">(${pkg.reviews})</span>
+                                    </span>
+                                    <span class="badge bg-light text-dark">${pkg.duration}</span>
+                                </div>
+                                <h5 class="card-title mb-2">${pkg.name}</h5>
+                                <p class="text-muted mb-2 d-flex align-items-center">
+                                    <i class="isax isax-location5 me-1"></i>${pkg.location}
+                                </p>
+                                <div class="mb-3">
+                                    ${features}
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                    <div class="price-tag">
+                                        $${pkg.price.toLocaleString()}
+                                        <span class="original ms-1">$${pkg.originalPrice.toLocaleString()}</span>
+                                    </div>
+                                    <a href="vacation-details.html?id=${pkg.id}" class="btn btn-primary btn-sm">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Render packages
+            function renderPackages() {
+                let packages = vacationData.getAllPackages();
+                
+                // Apply type filter
+                if (currentFilter !== 'all') {
+                    packages = vacationData.getPackagesByType(currentFilter);
+                }
+                
+                // Apply search
+                if (currentSearch) {
+                    packages = packages.filter(pkg => 
+                        pkg.name.toLowerCase().includes(currentSearch) ||
+                        pkg.location.toLowerCase().includes(currentSearch)
+                    );
+                }
+                
+                // Apply sort
+                packages = vacationData.sortPackages(packages, currentSort);
+                
+                // Update results count
+                resultsCount.textContent = packages.length;
+                
+                // Show/hide no results
+                if (packages.length === 0) {
+                    grid.classList.add('d-none');
+                    noResults.classList.remove('d-none');
+                } else {
+                    grid.classList.remove('d-none');
+                    noResults.classList.add('d-none');
+                    grid.innerHTML = packages.map(generateCard).join('');
+                }
+            }
+
+            // Event listeners
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.dataset.type;
+                    renderPackages();
+                });
+            });
+
+            searchBtn.addEventListener('click', function() {
+                currentSearch = searchInput.value.toLowerCase().trim();
+                renderPackages();
+            });
+
+            searchInput.addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') {
+                    currentSearch = this.value.toLowerCase().trim();
+                    renderPackages();
+                }
+            });
+
+            sortSelect.addEventListener('change', function() {
+                currentSort = this.value;
+                renderPackages();
+            });
+
+            // Reset filters function
+            window.resetFilters = function() {
+                currentFilter = 'all';
+                currentSearch = '';
+                currentSort = 'default';
+                searchInput.value = '';
+                sortSelect.value = 'default';
+                filterBtns.forEach(b => b.classList.remove('active'));
+                filterBtns[0].classList.add('active');
+                renderPackages();
+            };
+
+            // Initial render
+            renderPackages();
+        });
+    </script>
+
+</body>
+</html>
