@@ -258,119 +258,6 @@
 
     <!-- Custom Styles for Celebrity Cards -->
     <style>
-        .celebrity-card {
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            height: 420px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-        }
-        .celebrity-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-        .celebrity-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-        .celebrity-card:hover img {
-            transform: scale(1.05);
-        }
-        .celebrity-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 30px 20px 20px;
-            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 50%, transparent 100%);
-            color: white;
-        }
-        .celebrity-card-sm {
-            height: 320px;
-        }
-        .celebrity-card-sm .celebrity-overlay {
-            padding: 20px 15px 15px;
-        }
-        .celebrity-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(255,255,255,0.95);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            color: #333;
-        }
-        .celebrity-badge.popular {
-            background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
-            color: #000;
-        }
-        .celebrity-category {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 12px;
-            margin-bottom: 8px;
-            backdrop-filter: blur(10px);
-        }
-        .celebrity-name {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 4px;
-            color: #fff !important;
-        }
-        .celebrity-card-sm .celebrity-name {
-            font-size: 18px;
-        }
-        .celebrity-title {
-            font-size: 14px;
-            opacity: 0.9;
-            margin-bottom: 12px;
-        }
-        .celebrity-price {
-            font-size: 22px;
-            font-weight: 700;
-            color: #fff;
-        }
-        .celebrity-price span {
-            font-size: 14px;
-            font-weight: 400;
-            opacity: 0.8;
-        }
-        .celebrity-stats {
-            display: flex;
-            gap: 15px;
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px solid rgba(255,255,255,0.2);
-        }
-        .celebrity-stat {
-            display: flex;
-            align-items: center;
-            font-size: 13px;
-            opacity: 0.9;
-        }
-        .celebrity-stat i {
-            margin-right: 5px;
-        }
-        .view-btn {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-        .celebrity-card:hover .view-btn {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-        }
         .filter-tabs .nav-link {
             padding: 10px 20px;
             border-radius: 25px;
@@ -380,6 +267,10 @@
             color: #333;
             border: none;
             font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .filter-tabs .nav-link:hover {
+            background: #e9e9e9;
         }
         .filter-tabs .nav-link.active {
             background: var(--bs-primary);
@@ -430,76 +321,91 @@
                     <h4>Featured Celebrities</h4>
                 </div>
 
-                <div class="col-lg-4 col-md-6 mb-4 celebrity-item" data-category="tech" data-name="elon musk">
-                    <a href="fan-card-detail.html?id=elon-musk" class="text-decoration-none">
-                        <div class="celebrity-card wow fadeInUp" data-wow-delay="0.1s">
-                            <span class="celebrity-badge popular"><i class="isax isax-medal-star me-1"></i>Popular</span>
-                            <div class="view-btn">
-                                <span class="btn btn-white btn-sm"><i class="isax isax-eye me-1"></i>View Profile</span>
-                            </div>
-                            <div class="celebrity-overlay">
-                                <span class="celebrity-category"><i class="isax isax-cpu me-1"></i>Tech Visionary</span>
-                                <h4 class="celebrity-name">Elon Musk</h4>
-                                <p class="celebrity-title">CEO of Tesla & SpaceX</p>
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="celebrity-price">$49.99 <span>/ year</span></div>
-                                    <span class="badge bg-primary">Official</span>
-                                </div>
-                                <div class="celebrity-stats">
-                                    <span class="celebrity-stat"><i class="isax isax-profile-2user"></i>2.5M Fans</span>
-                                    <span class="celebrity-stat"><i class="isax isax-star-1"></i>4.9 Rating</span>
-                                </div>
+                <!-- Elon Musk -->
+                <div class="col-xl-4 col-md-6 d-flex celebrity-item" data-category="tech" data-name="elon musk">
+                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="place-img">
+                            <a href="fan-card-detail.html?id=elon-musk">
+                                <img src="assets/img/fan-cards/elon-musk.jpg" class="img-fluid" alt="Elon Musk" onerror="this.src='assets/img/icons/icon-01.png'">
+                            </a>
+                            <div class="fav-item">
+                                <span class="badge bg-warning d-inline-flex align-items-center"><i class="isax isax-medal-star me-1"></i>Popular</span>
+                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
                             </div>
                         </div>
-                    </a>
+                        <div class="place-content">
+                            <div class="d-flex align-items-center mb-1">
+                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.9</span>
+                                <p class="fs-14">(2.5M Fans)</p>
+                            </div>
+                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=elon-musk">Elon Musk</a></h5>
+                            <p class="d-flex align-items-center mb-2"><i class="isax isax-cpu me-2 text-primary"></i>Tech Visionary</p>
+                            <div class="border-top pt-2 mb-2">
+                                <p class="fs-14 text-muted mb-0">CEO of Tesla & SpaceX</p>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                <h5 class="text-primary text-nowrap me-2">$49.99 <span class="fs-14 fw-normal text-default">/ year</span></h5>
+                                <a href="fan-card-detail.html?id=elon-musk" class="btn btn-primary btn-sm">Get Card</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 mb-4 celebrity-item" data-category="musician" data-name="drake">
-                    <a href="fan-card-detail.html?id=drake" class="text-decoration-none">
-                        <div class="celebrity-card wow fadeInUp" data-wow-delay="0.2s">
-                            <span class="celebrity-badge"><i class="isax isax-verify me-1"></i>Verified</span>
-                            <div class="view-btn">
-                                <span class="btn btn-white btn-sm"><i class="isax isax-eye me-1"></i>View Profile</span>
-                            </div>
-                            <div class="celebrity-overlay">
-                                <span class="celebrity-category"><i class="isax isax-music me-1"></i>Hip-Hop Artist</span>
-                                <h4 class="celebrity-name">Drake</h4>
-                                <p class="celebrity-title">Grammy-Winning Rapper & Producer</p>
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="celebrity-price">$69.99 <span>/ year</span></div>
-                                    <span class="badge bg-primary">Official</span>
-                                </div>
-                                <div class="celebrity-stats">
-                                    <span class="celebrity-stat"><i class="isax isax-profile-2user"></i>5.2M Fans</span>
-                                    <span class="celebrity-stat"><i class="isax isax-star-1"></i>4.8 Rating</span>
-                                </div>
+                <!-- Drake -->
+                <div class="col-xl-4 col-md-6 d-flex celebrity-item" data-category="musician" data-name="drake">
+                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="place-img">
+                            <a href="fan-card-detail.html?id=drake">
+                                <img src="assets/img/fan-cards/drake.jpg" class="img-fluid" alt="Drake" onerror="this.src='assets/img/icons/icon-02.png'">
+                            </a>
+                            <div class="fav-item">
+                                <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-verify me-1"></i>Verified</span>
+                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
                             </div>
                         </div>
-                    </a>
+                        <div class="place-content">
+                            <div class="d-flex align-items-center mb-1">
+                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.8</span>
+                                <p class="fs-14">(5.2M Fans)</p>
+                            </div>
+                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=drake">Drake</a></h5>
+                            <p class="d-flex align-items-center mb-2"><i class="isax isax-music me-2 text-primary"></i>Hip-Hop Artist</p>
+                            <div class="border-top pt-2 mb-2">
+                                <p class="fs-14 text-muted mb-0">Grammy-Winning Rapper & Producer</p>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                <h5 class="text-primary text-nowrap me-2">$69.99 <span class="fs-14 fw-normal text-default">/ year</span></h5>
+                                <a href="fan-card-detail.html?id=drake" class="btn btn-primary btn-sm">Get Card</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 mb-4 celebrity-item" data-category="musician" data-name="taylor swift">
-                    <a href="fan-card-detail.html?id=taylor-swift" class="text-decoration-none">
-                        <div class="celebrity-card wow fadeInUp" data-wow-delay="0.3s">
-                            <span class="celebrity-badge"><i class="isax isax-verify me-1"></i>Verified</span>
-                            <div class="view-btn">
-                                <span class="btn btn-white btn-sm"><i class="isax isax-eye me-1"></i>View Profile</span>
-                            </div>
-                            <div class="celebrity-overlay">
-                                <span class="celebrity-category"><i class="isax isax-music me-1"></i>Pop Icon</span>
-                                <h4 class="celebrity-name">Taylor Swift</h4>
-                                <p class="celebrity-title">Global Music Sensation</p>
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <div class="celebrity-price">$79.99 <span>/ year</span></div>
-                                    <span class="badge bg-primary">Official</span>
-                                </div>
-                                <div class="celebrity-stats">
-                                    <span class="celebrity-stat"><i class="isax isax-profile-2user"></i>8.1M Fans</span>
-                                    <span class="celebrity-stat"><i class="isax isax-star-1"></i>4.9 Rating</span>
-                                </div>
+                <!-- Taylor Swift -->
+                <div class="col-xl-4 col-md-6 d-flex celebrity-item" data-category="musician" data-name="taylor swift">
+                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="place-img">
+                            <a href="fan-card-detail.html?id=taylor-swift">
+                                <img src="assets/img/fan-cards/taylor-swift.jpg" class="img-fluid" alt="Taylor Swift" onerror="this.src='assets/img/icons/icon-03.png'">
+                            </a>
+                            <div class="fav-item">
+                                <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-verify me-1"></i>Verified</span>
+                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
                             </div>
                         </div>
-                    </a>
+                        <div class="place-content">
+                            <div class="d-flex align-items-center mb-1">
+                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.9</span>
+                                <p class="fs-14">(8.1M Fans)</p>
+                            <div class="border-top pt-2 mb-2">
+                                <p class="fs-14 text-muted mb-0">Global Music Sensation</p>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                <h5 class="text-primary text-nowrap me-2">$79.99 <span class="fs-14 fw-normal text-default">/ year</span></h5>
+                                <a href="fan-card-detail.html?id=taylor-swift" class="btn btn-primary btn-sm">Get Card</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- /Featured Celebrity Cards -->
@@ -510,293 +416,328 @@
                     <h4>More Celebrities</h4>
                 </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 celebrity-item" data-category="musician" data-name="beyonce">
-                    <a href="fan-card-detail.html?id=beyonce" class="text-decoration-none">
-                        <div class="celebrity-card celebrity-card-sm wow fadeInUp" data-wow-delay="0.1s">
-                            <span class="celebrity-badge"><i class="isax isax-verify me-1"></i>Verified</span>
-                            <div class="view-btn">
-                                <span class="btn btn-white btn-sm"><i class="isax isax-eye me-1"></i>View</span>
-                            </div>
-                            <div class="celebrity-overlay">
-                                <span class="celebrity-category"><i class="isax isax-music me-1"></i>Music</span>
-                                <h4 class="celebrity-name">Beyoncé</h4>
-                                <p class="celebrity-title">Queen of Pop</p>
-                                <div class="celebrity-price">$74.99 <span>/ year</span></div>
+                <!-- Beyoncé -->
+                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="musician" data-name="beyonce">
+                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="place-img">
+                            <a href="fan-card-detail.html?id=beyonce">
+                                <img src="assets/img/fan-cards/beyonce.jpg" class="img-fluid" alt="Beyoncé" onerror="this.src='assets/img/icons/icon-04.png'">
+                            </a>
+                            <div class="fav-item">
+                                <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-verify me-1"></i>Verified</span>
+                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
                             </div>
                         </div>
-                    </a>
+                        <div class="place-content">
+                            <div class="d-flex align-items-center mb-1">
+                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.9</span>
+                                <p class="fs-14">(4.8M Fans)</p>
+                            </div>
+                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=beyonce">Beyoncé</a></h5>
+                            <p class="d-flex align-items-center mb-2"><i class="isax isax-music me-2 text-primary"></i>Queen of Pop</p>
+                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                <h5 class="text-primary text-nowrap me-2">$74.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
+                                <a href="fan-card-detail.html?id=beyonce" class="btn btn-primary btn-sm">Get Card</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 celebrity-item" data-category="athlete" data-name="lebron james">
-                    <a href="fan-card-detail.html?id=lebron-james" class="text-decoration-none">
-                        <div class="celebrity-card celebrity-card-sm wow fadeInUp" data-wow-delay="0.2s">
-                            <span class="celebrity-badge"><i class="isax isax-verify me-1"></i>Verified</span>
-                            <div class="view-btn">
-                                <span class="btn btn-white btn-sm"><i class="isax isax-eye me-1"></i>View</span>
-                            </div>
-                            <div class="celebrity-overlay">
-                                <span class="celebrity-category"><i class="isax isax-cup me-1"></i>Sports</span>
-                                <h4 class="celebrity-name">LeBron James</h4>
-                                <p class="celebrity-title">Basketball Legend</p>
-                                <div class="celebrity-price">$59.99 <span>/ year</span></div>
+                <!-- LeBron James -->
+                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="athlete" data-name="lebron james">
+                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="place-img">
+                            <a href="fan-card-detail.html?id=lebron-james">
+                                <img src="assets/img/fan-cards/lebron-james.jpg" class="img-fluid" alt="LeBron James" onerror="this.src='assets/img/icons/icon-05.png'">
+                            </a>
+                            <div class="fav-item">
+                                <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-verify me-1"></i>Verified</span>
+                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
                             </div>
                         </div>
-                    </a>
+                        <div class="place-content">
+                            <div class="d-flex align-items-center mb-1">
+                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.8</span>
+                                <p class="fs-14">(3.2M Fans)</p>
+                            </div>
+                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=lebron-james">LeBron James</a></h5>
+                            <p class="d-flex align-items-center mb-2"><i class="isax isax-cup me-2 text-primary"></i>Basketball Legend</p>
+                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                <h5 class="text-primary text-nowrap me-2">$59.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
+                                <a href="fan-card-detail.html?id=lebron-james" class="btn btn-primary btn-sm">Get Card</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 celebrity-item" data-category="musician" data-name="ariana grande">
-                    <a href="fan-card-detail.html?id=ariana-grande" class="text-decoration-none">
-                        <div class="celebrity-card celebrity-card-sm wow fadeInUp" data-wow-delay="0.3s">
-                            <span class="celebrity-badge popular"><i class="isax isax-medal-star me-1"></i>Popular</span>
-                            <div class="view-btn">
-                                <span class="btn btn-white btn-sm"><i class="isax isax-eye me-1"></i>View</span>
-                            </div>
-                            <div class="celebrity-overlay">
-                                <span class="celebrity-category"><i class="isax isax-music me-1"></i>Pop</span>
-                                <h4 class="celebrity-name">Ariana Grande</h4>
-                                <p class="celebrity-title">Pop Sensation</p>
-                                <div class="celebrity-price">$64.99 <span>/ year</span></div>
+                <!-- Ariana Grande -->
+                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="musician" data-name="ariana grande">
+                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="place-img">
+                            <a href="fan-card-detail.html?id=ariana-grande">
+                                <img src="assets/img/fan-cards/ariana-grande.jpg" class="img-fluid" alt="Ariana Grande" onerror="this.src='assets/img/icons/icon-06.png'">
+                            </a>
+                            <div class="fav-item">
+                                <span class="badge bg-warning d-inline-flex align-items-center"><i class="isax isax-medal-star me-1"></i>Popular</span>
+                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
                             </div>
                         </div>
-                    </a>
+                        <div class="place-content">
+                            <div class="d-flex align-items-center mb-1">
+                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.9</span>
+                                <p class="fs-14">(5.5M Fans)</p>
+                            </div>
+                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=ariana-grande">Ariana Grande</a></h5>
+                            <p class="d-flex align-items-center mb-2"><i class="isax isax-music me-2 text-primary"></i>Pop Sensation</p>
+                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                <h5 class="text-primary text-nowrap me-2">$64.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
+                                <a href="fan-card-detail.html?id=ariana-grande" class="btn btn-primary btn-sm">Get Card</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 celebrity-item" data-category="actor" data-name="chris hemsworth">
-                    <a href="fan-card-detail.html?id=chris-hemsworth" class="text-decoration-none">
-                        <div class="celebrity-card celebrity-card-sm wow fadeInUp" data-wow-delay="0.4s">
-                            <span class="celebrity-badge"><i class="isax isax-verify me-1"></i>Verified</span>
-                            <div class="view-btn">
-                                <span class="btn btn-white btn-sm"><i class="isax isax-eye me-1"></i>View</span>
-                            </div>
-                            <div class="celebrity-overlay">
-                                <span class="celebrity-category"><i class="isax isax-video-play me-1"></i>Actor</span>
-                                <h4 class="celebrity-name">Chris Hemsworth</h4>
-                                <p class="celebrity-title">Hollywood Star</p>
-                                <div class="celebrity-price">$54.99 <span>/ year</span></div>
+                <!-- Chris Hemsworth -->
+                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="actor" data-name="chris hemsworth">
+                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="place-img">
+                            <a href="fan-card-detail.html?id=chris-hemsworth">
+                                <img src="assets/img/fan-cards/chris-hemsworth.jpg" class="img-fluid" alt="Chris Hemsworth" onerror="this.src='assets/img/icons/icon-01.png'">
+                            </a>
+                            <div class="fav-item">
+                                <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-verify me-1"></i>Verified</span>
+                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
                             </div>
                         </div>
-                    </a>
+                        <div class="place-content">
+                            <div class="d-flex align-items-center mb-1">
+                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.7</span>
+                                <p class="fs-14">(2.1M Fans)</p>
+                            </div>
+                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=chris-hemsworth">Chris Hemsworth</a></h5>
+                            <p class="d-flex align-items-center mb-2"><i class="isax isax-video-play me-2 text-primary"></i>Hollywood Star</p>
+                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                <h5 class="text-primary text-nowrap me-2">$54.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
+                                <a href="fan-card-detail.html?id=chris-hemsworth" class="btn btn-primary btn-sm">Get Card</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 celebrity-item" data-category="musician" data-name="travis scott">
-                    <a href="fan-card-detail.html?id=travis-scott" class="text-decoration-none">
-                        <div class="celebrity-card celebrity-card-sm wow fadeInUp" data-wow-delay="0.1s">
-                            <span class="celebrity-badge"><i class="isax isax-verify me-1"></i>Verified</span>
-                            <div class="view-btn">
-                                <span class="btn btn-white btn-sm"><i class="isax isax-eye me-1"></i>View</span>
-                            </div>
-                            <div class="celebrity-overlay">
-                                <span class="celebrity-category"><i class="isax isax-music me-1"></i>Hip-Hop</span>
-                                <h4 class="celebrity-name">Travis Scott</h4>
-                                <p class="celebrity-title">Rapper & Producer</p>
-                                <div class="celebrity-price">$59.99 <span>/ year</span></div>
+                <!-- Dwayne Johnson -->
+                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="actor" data-name="dwayne johnson">
+                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="place-img">
+                            <a href="fan-card-detail.html?id=dwayne-johnson">
+                                <img src="assets/img/fan-cards/dwayne-johnson.jpg" class="img-fluid" alt="Dwayne Johnson" onerror="this.src='assets/img/icons/icon-02.png'">
+                            </a>
+                            <div class="fav-item">
+                                <span class="badge bg-warning d-inline-flex align-items-center"><i class="isax isax-medal-star me-1"></i>Popular</span>
+                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
                             </div>
                         </div>
-                    </a>
+                        <div class="place-content">
+                            <div class="d-flex align-items-center mb-1">
+                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.9</span>
+                                <p class="fs-14">(6.8M Fans)</p>
+                            </div>
+                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=dwayne-johnson">Dwayne Johnson</a></h5>
+                            <p class="d-flex align-items-center mb-2"><i class="isax isax-video-play me-2 text-primary"></i>The Rock</p>
+                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                <h5 class="text-primary text-nowrap me-2">$49.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
+                                <a href="fan-card-detail.html?id=dwayne-johnson" class="btn btn-primary btn-sm">Get Card</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 celebrity-item" data-category="actor" data-name="dwayne johnson">
-                    <a href="fan-card-detail.html?id=dwayne-johnson" class="text-decoration-none">
-                        <div class="celebrity-card celebrity-card-sm wow fadeInUp" data-wow-delay="0.2s">
-                            <span class="celebrity-badge popular"><i class="isax isax-medal-star me-1"></i>Popular</span>
-                            <div class="view-btn">
-                                <span class="btn btn-white btn-sm"><i class="isax isax-eye me-1"></i>View</span>
-                            </div>
-                            <div class="celebrity-overlay">
-                                <span class="celebrity-category"><i class="isax isax-video-play me-1"></i>Actor</span>
-                                <h4 class="celebrity-name">Dwayne Johnson</h4>
-                                <p class="celebrity-title">The Rock</p>
-                                <div class="celebrity-price">$49.99 <span>/ year</span></div>
+                <!-- Cristiano Ronaldo -->
+                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="athlete" data-name="cristiano ronaldo">
+                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="place-img">
+                            <a href="fan-card-detail.html?id=cristiano-ronaldo">
+                                <img src="assets/img/fan-cards/cristiano-ronaldo.jpg" class="img-fluid" alt="Cristiano Ronaldo" onerror="this.src='assets/img/icons/icon-03.png'">
+                            </a>
+                            <div class="fav-item">
+                                <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-verify me-1"></i>Verified</span>
+                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
                             </div>
                         </div>
-                    </a>
+                        <div class="place-content">
+                            <div class="d-flex align-items-center mb-1">
+                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.9</span>
+                                <p class="fs-14">(7.5M Fans)</p>
+                            </div>
+                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=cristiano-ronaldo">Cristiano Ronaldo</a></h5>
+                            <p class="d-flex align-items-center mb-2"><i class="isax isax-cup me-2 text-primary"></i>Football Legend</p>
+                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                <h5 class="text-primary text-nowrap me-2">$69.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
+                                <a href="fan-card-detail.html?id=cristiano-ronaldo" class="btn btn-primary btn-sm">Get Card</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 celebrity-item" data-category="musician" data-name="billie eilish">
-                    <a href="fan-card-detail.html?id=billie-eilish" class="text-decoration-none">
-                        <div class="celebrity-card celebrity-card-sm wow fadeInUp" data-wow-delay="0.3s">
-                            <span class="celebrity-badge"><i class="isax isax-verify me-1"></i>Verified</span>
-                            <div class="view-btn">
-                                <span class="btn btn-white btn-sm"><i class="isax isax-eye me-1"></i>View</span>
-                            </div>
-                            <div class="celebrity-overlay">
-                                <span class="celebrity-category"><i class="isax isax-music me-1"></i>Music</span>
-                                <h4 class="celebrity-name">Billie Eilish</h4>
-                                <p class="celebrity-title">Alternative Artist</p>
-                                <div class="celebrity-price">$64.99 <span>/ year</span></div>
+                <!-- Rihanna -->
+                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="musician" data-name="rihanna">
+                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="place-img">
+                            <a href="fan-card-detail.html?id=rihanna">
+                                <img src="assets/img/fan-cards/rihanna.jpg" class="img-fluid" alt="Rihanna" onerror="this.src='assets/img/icons/icon-04.png'">
+                            </a>
+                            <div class="fav-item">
+                                <span class="badge bg-warning d-inline-flex align-items-center"><i class="isax isax-medal-star me-1"></i>Popular</span>
+                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
                             </div>
                         </div>
-                    </a>
+                        <div class="place-content">
+                            <div class="d-flex align-items-center mb-1">
+                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.8</span>
+                                <p class="fs-14">(4.2M Fans)</p>
+                            </div>
+                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=rihanna">Rihanna</a></h5>
+                            <p class="d-flex align-items-center mb-2"><i class="isax isax-music me-2 text-primary"></i>Music Icon</p>
+                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                <h5 class="text-primary text-nowrap me-2">$74.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
+                                <a href="fan-card-detail.html?id=rihanna" class="btn btn-primary btn-sm">Get Card</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 celebrity-item" data-category="athlete" data-name="cristiano ronaldo">
-                    <a href="fan-card-detail.html?id=cristiano-ronaldo" class="text-decoration-none">
-                        <div class="celebrity-card celebrity-card-sm wow fadeInUp" data-wow-delay="0.4s">
-                            <span class="celebrity-badge"><i class="isax isax-verify me-1"></i>Verified</span>
-                            <div class="view-btn">
-                                <span class="btn btn-white btn-sm"><i class="isax isax-eye me-1"></i>View</span>
-                            </div>
-                            <div class="celebrity-overlay">
-                                <span class="celebrity-category"><i class="isax isax-cup me-1"></i>Football</span>
-                                <h4 class="celebrity-name">Cristiano Ronaldo</h4>
-                                <p class="celebrity-title">Football Legend</p>
-                                <div class="celebrity-price">$69.99 <span>/ year</span></div>
+                <!-- Lionel Messi -->
+                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="athlete" data-name="lionel messi">
+                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="place-img">
+                            <a href="fan-card-detail.html?id=lionel-messi">
+                                <img src="assets/img/fan-cards/lionel-messi.jpg" class="img-fluid" alt="Lionel Messi" onerror="this.src='assets/img/icons/icon-05.png'">
+                            </a>
+                            <div class="fav-item">
+                                <span class="badge bg-warning d-inline-flex align-items-center"><i class="isax isax-medal-star me-1"></i>Popular</span>
+                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
                             </div>
                         </div>
-                    </a>
+                        <div class="place-content">
+                            <div class="d-flex align-items-center mb-1">
+                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">5.0</span>
+                                <p class="fs-14">(9.1M Fans)</p>
+                            </div>
+                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=lionel-messi">Lionel Messi</a></h5>
+                            <p class="d-flex align-items-center mb-2"><i class="isax isax-cup me-2 text-primary"></i>World Cup Champion</p>
+                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                <h5 class="text-primary text-nowrap me-2">$79.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
+                                <a href="fan-card-detail.html?id=lionel-messi" class="btn btn-primary btn-sm">Get Card</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 celebrity-item" data-category="musician" data-name="rihanna">
-                    <a href="fan-card-detail.html?id=rihanna" class="text-decoration-none">
-                        <div class="celebrity-card celebrity-card-sm wow fadeInUp" data-wow-delay="0.1s">
-                            <span class="celebrity-badge popular"><i class="isax isax-medal-star me-1"></i>Popular</span>
-                            <div class="view-btn">
-                                <span class="btn btn-white btn-sm"><i class="isax isax-eye me-1"></i>View</span>
-                            </div>
-                            <div class="celebrity-overlay">
-                                <span class="celebrity-category"><i class="isax isax-music me-1"></i>Music</span>
-                                <h4 class="celebrity-name">Rihanna</h4>
-                                <p class="celebrity-title">Music Icon & Business Mogul</p>
-                                <div class="celebrity-price">$74.99 <span>/ year</span></div>
+                <!-- Zendaya -->
+                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="actor" data-name="zendaya">
+                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="place-img">
+                            <a href="fan-card-detail.html?id=zendaya">
+                                <img src="assets/img/fan-cards/zendaya.jpg" class="img-fluid" alt="Zendaya" onerror="this.src='assets/img/icons/icon-06.png'">
+                            </a>
+                            <div class="fav-item">
+                                <span class="badge bg-warning d-inline-flex align-items-center"><i class="isax isax-medal-star me-1"></i>Popular</span>
+                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
                             </div>
                         </div>
-                    </a>
+                        <div class="place-content">
+                            <div class="d-flex align-items-center mb-1">
+                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.9</span>
+                                <p class="fs-14">(3.8M Fans)</p>
+                            </div>
+                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=zendaya">Zendaya</a></h5>
+                            <p class="d-flex align-items-center mb-2"><i class="isax isax-video-play me-2 text-primary"></i>Emmy-Winning Actress</p>
+                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                <h5 class="text-primary text-nowrap me-2">$64.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
+                                <a href="fan-card-detail.html?id=zendaya" class="btn btn-primary btn-sm">Get Card</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 celebrity-item" data-category="musician" data-name="kendrick lamar">
-                    <a href="fan-card-detail.html?id=kendrick-lamar" class="text-decoration-none">
-                        <div class="celebrity-card celebrity-card-sm wow fadeInUp" data-wow-delay="0.2s">
-                            <span class="celebrity-badge"><i class="isax isax-verify me-1"></i>Verified</span>
-                            <div class="view-btn">
-                                <span class="btn btn-white btn-sm"><i class="isax isax-eye me-1"></i>View</span>
-                            </div>
-                            <div class="celebrity-overlay">
-                                <span class="celebrity-category"><i class="isax isax-music me-1"></i>Hip-Hop</span>
-                                <h4 class="celebrity-name">Kendrick Lamar</h4>
-                                <p class="celebrity-title">Pulitzer Prize-Winning Rapper</p>
-                                <div class="celebrity-price">$64.99 <span>/ year</span></div>
+                <!-- Bad Bunny -->
+                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="musician" data-name="bad bunny">
+                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="place-img">
+                            <a href="fan-card-detail.html?id=bad-bunny">
+                                <img src="assets/img/fan-cards/bad-bunny.jpg" class="img-fluid" alt="Bad Bunny" onerror="this.src='assets/img/icons/icon-01.png'">
+                            </a>
+                            <div class="fav-item">
+                                <span class="badge bg-warning d-inline-flex align-items-center"><i class="isax isax-medal-star me-1"></i>Popular</span>
+                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
                             </div>
                         </div>
-                    </a>
+                        <div class="place-content">
+                            <div class="d-flex align-items-center mb-1">
+                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.8</span>
+                                <p class="fs-14">(4.5M Fans)</p>
+                            </div>
+                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=bad-bunny">Bad Bunny</a></h5>
+                            <p class="d-flex align-items-center mb-2"><i class="isax isax-music me-2 text-primary"></i>Latin Superstar</p>
+                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                <h5 class="text-primary text-nowrap me-2">$69.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
+                                <a href="fan-card-detail.html?id=bad-bunny" class="btn btn-primary btn-sm">Get Card</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 celebrity-item" data-category="musician" data-name="selena gomez">
-                    <a href="fan-card-detail.html?id=selena-gomez" class="text-decoration-none">
-                        <div class="celebrity-card celebrity-card-sm wow fadeInUp" data-wow-delay="0.3s">
-                            <span class="celebrity-badge popular"><i class="isax isax-medal-star me-1"></i>Popular</span>
-                            <div class="view-btn">
-                                <span class="btn btn-white btn-sm"><i class="isax isax-eye me-1"></i>View</span>
-                            </div>
-                            <div class="celebrity-overlay">
-                                <span class="celebrity-category"><i class="isax isax-music me-1"></i>Pop</span>
-                                <h4 class="celebrity-name">Selena Gomez</h4>
-                                <p class="celebrity-title">Singer & Actress</p>
-                                <div class="celebrity-price">$59.99 <span>/ year</span></div>
+                <!-- Kevin Hart -->
+                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="actor" data-name="kevin hart">
+                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="place-img">
+                            <a href="fan-card-detail.html?id=kevin-hart">
+                                <img src="assets/img/fan-cards/kevin-hart.jpg" class="img-fluid" alt="Kevin Hart" onerror="this.src='assets/img/icons/icon-02.png'">
+                            </a>
+                            <div class="fav-item">
+                                <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-verify me-1"></i>Verified</span>
+                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
                             </div>
                         </div>
-                    </a>
+                        <div class="place-content">
+                            <div class="d-flex align-items-center mb-1">
+                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.7</span>
+                                <p class="fs-14">(2.9M Fans)</p>
+                            </div>
+                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=kevin-hart">Kevin Hart</a></h5>
+                            <p class="d-flex align-items-center mb-2"><i class="isax isax-video-play me-2 text-primary"></i>Comedian & Actor</p>
+                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                <h5 class="text-primary text-nowrap me-2">$49.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
+                                <a href="fan-card-detail.html?id=kevin-hart" class="btn btn-primary btn-sm">Get Card</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 celebrity-item" data-category="actor" data-name="tom holland">
-                    <a href="fan-card-detail.html?id=tom-holland" class="text-decoration-none">
-                        <div class="celebrity-card celebrity-card-sm wow fadeInUp" data-wow-delay="0.4s">
-                            <span class="celebrity-badge"><i class="isax isax-verify me-1"></i>Verified</span>
-                            <div class="view-btn">
-                                <span class="btn btn-white btn-sm"><i class="isax isax-eye me-1"></i>View</span>
-                            </div>
-                            <div class="celebrity-overlay">
-                                <span class="celebrity-category"><i class="isax isax-video-play me-1"></i>Actor</span>
-                                <h4 class="celebrity-name">Tom Holland</h4>
-                                <p class="celebrity-title">Spider-Man Actor</p>
-                                <div class="celebrity-price">$54.99 <span>/ year</span></div>
+                <!-- Kim Kardashian -->
+                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="influencer" data-name="kim kardashian">
+                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="place-img">
+                            <a href="fan-card-detail.html?id=kim-kardashian">
+                                <img src="assets/img/fan-cards/kim-kardashian.jpg" class="img-fluid" alt="Kim Kardashian" onerror="this.src='assets/img/icons/icon-03.png'">
+                            </a>
+                            <div class="fav-item">
+                                <span class="badge bg-warning d-inline-flex align-items-center"><i class="isax isax-medal-star me-1"></i>Popular</span>
+                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
                             </div>
                         </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 celebrity-item" data-category="actor" data-name="zendaya">
-                    <a href="fan-card-detail.html?id=zendaya" class="text-decoration-none">
-                        <div class="celebrity-card celebrity-card-sm wow fadeInUp" data-wow-delay="0.1s">
-                            <span class="celebrity-badge popular"><i class="isax isax-medal-star me-1"></i>Popular</span>
-                            <div class="view-btn">
-                                <span class="btn btn-white btn-sm"><i class="isax isax-eye me-1"></i>View</span>
+                        <div class="place-content">
+                            <div class="d-flex align-items-center mb-1">
+                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.6</span>
+                                <p class="fs-14">(5.2M Fans)</p>
                             </div>
-                            <div class="celebrity-overlay">
-                                <span class="celebrity-category"><i class="isax isax-video-play me-1"></i>Actor</span>
-                                <h4 class="celebrity-name">Zendaya</h4>
-                                <p class="celebrity-title">Emmy-Winning Actress</p>
-                                <div class="celebrity-price">$64.99 <span>/ year</span></div>
+                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=kim-kardashian">Kim Kardashian</a></h5>
+                            <p class="d-flex align-items-center mb-2"><i class="isax isax-star me-2 text-primary"></i>Media Mogul</p>
+                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                <h5 class="text-primary text-nowrap me-2">$69.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
+                                <a href="fan-card-detail.html?id=kim-kardashian" class="btn btn-primary btn-sm">Get Card</a>
                             </div>
                         </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 celebrity-item" data-category="musician" data-name="bad bunny">
-                    <a href="fan-card-detail.html?id=bad-bunny" class="text-decoration-none">
-                        <div class="celebrity-card celebrity-card-sm wow fadeInUp" data-wow-delay="0.2s">
-                            <span class="celebrity-badge popular"><i class="isax isax-medal-star me-1"></i>Popular</span>
-                            <div class="view-btn">
-                                <span class="btn btn-white btn-sm"><i class="isax isax-eye me-1"></i>View</span>
-                            </div>
-                            <div class="celebrity-overlay">
-                                <span class="celebrity-category"><i class="isax isax-music me-1"></i>Latin</span>
-                                <h4 class="celebrity-name">Bad Bunny</h4>
-                                <p class="celebrity-title">Latin Music Superstar</p>
-                                <div class="celebrity-price">$69.99 <span>/ year</span></div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 celebrity-item" data-category="athlete" data-name="lionel messi">
-                    <a href="fan-card-detail.html?id=lionel-messi" class="text-decoration-none">
-                        <div class="celebrity-card celebrity-card-sm wow fadeInUp" data-wow-delay="0.3s">
-                            <span class="celebrity-badge popular"><i class="isax isax-medal-star me-1"></i>Popular</span>
-                            <div class="view-btn">
-                                <span class="btn btn-white btn-sm"><i class="isax isax-eye me-1"></i>View</span>
-                            </div>
-                            <div class="celebrity-overlay">
-                                <span class="celebrity-category"><i class="isax isax-cup me-1"></i>Football</span>
-                                <h4 class="celebrity-name">Lionel Messi</h4>
-                                <p class="celebrity-title">World Cup Champion</p>
-                                <div class="celebrity-price">$79.99 <span>/ year</span></div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 celebrity-item" data-category="actor" data-name="kevin hart">
-                    <a href="fan-card-detail.html?id=kevin-hart" class="text-decoration-none">
-                        <div class="celebrity-card celebrity-card-sm wow fadeInUp" data-wow-delay="0.4s">
-                            <span class="celebrity-badge"><i class="isax isax-verify me-1"></i>Verified</span>
-                            <div class="view-btn">
-                                <span class="btn btn-white btn-sm"><i class="isax isax-eye me-1"></i>View</span>
-                            </div>
-                            <div class="celebrity-overlay">
-                                <span class="celebrity-category"><i class="isax isax-video-play me-1"></i>Comedy</span>
-                                <h4 class="celebrity-name">Kevin Hart</h4>
-                                <p class="celebrity-title">Comedian & Actor</p>
-                                <div class="celebrity-price">$49.99 <span>/ year</span></div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 celebrity-item" data-category="influencer" data-name="kim kardashian">
-                    <a href="fan-card-detail.html?id=kim-kardashian" class="text-decoration-none">
-                        <div class="celebrity-card celebrity-card-sm wow fadeInUp" data-wow-delay="0.1s">
-                            <span class="celebrity-badge popular"><i class="isax isax-medal-star me-1"></i>Popular</span>
-                            <div class="view-btn">
-                                <span class="btn btn-white btn-sm"><i class="isax isax-eye me-1"></i>View</span>
-                            </div>
-                            <div class="celebrity-overlay">
-                                <span class="celebrity-category"><i class="isax isax-star me-1"></i>Influencer</span>
-                                <h4 class="celebrity-name">Kim Kardashian</h4>
-                                <p class="celebrity-title">Media Mogul</p>
-                                <div class="celebrity-price">$69.99 <span>/ year</span></div>
-                            </div>
-                        </div>
-                    </a>
+                    </div>
                 </div>
             </div>
             <!-- /More Celebrities -->

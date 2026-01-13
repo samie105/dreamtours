@@ -51,58 +51,6 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
     <style>
-        .vacation-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-radius: 16px;
-            overflow: hidden;
-        }
-        .vacation-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-        }
-        .vacation-card .card-img {
-            height: 220px;
-            object-fit: cover;
-        }
-        .vacation-badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-        .vacation-badge.resort {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        .vacation-badge.cruise {
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-            color: white;
-        }
-        .feature-tag {
-            display: inline-block;
-            background: #f0f5ff;
-            color: #4f46e5;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 500;
-            margin: 2px;
-        }
-        .price-tag {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--bs-primary);
-        }
-        .price-tag .original {
-            font-size: 16px;
-            color: #999;
-            text-decoration: line-through;
-            font-weight: 400;
-        }
         .filter-tabs .nav-link {
             padding: 10px 24px;
             border-radius: 25px;
@@ -515,42 +463,42 @@
             let currentSearch = '';
             let currentSort = 'default';
 
-            // Generate vacation card HTML
+            // Generate vacation card HTML using place-item structure
             function generateCard(pkg) {
-                const features = pkg.features.slice(0, 3).map(f => `<span class="feature-tag">${f}</span>`).join('');
-                const stars = vacationData.generateStarRating(pkg.rating);
+                const badgeClass = pkg.type === 'resort' ? 'bg-primary' : 'bg-info';
+                const badgeIcon = pkg.type === 'resort' ? 'isax-building-4' : 'isax-ship';
+                const badgeText = pkg.type === 'resort' ? 'Resort' : 'Cruise';
                 
                 return `
-                    <div class="col-lg-4 col-md-6 mb-4 vacation-item" data-type="${pkg.type}" data-name="${pkg.name.toLowerCase()}">
-                        <div class="card vacation-card h-100">
-                            <div class="position-relative">
-                                <img src="${pkg.image}" class="card-img-top card-img" alt="${pkg.name}">
-                                <span class="vacation-badge ${pkg.type}">${pkg.type === 'resort' ? '🏨 Resort' : '🚢 Cruise'}</span>
-                                <a href="javascript:void(0);" class="btn btn-icon btn-white btn-sm position-absolute" style="top: 15px; right: 15px;">
-                                    <i class="isax isax-heart"></i>
+                    <div class="col-xl-4 col-md-6 d-flex vacation-item" data-type="${pkg.type}" data-name="${pkg.name.toLowerCase()}">
+                        <div class="place-item mb-4 flex-fill">
+                            <div class="place-img">
+                                <a href="vacation-details.html?id=${pkg.id}">
+                                    <img src="${pkg.image}" class="img-fluid" alt="${pkg.name}">
                                 </a>
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <span class="d-flex align-items-center">
-                                        ${stars}
-                                        <span class="ms-2 text-muted fs-13">(${pkg.reviews})</span>
-                                    </span>
-                                    <span class="badge bg-light text-dark">${pkg.duration}</span>
+                                <div class="fav-item">
+                                    <span class="badge ${badgeClass} d-inline-flex align-items-center"><i class="${badgeIcon} me-1"></i>${badgeText}</span>
+                                    <a href="javascript:void(0);" class="fav-icon">
+                                        <i class="isax isax-heart5"></i>
+                                    </a>
                                 </div>
-                                <h5 class="card-title mb-2">${pkg.name}</h5>
-                                <p class="text-muted mb-2 d-flex align-items-center">
-                                    <i class="isax isax-location5 me-1"></i>${pkg.location}
-                                </p>
-                                <div class="mb-3">
-                                    ${features}
+                            </div>
+                            <div class="place-content">
+                                <div class="d-flex align-items-center mb-1">
+                                    <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">${pkg.rating}</span>
+                                    <p class="fs-14">(${pkg.reviews} Reviews)</p>
+                                </div>
+                                <h5 class="mb-1 text-truncate"><a href="vacation-details.html?id=${pkg.id}">${pkg.name}</a></h5>
+                                <p class="d-flex align-items-center mb-2"><i class="isax isax-location5 me-2"></i>${pkg.location}</p>
+                                <div class="border-top pt-2 mb-2">
+                                    <h6 class="d-flex align-items-center fs-14">
+                                        <i class="isax isax-clock me-2 text-primary"></i>${pkg.duration}
+                                        <span class="ms-3 d-flex align-items-center"><i class="isax isax-calendar me-1 text-primary"></i>All-Inclusive</span>
+                                    </h6>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                                    <div class="price-tag">
-                                        $${pkg.price.toLocaleString()}
-                                        <span class="original ms-1">$${pkg.originalPrice.toLocaleString()}</span>
-                                    </div>
-                                    <a href="vacation-details.html?id=${pkg.id}" class="btn btn-primary btn-sm">View Details</a>
+                                    <h5 class="text-primary text-nowrap me-2">$${pkg.price.toLocaleString()} <span class="fs-14 fw-normal text-default text-decoration-line-through">$${pkg.originalPrice.toLocaleString()}</span></h5>
+                                    <a href="vacation-details.html?id=${pkg.id}" class="btn btn-primary btn-sm">Book Now</a>
                                 </div>
                             </div>
                         </div>
