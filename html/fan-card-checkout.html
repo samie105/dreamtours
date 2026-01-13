@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Celebrity Fan Card Purchase</title>
+
+    <meta name="description" content="Complete your celebrity fan card purchase. Secure checkout for official fan identification cards.">
+    <meta name="keywords" content="fan card, celebrity, checkout, purchase, payment">
+    <meta name="author" content="Dreams Technologies">
+    <meta name="robots" content="index, follow">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+    <!-- Theme Settings Js -->
+    <script src="assets/js/theme-script.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <!-- Main.css -->
+    <link rel="stylesheet" href="assets/css/meanmenu.css">
+
+    <!-- Tabler Icon CSS -->
+    <link rel="stylesheet" href="assets/plugins/tabler-icons/tabler-icons.css">
+
+    <!-- Fontawesome Icon CSS -->
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Owlcarousel CSS -->
+    <link rel="stylesheet" href="assets/plugins/owlcarousel/owl.carousel.min.css">
+
+    <!-- Iconsax CSS -->
+    <link rel="stylesheet" href="assets/css/iconsax.css">
+
+    <!-- Datepicker CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Fan Card Data -->
+    <script src="assets/js/fan-card-data.js"></script>
+
+    <!-- Custom Checkout Styles - Theme Aligned -->
+    <style>
+        .checkout-steps {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        .checkout-step {
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+            position: relative;
+        }
+        .checkout-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 2px;
+            background: #e0e0e0;
+        }
+        .checkout-step.active:not(:last-child)::after {
+            background: #CF3425;
+        }
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+        .checkout-step.active .step-number {
+            background: #CF3425;
+            color: #fff;
+        }
+        .checkout-step.completed .step-number {
+            background: #04BD6C;
+            color: #fff;
+        }
+        .step-label {
+            font-weight: 500;
+            color: #666;
+        }
+        .checkout-step.active .step-label {
+            color: #333;
+        }
+        
+        .order-summary-card {
+            background: #212E47;
+            border-radius: 12px;
+            padding: 25px;
+            color: #fff;
+            margin-bottom: 24px;
+        }
+        .order-summary-card h5 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        .celebrity-preview {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .celebrity-preview img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        .celebrity-preview h6 {
+            color: #fff;
+            margin-bottom: 5px;
+        }
+        .celebrity-preview p {
+            color: rgba(255,255,255,0.7);
+            margin: 0;
+            font-size: 14px;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        .order-item .label {
+            color: rgba(255,255,255,0.7);
+        }
+        .order-item .value {
+            font-weight: 500;
+        }
+        .order-item.total {
+            padding-top: 15px;
+            margin-top: 5px;
+            border-top: 2px solid rgba(255,255,255,0.2);
+        }
+        .order-item.total .label,
+        .order-item.total .value {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .discount-value {
+            color: #04BD6C;
+        }
+        
+        .secure-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
+        }
+        .secure-badge i {
+            margin-right: 5px;
+            color: #04BD6C;
+        }
+        
+        .payment-method {
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .payment-method:hover {
+            border-color: #CF3425;
+        }
+        .payment-method.selected {
+            border-color: #CF3425;
+            background: rgba(207, 52, 37, 0.05);
+        }
+        .payment-method .form-check-input {
+            width: 20px;
+            height: 20px;
+        }
+        .payment-method .form-check-input:checked {
+            background-color: #CF3425;
+            border-color: #CF3425;
+        }
+        .payment-icons {
+            display: flex;
+            gap: 10px;
+        }
+        .payment-icons img {
+            height: 25px;
+        }
+        
+        .fan-card-preview {
+            background: #CF3425;
+            border-radius: 12px;
+            padding: 25px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .fan-card-preview::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        .fan-card-preview .card-logo {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        .fan-card-preview .card-number {
+            font-size: 16px;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            font-family: monospace;
+        }
+        .fan-card-preview .card-holder {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+        .fan-card-preview .card-name {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .fan-card-preview .verified-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+        }
+        
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #CF3425;
+            box-shadow: 0 0 0 0.25rem rgba(207, 52, 37, 0.25);
+        }
+        
+        .success-animation {
+            text-align: center;
+            padding: 40px;
+        }
+        .success-animation .checkmark-circle {
+            width: 100px;
+            height: 100px;
+            background: #04BD6C;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            animation: scaleIn 0.5s ease;
+        }
+        .success-animation .checkmark-circle i {
+            font-size: 50px;
+            color: #fff;
+        }
+        @keyframes scaleIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .sidebar-card {
+            margin-bottom: 24px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-header">
+        <!-- Header Topbar-->
+        <div class="header-topbar text-center bg-transparent">
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-between flex-wrap">
+                    <p class="d-flex align-items-center fw-medium fs-14 mb-2"><i class="isax isax-call5 me-2"></i>Toll Free : +1 56565 56594</p>
+                    <div class="d-flex align-items-center">
+                        <p class="mb-2 me-3 d-flex align-items-center fw-medium fs-14"><i class="isax isax-message-text-15 me-2"></i>Email : info@fancard.com</p>
+                        <div class="dropdown flag-dropdown mb-2 me-3">
+                            <a href="javascript:void(0);" class="dropdown-toggle d-inline-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG
+                            </a>
+                            <ul class="dropdown-menu p-2 mt-2">
+                                <li><a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);"><img src="assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG</a></li>
+                                <li><a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);"><img src="assets/img/flags/arab-flag.svg" class="me-2" alt="flag">ARA</a></li>
+                                <li><a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);"><img src="assets/img/flags/france-flag.svg" class="me-2" alt="flag">FRA</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown mb-2 me-3">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">USD</a>
+                            <ul class="dropdown-menu p-2 mt-2">
+                                <li><a class="dropdown-item rounded" href="javascript:void(0);">USD</a></li>
+                                <li><a class="dropdown-item rounded" href="javascript:void(0);">YEN</a></li>
+                                <li><a class="dropdown-item rounded" href="javascript:void(0);">EURO</a></li>
+                            </ul>
+                        </div>
+                        <div class="fav-dropdown mb-2">
+                            <a href="wishlist.html" class="position-relative">
+                                <i class="isax isax-heart"></i><span class="count-icon bg-secondary text-gray-9">0</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Header Topbar-->
+
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <div class="offcanvas-info">
+                    <div class="offcanvas-wrap">
+                        <div class="offcanvas-detail">
+                            <div class="offcanvas-head">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <a href="index.html" class="black-logo-responsive">
+                                        <img src="assets/img/logo-dark.svg" alt="logo-img">
+                                    </a>
+                                    <a href="index.html" class="white-logo-responsive">
+                                        <img src="assets/img/logo.svg" alt="logo-img">
+                                    </a>
+                                    <div class="offcanvas-close">
+                                        <i class="ti ti-x"></i>
+                                    </div>
+                                </div>
+                                <div class="wishlist-info d-flex justify-content-between align-items-center">
+                                    <h6 class="fs-16 fw-medium">Wishlist</h6>
+                                    <div class="d-flex align-items-center">
+                                        <div class="fav-dropdown">
+                                            <a href="wishlist.html" class="position-relative">
+                                                <i class="isax isax-heart"></i><span class="count-icon bg-secondary text-gray-9">0</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mobile-menu fix mb-3"></div>
+                            <div class="offcanvas__contact">
+                                <div class="mt-4">
+                                    <a href="fan-card.html" class="btn btn-primary w-100">Browse Fan Cards</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="offcanvas-overlay"></div>
+                <div class="header-nav">
+                    <div class="main-menu-wrapper">
+                        <div class="navbar-logo">
+                            <a class="logo-white header-logo" href="index.html">
+                                <img src="assets/img/logo.svg" class="logo" alt="Logo">
+                            </a>
+                            <a class="logo-dark header-logo" href="index.html">
+                                <img src="assets/img/logo-dark.svg" class="logo" alt="Logo">
+                            </a>
+                        </div>
+                        <nav id="mobile-menu">
+                            <ul class="main-nav">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="flight-grid.html">Flight</a></li>
+                                <li><a href="hotel-grid.html">Hotel</a></li>
+                                <li><a href="car-grid.html">Car</a></li>
+                                <li><a href="cruise-grid.html">Cruise</a></li>
+                                <li><a href="tour-grid.html">Tour</a></li>
+                                <li class="active"><a href="fan-card.html">Fan Card</a></li>
+                            </ul>
+                        </nav>
+                        <div class="header-btn d-flex align-items-center">
+                            <a href="javascript:void(0);" class="search-icon me-2" id="search-icon">
+                                <i class="isax isax-search-normal-1"></i>
+                            </a>
+                            <a href="login.html" class="btn btn-outline-light me-2 d-none d-md-block"><i class="isax isax-login me-2"></i>Sign In</a>
+                            <a href="register.html" class="btn btn-primary d-none d-md-block"><i class="isax isax-user-add me-2"></i>Sign Up</a>
+                            <a class="nav-toggle d-block d-xl-none" id="mobile_btn" href="javascript:void(0);">
+                                <span class="bar-icons">
+                                    <i class="ti ti-menu-2"></i>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- /Header -->
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-bar breadcrumb-bg-02 text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-12">
+                    <h2 class="breadcrumb-title mb-2">Complete Your Purchase</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center mb-0">
+                            <li class="breadcrumb-item"><a href="index.html"><i class="isax isax-home5"></i></a></li>
+                            <li class="breadcrumb-item"><a href="fan-card.html">Fan Cards</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Breadcrumb -->
+
+    <!-- Page Wrapper -->
+    <div class="content">
+        <div class="container">
+
+            <!-- Checkout Steps -->
+            <div class="checkout-steps wow fadeInUp">
+                <div class="checkout-step completed">
+                    <span class="step-number"><i class="fas fa-check"></i></span>
+                    <span class="step-label">Select Card</span>
+                </div>
+                <div class="checkout-step active">
+                    <span class="step-number">2</span>
+                    <span class="step-label">Payment</span>
+                </div>
+                <div class="checkout-step">
+                    <span class="step-number">3</span>
+                    <span class="step-label">Confirmation</span>
+                </div>
+            </div>
+            <!-- /Checkout Steps -->
+
+            <div class="row">
+                <div class="col-xl-8">
+
+                    <!-- Fan Card Preview -->
+                    <div class="card wow fadeInUp">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="isax isax-card me-2 text-primary"></i>Your Fan Card Preview</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <div class="fan-card-preview">
+                                        <div class="card-logo">FAN CARD</div>
+                                        <span class="verified-badge"><i class="isax isax-verify me-1"></i>Verified</span>
+                                        <div class="card-number">FC-2025-XXXX-XXXX</div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="card-holder">CARD HOLDER</div>
+                                                <div class="card-name">Your Name</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="card-holder">CELEBRITY</div>
+                                                <div class="card-name" id="preview-celebrity-name">Loading...</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="mb-3">Fan Card Includes:</h6>
+                                    <ul class="list-unstyled">
+                                        <li class="d-flex align-items-center mb-2">
+                                            <i class="isax isax-tick-circle text-success me-2"></i>
+                                            Official Digital Fan ID Card
+                                        </li>
+                                        <li class="d-flex align-items-center mb-2">
+                                            <i class="isax isax-tick-circle text-success me-2"></i>
+                                            Verified Fan Status Badge
+                                        </li>
+                                        <li class="d-flex align-items-center mb-2">
+                                            <i class="isax isax-tick-circle text-success me-2"></i>
+                                            Exclusive Content Access
+                                        </li>
+                                        <li class="d-flex align-items-center mb-2">
+                                            <i class="isax isax-tick-circle text-success me-2"></i>
+                                            Fan Community Membership
+                                        </li>
+                                        <li class="d-flex align-items-center mb-2">
+                                            <i class="isax isax-tick-circle text-success me-2"></i>
+                                            20% Merchandise Discount
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Fan Card Preview -->
+
+                    <!-- Personal Information -->
+                    <div class="card wow fadeInUp">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="isax isax-user me-2 text-primary"></i>Personal Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">First Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" placeholder="Enter your first name">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Last Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" placeholder="Enter your last name">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Email Address <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" placeholder="Enter your email">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Phone Number <span class="text-danger">*</span></label>
+                                    <input type="tel" class="form-control" placeholder="Enter your phone number">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Date of Birth</label>
+                                    <input type="date" class="form-control">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Country</label>
+                                    <select class="form-select">
+                                        <option value="">Select Country</option>
+                                        <option value="US">United States</option>
+                                        <option value="UK">United Kingdom</option>
+                                        <option value="CA">Canada</option>
+                                        <option value="AU">Australia</option>
+                                        <option value="DE">Germany</option>
+                                        <option value="FR">France</option>
+                                        <option value="IN">India</option>
+                                        <option value="JP">Japan</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Personal Information -->
+
+                    <!-- Payment Method -->
+                    <div class="card wow fadeInUp">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="isax isax-card-pos me-2 text-primary"></i>Payment Method</h5>
+                        </div>
+                        <div class="card-body">
+                            
+                            <div class="payment-method selected">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <input class="form-check-input me-3" type="radio" name="paymentMethod" id="creditCard" checked>
+                                        <label class="form-check-label" for="creditCard">
+                                            <h6 class="mb-1">Credit / Debit Card</h6>
+                                            <p class="text-muted mb-0 fs-14">Pay securely with your card</p>
+                                        </label>
+                                    </div>
+                                    <div class="payment-icons">
+                                        <img src="assets/img/icons/visa.svg" alt="Visa">
+                                        <img src="assets/img/icons/mastercard.svg" alt="Mastercard">
+                                        <img src="assets/img/icons/amex.svg" alt="Amex">
+                                    </div>
+                                </div>
+                                <div class="mt-3 pt-3 border-top" id="cardFields">
+                                    <div class="row">
+                                        <div class="col-12 mb-3">
+                                            <label class="form-label">Card Number <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" placeholder="1234 5678 9012 3456">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Expiry Date <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" placeholder="MM/YY">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">CVV <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" placeholder="123">
+                                        </div>
+                                        <div class="col-12">
+                                            <label class="form-label">Name on Card <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" placeholder="Enter name as on card">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="payment-method">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <input class="form-check-input me-3" type="radio" name="paymentMethod" id="paypal">
+                                        <label class="form-check-label" for="paypal">
+                                            <h6 class="mb-1">PayPal</h6>
+                                            <p class="text-muted mb-0 fs-14">Pay with your PayPal account</p>
+                                        </label>
+                                    </div>
+                                    <div class="payment-icons">
+                                        <img src="assets/img/icons/paypal.svg" alt="PayPal" style="height: 30px;">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="payment-method">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <input class="form-check-input me-3" type="radio" name="paymentMethod" id="applePay">
+                                        <label class="form-check-label" for="applePay">
+                                            <h6 class="mb-1">Apple Pay</h6>
+                                            <p class="text-muted mb-0 fs-14">Quick and secure checkout</p>
+                                        </label>
+                                    </div>
+                                    <div class="payment-icons">
+                                        <i class="fab fa-apple fs-24"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-check mt-4">
+                                <input class="form-check-input" type="checkbox" id="termsCheck">
+                                <label class="form-check-label" for="termsCheck">
+                                    I agree to the <a href="terms-conditions.html" class="text-primary">Terms & Conditions</a> and <a href="privacy-policy.html" class="text-primary">Privacy Policy</a>
+                                </label>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!-- /Payment Method -->
+
+                    <!-- Complete Order Button -->
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <a href="fan-card-detail.html" class="btn btn-outline-light">
+                            <i class="isax isax-arrow-left me-2"></i>Back to Details
+                        </a>
+                        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#successModal">
+                            <i class="isax isax-shield-tick me-2"></i>Complete Purchase - $79.99
+                        </button>
+                    </div>
+                    <!-- /Complete Order Button -->
+
+                </div>
+
+                <!-- Order Summary Sidebar -->
+                <div class="col-xl-4">
+                    <div class="order-summary-card wow fadeInUp">
+                        <h5><i class="isax isax-receipt me-2"></i>Order Summary</h5>
+                        
+                        <div class="celebrity-preview">
+                            <img src="assets/img/tours/tours-01.jpg" alt="Celebrity" id="checkout-celebrity-image">
+                            <div>
+                                <h6 id="checkout-celebrity-name">Loading...</h6>
+                                <p id="checkout-celebrity-title">Loading...</p>
+                                <span class="badge bg-success" style="font-size: 10px;"><i class="isax isax-verify me-1"></i>Verified</span>
+                            </div>
+                        </div>
+                        
+                        <div class="order-items">
+                            <div class="order-item">
+                                <span class="label">Fan Card (Annual)</span>
+                                <span class="value" id="checkout-original-price">$--</span>
+                            </div>
+                            <div class="order-item">
+                                <span class="label" id="checkout-discount-label">Discount (--)</span>
+                                <span class="value discount-value" id="checkout-discount-value">-$--</span>
+                            </div>
+                            <div class="order-item">
+                                <span class="label">Processing Fee</span>
+                                <span class="value">$0.00</span>
+                            </div>
+                            <div class="order-item total">
+                                <span class="label">Total</span>
+                                <span class="value" id="checkout-total-price">$--</span>
+                            </div>
+                        </div>
+                        
+                        <div class="secure-badges">
+                            <span class="secure-badge"><i class="isax isax-shield-tick"></i>SSL Secured</span>
+                            <span class="secure-badge"><i class="isax isax-lock-1"></i>Encrypted</span>
+                        </div>
+                        
+                        <div class="mt-4 text-center">
+                            <p style="font-size: 13px; opacity: 0.7; margin-bottom: 10px;">
+                                <i class="isax isax-refresh me-1"></i>30-Day Money Back Guarantee
+                            </p>
+                            <p style="font-size: 13px; opacity: 0.7; margin: 0;">
+                                <i class="isax isax-flash-1 me-1"></i>Instant Digital Delivery
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Promo Code -->
+                    <div class="card mt-4 wow fadeInUp">
+                        <div class="card-body">
+                            <h6 class="mb-3">Have a Promo Code?</h6>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Enter promo code">
+                                <button class="btn btn-primary" type="button">Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Promo Code -->
+                    
+                    <!-- Help Card -->
+                    <div class="card mt-4 wow fadeInUp">
+                        <div class="card-body text-center">
+                            <i class="isax isax-message-question fs-32 text-primary mb-3"></i>
+                            <h6 class="mb-2">Need Help?</h6>
+                            <p class="text-muted fs-14 mb-3">Our support team is here to assist you with any questions.</p>
+                            <a href="contact-us.html" class="btn btn-outline-primary btn-sm">
+                                <i class="isax isax-messages-1 me-1"></i>Contact Support
+                            </a>
+                        </div>
+                    </div>
+                    <!-- /Help Card -->
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /Page Wrapper -->
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="success-animation">
+                        <div class="checkmark-circle">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h4 class="mb-3">Purchase Successful!</h4>
+                        <p class="text-muted mb-4" id="success-message">Congratulations! Your Fan Card has been activated. You'll receive your digital ID card via email within minutes.</p>
+                        
+                        <div class="bg-light rounded p-3 mb-4">
+                            <div class="row text-start">
+                                <div class="col-6 mb-2">
+                                    <small class="text-muted">Order ID</small>
+                                    <p class="mb-0 fw-bold">#FC-2025-45892</p>
+                                </div>
+                                <div class="col-6 mb-2">
+                                    <small class="text-muted">Amount Paid</small>
+                                    <p class="mb-0 fw-bold text-success" id="success-amount">$--</p>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted">Card Type</small>
+                                    <p class="mb-0 fw-bold">Annual</p>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted">Valid Until</small>
+                                    <p class="mb-0 fw-bold">Jan 15, 2027</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <a href="dashboard.html" class="btn btn-primary">
+                                <i class="isax isax-home-2 me-2"></i>Go to Dashboard
+                            </a>
+                            <a href="fan-card.html" class="btn btn-outline-primary">
+                                <i class="isax isax-card me-2"></i>Browse More Fan Cards
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Success Modal -->
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-1">
+                    <div class="col">
+                        <div class="footer-widget">
+                            <h5>Pages</h5>
+                            <ul class="footer-menu">
+                                <li><a href="team.html">Our Team</a></li>
+                                <li><a href="pricing-plan.html">Pricing Plans</a></li>
+                                <li><a href="gallery.html">Gallery</a></li>
+                                <li><a href="profile-settings.html">Settings</a></li>
+                                <li><a href="my-profile.html">Profile</a></li>
+                                <li><a href="agent-listings.html">Listings</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="footer-widget">
+                            <h5>Useful Links</h5>
+                            <ul class="footer-menu">
+                                <li><a href="about-us.html">About Us</a></li>
+                                <li><a href="blog-grid.html">News & Updates</a></li>
+                                <li><a href="testimonial.html">Testimonials</a></li>
+                                <li><a href="contact-us.html">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="footer-widget">
+                            <h5>Fan Cards</h5>
+                            <ul class="footer-menu">
+                                <li><a href="fan-card.html">Browse Celebrities</a></li>
+                                <li><a href="fan-card.html">Musicians</a></li>
+                                <li><a href="fan-card.html">Athletes</a></li>
+                                <li><a href="fan-card.html">Entrepreneurs</a></li>
+                                <li><a href="fan-card.html">Actors</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="footer-widget">
+                            <h5>Help & Support</h5>
+                            <ul class="footer-menu">
+                                <li><a href="faq.html">FAQ</a></li>
+                                <li><a href="contact-us.html">Contact Support</a></li>
+                                <li><a href="terms-conditions.html">Terms & Conditions</a></li>
+                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="footer-widget">
+                            <h5>Contact Info</h5>
+                            <ul class="footer-menu">
+                                <li>
+                                    <p class="mb-2">Toll Free: +1 56565 56594</p>
+                                </li>
+                                <li>
+                                    <p class="mb-2">Email: info@fancard.com</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="d-flex align-items-center justify-content-between flex-wrap">
+                    <div class="mb-3">
+                        <a href="index.html">
+                            <img src="assets/img/logo.svg" alt="Logo">
+                        </a>
+                    </div>
+                    <p class="mb-3">Copyright © 2025. All Rights Reserved.</p>
+                    <div class="social-icon d-flex align-items-center mb-3">
+                        <a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
+                        <a href="javascript:void(0);"><i class="fab fa-twitter"></i></a>
+                        <a href="javascript:void(0);"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="javascript:void(0);"><i class="fab fa-instagram"></i></a>
+                        <a href="javascript:void(0);"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /Footer -->
+
+    <!-- Scroll Top -->
+    <div class="scroll-top">
+        <span class="screen-reader-text">Back to top</span>
+        <i class="ti ti-arrow-narrow-up"></i>
+    </div>
+    <!-- /Scroll Top -->
+
+    <!-- jQuery -->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Owl Carousel JS -->
+    <script src="assets/plugins/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Wow JS -->
+    <script src="assets/js/wow.min.js"></script>
+
+    <!-- Meanmenu JS -->
+    <script src="assets/js/jquery.meanmenu.js"></script>
+
+    <!-- Custom JS -->
+    <script src="assets/js/script.js"></script>
+
+    <script>
+        // Payment method selection
+        document.querySelectorAll('.payment-method').forEach(function(method) {
+            method.addEventListener('click', function() {
+                document.querySelectorAll('.payment-method').forEach(function(m) {
+                    m.classList.remove('selected');
+                });
+                this.classList.add('selected');
+                this.querySelector('input[type="radio"]').checked = true;
+            });
+        });
+
+        // Dynamic celebrity data loading
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get celebrity ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const celebrityId = urlParams.get('id') || 'elon-musk'; // Default to Elon Musk
+            
+            // Get celebrity data
+            const celebrity = getCelebrity(celebrityId);
+            
+            if (!celebrity) {
+                console.error('Celebrity not found:', celebrityId);
+                window.location.href = 'fan-card.html';
+                return;
+            }
+            
+            // Update page title
+            document.title = 'Checkout - ' + celebrity.name + ' Fan Card';
+            
+            // Update fan card preview
+            const previewCelebName = document.getElementById('preview-celebrity-name');
+            if (previewCelebName) {
+                previewCelebName.textContent = celebrity.name;
+            }
+            
+            // Update order summary sidebar
+            const celebImage = document.getElementById('checkout-celebrity-image');
+            if (celebImage) {
+                celebImage.src = celebrity.image;
+                celebImage.alt = celebrity.name;
+            }
+            
+            const celebName = document.getElementById('checkout-celebrity-name');
+            if (celebName) {
+                celebName.textContent = celebrity.name;
+            }
+            
+            const celebTitle = document.getElementById('checkout-celebrity-title');
+            if (celebTitle) {
+                celebTitle.textContent = celebrity.category;
+            }
+            
+            // Calculate prices
+            const discountAmount = celebrity.originalPrice - celebrity.price;
+            
+            const originalPrice = document.getElementById('checkout-original-price');
+            if (originalPrice) {
+                originalPrice.textContent = '$' + celebrity.originalPrice.toFixed(2);
+            }
+            
+            const discountLabel = document.getElementById('checkout-discount-label');
+            if (discountLabel) {
+                discountLabel.textContent = 'Discount (' + celebrity.discount + '%)';
+            }
+            
+            const discountValue = document.getElementById('checkout-discount-value');
+            if (discountValue) {
+                discountValue.textContent = '-$' + discountAmount.toFixed(2);
+            }
+            
+            const totalPrice = document.getElementById('checkout-total-price');
+            if (totalPrice) {
+                totalPrice.textContent = '$' + celebrity.price.toFixed(2);
+            }
+            
+            // Update success modal
+            const successMessage = document.getElementById('success-message');
+            if (successMessage) {
+                successMessage.textContent = 'Congratulations! Your ' + celebrity.name + ' Fan Card has been activated. You\'ll receive your digital ID card via email within minutes.';
+            }
+            
+            const successAmount = document.getElementById('success-amount');
+            if (successAmount) {
+                successAmount.textContent = '$' + celebrity.price.toFixed(2);
+            }
+        });
+    </script>
+
+</body>
+
+</html>
