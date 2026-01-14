@@ -53,6 +53,27 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <style>
+        /* Hide main nav on mobile - show only in sidebar */
+        @media (max-width: 1199px) {
+            .main-nav { display: none !important; }
+            .header__hamburger { display: flex !important; }
+        }
+        /* Mobile sidebar - slides from left */
+        .offcanvas-info { left: 0; right: auto; transform: translateX(-100%); }
+        .offcanvas-info.show { transform: translateX(0); }
+        .offcanvas-overlay { position: fixed; left: 0; right: 0; top: 0; bottom: 0; background: rgba(0, 0, 0, 0.7); z-index: 900; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        .offcanvas-overlay.overlay-open { opacity: 0.8; visibility: visible; }
+        .mobile-nav-menu { list-style: none; padding: 0; margin: 0; }
+        .mobile-nav-menu li { border-bottom: 1px solid #e5e7eb; }
+        .mobile-nav-menu li:last-child { border-bottom: none; }
+        .mobile-nav-menu li a { display: block; padding: 14px 0; font-size: 15px; font-weight: 500; color: #1f2937; transition: color 0.2s; }
+        .mobile-nav-menu li a:hover, .mobile-nav-menu li.active a { color: var(--bs-primary); }
+        .mobile-nav-menu li a i { margin-right: 10px; width: 20px; }
+        [data-theme="dark"] .mobile-nav-menu li { border-color: #334155; }
+        [data-theme="dark"] .mobile-nav-menu li a { color: #e2e8f0; }
+    </style>
+
 </head>
 
 <body>
@@ -115,33 +136,25 @@
                     <div class="offcanvas-wrap">
                         <div class="offcanvas-detail">
                             <div class="offcanvas-head">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <a href="index.html" class="black-logo-responsive">
-                                        <img src="assets/img/logo-dark.svg" alt="logo-img">
-                                    </a>
-                                    <a href="index.html" class="white-logo-responsive">
-                                        <img src="assets/img/logo.svg" alt="logo-img">
-                                    </a>
-                                    <div class="offcanvas-close">
-                                        <i class="ti ti-x"></i>
-                                    </div>
-                                </div>
-                                <div class="wishlist-info d-flex justify-content-between align-items-center">
-                                    <h6 class="fs-16 fw-medium">Wishlist</h6>
-                                    <div class="d-flex align-items-center">
-                                        <div class="fav-dropdown">
-                                            <a href="wishlist.html" class="position-relative">
-                                                <i class="isax isax-heart"></i><span class="count-icon bg-secondary text-gray-9">0</span>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <a href="index.html" class="black-logo-responsive"><img src="assets/img/logo-dark.svg" alt="logo-img"></a>
+                                    <a href="index.html" class="white-logo-responsive"><img src="assets/img/logo.svg" alt="logo-img"></a>
+                                    <div class="offcanvas-close"><i class="ti ti-x"></i></div>
                                 </div>
                             </div>
-                            <div class="mobile-menu fix mb-3"></div>
-                            <div class="offcanvas__contact">
-                                <div class="mt-4">
-                                    <a href="add-flight.html" class="btn btn-primary w-100">Add Listing</a>
-                                </div>
+                            <ul class="mobile-nav-menu">
+                                <li><a href="index.html"><i class="isax isax-home-2"></i>Home</a></li>
+                                <li class="active"><a href="flight-grid.html"><i class="isax isax-airplane"></i>Flight</a></li>
+                                <li><a href="hotel-grid.html"><i class="isax isax-building-4"></i>Hotel</a></li>
+                                <li><a href="car-grid.html"><i class="isax isax-car"></i>Car</a></li>
+                                <li><a href="cruise-grid.html"><i class="isax isax-ship"></i>Cruise</a></li>
+                                <li><a href="tour-grid.html"><i class="isax isax-map"></i>Tour</a></li>
+                                <li><a href="vacation.html"><i class="isax isax-sun-1"></i>Vacation</a></li>
+                                <li><a href="fan-card.html"><i class="isax isax-card"></i>Fan Card</a></li>
+                            </ul>
+                            <div class="mt-4 pt-4 border-top">
+                                <a href="login.html" class="btn btn-outline-primary w-100 mb-2"><i class="isax isax-login me-2"></i>Sign In</a>
+                                <a href="register.html" class="btn btn-primary w-100"><i class="isax isax-user-add me-2"></i>Sign Up</a>
                             </div>
                         </div>
                     </div>
@@ -159,17 +172,14 @@
                         </div>
                         <nav id="mobile-menu">
                             <ul class="main-nav">
-                                <li class="has-submenu megamenu">
-                                    <a href="index.html">Home</a>
-
-                                </li>
-                                <li class="has-submenu mega-innermenu active">
-                                    <a href="javascript:void(0);">Flight</a>
-                                </li>
-                                <li class="has-submenu mega-innermenu">
-                                    <a href="javascript:void(0);">Hotel</a>
-
-                                </li>
+                                <li><a href="index.html">Home</a></li>
+                                <li class="active"><a href="flight-grid.html">Flight</a></li>
+                                <li><a href="hotel-grid.html">Hotel</a></li>
+                                <li><a href="car-grid.html">Car</a></li>
+                                <li><a href="cruise-grid.html">Cruise</a></li>
+                                <li><a href="tour-grid.html">Tour</a></li>
+                                <li><a href="vacation.html">Vacation</a></li>
+                                <li><a href="fan-card.html">Fan Card</a></li>
                             </ul>
                         </nav>
                         <div class="header-btn d-flex align-items-center">
