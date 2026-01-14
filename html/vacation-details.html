@@ -1,67 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta Tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vacation Package Details - DreamsTour</title>
+    <title>Customize Your Vacation - DreamsTour</title>
 
-    <meta name="description" content="Book your dream vacation package with hotels, cruises, and car rentals included.">
-    <meta name="keywords" content="vacation packages, resort booking, cruise booking, holiday packages">
+    <meta name="description" content="Customize your dream vacation package with hotels, cars, cruises, and flights.">
+    <meta name="keywords" content="vacation packages, customize vacation, resort booking">
     <meta name="author" content="Dreams Technologies">
-    <meta name="robots" content="index, follow">
 
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
-
-    <!-- Favicon -->
     <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
 
-    <!-- Theme Settings Js -->
     <script src="assets/js/theme-script.js"></script>
 
-    <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/meanmenu.css">
     <link rel="stylesheet" href="assets/plugins/tabler-icons/tabler-icons.css">
     <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
     <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="assets/plugins/owlcarousel/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/plugins/ion-rangeslider/css/ion.rangeSlider.css">
     <link rel="stylesheet" href="assets/css/iconsax.css">
-    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        .addon-section { display: none; }
+        .addon-section.active { display: block; }
+        .toggle-section { border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; margin-bottom: 16px; transition: all 0.3s ease; }
+        .toggle-section.enabled { border-color: var(--bs-primary); background: rgba(var(--bs-primary-rgb), 0.02); }
+        .price-summary-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }
+        .price-summary-item:last-child { border-bottom: none; font-weight: bold; font-size: 18px; }
+        
+        /* Custom Select */
+        .custom-select-wrapper { position: relative; }
+        .custom-select-wrapper select { display: none; }
+        .custom-select { position: relative; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px 40px 12px 16px; cursor: pointer; font-size: 14px; transition: all 0.2s; }
+        .custom-select:hover { border-color: var(--bs-primary); }
+        .custom-select::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 12px; color: #6b7280; transition: transform 0.2s; }
+        .custom-select.open::after { transform: translateY(-50%) rotate(180deg); }
+        .custom-select-options { position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; margin-top: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); z-index: 100; display: none; max-height: 200px; overflow-y: auto; }
+        .custom-select-options.show { display: block; }
+        .custom-select-option { padding: 10px 16px; cursor: pointer; transition: background 0.2s; }
+        .custom-select-option:hover { background: #f3f4f6; }
+        .custom-select-option.selected { background: var(--bs-primary); color: #fff; }
+
+        /* Option cards using place-item style */
+        .option-card { cursor: pointer; transition: all 0.3s ease; position: relative; }
+        .option-card:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .option-card.selected { box-shadow: 0 0 0 2px var(--bs-primary); }
+        .option-card.selected::before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: -8px; right: -8px; background: var(--bs-primary); color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; z-index: 20; }
+        .option-card .place-img img { width: 100%; height: 150px; object-fit: cover; }
+        /* Hide main nav on mobile - show only in sidebar */
+        @media (max-width: 1199px) {
+            .main-nav { display: none !important; }
+            .header__hamburger { display: flex !important; }
+        }
+        /* Mobile sidebar - slides from left */
+        .offcanvas-info { left: 0; right: auto; transform: translateX(-100%); }
+        .offcanvas-info.show { transform: translateX(0); }
+        .offcanvas-overlay { position: fixed; left: 0; right: 0; top: 0; bottom: 0; background: rgba(0, 0, 0, 0.7); z-index: 900; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        .offcanvas-overlay.overlay-open { opacity: 0.8; visibility: visible; }
+        .mobile-nav-menu { list-style: none; padding: 0; margin: 0; }
+        .mobile-nav-menu li { border-bottom: 1px solid #e5e7eb; }
+        .mobile-nav-menu li:last-child { border-bottom: none; }
+        .mobile-nav-menu li a { display: block; padding: 14px 0; font-size: 15px; font-weight: 500; color: #1f2937; transition: color 0.2s; }
+        .mobile-nav-menu li a:hover, .mobile-nav-menu li.active a { color: var(--bs-primary); }
+        .mobile-nav-menu li a i { margin-right: 10px; width: 20px; }
+        [data-theme="dark"] .mobile-nav-menu li { border-color: #334155; }
+        [data-theme="dark"] .mobile-nav-menu li a { color: #e2e8f0; }
+        /* Sign-in button - theme aware */
+        .btn-outline-light { background: var(--bg-white, #fff) !important; color: var(--bs-primary) !important; border-color: var(--border-color, #e5e7eb) !important; }
+        .btn-outline-light:hover { background: var(--bs-primary) !important; color: #fff !important; border-color: var(--bs-primary) !important; }
+        [data-theme="dark"] .btn-outline-light { background: var(--dark-bg-light, #1e293b) !important; color: var(--bs-primary) !important; border-color: var(--dark-border, #334155) !important; }
+        [data-theme="dark"] .btn-outline-light:hover { background: var(--bs-primary) !important; color: #fff !important; border-color: var(--bs-primary) !important; }
+    </style>
 </head>
 
 <body>
 
     <div class="main-header">
-        <!-- Header Topbar-->
         <div class="header-topbar text-center bg-transparent">
             <div class="container">
                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                     <p class="d-flex align-items-center fw-medium fs-14 mb-2"><i class="isax isax-call5 me-2"></i>Toll Free : +1 56565 56594</p>
                     <div class="d-flex align-items-center">
                         <p class="mb-2 me-3 d-flex align-items-center fw-medium fs-14"><i class="isax isax-message-text-15 me-2"></i>Email : info@dreamstour.com</p>
-                        <div class="dropdown flag-dropdown mb-2 me-3">
-                            <a href="javascript:void(0);" class="dropdown-toggle d-inline-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG
-                            </a>
-                            <ul class="dropdown-menu p-2 mt-2">
-                                <li><a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);"><img src="assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG</a></li>
-                                <li><a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);"><img src="assets/img/flags/arab-flag.svg" class="me-2" alt="flag">ARA</a></li>
-                                <li><a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);"><img src="assets/img/flags/france-flag.svg" class="me-2" alt="flag">FRA</a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown mb-2 me-3">
-                            <a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">USD</a>
-                            <ul class="dropdown-menu p-2 mt-2">
-                                <li><a class="dropdown-item rounded" href="javascript:void(0);">USD</a></li>
-                                <li><a class="dropdown-item rounded" href="javascript:void(0);">EUR</a></li>
-                                <li><a class="dropdown-item rounded" href="javascript:void(0);">GBP</a></li>
-                            </ul>
-                        </div>
                         <div class="fav-dropdown mb-2">
                             <a href="wishlist.html" class="position-relative">
                                 <i class="isax isax-heart"></i><span class="count-icon bg-secondary text-gray-9">0</span>
@@ -71,28 +93,33 @@
                 </div>
             </div>
         </div>
-        <!-- /Header Topbar-->
 
-        <!-- Header -->
         <header>
             <div class="container">
                 <div class="offcanvas-info">
                     <div class="offcanvas-wrap">
                         <div class="offcanvas-detail">
                             <div class="offcanvas-head">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <a href="index.html" class="black-logo-responsive">
-                                        <img src="assets/img/logo-dark.svg" alt="logo-img">
-                                    </a>
-                                    <a href="index.html" class="white-logo-responsive">
-                                        <img src="assets/img/logo.svg" alt="logo-img">
-                                    </a>
-                                    <div class="offcanvas-close">
-                                        <i class="ti ti-x"></i>
-                                    </div>
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <a href="index.html" class="black-logo-responsive"><img src="assets/img/logo-dark.svg" alt="logo-img"></a>
+                                    <a href="index.html" class="white-logo-responsive"><img src="assets/img/logo.svg" alt="logo-img"></a>
+                                    <div class="offcanvas-close"><i class="ti ti-x"></i></div>
                                 </div>
                             </div>
-                            <div class="mobile-menu fix mb-3"></div>
+                            <ul class="mobile-nav-menu">
+                                <li><a href="index.html"><i class="isax isax-home-2"></i>Home</a></li>
+                                <li><a href="flight-grid.html"><i class="isax isax-airplane"></i>Flight</a></li>
+                                <li><a href="hotel-grid.html"><i class="isax isax-building-4"></i>Hotel</a></li>
+                                <li><a href="car-grid.html"><i class="isax isax-car"></i>Car</a></li>
+                                <li><a href="cruise-grid.html"><i class="isax isax-ship"></i>Cruise</a></li>
+                                <li><a href="tour-grid.html"><i class="isax isax-map"></i>Tour</a></li>
+                                <li class="active"><a href="vacation.html"><i class="isax isax-sun-1"></i>Vacation</a></li>
+                                <li><a href="fan-card.html"><i class="isax isax-card"></i>Fan Card</a></li>
+                            </ul>
+                            <div class="mt-4 pt-4 border-top">
+                                <a href="login.html" class="btn btn-outline-primary w-100 mb-2"><i class="isax isax-login me-2"></i>Sign In</a>
+                                <a href="register.html" class="btn btn-primary w-100"><i class="isax isax-user-add me-2"></i>Sign Up</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -100,32 +127,12 @@
                 <div class="header-nav">
                     <div class="main-menu-wrapper">
                         <div class="navbar-logo">
-                            <a class="logo-white header-logo" href="index.html">
-                                <img src="assets/img/logo.svg" class="logo" alt="Logo">
-                            </a>
-                            <a class="logo-dark header-logo" href="index.html">
-                                <img src="assets/img/logo-dark.svg" class="logo" alt="Logo">
-                            </a>
+                            <a class="logo-white header-logo" href="index.html"><img src="assets/img/logo.svg" class="logo" alt="Logo"></a>
+                            <a class="logo-dark header-logo" href="index.html"><img src="assets/img/logo-dark.svg" class="logo" alt="Logo"></a>
                         </div>
                         <nav id="mobile-menu">
                             <ul class="main-nav">
-                                <li class="has-submenu megamenu">
-                                    <a href="javascript:void(0);">Home<i class="fa-solid fa-angle-down"></i></a>
-                                    <ul class="submenu mega-submenu">
-                                        <li>
-                                            <div class="megamenu-wrapper">
-                                                <div class="row g-lg-4">
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index.html"><img src="assets/img/menu/home-01.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index.html">All Bookings</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-2.html"><img src="assets/img/menu/home-02.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-2.html">Hotels</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-3.html"><img src="assets/img/menu/home-03.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-3.html">Cars</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-4.html"><img src="assets/img/menu/home-04.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-4.html">Flight</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-5.html"><img src="assets/img/menu/home-05.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-5.html">Cruise</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-6.html"><img src="assets/img/menu/home-06.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-6.html">Tours</a></div></div></div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
+                                <li><a href="index.html">Home</a></li>
                                 <li><a href="flight-grid.html">Flight</a></li>
                                 <li><a href="hotel-grid.html">Hotel</a></li>
                                 <li><a href="car-grid.html">Car</a></li>
@@ -143,273 +150,221 @@
                             <a href="login.html" class="btn btn-outline-light me-2 d-none d-md-block"><i class="isax isax-login me-2"></i>Sign In</a>
                             <a href="register.html" class="btn btn-primary d-none d-md-block"><i class="isax isax-user-add me-2"></i>Sign Up</a>
                             <div class="header__hamburger d-xl-none my-auto">
-                                <div class="sidebar-menu"><i class="isax isax-menu5"></i></div>
+                                <div class="sidebar-menu"><i class="isax isax-menu-1"></i></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
-        <!-- /Header -->
     </div>
 
-    <!-- Breadcrumb -->
     <div class="breadcrumb-bar breadcrumb-bg-01 text-center">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-12">
-                    <h2 class="breadcrumb-title mb-2" id="package-title">Vacation Package</h2>
+                    <h2 class="breadcrumb-title mb-2">Customize Your Vacation</h2>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center mb-0">
                             <li class="breadcrumb-item"><a href="index.html"><i class="isax isax-home5"></i></a></li>
                             <li class="breadcrumb-item"><a href="vacation.html">Vacation</a></li>
-                            <li class="breadcrumb-item active" aria-current="page" id="breadcrumb-name">Package Details</li>
+                            <li class="breadcrumb-item active" aria-current="page" id="breadcrumb-name">Customize</li>
                         </ol>
                     </nav>
                 </div>
             </div>
         </div>
     </div>
-    <!-- /Breadcrumb -->
 
-    <!-- Page Content -->
     <div class="content">
         <div class="container">
             <div class="row">
-                <!-- Main Content -->
                 <div class="col-xl-8 col-lg-7">
-                    <!-- Package Overview -->
+                    <!-- Package Info Card -->
                     <div class="card mb-4">
                         <div class="card-body">
-                            <div class="d-flex align-items-center justify-content-between mb-3">
-                                <span class="badge bg-primary fs-14" id="package-type-badge">Resort</span>
-                                <div class="d-flex align-items-center">
-                                    <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2" id="package-rating">4.9</span>
-                                    <p class="fs-14 mb-0" id="package-reviews">(245 Reviews)</p>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="assets/img/hotels/hotel-01.jpg" class="img-fluid rounded" alt="Package" id="package-image" style="height: 180px; width: 100%; object-fit: cover;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="d-flex align-items-center flex-wrap gap-2 mb-2">
+                                        <span class="badge bg-primary" id="package-type-badge">Resort</span>
+                                        <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium" id="package-rating">4.9</span>
+                                        <span class="text-muted fs-14" id="package-reviews">(245 Reviews)</span>
+                                    </div>
+                                    <h4 class="mb-2" id="package-name">Loading...</h4>
+                                    <p class="d-flex align-items-center mb-2 text-muted fs-14"><i class="isax isax-location5 me-2"></i><span id="package-location">Loading...</span></p>
+                                    <p class="d-flex align-items-center mb-2 text-muted fs-14"><i class="isax isax-calendar me-2"></i><span id="package-duration">Loading...</span></p>
+                                    <h5 class="text-primary mb-0">$<span id="base-price">0</span> <span class="fs-14 fw-normal text-muted">per person</span></h5>
                                 </div>
                             </div>
-                            <h3 class="mb-2" id="package-name">Loading...</h3>
-                            <p class="d-flex align-items-center mb-3 text-muted"><i class="isax isax-location5 me-2"></i><span id="package-location">Loading...</span></p>
-                            <p class="mb-0" id="package-description">Loading package description...</p>
                         </div>
                     </div>
 
-                    <!-- Package Image -->
-                    <div class="card mb-4">
-                        <img src="assets/img/hotels/hotel-01.jpg" class="card-img-top" alt="Package" id="package-image" style="height: 400px; object-fit: cover;">
-                    </div>
-
-                    <!-- Highlights -->
+                    <!-- Customize Add-ons -->
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h5 class="mb-3"><i class="isax isax-star-1 text-primary me-2"></i>Package Highlights</h5>
-                            <div class="row" id="highlights-container">
-                                <!-- Dynamically populated -->
-                            </div>
-                        </div>
-                    </div>
+                            <h5 class="mb-4"><i class="isax isax-setting-4 text-primary me-2"></i>Select Your Add-ons</h5>
+                            <p class="text-muted mb-4">Toggle on the services you want to add to your vacation package.</p>
 
-                    <!-- Features -->
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h5 class="mb-3"><i class="isax isax-tick-circle text-primary me-2"></i>What's Included</h5>
-                            <div class="row" id="features-container">
-                                <!-- Dynamically populated -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Add-ons Selection -->
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h5 class="mb-4"><i class="isax isax-add-circle text-primary me-2"></i>Customize Your Vacation</h5>
-                            
-                            <!-- Hotel Upgrade -->
-                            <div class="border rounded p-3 mb-3">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
+                            <!-- Hotel Section -->
+                            <div class="toggle-section" id="hotel-toggle-section">
+                                <div class="d-flex align-items-center justify-content-between">
                                     <div class="d-flex align-items-center">
-                                        <i class="isax isax-building-4 fs-24 text-primary me-3"></i>
+                                        <span class="avatar avatar-md bg-primary me-3"><i class="isax isax-building-4 text-white"></i></span>
                                         <div>
-                                            <h6 class="mb-0">Hotel Upgrade</h6>
-                                            <small class="text-muted">Upgrade to a premium suite</small>
+                                            <h6 class="mb-0">Hotel / Accommodation</h6>
+                                            <small class="text-muted">Select a nearby hotel for your stay</small>
                                         </div>
                                     </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input addon-toggle" type="checkbox" id="hotel-upgrade" data-price="350">
+                                    <div class="form-check form-switch form-switch-lg">
+                                        <input class="form-check-input" type="checkbox" id="toggle-hotel" style="width: 50px; height: 26px;">
                                     </div>
                                 </div>
-                                <div class="ps-5">
-                                    <span class="badge bg-light text-dark">+$350</span>
-                                    <small class="text-muted ms-2">Ocean view suite with private balcony</small>
+                                <div class="addon-section mt-4" id="hotel-options">
+                                    <h6 class="mb-3">Available Hotels Near <span class="text-primary" id="hotel-location">Your Destination</span></h6>
+                                    <div class="row" id="hotels-container"></div>
                                 </div>
                             </div>
 
-                            <!-- Car Rental -->
-                            <div class="border rounded p-3 mb-3">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
+                            <!-- Car Section -->
+                            <div class="toggle-section" id="car-toggle-section">
+                                <div class="d-flex align-items-center justify-content-between">
                                     <div class="d-flex align-items-center">
-                                        <i class="isax isax-car fs-24 text-primary me-3"></i>
+                                        <span class="avatar avatar-md bg-info me-3"><i class="isax isax-car text-white"></i></span>
                                         <div>
                                             <h6 class="mb-0">Car Rental</h6>
-                                            <small class="text-muted">Explore at your own pace</small>
+                                            <small class="text-muted">Rent a car to explore at your own pace</small>
                                         </div>
                                     </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input addon-toggle" type="checkbox" id="car-rental" data-price="280">
+                                    <div class="form-check form-switch form-switch-lg">
+                                        <input class="form-check-input" type="checkbox" id="toggle-car" style="width: 50px; height: 26px;">
                                     </div>
                                 </div>
-                                <div class="ps-5">
-                                    <span class="badge bg-light text-dark">+$280</span>
-                                    <small class="text-muted ms-2">Compact SUV for entire duration</small>
+                                <div class="addon-section mt-4" id="car-options">
+                                    <h6 class="mb-3">Available Cars Near <span class="text-primary" id="car-location">Your Destination</span></h6>
+                                    <div class="row" id="cars-container"></div>
                                 </div>
                             </div>
 
-                            <!-- Cruise Extension (for resort packages) -->
-                            <div class="border rounded p-3 mb-3" id="cruise-addon">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
+                            <!-- Cruise Section -->
+                            <div class="toggle-section" id="cruise-toggle-section">
+                                <div class="d-flex align-items-center justify-content-between">
                                     <div class="d-flex align-items-center">
-                                        <i class="isax isax-ship fs-24 text-primary me-3"></i>
+                                        <span class="avatar avatar-md bg-secondary me-3"><i class="isax isax-ship text-gray-9"></i></span>
                                         <div>
-                                            <h6 class="mb-0">Cruise Day Trip</h6>
-                                            <small class="text-muted">Add a sunset cruise experience</small>
+                                            <h6 class="mb-0">Cruise Experience</h6>
+                                            <small class="text-muted">Add a cruise to your vacation</small>
                                         </div>
                                     </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input addon-toggle" type="checkbox" id="cruise-trip" data-price="199">
+                                    <div class="form-check form-switch form-switch-lg">
+                                        <input class="form-check-input" type="checkbox" id="toggle-cruise" style="width: 50px; height: 26px;">
                                     </div>
                                 </div>
-                                <div class="ps-5">
-                                    <span class="badge bg-light text-dark">+$199</span>
-                                    <small class="text-muted ms-2">3-hour sunset cruise with dinner</small>
+                                <div class="addon-section mt-4" id="cruise-options">
+                                    <h6 class="mb-3">Available Cruises Near <span class="text-primary" id="cruise-location">Your Destination</span></h6>
+                                    <div class="row" id="cruises-container"></div>
                                 </div>
                             </div>
 
-                            <!-- Spa Package -->
-                            <div class="border rounded p-3 mb-3">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
+                            <!-- Flight Section -->
+                            <div class="toggle-section" id="flight-toggle-section">
+                                <div class="d-flex align-items-center justify-content-between">
                                     <div class="d-flex align-items-center">
-                                        <i class="isax isax-lovely fs-24 text-primary me-3"></i>
+                                        <span class="avatar avatar-md bg-success me-3"><i class="isax isax-airplane text-white"></i></span>
                                         <div>
-                                            <h6 class="mb-0">Spa & Wellness Package</h6>
-                                            <small class="text-muted">Relax and rejuvenate</small>
+                                            <h6 class="mb-0">Flight Booking</h6>
+                                            <small class="text-muted">Book your flights to the destination</small>
                                         </div>
                                     </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input addon-toggle" type="checkbox" id="spa-package" data-price="175">
+                                    <div class="form-check form-switch form-switch-lg">
+                                        <input class="form-check-input" type="checkbox" id="toggle-flight" style="width: 50px; height: 26px;">
                                     </div>
                                 </div>
-                                <div class="ps-5">
-                                    <span class="badge bg-light text-dark">+$175</span>
-                                    <small class="text-muted ms-2">2 spa sessions + wellness activities</small>
+                                <div class="addon-section mt-4" id="flight-options">
+                                    <h6 class="mb-3">Available Flights to <span class="text-primary" id="flight-location">Your Destination</span></h6>
+                                    <div class="row" id="flights-container"></div>
                                 </div>
                             </div>
 
-                            <!-- Travel Insurance -->
-                            <div class="border rounded p-3">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <div class="d-flex align-items-center">
-                                        <i class="isax isax-shield-tick fs-24 text-primary me-3"></i>
-                                        <div>
-                                            <h6 class="mb-0">Travel Insurance</h6>
-                                            <small class="text-muted">Full coverage protection</small>
-                                        </div>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input addon-toggle" type="checkbox" id="travel-insurance" data-price="89" checked>
-                                    </div>
-                                </div>
-                                <div class="ps-5">
-                                    <span class="badge bg-light text-dark">+$89</span>
-                                    <small class="text-muted ms-2">Trip cancellation, medical, baggage coverage</small>
-                                </div>
-                            </div>
                         </div>
                     </div>
+
+                    <!-- What's Included -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="mb-3"><i class="isax isax-tick-circle text-primary me-2"></i>What's Included in Base Package</h5>
+                            <div class="row" id="features-container"></div>
+                        </div>
+                    </div>
+
                 </div>
 
-                <!-- Sidebar - Booking -->
+                <!-- Sidebar - Booking Summary -->
                 <div class="col-xl-4 col-lg-5">
                     <div class="card sticky-top" style="top: 100px;">
                         <div class="card-body">
-                            <div class="d-flex align-items-center justify-content-between mb-3">
-                                <div>
-                                    <h4 class="text-primary mb-0" id="display-price">$2,500</h4>
-                                    <small class="text-muted text-decoration-line-through" id="display-original-price">$3,200</small>
-                                </div>
-                                <span class="badge bg-success fs-14" id="discount-badge">Save 22%</span>
-                            </div>
-
-                            <div class="border rounded p-3 mb-3">
-                                <div class="row g-3">
-                                    <div class="col-12">
-                                        <label class="form-label"><i class="isax isax-calendar me-1"></i>Check-in Date</label>
-                                        <input type="text" class="form-control datetimepicker" placeholder="Select date" id="checkin-date">
-                                    </div>
-                                    <div class="col-12">
-                                        <label class="form-label"><i class="isax isax-calendar me-1"></i>Check-out Date</label>
-                                        <input type="text" class="form-control datetimepicker" placeholder="Select date" id="checkout-date">
-                                    </div>
-                                    <div class="col-6">
-                                        <label class="form-label"><i class="isax isax-profile-2user me-1"></i>Adults</label>
-                                        <select class="form-select" id="adults-count">
-                                            <option value="1">1</option>
-                                            <option value="2" selected>2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-6">
-                                        <label class="form-label"><i class="isax isax-profile-2user me-1"></i>Children</label>
-                                        <select class="form-select" id="children-count">
-                                            <option value="0" selected>0</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Price Breakdown -->
-                            <div class="mb-3">
-                                <h6 class="mb-3">Price Breakdown</h6>
-                                <div class="d-flex justify-content-between mb-2">
+                            <h5 class="mb-4"><i class="isax isax-receipt-2 text-primary me-2"></i>Booking Summary</h5>
+                            
+                            <div id="summary-container">
+                                <div class="price-summary-item">
                                     <span>Base Package</span>
-                                    <span id="base-price">$2,500</span>
+                                    <span>$<span id="summary-base">0</span></span>
                                 </div>
-                                <div class="d-flex justify-content-between mb-2 addon-line" id="hotel-upgrade-line" style="display: none !important;">
-                                    <span>Hotel Upgrade</span>
-                                    <span>$350</span>
+                                <div class="price-summary-item" id="summary-hotel-row" style="display: none;">
+                                    <span><i class="isax isax-building-4 me-2"></i>Hotel</span>
+                                    <span>$<span id="summary-hotel">0</span></span>
                                 </div>
-                                <div class="d-flex justify-content-between mb-2 addon-line" id="car-rental-line" style="display: none !important;">
-                                    <span>Car Rental</span>
-                                    <span>$280</span>
+                                <div class="price-summary-item" id="summary-car-row" style="display: none;">
+                                    <span><i class="isax isax-car me-2"></i>Car Rental</span>
+                                    <span>$<span id="summary-car">0</span></span>
                                 </div>
-                                <div class="d-flex justify-content-between mb-2 addon-line" id="cruise-trip-line" style="display: none !important;">
-                                    <span>Cruise Day Trip</span>
-                                    <span>$199</span>
+                                <div class="price-summary-item" id="summary-cruise-row" style="display: none;">
+                                    <span><i class="isax isax-ship me-2"></i>Cruise</span>
+                                    <span>$<span id="summary-cruise">0</span></span>
                                 </div>
-                                <div class="d-flex justify-content-between mb-2 addon-line" id="spa-package-line" style="display: none !important;">
-                                    <span>Spa Package</span>
-                                    <span>$175</span>
+                                <div class="price-summary-item" id="summary-flight-row" style="display: none;">
+                                    <span><i class="isax isax-airplane me-2"></i>Flight</span>
+                                    <span>$<span id="summary-flight">0</span></span>
                                 </div>
-                                <div class="d-flex justify-content-between mb-2 addon-line" id="travel-insurance-line">
-                                    <span>Travel Insurance</span>
-                                    <span>$89</span>
-                                </div>
-                                <hr>
-                                <div class="d-flex justify-content-between fw-bold">
+                                <div class="price-summary-item mt-3 pt-3 border-top">
                                     <span>Total</span>
-                                    <span class="text-primary" id="total-price">$2,589</span>
+                                    <span class="text-primary">$<span id="summary-total">0</span></span>
                                 </div>
                             </div>
 
-                            <a href="vacation-checkout.html" class="btn btn-primary w-100 btn-lg mb-3" id="book-now-btn">
-                                <i class="isax isax-shopping-cart me-2"></i>Book Now
-                            </a>
+                            <div class="mt-4">
+                                <div class="mb-3">
+                                    <label class="form-label">Travel Date</label>
+                                    <input type="date" class="form-control" id="travel-date">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Number of Travelers</label>
+                                    <div class="custom-select-wrapper">
+                                        <div class="custom-select" id="travelers-select" data-value="2">2 Travelers</div>
+                                        <div class="custom-select-options" id="travelers-options">
+                                            <div class="custom-select-option" data-value="1">1 Traveler</div>
+                                            <div class="custom-select-option selected" data-value="2">2 Travelers</div>
+                                            <div class="custom-select-option" data-value="3">3 Travelers</div>
+                                            <div class="custom-select-option" data-value="4">4 Travelers</div>
+                                            <div class="custom-select-option" data-value="5">5+ Travelers</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                            <div class="text-center">
-                                <small class="text-muted"><i class="isax isax-shield-tick me-1"></i>Free cancellation up to 7 days before</small>
+                            <button class="btn btn-primary w-100 py-3 mt-3" id="proceed-checkout">
+                                <i class="isax isax-card me-2"></i>Proceed to Checkout
+                            </button>
+
+                            <div class="text-center mt-3">
+                                <small class="text-muted"><i class="isax isax-shield-tick me-1"></i>Secure payment • Free cancellation</small>
+                            </div>
+
+                            <div class="mt-4 pt-4 border-top" id="selected-addons-summary" style="display: none;">
+                                <h6 class="mb-3">Your Selections</h6>
+                                <div id="selected-items-list"></div>
                             </div>
                         </div>
                     </div>
@@ -417,198 +372,308 @@
             </div>
         </div>
     </div>
-    <!-- /Page Content -->
 
-    <!-- Footer -->
-    <footer class="footer">
+    <footer>
         <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="footer-widget">
-                        <a href="index.html" class="mb-4 d-block"><img src="assets/img/logo.svg" alt="Logo"></a>
-                        <p class="mb-3">Your trusted partner for unforgettable vacation experiences around the world.</p>
-                        <ul class="social-icon">
-                            <li><a href="javascript:void(0);"><i class="fa-brands fa-facebook"></i></a></li>
-                            <li><a href="javascript:void(0);"><i class="fa-brands fa-x-twitter"></i></a></li>
-                            <li><a href="javascript:void(0);"><i class="fa-brands fa-instagram"></i></a></li>
-                            <li><a href="javascript:void(0);"><i class="fa-brands fa-linkedin"></i></a></li>
-                        </ul>
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-md-12 text-center">
+                        <p class="mb-0">© 2024 DreamsTour. All Rights Reserved.</p>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-6 mb-4">
-                    <div class="footer-widget">
-                        <h5 class="mb-3">Quick Links</h5>
-                        <ul class="footer-links">
-                            <li><a href="about-us.html">About Us</a></li>
-                            <li><a href="contact-us.html">Contact</a></li>
-                            <li><a href="faq.html">FAQs</a></li>
-                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 mb-4">
-                    <div class="footer-widget">
-                        <h5 class="mb-3">Bookings</h5>
-                        <ul class="footer-links">
-                            <li><a href="flight-grid.html">Flights</a></li>
-                            <li><a href="hotel-grid.html">Hotels</a></li>
-                            <li><a href="cruise-grid.html">Cruises</a></li>
-                            <li><a href="vacation.html">Vacation</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-5 col-md-6 mb-4">
-                    <div class="footer-widget">
-                        <h5 class="mb-3">Newsletter</h5>
-                        <p class="mb-3">Subscribe for exclusive deals and travel tips</p>
-                        <div class="input-group">
-                            <input type="email" class="form-control" placeholder="Your email address">
-                            <button class="btn btn-primary" type="button">Subscribe</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="text-center py-3">
-                    <p class="fs-14 mb-0">Copyright &copy; 2026. All Rights Reserved, <a href="index.html" class="text-primary fw-medium">DreamsTour</a></p>
                 </div>
             </div>
         </div>
     </footer>
-    <!-- /Footer -->
 
-    <!-- Back to Top -->
-    <div class="back-to-top">
-        <a class="back-to-top-icon align-items-center justify-content-center d-flex" href="#top"><i class="fa-solid fa-arrow-up"></i></a>
-    </div>
-
-    <!-- Jquery JS -->
+    <script src="assets/js/vacation-data.js"></script>
+    <script src="assets/js/hotels-data.js"></script>
+    <script src="assets/js/cars-data.js"></script>
+    <script src="assets/js/cruises-data.js"></script>
+    <script src="assets/js/flights-data.js"></script>
     <script src="assets/js/jquery-3.7.1.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/jquery.meanmenu.min.js"></script>
-    <script src="assets/plugins/owlcarousel/owl.carousel.min.js"></script>
-    <script src="assets/plugins/moment/moment.js"></script>
-    <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="assets/js/meanmenu.js"></script>
     <script src="assets/js/script.js"></script>
-    <script src="assets/js/vacation-data.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get package ID from URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const packageId = urlParams.get('id');
-            
-            if (!packageId) {
-                window.location.href = 'vacation.html';
-                return;
+        $(document).ready(function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var packageId = urlParams.get('id');
+
+            var currentPackage = null;
+            if (packageId && typeof vacationData !== 'undefined') {
+                currentPackage = vacationData.packages.find(function(p) { return p.id === packageId; });
+            }
+            if (!currentPackage && typeof vacationData !== 'undefined') {
+                currentPackage = vacationData.packages[0];
             }
 
-            // Get package data
-            const pkg = vacationData.getPackageById(packageId);
-            if (!pkg) {
-                window.location.href = 'vacation.html';
-                return;
+            var selectedAddons = { hotel: null, car: null, cruise: null, flight: null };
+            var travelers = 2;
+
+            function initializePage() {
+                if (!currentPackage) return;
+
+                $('#package-name').text(currentPackage.name);
+                $('#package-location').text(currentPackage.location);
+                $('#package-duration').text(currentPackage.duration);
+                $('#package-rating').text(currentPackage.rating);
+                $('#package-reviews').text('(' + currentPackage.reviews + ' Reviews)');
+                $('#package-type-badge').text(currentPackage.type === 'cruise' ? 'Cruise' : 'Resort');
+                $('#package-image').attr('src', currentPackage.image);
+                $('#base-price').text(currentPackage.price.toLocaleString());
+                $('#summary-base').text(currentPackage.price.toLocaleString());
+                $('#breadcrumb-name').text(currentPackage.name);
+
+                var locationText = currentPackage.location.split(',')[0];
+                $('#hotel-location, #car-location, #cruise-location, #flight-location').text(locationText);
+
+                if (currentPackage.features) {
+                    var featuresHtml = currentPackage.features.map(function(f) {
+                        return '<div class="col-md-6 mb-2"><div class="d-flex align-items-center"><i class="isax isax-tick-circle text-success me-2"></i><span>' + f + '</span></div></div>';
+                    }).join('');
+                    $('#features-container').html(featuresHtml);
+                }
+
+                loadHotels();
+                loadCars();
+                loadCruises();
+                loadFlights();
+                updateTotal();
+
+                var defaultDate = new Date();
+                defaultDate.setDate(defaultDate.getDate() + 30);
+                $('#travel-date').val(defaultDate.toISOString().split('T')[0]);
             }
 
-            // Populate page
-            document.getElementById('package-title').textContent = pkg.name;
-            document.getElementById('breadcrumb-name').textContent = pkg.name;
-            document.getElementById('package-name').textContent = pkg.name;
-            document.getElementById('package-location').textContent = pkg.location;
-            document.getElementById('package-description').textContent = pkg.description;
-            document.getElementById('package-rating').textContent = pkg.rating;
-            document.getElementById('package-reviews').textContent = `(${pkg.reviews} Reviews)`;
-            document.getElementById('package-image').src = pkg.image;
-            document.getElementById('package-type-badge').textContent = pkg.type.charAt(0).toUpperCase() + pkg.type.slice(1);
-            document.getElementById('package-type-badge').className = pkg.type === 'resort' ? 'badge bg-primary fs-14' : 'badge bg-info fs-14';
-
-            // Price
-            const basePrice = pkg.price;
-            document.getElementById('display-price').textContent = `$${basePrice.toLocaleString()}`;
-            document.getElementById('display-original-price').textContent = `$${pkg.originalPrice.toLocaleString()}`;
-            document.getElementById('base-price').textContent = `$${basePrice.toLocaleString()}`;
-            
-            const discount = Math.round((1 - pkg.price / pkg.originalPrice) * 100);
-            document.getElementById('discount-badge').textContent = `Save ${discount}%`;
-
-            // Hide cruise addon for cruise packages
-            if (pkg.type === 'cruise') {
-                document.getElementById('cruise-addon').style.display = 'none';
+            function getCountryFromLocation(location) {
+                var locationParts = location.split(',');
+                if (locationParts.length > 1) return locationParts[locationParts.length - 1].trim();
+                var locationMap = { 'Maldives': 'Maldives', 'Caribbean Sea': 'USA', 'Mediterranean Sea': 'Italy', 'Santorini': 'Greece', 'Bali': 'Indonesia', 'Alaska': 'USA', 'Dubai': 'UAE' };
+                for (var key in locationMap) { if (location.indexOf(key) > -1) return locationMap[key]; }
+                return 'United Kingdom';
             }
 
-            // Highlights
-            const highlightsHtml = pkg.highlights.map(h => `
-                <div class="col-md-6 mb-2">
-                    <div class="d-flex align-items-center">
-                        <i class="isax isax-tick-circle text-success me-2"></i>
-                        <span>${h}</span>
-                    </div>
-                </div>
-            `).join('');
-            document.getElementById('highlights-container').innerHTML = highlightsHtml;
+            function renderPlaceItem(item, type) {
+                var price = item.price;
+                var unit = type === 'hotel' ? '/night' : type === 'car' ? '/day' : type === 'cruise' ? '/day' : '';
+                var subtitle = '';
+                if (type === 'hotel') subtitle = item.location;
+                else if (type === 'car') subtitle = item.specs.fuel + ' • ' + item.specs.gear;
+                else if (type === 'cruise') subtitle = item.specs.guests + ' guests • ' + item.specs.cabins + ' cabins';
+                else if (type === 'flight') subtitle = item.from + ' → ' + item.to;
 
-            // Features
-            const featuresHtml = pkg.features.map(f => `
-                <div class="col-md-6 mb-2">
-                    <div class="d-flex align-items-center">
-                        <i class="isax isax-tick-square text-primary me-2"></i>
-                        <span>${f}</span>
-                    </div>
-                </div>
-            `).join('');
-            document.getElementById('features-container').innerHTML = featuresHtml;
-
-            // Calculate total price
-            function updateTotal() {
-                let total = basePrice;
-                const addons = document.querySelectorAll('.addon-toggle');
-                
-                addons.forEach(addon => {
-                    const lineId = addon.id + '-line';
-                    const lineEl = document.getElementById(lineId);
-                    
-                    if (addon.checked) {
-                        total += parseInt(addon.dataset.price);
-                        if (lineEl) lineEl.style.display = 'flex';
-                    } else {
-                        if (lineEl) lineEl.style.display = 'none';
-                    }
-                });
-
-                document.getElementById('total-price').textContent = `$${total.toLocaleString()}`;
-                
-                // Update book now link with params
-                const bookBtn = document.getElementById('book-now-btn');
-                const selectedAddons = [];
-                addons.forEach(addon => {
-                    if (addon.checked) selectedAddons.push(addon.id);
-                });
-                bookBtn.href = `vacation-checkout.html?id=${packageId}&total=${total}&addons=${selectedAddons.join(',')}`;
+                return '<div class="col-md-6 mb-3">' +
+                    '<div class="place-item option-card" data-type="' + type + '" data-id="' + item.id + '" data-price="' + price + '" data-name="' + item.name + '">' +
+                        '<div class="place-img">' +
+                            '<img src="' + item.image + '" class="img-fluid" alt="' + item.name + '" onerror="this.src=\'assets/img/hotels/hotel-01.jpg\'">' +
+                            '<div class="fav-item">' +
+                                '<span class="badge bg-primary d-inline-flex align-items-center">' + (item.type || item.class || 'Featured') + '</span>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="place-content">' +
+                            '<div class="d-flex align-items-center mb-1">' +
+                                '<span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">' + item.rating + '</span>' +
+                                '<p class="fs-14">(' + (item.reviews || '100+') + ' Reviews)</p>' +
+                            '</div>' +
+                            '<h6 class="mb-1 text-truncate">' + item.name + '</h6>' +
+                            '<p class="d-flex align-items-center mb-2 text-muted fs-14"><i class="isax isax-location5 me-2"></i>' + subtitle + '</p>' +
+                            '<div class="d-flex align-items-center justify-content-between border-top pt-2">' +
+                                '<h6 class="text-primary text-nowrap mb-0">$' + price + ' <span class="fs-12 fw-normal text-default">' + unit + '</span></h6>' +
+                                '<span class="badge bg-light text-dark">Select</span>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
             }
 
-            // Add event listeners to addon toggles
-            document.querySelectorAll('.addon-toggle').forEach(toggle => {
-                toggle.addEventListener('change', updateTotal);
+            function loadHotels() {
+                if (typeof hotelsData === 'undefined') return;
+                var country = getCountryFromLocation(currentPackage.location);
+                var hotels = hotelsData.getByCountry(country);
+                if (hotels.length === 0) hotels = hotelsData.getFeatured().slice(0, 4);
+                var html = hotels.slice(0, 4).map(function(h) { return renderPlaceItem(h, 'hotel'); }).join('');
+                $('#hotels-container').html(html || '<div class="col-12"><p class="text-muted">No hotels available</p></div>');
+            }
+
+            function loadCars() {
+                if (typeof carsData === 'undefined') return;
+                var country = getCountryFromLocation(currentPackage.location);
+                var cars = carsData.getByCountry(country);
+                if (cars.length === 0) cars = carsData.getFeatured().slice(0, 4);
+                var html = cars.slice(0, 4).map(function(c) { return renderPlaceItem(c, 'car'); }).join('');
+                $('#cars-container').html(html || '<div class="col-12"><p class="text-muted">No cars available</p></div>');
+            }
+
+            function loadCruises() {
+                if (typeof cruisesData === 'undefined') return;
+                var country = getCountryFromLocation(currentPackage.location);
+                var cruises = cruisesData.getByCountry(country);
+                if (cruises.length === 0) cruises = cruisesData.getFeatured().slice(0, 4);
+                var html = cruises.slice(0, 4).map(function(c) { return renderPlaceItem(c, 'cruise'); }).join('');
+                $('#cruises-container').html(html || '<div class="col-12"><p class="text-muted">No cruises available</p></div>');
+            }
+
+            function loadFlights() {
+                if (typeof flightsData === 'undefined') return;
+                var destCountry = getCountryFromLocation(currentPackage.location);
+                var destCity = currentPackage.location.split(',')[0].trim();
+                var flights = flightsData.getByDestination(destCountry);
+                if (flights.length === 0) flights = flightsData.getFeatured().slice(0, 4);
+                var html = flights.slice(0, 4).map(function(f) { 
+                    var flightCopy = Object.assign({}, f);
+                    flightCopy.to = destCity + ', ' + destCountry;
+                    flightCopy.name = f.airline + ' - ' + f.flightNumber;
+                    return renderPlaceItem(flightCopy, 'flight'); 
+                }).join('');
+                $('#flights-container').html(html || '<div class="col-12"><p class="text-muted">No flights available</p></div>');
+            }
+
+            // Toggle handlers
+            $('#toggle-hotel').on('change', function() {
+                $('#hotel-options').toggleClass('active', this.checked);
+                $('#hotel-toggle-section').toggleClass('enabled', this.checked);
+                if (!this.checked) { selectedAddons.hotel = null; $('.option-card[data-type="hotel"]').removeClass('selected'); }
+                updateTotal();
             });
 
-            // Initial calculation
-            updateTotal();
+            $('#toggle-car').on('change', function() {
+                $('#car-options').toggleClass('active', this.checked);
+                $('#car-toggle-section').toggleClass('enabled', this.checked);
+                if (!this.checked) { selectedAddons.car = null; $('.option-card[data-type="car"]').removeClass('selected'); }
+                updateTotal();
+            });
 
-            // Initialize datepicker
-            if ($.fn.datetimepicker) {
-                $('.datetimepicker').datetimepicker({
-                    format: 'MM/DD/YYYY',
-                    icons: {
-                        up: 'fas fa-chevron-up',
-                        down: 'fas fa-chevron-down',
-                        next: 'fas fa-chevron-right',
-                        previous: 'fas fa-chevron-left'
+            $('#toggle-cruise').on('change', function() {
+                $('#cruise-options').toggleClass('active', this.checked);
+                $('#cruise-toggle-section').toggleClass('enabled', this.checked);
+                if (!this.checked) { selectedAddons.cruise = null; $('.option-card[data-type="cruise"]').removeClass('selected'); }
+                updateTotal();
+            });
+
+            $('#toggle-flight').on('change', function() {
+                $('#flight-options').toggleClass('active', this.checked);
+                $('#flight-toggle-section').toggleClass('enabled', this.checked);
+                if (!this.checked) { selectedAddons.flight = null; $('.option-card[data-type="flight"]').removeClass('selected'); }
+                updateTotal();
+            });
+
+            // Option card selection
+            $(document).on('click', '.option-card', function() {
+                var type = $(this).data('type');
+                var id = $(this).data('id');
+                var price = $(this).data('price');
+                var name = $(this).data('name');
+
+                $('.option-card[data-type="' + type + '"]').removeClass('selected');
+                $(this).addClass('selected');
+                selectedAddons[type] = { id: id, price: price, name: name };
+                updateTotal();
+            });
+
+            function updateTotal() {
+                var total = currentPackage ? currentPackage.price : 0;
+                
+                if (selectedAddons.hotel) {
+                    var hotelTotal = selectedAddons.hotel.price * 7;
+                    $('#summary-hotel').text(hotelTotal.toLocaleString());
+                    $('#summary-hotel-row').show();
+                    total += hotelTotal;
+                } else { $('#summary-hotel-row').hide(); }
+
+                if (selectedAddons.car) {
+                    var carTotal = selectedAddons.car.price * 7;
+                    $('#summary-car').text(carTotal.toLocaleString());
+                    $('#summary-car-row').show();
+                    total += carTotal;
+                } else { $('#summary-car-row').hide(); }
+
+                if (selectedAddons.cruise) {
+                    var cruiseTotal = selectedAddons.cruise.price * 3;
+                    $('#summary-cruise').text(cruiseTotal.toLocaleString());
+                    $('#summary-cruise-row').show();
+                    total += cruiseTotal;
+                } else { $('#summary-cruise-row').hide(); }
+
+                if (selectedAddons.flight) {
+                    var flightTotal = selectedAddons.flight.price * travelers;
+                    $('#summary-flight').text(flightTotal.toLocaleString());
+                    $('#summary-flight-row').show();
+                    total += flightTotal;
+                } else { $('#summary-flight-row').hide(); }
+
+                var totalWithTravelers = total * (travelers > 1 ? 1 + (travelers - 1) * 0.8 : 1);
+                $('#summary-total').text(Math.round(totalWithTravelers).toLocaleString());
+                updateSelectedItemsList();
+            }
+
+            function updateSelectedItemsList() {
+                var hasSelections = Object.values(selectedAddons).some(function(v) { return v !== null; });
+                if (hasSelections) {
+                    $('#selected-addons-summary').show();
+                    var html = '';
+                    if (selectedAddons.hotel) html += '<div class="d-flex align-items-center mb-2"><i class="isax isax-building-4 text-primary me-2"></i><small>' + selectedAddons.hotel.name + '</small></div>';
+                    if (selectedAddons.car) html += '<div class="d-flex align-items-center mb-2"><i class="isax isax-car text-info me-2"></i><small>' + selectedAddons.car.name + '</small></div>';
+                    if (selectedAddons.cruise) html += '<div class="d-flex align-items-center mb-2"><i class="isax isax-ship text-secondary me-2"></i><small>' + selectedAddons.cruise.name + '</small></div>';
+                    if (selectedAddons.flight) html += '<div class="d-flex align-items-center mb-2"><i class="isax isax-airplane text-success me-2"></i><small>' + selectedAddons.flight.name + '</small></div>';
+                    $('#selected-items-list').html(html);
+                } else { $('#selected-addons-summary').hide(); }
+            }
+
+            // Custom select for travelers
+            var travelersSelect = document.getElementById('travelers-select');
+            var travelersOptions = document.getElementById('travelers-options');
+
+            travelersSelect.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('open');
+                travelersOptions.classList.toggle('show');
+            });
+
+            var options = travelersOptions.querySelectorAll('.custom-select-option');
+            for (var i = 0; i < options.length; i++) {
+                options[i].addEventListener('click', function() {
+                    var value = this.getAttribute('data-value');
+                    var text = this.textContent;
+                    
+                    travelersSelect.textContent = text;
+                    travelersSelect.setAttribute('data-value', value);
+                    travelers = parseInt(value);
+                    
+                    for (var j = 0; j < options.length; j++) {
+                        options[j].classList.remove('selected');
                     }
+                    this.classList.add('selected');
+                    
+                    travelersSelect.classList.remove('open');
+                    travelersOptions.classList.remove('show');
+                    
+                    updateTotal();
                 });
             }
+
+            document.addEventListener('click', function() {
+                travelersSelect.classList.remove('open');
+                travelersOptions.classList.remove('show');
+            });
+
+            $('#proceed-checkout').on('click', function() {
+                var bookingData = {
+                    package: currentPackage,
+                    hotel: selectedAddons.hotel,
+                    car: selectedAddons.car,
+                    cruise: selectedAddons.cruise,
+                    flight: selectedAddons.flight,
+                    travelDate: $('#travel-date').val(),
+                    travelers: travelers,
+                    total: $('#summary-total').text(),
+                    timestamp: new Date().toISOString()
+                };
+                localStorage.setItem('vacationBooking', JSON.stringify(bookingData));
+                window.location.href = 'vacation-checkout.html';
+            });
+
+            initializePage();
         });
     </script>
 

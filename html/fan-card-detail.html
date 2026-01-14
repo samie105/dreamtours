@@ -1,281 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- Meta Tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Celebrity Fan Card - Official Fan Identification</title>
+    <title>Celebrity Fan Card - DreamsTour</title>
 
-    <meta name="description" content="Get your official celebrity fan identification card. Join the exclusive fan community and access VIP benefits.">
-    <meta name="keywords" content="fan card, celebrity, official fan ID, VIP access, fan community">
+    <meta name="description" content="Get your official celebrity fan identification card.">
+    <meta name="keywords" content="fan card, celebrity, official fan ID">
     <meta name="author" content="Dreams Technologies">
-    <meta name="robots" content="index, follow">
 
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
-
-    <!-- Favicon -->
     <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
 
-    <!-- Theme Settings Js -->
-    <script src="assets/js/theme-script.js" type="text/javascript"></script>
+    <script src="assets/js/theme-script.js"></script>
 
-    <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-
-    <!-- Main.css -->
     <link rel="stylesheet" href="assets/css/meanmenu.css">
-
-    <!-- Tabler Icon CSS -->
     <link rel="stylesheet" href="assets/plugins/tabler-icons/tabler-icons.css">
-
-    <!-- Fontawesome Icon CSS -->
     <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
     <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
-
-    <!-- Owlcarousel CSS -->
-    <link rel="stylesheet" href="assets/plugins/owlcarousel/owl.carousel.min.css">
-
-    <!-- Slick CSS -->
-    <link rel="stylesheet" href="assets/plugins/slick/slick.css">
-
-    <!-- FancyBox CSS -->
     <link rel="stylesheet" href="assets/plugins/fancybox/jquery.fancybox.min.css">
-
-    <!-- Iconsax CSS -->
     <link rel="stylesheet" href="assets/css/iconsax.css">
-
-    <!-- Datepicker CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
-
-    <!-- Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <!-- Fan Card Data -->
-    <script src="assets/js/fan-card-data.js"></script>
-
-    <!-- Celebrity Info Header -->
     <style>
-        .celebrity-info-header {
-            background: linear-gradient(135deg, #212E47 0%, #1a2436 100%);
-            border-radius: 12px;
-            padding: 30px;
-            color: #fff;
-            margin-bottom: 30px;
+        .celebrity-header { background: #212E47; border-radius: 12px; padding: 30px; color: #fff; margin-bottom: 24px; }
+        .celebrity-header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+        .celebrity-header .subtitle { color: rgba(255,255,255,0.7); font-size: 15px; margin-bottom: 16px; }
+        .stats-card { background: #fff; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.08); height: 100%; }
+        .stats-card i { font-size: 28px; color: var(--bs-primary); margin-bottom: 10px; }
+        .stats-card h4 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+        .stats-card p { margin: 0; color: #6b7280; font-size: 14px; }
+        .benefit-item { display: flex; align-items: flex-start; padding: 16px; background: #f9fafb; border-radius: 10px; margin-bottom: 12px; }
+        .benefit-item i { font-size: 22px; color: var(--bs-primary); margin-right: 14px; margin-top: 2px; flex-shrink: 0; }
+        .benefit-item h6 { margin-bottom: 4px; font-weight: 600; }
+        .benefit-item p { margin: 0; color: #6b7280; font-size: 14px; }
+        .price-card { background: #212E47; border-radius: 12px; padding: 28px; color: #fff; }
+        .price-card .price { font-size: 42px; font-weight: 700; }
+        .price-card .period { font-size: 16px; opacity: 0.7; }
+        .price-card .original { text-decoration: line-through; opacity: 0.5; font-size: 18px; margin-right: 10px; }
+        .price-card .discount { background: #04BD6C; padding: 4px 10px; border-radius: 50px; font-size: 12px; font-weight: 600; }
+        .price-card ul { list-style: none; padding: 0; margin: 20px 0; }
+        .price-card ul li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; font-size: 14px; }
+        .price-card ul li:last-child { border-bottom: none; }
+        .price-card ul li i { color: #04BD6C; margin-right: 10px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .gallery-grid img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; cursor: pointer; }
+        .review-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 16px; margin-bottom: 12px; }
+        .similar-item { display: flex; align-items: center; padding: 12px; border-radius: 8px; transition: background 0.2s; }
+        .similar-item:hover { background: #f3f4f6; }
+        /* Hide main nav on mobile - show only in sidebar */
+        @media (max-width: 1199px) {
+            .main-nav { display: none !important; }
+            .header__hamburger { display: flex !important; }
         }
-        .celebrity-info-header h1 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .celebrity-info-header .celebrity-title {
-            color: rgba(255,255,255,0.7);
-            font-size: 16px;
-            margin-bottom: 15px;
-        }
-        .celebrity-info-header .celebrity-badges {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 15px;
-        }
-        .celebrity-info-header .celebrity-badges .badge {
-            padding: 8px 16px;
-            font-size: 13px;
-            border-radius: 50px;
-        }
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            color: #fff;
-            transition: all 0.3s ease;
-        }
-        .social-link:hover {
-            background: var(--bs-primary);
-            color: #fff;
-        }
-        .stats-card {
-            background: #CF3425;
-            border-radius: 12px;
-            padding: 25px;
-            color: #fff;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        .stats-card:hover {
-            transform: translateY(-5px);
-        }
-        .stats-card i {
-            font-size: 32px;
-            margin-bottom: 15px;
-            opacity: 0.9;
-        }
-        .stats-card h3 {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-        .stats-card p {
-            margin: 0;
-            opacity: 0.85;
-        }
-        .stats-card.secondary { background: #98AA30; }
-        .stats-card.info { background: #155EEF; }
-        .stats-card.warning { background: #FFCA18; color: #111827; }
-        .stats-card.warning i, .stats-card.warning h3, .stats-card.warning p { color: #111827; }
-        
-        .benefit-item {
-            display: flex;
-            align-items: flex-start;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            transition: all 0.3s ease;
-        }
-        .benefit-item:hover {
-            background: #fff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transform: translateX(5px);
-        }
-        .benefit-item i {
-            font-size: 24px;
-            color: #CF3425;
-            margin-right: 15px;
-            margin-top: 3px;
-        }
-        .benefit-item h6 {
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-        .benefit-item p {
-            margin: 0;
-            color: #6c757d;
-            font-size: 14px;
-        }
-        
-        .price-card {
-            background: #212E47;
-            border-radius: 12px;
-            padding: 30px;
-            color: #fff;
-            margin-bottom: 24px;
-        }
-        .price-card .price-amount {
-            font-size: 48px;
-            font-weight: 700;
-            color: #fff;
-        }
-        .price-card .price-period {
-            font-size: 18px;
-            opacity: 0.7;
-        }
-        .price-card .original-price {
-            text-decoration: line-through;
-            opacity: 0.5;
-            font-size: 20px;
-        }
-        .price-card .discount-badge {
-            background: #04BD6C;
-            padding: 5px 12px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-        .price-card ul {
-            list-style: none;
-            padding: 0;
-            margin: 25px 0;
-        }
-        .price-card ul li {
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-        }
-        .price-card ul li:last-child {
-            border-bottom: none;
-        }
-        .price-card ul li i {
-            color: #04BD6C;
-            margin-right: 12px;
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-        }
-        .gallery-grid img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        .gallery-grid img:hover {
-            transform: scale(1.05);
-        }
-        
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-            margin-right: 10px;
-            transition: all 0.3s ease;
-        }
-        .social-link:hover {
-            background: #CF3425;
-            color: #fff;
-            transform: translateY(-3px);
-        }
-        .sidebar-card {
-            margin-bottom: 24px;
-        }
+        /* Mobile sidebar - slides from left */
+        .offcanvas-info { left: 0; right: auto; transform: translateX(-100%); }
+        .offcanvas-info.show { transform: translateX(0); }
+        .offcanvas-overlay { position: fixed; left: 0; right: 0; top: 0; bottom: 0; background: rgba(0, 0, 0, 0.7); z-index: 900; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        .offcanvas-overlay.overlay-open { opacity: 0.8; visibility: visible; }
+        .mobile-nav-menu { list-style: none; padding: 0; margin: 0; }
+        .mobile-nav-menu li { border-bottom: 1px solid #e5e7eb; }
+        .mobile-nav-menu li:last-child { border-bottom: none; }
+        .mobile-nav-menu li a { display: block; padding: 14px 0; font-size: 15px; font-weight: 500; color: #1f2937; transition: color 0.2s; }
+        .mobile-nav-menu li a:hover, .mobile-nav-menu li.active a { color: var(--bs-primary); }
+        .mobile-nav-menu li a i { margin-right: 10px; width: 20px; }
+        [data-theme="dark"] .mobile-nav-menu li { border-color: #334155; }
+        [data-theme="dark"] .mobile-nav-menu li a { color: #e2e8f0; }
+        /* Sign-in button - theme aware */
+        .btn-outline-light { background: var(--bg-white, #fff) !important; color: var(--bs-primary) !important; border-color: var(--border-color, #e5e7eb) !important; }
+        .btn-outline-light:hover { background: var(--bs-primary) !important; color: #fff !important; border-color: var(--bs-primary) !important; }
+        [data-theme="dark"] .btn-outline-light { background: var(--dark-bg-light, #1e293b) !important; color: var(--bs-primary) !important; border-color: var(--dark-border, #334155) !important; }
+        [data-theme="dark"] .btn-outline-light:hover { background: var(--bs-primary) !important; color: #fff !important; border-color: var(--bs-primary) !important; }
     </style>
 </head>
 
 <body>
 
     <div class="main-header">
-        <!-- Header Topbar-->
         <div class="header-topbar text-center bg-transparent">
             <div class="container">
                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                     <p class="d-flex align-items-center fw-medium fs-14 mb-2"><i class="isax isax-call5 me-2"></i>Toll Free : +1 56565 56594</p>
                     <div class="d-flex align-items-center">
-                        <p class="mb-2 me-3 d-flex align-items-center fw-medium fs-14"><i class="isax isax-message-text-15 me-2"></i>Email : info@fancard.com</p>
-                        <div class="dropdown flag-dropdown mb-2 me-3">
-                            <a href="javascript:void(0);" class="dropdown-toggle d-inline-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG
-                            </a>
-                            <ul class="dropdown-menu p-2 mt-2">
-                                <li><a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);"><img src="assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG</a></li>
-                                <li><a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);"><img src="assets/img/flags/arab-flag.svg" class="me-2" alt="flag">ARA</a></li>
-                                <li><a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);"><img src="assets/img/flags/france-flag.svg" class="me-2" alt="flag">FRA</a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown mb-2 me-3">
-                            <a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">USD</a>
-                            <ul class="dropdown-menu p-2 mt-2">
-                                <li><a class="dropdown-item rounded" href="javascript:void(0);">USD</a></li>
-                                <li><a class="dropdown-item rounded" href="javascript:void(0);">YEN</a></li>
-                                <li><a class="dropdown-item rounded" href="javascript:void(0);">EURO</a></li>
-                            </ul>
-                        </div>
+                        <p class="mb-2 me-3 d-flex align-items-center fw-medium fs-14"><i class="isax isax-message-text-15 me-2"></i>Email : info@dreamstour.com</p>
                         <div class="fav-dropdown mb-2">
                             <a href="wishlist.html" class="position-relative">
                                 <i class="isax isax-heart"></i><span class="count-icon bg-secondary text-gray-9">0</span>
@@ -285,42 +93,32 @@
                 </div>
             </div>
         </div>
-        <!-- /Header Topbar-->
 
-        <!-- Header -->
         <header>
             <div class="container">
                 <div class="offcanvas-info">
                     <div class="offcanvas-wrap">
                         <div class="offcanvas-detail">
                             <div class="offcanvas-head">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <a href="index.html" class="black-logo-responsive">
-                                        <img src="assets/img/logo-dark.svg" alt="logo-img">
-                                    </a>
-                                    <a href="index.html" class="white-logo-responsive">
-                                        <img src="assets/img/logo.svg" alt="logo-img">
-                                    </a>
-                                    <div class="offcanvas-close">
-                                        <i class="ti ti-x"></i>
-                                    </div>
-                                </div>
-                                <div class="wishlist-info d-flex justify-content-between align-items-center">
-                                    <h6 class="fs-16 fw-medium">Wishlist</h6>
-                                    <div class="d-flex align-items-center">
-                                        <div class="fav-dropdown">
-                                            <a href="wishlist.html" class="position-relative">
-                                                <i class="isax isax-heart"></i><span class="count-icon bg-secondary text-gray-9">0</span>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <a href="index.html" class="black-logo-responsive"><img src="assets/img/logo-dark.svg" alt="logo-img"></a>
+                                    <a href="index.html" class="white-logo-responsive"><img src="assets/img/logo.svg" alt="logo-img"></a>
+                                    <div class="offcanvas-close"><i class="ti ti-x"></i></div>
                                 </div>
                             </div>
-                            <div class="mobile-menu fix mb-3"></div>
-                            <div class="offcanvas__contact">
-                                <div class="mt-4">
-                                    <a href="fan-card.html" class="btn btn-primary w-100">Browse Fan Cards</a>
-                                </div>
+                            <ul class="mobile-nav-menu">
+                                <li><a href="index.html"><i class="isax isax-home-2"></i>Home</a></li>
+                                <li><a href="flight-grid.html"><i class="isax isax-airplane"></i>Flight</a></li>
+                                <li><a href="hotel-grid.html"><i class="isax isax-building-4"></i>Hotel</a></li>
+                                <li><a href="car-grid.html"><i class="isax isax-car"></i>Car</a></li>
+                                <li><a href="cruise-grid.html"><i class="isax isax-ship"></i>Cruise</a></li>
+                                <li><a href="tour-grid.html"><i class="isax isax-map"></i>Tour</a></li>
+                                <li><a href="vacation.html"><i class="isax isax-sun-1"></i>Vacation</a></li>
+                                <li class="active"><a href="fan-card.html"><i class="isax isax-card"></i>Fan Card</a></li>
+                            </ul>
+                            <div class="mt-4 pt-4 border-top">
+                                <a href="login.html" class="btn btn-outline-primary w-100 mb-2"><i class="isax isax-login me-2"></i>Sign In</a>
+                                <a href="register.html" class="btn btn-primary w-100"><i class="isax isax-user-add me-2"></i>Sign Up</a>
                             </div>
                         </div>
                     </div>
@@ -329,32 +127,12 @@
                 <div class="header-nav">
                     <div class="main-menu-wrapper">
                         <div class="navbar-logo">
-                            <a class="logo-white header-logo" href="index.html">
-                                <img src="assets/img/logo.svg" class="logo" alt="Logo">
-                            </a>
-                            <a class="logo-dark header-logo" href="index.html">
-                                <img src="assets/img/logo-dark.svg" class="logo" alt="Logo">
-                            </a>
+                            <a class="logo-white header-logo" href="index.html"><img src="assets/img/logo.svg" class="logo" alt="Logo"></a>
+                            <a class="logo-dark header-logo" href="index.html"><img src="assets/img/logo-dark.svg" class="logo" alt="Logo"></a>
                         </div>
                         <nav id="mobile-menu">
                             <ul class="main-nav">
-                                <li class="has-submenu megamenu">
-                                    <a href="javascript:void(0);">Home<i class="fa-solid fa-angle-down"></i></a>
-                                    <ul class="submenu mega-submenu">
-                                        <li>
-                                            <div class="megamenu-wrapper">
-                                                <div class="row g-lg-4">
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index.html"><img src="assets/img/menu/home-01.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index.html">All Bookings</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-2.html"><img src="assets/img/menu/home-02.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-2.html">Hotels</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-3.html"><img src="assets/img/menu/home-03.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-3.html">Cars</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-4.html"><img src="assets/img/menu/home-04.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-4.html">Flight</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-5.html"><img src="assets/img/menu/home-05.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-5.html">Cruise</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-6.html"><img src="assets/img/menu/home-06.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-6.html">Tours</a></div></div></div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
+                                <li><a href="index.html">Home</a></li>
                                 <li><a href="flight-grid.html">Flight</a></li>
                                 <li><a href="hotel-grid.html">Hotel</a></li>
                                 <li><a href="car-grid.html">Car</a></li>
@@ -365,25 +143,22 @@
                             </ul>
                         </nav>
                         <div class="header-btn d-flex align-items-center">
-                            <a href="javascript:void(0);" class="search-icon me-2" id="search-icon">
-                                <i class="isax isax-search-normal-1"></i>
-                            </a>
+                            <div class="me-3">
+                                <a href="javascript:void(0);" id="dark-mode-toggle" class="theme-toggle"><i class="isax isax-moon"></i></a>
+                                <a href="javascript:void(0);" id="light-mode-toggle" class="theme-toggle"><i class="isax isax-sun-1"></i></a>
+                            </div>
                             <a href="login.html" class="btn btn-outline-light me-2 d-none d-md-block"><i class="isax isax-login me-2"></i>Sign In</a>
                             <a href="register.html" class="btn btn-primary d-none d-md-block"><i class="isax isax-user-add me-2"></i>Sign Up</a>
-                            <a class="nav-toggle d-block d-xl-none" id="mobile_btn" href="javascript:void(0);">
-                                <span class="bar-icons">
-                                    <i class="ti ti-menu-2"></i>
-                                </span>
-                            </a>
+                            <div class="header__hamburger d-xl-none my-auto">
+                                <div class="sidebar-menu"><i class="isax isax-menu-1"></i></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
-        <!-- /Header -->
     </div>
 
-    <!-- Breadcrumb -->
     <div class="breadcrumb-bar breadcrumb-bg-02 text-center">
         <div class="container">
             <div class="row">
@@ -393,178 +168,165 @@
                         <ol class="breadcrumb justify-content-center mb-0">
                             <li class="breadcrumb-item"><a href="index.html"><i class="isax isax-home5"></i></a></li>
                             <li class="breadcrumb-item"><a href="fan-card.html">Fan Cards</a></li>
-                            <li class="breadcrumb-item active" aria-current="page" id="breadcrumb-name">Loading...</li>
+                            <li class="breadcrumb-item active" aria-current="page" id="breadcrumb-name">Celebrity</li>
                         </ol>
                     </nav>
                 </div>
             </div>
         </div>
     </div>
-    <!-- /Breadcrumb -->
 
-    <!-- Page Wrapper -->
     <div class="content">
         <div class="container">
-
             <div class="row">
                 <div class="col-xl-8">
-
-                    <!-- Celebrity Info Header -->
-                    <div class="celebrity-info-header wow fadeInUp">
-                        <div class="celebrity-badges mb-3" id="hero-badges">
-                            <!-- Badges populated dynamically -->
+                    <!-- Celebrity Header -->
+                    <div class="celebrity-header">
+                        <div class="d-flex flex-wrap gap-2 mb-3" id="badges-container">
+                            <span class="badge bg-success"><i class="isax isax-verify me-1"></i>Verified</span>
+                            <span class="badge bg-warning text-dark"><i class="isax isax-star-1 me-1"></i>Popular</span>
                         </div>
-                        <h1 id="hero-name">Loading...</h1>
-                        <p class="celebrity-title" id="hero-title">Loading...</p>
-                        <div class="d-flex align-items-center gap-3 flex-wrap" id="social-links">
-                            <a href="javascript:void(0);" class="social-link"><i class="fab fa-twitter"></i></a>
-                            <a href="javascript:void(0);" class="social-link"><i class="fab fa-instagram"></i></a>
-                            <a href="javascript:void(0);" class="social-link"><i class="fab fa-linkedin"></i></a>
-                            <a href="javascript:void(0);" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <h1 id="celebrity-name">Loading...</h1>
+                        <p class="subtitle" id="celebrity-title">Loading...</p>
+                        <div class="d-flex gap-2">
+                            <a href="#" class="btn btn-light btn-sm"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="btn btn-light btn-sm"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="btn btn-light btn-sm"><i class="fab fa-youtube"></i></a>
                         </div>
                     </div>
-                    <!-- /Celebrity Info Header -->
 
                     <!-- Stats -->
-                    <div class="row mb-4" id="stats-section">
+                    <div class="row mb-4">
                         <div class="col-md-3 col-6 mb-3">
-                            <div class="stats-card wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="stats-card">
                                 <i class="isax isax-people"></i>
-                                <h3 id="stat-followers">--</h3>
+                                <h4 id="stat-followers">--</h4>
                                 <p>Followers</p>
                             </div>
                         </div>
                         <div class="col-md-3 col-6 mb-3">
-                            <div class="stats-card secondary wow fadeInUp" data-wow-delay="0.2s">
+                            <div class="stats-card">
                                 <i class="isax isax-card"></i>
-                                <h3 id="stat-fancards">--</h3>
-                                <p>Fan Cards Issued</p>
+                                <h4 id="stat-fancards">--</h4>
+                                <p>Fan Cards</p>
                             </div>
                         </div>
                         <div class="col-md-3 col-6 mb-3">
-                            <div class="stats-card info wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="stats-card">
                                 <i class="isax isax-star-1"></i>
-                                <h3 id="stat-rating">--</h3>
+                                <h4 id="stat-rating">--</h4>
                                 <p>Rating</p>
                             </div>
                         </div>
                         <div class="col-md-3 col-6 mb-3">
-                            <div class="stats-card warning wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="stats-card">
                                 <i class="isax isax-calendar"></i>
-                                <h3 id="stat-member-since">--</h3>
+                                <h4 id="stat-member">--</h4>
                                 <p>Member Since</p>
                             </div>
                         </div>
                     </div>
-                    <!-- /Stats -->
 
-                    <!-- About Section -->
-                    <div class="bg-light-200 card-bg-light mb-4 wow fadeInUp">
-                        <h5 class="fs-18 mb-3"><i class="isax isax-user me-2 text-primary"></i>About</h5>
-                        <div id="about-section">
-                            <p>Loading...</p>
-                        </div>
-                    </div>
-                    <!-- /About Section -->
-
-                    <!-- Fan Card Benefits -->
-                    <div class="bg-light-200 card-bg-light mb-4 wow fadeInUp">
-                        <h5 class="fs-18 mb-3"><i class="isax isax-gift me-2 text-primary"></i>Fan Card Benefits</h5>
-                        
-                        <div class="benefit-item">
-                            <i class="isax isax-card"></i>
-                            <div>
-                                <h6>Official Digital Fan ID</h6>
-                                <p>Receive your personalized digital identification card with unique serial number and QR verification</p>
-                            </div>
-                        </div>
-                        
-                        <div class="benefit-item">
-                            <i class="isax isax-video-play"></i>
-                            <div>
-                                <h6>Exclusive Video Content</h6>
-                                <p>Access behind-the-scenes videos, personal messages, and exclusive updates directly from the celebrity</p>
-                            </div>
-                        </div>
-                        
-                        <div class="benefit-item">
-                            <i class="isax isax-ticket"></i>
-                            <div>
-                                <h6>VIP Event Access</h6>
-                                <p>Get priority access to product launches, conferences, and exclusive fan meetups</p>
-                            </div>
-                        </div>
-                        
-                        <div class="benefit-item">
-                            <i class="isax isax-messages-3"></i>
-                            <div>
-                                <h6>Fan Community Membership</h6>
-                                <p>Join the official fan community with exclusive forums, chats, and networking opportunities</p>
-                            </div>
-                        </div>
-                        
-                        <div class="benefit-item">
-                            <i class="isax isax-discount-shape"></i>
-                            <div>
-                                <h6>Merchandise Discounts</h6>
-                                <p>Enjoy 20% off on official merchandise, apparel, and collectibles</p>
-                            </div>
-                        </div>
-                        
-                        <div class="benefit-item">
-                            <i class="isax isax-notification-bing"></i>
-                            <div>
-                                <h6>Priority Updates</h6>
-                                <p>Be the first to know about announcements, new ventures, and special news</p>
+                    <!-- About -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="mb-3"><i class="isax isax-user me-2 text-primary"></i>About</h5>
+                            <div id="about-content">
+                                <p>Loading...</p>
                             </div>
                         </div>
                     </div>
-                    <!-- /Fan Card Benefits -->
+
+                    <!-- Benefits -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="mb-3"><i class="isax isax-gift me-2 text-primary"></i>Fan Card Benefits</h5>
+                            <div class="benefit-item">
+                                <i class="isax isax-card"></i>
+                                <div>
+                                    <h6>Official Digital Fan ID</h6>
+                                    <p>Personalized digital card with unique serial number and QR verification</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="isax isax-video-play"></i>
+                                <div>
+                                    <h6>Exclusive Video Content</h6>
+                                    <p>Behind-the-scenes videos, personal messages, and exclusive updates</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="isax isax-ticket"></i>
+                                <div>
+                                    <h6>VIP Event Access</h6>
+                                    <p>Priority access to events, concerts, and exclusive fan meetups</p>
+                                </div>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="isax isax-discount-shape"></i>
+                                <div>
+                                    <h6>Merchandise Discounts</h6>
+                                    <p>20% off on official merchandise, apparel, and collectibles</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Gallery -->
-                    <div class="bg-light-200 card-bg-light mb-4 wow fadeInUp">
-                        <h5 class="fs-18 mb-3"><i class="isax isax-gallery me-2 text-primary"></i>Gallery</h5>
-                        <div class="gallery-grid" id="gallery-section">
-                            <!-- Gallery images populated dynamically -->
-                        </div>
-                    </div>
-                    <!-- /Gallery -->
-
-                    <!-- Achievements -->
-                    <div class="bg-light-200 card-bg-light mb-4 wow fadeInUp">
-                        <h5 class="fs-18 mb-3"><i class="isax isax-cup me-2 text-primary"></i>Notable Achievements</h5>
-                        <div class="row" id="achievements-section">
-                            <!-- Achievements populated dynamically -->
-                        </div>
-                    </div>
-                    <!-- /Achievements -->
-
-                    <!-- Reviews -->
-                    <div class="bg-light-200 card-bg-light mb-4 wow fadeInUp">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <h5 class="fs-18 mb-0"><i class="isax isax-star-1 me-2 text-primary"></i>Fan Reviews</h5>
-                            <span class="badge bg-warning text-dark" id="review-badge"><i class="isax isax-star-1 me-1"></i>-- (-- reviews)</span>
-                        </div>
-                        <div id="reviews-section">
-                            <!-- Reviews populated dynamically -->
-                        </div>
-                    </div>
-                    <!-- /Reviews -->
-
-                </div>
-
-                <!-- Sidebar - Price Card -->
-                <div class="col-xl-4">
-                    <div class="price-card wow fadeInUp">
-                        <div class="text-center mb-4">
-                            <span class="original-price" id="price-original">$--</span>
-                            <span class="discount-badge ms-2" id="price-discount">--% OFF</span>
-                            <div class="mt-2">
-                                <span class="price-amount" id="price-amount">$--</span>
-                                <span class="price-period">/ year</span>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="mb-3"><i class="isax isax-gallery me-2 text-primary"></i>Gallery</h5>
+                            <div class="gallery-grid" id="gallery-container">
+                                <img src="assets/img/tours/tours-01.jpg" alt="Gallery" data-fancybox="gallery">
+                                <img src="assets/img/tours/tours-02.jpg" alt="Gallery" data-fancybox="gallery">
+                                <img src="assets/img/tours/tours-03.jpg" alt="Gallery" data-fancybox="gallery">
+                                <img src="assets/img/tours/tours-04.jpg" alt="Gallery" data-fancybox="gallery">
+                                <img src="assets/img/tours/tours-05.jpg" alt="Gallery" data-fancybox="gallery">
+                                <img src="assets/img/tours/tours-06.jpg" alt="Gallery" data-fancybox="gallery">
                             </div>
                         </div>
-                        
+                    </div>
+
+                    <!-- Achievements -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="mb-3"><i class="isax isax-cup me-2 text-primary"></i>Achievements</h5>
+                            <div class="row" id="achievements-container">
+                                <div class="col-md-6">
+                                    <ul class="list-unstyled" id="achievements-col-1"></ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="list-unstyled" id="achievements-col-2"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reviews -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <h5 class="mb-0"><i class="isax isax-star-1 me-2 text-primary"></i>Fan Reviews</h5>
+                                <span class="badge bg-warning text-dark" id="review-summary"><i class="isax isax-star-1 me-1"></i>4.9 (2,450 reviews)</span>
+                            </div>
+                            <div id="reviews-container"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-xl-4">
+                    <div class="price-card sticky-top" style="top: 100px;">
+                        <div class="text-center mb-4">
+                            <div class="mb-2">
+                                <span class="original" id="price-original">$99.99</span>
+                                <span class="discount" id="price-discount">20% OFF</span>
+                            </div>
+                            <div>
+                                <span class="price" id="price-current">$49.99</span>
+                                <span class="period">/ year</span>
+                            </div>
+                        </div>
                         <ul>
                             <li><i class="isax isax-tick-circle"></i> Official Digital Fan ID Card</li>
                             <li><i class="isax isax-tick-circle"></i> Verified Fan Status Badge</li>
@@ -573,321 +335,178 @@
                             <li><i class="isax isax-tick-circle"></i> Fan Community Membership</li>
                             <li><i class="isax isax-tick-circle"></i> 20% Merchandise Discount</li>
                             <li><i class="isax isax-tick-circle"></i> Priority Customer Support</li>
-                            <li><i class="isax isax-tick-circle"></i> Monthly Newsletter</li>
-                            <li><i class="isax isax-tick-circle"></i> Birthday Recognition</li>
                         </ul>
-                        
                         <a href="fan-card-checkout.html" class="btn btn-primary btn-lg w-100 mb-3" id="purchase-btn">
                             <i class="isax isax-shopping-cart me-2"></i>Purchase Fan Card
                         </a>
-                        
                         <div class="text-center">
-                            <p class="mb-2" style="opacity: 0.7; font-size: 13px;">
-                                <i class="isax isax-shield-tick me-1"></i>Secure Payment • Instant Delivery
-                            </p>
-                            <p class="mb-0" style="opacity: 0.7; font-size: 13px;">
-                                <i class="isax isax-refresh me-1"></i>30-Day Money Back Guarantee
-                            </p>
-                        </div>
-                        
-                        <hr style="border-color: rgba(255,255,255,0.1); margin: 20px 0;">
-                        
-                        <div class="text-center">
-                            <p class="mb-2" style="opacity: 0.8; font-size: 14px;">Share this Fan Card</p>
-                            <div class="d-flex justify-content-center gap-2">
-                                <a href="javascript:void(0);" class="social-link" style="width: 40px; height: 40px;"><i class="fab fa-facebook-f"></i></a>
-                                <a href="javascript:void(0);" class="social-link" style="width: 40px; height: 40px;"><i class="fab fa-twitter"></i></a>
-                                <a href="javascript:void(0);" class="social-link" style="width: 40px; height: 40px;"><i class="fab fa-whatsapp"></i></a>
-                                <a href="javascript:void(0);" class="social-link" style="width: 40px; height: 40px;"><i class="fas fa-link"></i></a>
-                            </div>
+                            <p class="mb-1" style="opacity: 0.7; font-size: 13px;"><i class="isax isax-shield-tick me-1"></i>Secure Payment • Instant Delivery</p>
+                            <p class="mb-0" style="opacity: 0.7; font-size: 13px;"><i class="isax isax-refresh me-1"></i>30-Day Money Back Guarantee</p>
                         </div>
                     </div>
-                    
+
                     <!-- Similar Celebrities -->
-                    <div class="card sidebar-card wow fadeInUp">
+                    <div class="card mt-4">
                         <div class="card-body">
                             <h6 class="mb-3">Similar Fan Cards</h6>
-                            <div id="similar-celebrities">
-                                <!-- Similar celebrities populated dynamically -->
-                            </div>
+                            <div id="similar-container"></div>
                         </div>
                     </div>
-                    <!-- /Similar Celebrities -->
-                    
                 </div>
             </div>
-
         </div>
     </div>
-    <!-- /Page Wrapper -->
 
-    <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-top">
-                <div class="row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-1">
-                    <div class="col">
-                        <div class="footer-widget">
-                            <h5>Pages</h5>
-                            <ul class="footer-menu">
-                                <li><a href="team.html">Our Team</a></li>
-                                <li><a href="pricing-plan.html">Pricing Plans</a></li>
-                                <li><a href="gallery.html">Gallery</a></li>
-                                <li><a href="profile-settings.html">Settings</a></li>
-                                <li><a href="my-profile.html">Profile</a></li>
-                                <li><a href="agent-listings.html">Listings</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="footer-widget">
-                            <h5>Useful Links</h5>
-                            <ul class="footer-menu">
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="blog-grid.html">News & Updates</a></li>
-                                <li><a href="testimonial.html">Testimonials</a></li>
-                                <li><a href="contact-us.html">Contact Us</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="footer-widget">
-                            <h5>Fan Cards</h5>
-                            <ul class="footer-menu">
-                                <li><a href="fan-card.html">Browse Celebrities</a></li>
-                                <li><a href="fan-card.html">Musicians</a></li>
-                                <li><a href="fan-card.html">Athletes</a></li>
-                                <li><a href="fan-card.html">Entrepreneurs</a></li>
-                                <li><a href="fan-card.html">Actors</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="footer-widget">
-                            <h5>Help & Support</h5>
-                            <ul class="footer-menu">
-                                <li><a href="faq.html">FAQ</a></li>
-                                <li><a href="contact-us.html">Contact Support</a></li>
-                                <li><a href="terms-conditions.html">Terms & Conditions</a></li>
-                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="footer-widget">
-                            <h5>Contact Info</h5>
-                            <ul class="footer-menu">
-                                <li>
-                                    <p class="mb-2">Toll Free: +1 56565 56594</p>
-                                </li>
-                                <li>
-                                    <p class="mb-2">Email: info@fancard.com</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="footer-bottom">
-                <div class="d-flex align-items-center justify-content-between flex-wrap">
-                    <div class="mb-3">
-                        <a href="index.html">
-                            <img src="assets/img/logo.svg" alt="Logo">
-                        </a>
-                    </div>
-                    <p class="mb-3">Copyright © 2025. All Rights Reserved.</p>
-                    <div class="social-icon d-flex align-items-center mb-3">
-                        <a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
-                        <a href="javascript:void(0);"><i class="fab fa-twitter"></i></a>
-                        <a href="javascript:void(0);"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="javascript:void(0);"><i class="fab fa-instagram"></i></a>
-                        <a href="javascript:void(0);"><i class="fab fa-youtube"></i></a>
+                <div class="row align-items-center">
+                    <div class="col-md-12 text-center">
+                        <p class="mb-0">© 2024 DreamsTour. All Rights Reserved.</p>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-    <!-- /Footer -->
 
-    <!-- Scroll Top -->
-    <div class="scroll-top">
-        <span class="screen-reader-text">Back to top</span>
-        <i class="ti ti-arrow-narrow-up"></i>
-    </div>
-    <!-- /Scroll Top -->
-
-    <!-- jQuery -->
     <script src="assets/js/jquery-3.7.1.min.js"></script>
-
-    <!-- Bootstrap Bundle JS -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Slick JS -->
-    <script src="assets/plugins/slick/slick.min.js"></script>
-
-    <!-- Owl Carousel JS -->
-    <script src="assets/plugins/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Fancybox JS -->
+    <script src="assets/js/meanmenu.js"></script>
     <script src="assets/plugins/fancybox/jquery.fancybox.min.js"></script>
-
-    <!-- Wow JS -->
-    <script src="assets/js/wow.min.js"></script>
-
-    <!-- Meanmenu JS -->
-    <script src="assets/js/jquery.meanmenu.js"></script>
-
-    <!-- Custom JS -->
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/fan-card-data.js"></script>
 
-    <!-- Fan Card Dynamic Loading -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get celebrity ID from URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const celebrityId = urlParams.get('id') || 'elon-musk'; // Default to Elon Musk
-            
-            // Get celebrity data
-            const celebrity = getCelebrity(celebrityId);
-            
-            if (!celebrity) {
-                console.error('Celebrity not found:', celebrityId);
+        $(document).ready(function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var celebrityId = urlParams.get('id') || 'elon-musk';
+
+            // Check if data exists
+            if (typeof celebrityData === 'undefined' || !celebrityData[celebrityId]) {
                 window.location.href = 'fan-card.html';
                 return;
             }
-            
+
+            var celebrity = celebrityData[celebrityId];
+
             // Update page title
-            document.title = celebrity.name + ' - Celebrity Fan Card';
+            document.title = celebrity.name + ' - Fan Card | DreamsTour';
             
             // Update breadcrumb
-            document.getElementById('breadcrumb-name').textContent = celebrity.name;
+            $('#breadcrumb-name').text(celebrity.name);
             
-            // Update hero section
-            document.getElementById('hero-image').src = celebrity.image;
-            document.getElementById('hero-image').alt = celebrity.name;
-            document.getElementById('hero-name').textContent = celebrity.name;
-            document.getElementById('hero-title').textContent = celebrity.title;
+            // Update header
+            $('#celebrity-name').text(celebrity.name);
+            $('#celebrity-title').text(celebrity.title);
             
             // Update badges
-            const badgesContainer = document.getElementById('hero-badges');
-            badgesContainer.innerHTML = '';
-            const badgeClasses = ['bg-success', 'bg-warning text-dark', 'bg-primary'];
-            const badgeIcons = ['isax-verify', 'isax-star-1', 'isax-people'];
-            celebrity.badges.forEach((badge, index) => {
-                const badgeSpan = document.createElement('span');
-                badgeSpan.className = 'badge ' + badgeClasses[index % badgeClasses.length];
-                badgeSpan.innerHTML = '<i class="isax ' + badgeIcons[index % badgeIcons.length] + ' me-1"></i>' + badge;
-                badgesContainer.appendChild(badgeSpan);
-            });
-            
+            var badgesHtml = '';
+            if (celebrity.badges && celebrity.badges.length > 0) {
+                var badgeClasses = ['bg-success', 'bg-warning text-dark', 'bg-primary', 'bg-info'];
+                for (var i = 0; i < Math.min(celebrity.badges.length, 4); i++) {
+                    badgesHtml += '<span class="badge ' + badgeClasses[i % badgeClasses.length] + '">' +
+                        '<i class="isax isax-verify me-1"></i>' + celebrity.badges[i] + '</span>';
+                }
+            }
+            $('#badges-container').html(badgesHtml);
+
             // Update stats
-            document.getElementById('stat-followers').textContent = celebrity.followers;
-            document.getElementById('stat-fancards').textContent = celebrity.fanCards;
-            document.getElementById('stat-rating').textContent = celebrity.rating;
-            document.getElementById('stat-member-since').textContent = celebrity.memberSince;
-            
-            // Update about section
-            const aboutSection = document.getElementById('about-section');
-            aboutSection.innerHTML = celebrity.about.map(p => '<p>' + p + '</p>').join('');
-            
+            $('#stat-followers').text(celebrity.followers || '100M+');
+            $('#stat-fancards').text(celebrity.fanCards || '50K+');
+            $('#stat-rating').text(celebrity.rating || '4.9');
+            $('#stat-member').text(celebrity.memberSince || '2024');
+
+            // Update about
+            var aboutHtml = '';
+            if (celebrity.about && celebrity.about.length > 0) {
+                for (var i = 0; i < celebrity.about.length; i++) {
+                    aboutHtml += '<p>' + celebrity.about[i] + '</p>';
+                }
+            }
+            $('#about-content').html(aboutHtml || '<p>Information coming soon.</p>');
+
             // Update gallery
-            const gallerySection = document.getElementById('gallery-section');
-            gallerySection.innerHTML = celebrity.gallery.map((img, index) => 
-                '<img src="' + img + '" alt="Gallery ' + (index + 1) + '" data-fancybox="gallery">'
-            ).join('');
-            
+            if (celebrity.gallery && celebrity.gallery.length > 0) {
+                var galleryHtml = '';
+                for (var i = 0; i < celebrity.gallery.length; i++) {
+                    galleryHtml += '<img src="' + celebrity.gallery[i] + '" alt="Gallery" data-fancybox="gallery">';
+                }
+                $('#gallery-container').html(galleryHtml);
+            }
+
             // Update achievements
-            const achievementsSection = document.getElementById('achievements-section');
-            const halfLength = Math.ceil(celebrity.achievements.length / 2);
-            const col1Achievements = celebrity.achievements.slice(0, halfLength);
-            const col2Achievements = celebrity.achievements.slice(halfLength);
-            
-            achievementsSection.innerHTML = `
-                <div class="col-md-6">
-                    <ul class="list-unstyled">
-                        ${col1Achievements.map(a => `
-                            <li class="d-flex align-items-center mb-3">
-                                <span class="avatar avatar-sm bg-primary-transparent rounded-circle me-2">
-                                    <i class="isax isax-tick-circle fs-14"></i>
-                                </span>
-                                ${a}
-                            </li>
-                        `).join('')}
-                    </ul>
-                </div>
-                <div class="col-md-6">
-                    <ul class="list-unstyled">
-                        ${col2Achievements.map(a => `
-                            <li class="d-flex align-items-center mb-3">
-                                <span class="avatar avatar-sm bg-primary-transparent rounded-circle me-2">
-                                    <i class="isax isax-tick-circle fs-14"></i>
-                                </span>
-                                ${a}
-                            </li>
-                        `).join('')}
-                    </ul>
-                </div>
-            `;
-            
+            if (celebrity.achievements && celebrity.achievements.length > 0) {
+                var half = Math.ceil(celebrity.achievements.length / 2);
+                var col1Html = '', col2Html = '';
+                for (var i = 0; i < celebrity.achievements.length; i++) {
+                    var item = '<li class="d-flex align-items-center mb-3">' +
+                        '<span class="avatar avatar-sm bg-primary-transparent rounded-circle me-2">' +
+                        '<i class="isax isax-tick-circle fs-14"></i></span>' + celebrity.achievements[i] + '</li>';
+                    if (i < half) col1Html += item;
+                    else col2Html += item;
+                }
+                $('#achievements-col-1').html(col1Html);
+                $('#achievements-col-2').html(col2Html);
+            }
+
             // Update reviews
-            const reviewsSection = document.getElementById('reviews-section');
-            document.getElementById('review-badge').innerHTML = '<i class="isax isax-star-1 me-1"></i>' + celebrity.rating + ' (' + celebrity.reviewCount.toLocaleString() + ' reviews)';
+            $('#review-summary').html('<i class="isax isax-star-1 me-1"></i>' + (celebrity.rating || '4.9') + 
+                ' (' + (celebrity.reviewCount ? celebrity.reviewCount.toLocaleString() : '2,450') + ' reviews)');
             
-            reviewsSection.innerHTML = celebrity.reviews.map((review, index) => `
-                <div class="card shadow-none ${index < celebrity.reviews.length - 1 ? 'mb-3' : 'mb-0'}">
-                    <div class="card-body">
-                        <div class="d-flex align-items-start">
-                            <span class="avatar avatar-md me-3">
-                                <img src="${review.avatar}" alt="User" class="rounded-circle">
-                            </span>
-                            <div class="flex-grow-1">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <h6 class="mb-0">${review.name}</h6>
-                                    <div class="text-warning">
-                                        ${generateStarRating(review.rating)}
-                                    </div>
-                                </div>
-                                <p class="text-muted mb-0">"${review.comment}"</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-            
-            // Update price card
-            document.getElementById('price-original').textContent = '$' + celebrity.originalPrice.toFixed(2);
-            document.getElementById('price-discount').textContent = celebrity.discount + '% OFF';
-            document.getElementById('price-amount').textContent = '$' + celebrity.price.toFixed(2);
-            document.getElementById('purchase-btn').href = 'fan-card-checkout.html?id=' + celebrity.id;
-            
-            // Update similar celebrities
-            const similarSection = document.getElementById('similar-celebrities');
-            const similarCelebs = getSimilarCelebrities(celebrity.id);
-            
-            similarSection.innerHTML = similarCelebs.map((sim, index) => `
-                <a href="fan-card-detail.html?id=${sim.id}" class="d-flex align-items-center ${index < similarCelebs.length - 1 ? 'mb-3' : ''} text-decoration-none">
-                    <span class="avatar avatar-lg me-3">
-                        <img src="${sim.image}" alt="${sim.name}" class="rounded-circle">
-                    </span>
-                    <div class="flex-grow-1">
-                        <h6 class="mb-1 text-dark">${sim.name}</h6>
-                        <p class="text-muted mb-0 fs-14">${sim.category}</p>
-                    </div>
-                    <span class="fw-bold text-primary">$${sim.price.toFixed(2)}</span>
-                </a>
-            `).join('');
-            
-            // Re-initialize Fancybox for dynamically loaded gallery
+            if (celebrity.reviews && celebrity.reviews.length > 0) {
+                var reviewsHtml = '';
+                for (var i = 0; i < celebrity.reviews.length; i++) {
+                    var r = celebrity.reviews[i];
+                    var stars = '';
+                    var fullStars = Math.floor(r.rating);
+                    for (var j = 0; j < fullStars; j++) {
+                        stars += '<i class="fas fa-star text-warning"></i>';
+                    }
+                    if (r.rating % 1 >= 0.5) {
+                        stars += '<i class="fas fa-star-half-alt text-warning"></i>';
+                    }
+                    reviewsHtml += '<div class="review-card">' +
+                        '<div class="d-flex align-items-start">' +
+                        '<span class="avatar avatar-md me-3"><img src="' + r.avatar + '" class="rounded-circle" alt="User"></span>' +
+                        '<div class="flex-grow-1">' +
+                        '<div class="d-flex justify-content-between align-items-center mb-2">' +
+                        '<h6 class="mb-0">' + r.name + '</h6>' +
+                        '<div>' + stars + '</div></div>' +
+                        '<p class="text-muted mb-0">"' + r.comment + '"</p></div></div></div>';
+                }
+                $('#reviews-container').html(reviewsHtml);
+            }
+
+            // Update price
+            $('#price-original').text('$' + (celebrity.originalPrice || 99.99).toFixed(2));
+            $('#price-current').text('$' + (celebrity.price || 49.99).toFixed(2));
+            $('#price-discount').text((celebrity.discount || 20) + '% OFF');
+            $('#purchase-btn').attr('href', 'fan-card-checkout.html?id=' + celebrity.id);
+
+            // Similar celebrities
+            if (celebrity.similarCelebrities && celebrity.similarCelebrities.length > 0) {
+                var similarHtml = '';
+                for (var i = 0; i < celebrity.similarCelebrities.length; i++) {
+                    var simId = celebrity.similarCelebrities[i];
+                    var sim = celebrityData[simId];
+                    if (sim) {
+                        similarHtml += '<a href="fan-card-detail.html?id=' + sim.id + '" class="similar-item text-decoration-none">' +
+                            '<span class="avatar avatar-lg me-3"><img src="' + sim.image + '" class="rounded-circle" alt="' + sim.name + '"></span>' +
+                            '<div class="flex-grow-1">' +
+                            '<h6 class="mb-1 text-dark">' + sim.name + '</h6>' +
+                            '<p class="text-muted mb-0 fs-14">' + sim.category + '</p></div>' +
+                            '<span class="fw-bold text-primary">$' + sim.price.toFixed(2) + '</span></a>';
+                    }
+                }
+                $('#similar-container').html(similarHtml);
+            }
+
+            // Initialize fancybox
             if (typeof $.fancybox !== 'undefined') {
-                $('[data-fancybox="gallery"]').fancybox({
-                    buttons: ['zoom', 'slideShow', 'fullScreen', 'close'],
-                    loop: true,
-                    protect: true
-                });
+                $('[data-fancybox="gallery"]').fancybox({ loop: true });
             }
         });
     </script>
 
 </body>
-
 </html>

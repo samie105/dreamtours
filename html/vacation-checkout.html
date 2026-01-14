@@ -1,243 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta Tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vacation Booking Checkout - DreamsTour</title>
+    <title>Vacation Checkout - DreamsTour</title>
 
-    <meta name="description" content="Complete your vacation package booking with DreamsTour.">
-    <meta name="keywords" content="vacation booking, resort checkout, cruise booking">
+    <meta name="description" content="Complete your vacation package checkout and booking.">
+    <meta name="keywords" content="vacation checkout, vacation booking, package checkout">
     <meta name="author" content="Dreams Technologies">
-    <meta name="robots" content="index, follow">
 
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
-
-    <!-- Favicon -->
     <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
 
-    <!-- Theme Settings Js -->
     <script src="assets/js/theme-script.js"></script>
 
-    <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/meanmenu.css">
     <link rel="stylesheet" href="assets/plugins/tabler-icons/tabler-icons.css">
     <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
     <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="assets/plugins/owlcarousel/owl.carousel.min.css">
     <link rel="stylesheet" href="assets/css/iconsax.css">
-    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
     <style>
-        .checkout-steps {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 40px;
+        .checkout-card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+        .checkout-card h6 { margin-bottom: 16px; font-weight: 600; }
+        .info-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f3f4f6; }
+        .info-row:last-child { border-bottom: none; }
+        .info-label { color: #6b7280; font-size: 14px; }
+        .info-value { font-weight: 500; font-size: 14px; }
+        .addon-item { padding: 12px; background: #f9fafb; border-radius: 8px; margin-bottom: 12px; }
+        .addon-item h6 { font-size: 15px; margin-bottom: 4px; }
+        .addon-item p { font-size: 13px; color: #6b7280; margin-bottom: 0; }
+        .price-breakdown { background: #f9fafb; border-radius: 12px; padding: 20px; }
+        .price-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 15px; }
+        .price-row.total { border-top: 2px solid #e5e7eb; padding-top: 16px; margin-top: 12px; font-size: 18px; font-weight: 700; color: var(--bs-primary); }
+        /* Mobile nav bottom sheet - theme aware */
+        @media (max-width: 1199px) {
+            .header-nav { position: fixed; bottom: -100%; left: 0; right: 0; width: 100%; height: auto; max-height: 80vh; background: var(--bg-white, #fff); z-index: 9999; transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 24px 24px 0 0; box-shadow: 0 -10px 40px rgba(0,0,0,0.2); }
+            .header-nav.active { bottom: 0; }
+            [data-theme="dark"] .header-nav { background: var(--dark-bg, #0f172a); box-shadow: 0 -10px 40px rgba(0,0,0,0.6); }
+            .main-menu-wrapper { padding: 24px 20px; flex-direction: column; }
+            .main-menu-wrapper::before { content: ''; width: 40px; height: 4px; background: var(--border-color, #e5e7eb); border-radius: 2px; display: block; margin: 0 auto 20px; }
+            [data-theme="dark"] .main-menu-wrapper::before { background: var(--dark-border, #334155); }
+            .navbar-logo { display: none; }
+            .main-nav { display: flex; flex-direction: column; width: 100%; gap: 4px; }
+            .main-nav li { width: 100%; border-bottom: none; }
+            .main-nav li a { display: block; padding: 14px 16px; border-radius: 12px; font-size: 16px; font-weight: 500; color: var(--text-default, #1f2937); transition: all 0.2s; }
+            [data-theme="dark"] .main-nav li a { color: var(--dark-text, #e2e8f0); }
+            .main-nav li a:hover, .main-nav li.active a { background: var(--bs-primary); color: #fff; }
+            .header-btn { width: 100%; justify-content: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border-color, #e5e7eb); }
+            [data-theme="dark"] .header-btn { border-top-color: var(--dark-border, #334155); }
+            .offcanvas-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 9998; opacity: 0; visibility: hidden; transition: all 0.3s ease; backdrop-filter: blur(2px); }
+            .offcanvas-overlay.active { opacity: 1; visibility: visible; }
+            .header__hamburger { display: block; }
         }
-        .checkout-step {
-            display: flex;
-            align-items: center;
-            padding: 0 25px;
-        }
-        .checkout-step:not(:last-child)::after {
-            content: '';
-            width: 60px;
-            height: 2px;
-            background: #e0e0e0;
-            margin-left: 25px;
-        }
-        .checkout-step.active:not(:last-child)::after {
-            background: var(--bs-primary);
-        }
-        .checkout-step.completed:not(:last-child)::after {
-            background: #04BD6C;
-        }
-        .step-number {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: #e0e0e0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            margin-right: 10px;
-        }
-        .checkout-step.active .step-number {
-            background: var(--bs-primary);
-            color: #fff;
-        }
-        .checkout-step.completed .step-number {
-            background: #04BD6C;
-            color: #fff;
-        }
-        .step-label {
-            font-weight: 500;
-            color: #666;
-        }
-        .checkout-step.active .step-label {
-            color: #333;
-        }
-        
-        .order-summary-card {
-            background: #212E47;
-            border-radius: 12px;
-            padding: 25px;
-            color: #fff;
-            margin-bottom: 24px;
-        }
-        .order-summary-card h5 {
-            color: #fff;
-            margin-bottom: 20px;
-        }
-        .package-preview {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 12px;
-            margin-bottom: 20px;
-        }
-        .package-preview img {
-            width: 80px;
-            height: 60px;
-            border-radius: 8px;
-            object-fit: cover;
-            margin-right: 15px;
-        }
-        .package-preview h6 {
-            color: #fff;
-            margin-bottom: 5px;
-        }
-        .package-preview p {
-            color: rgba(255,255,255,0.7);
-            margin: 0;
-            font-size: 14px;
-        }
-        
-        .order-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .order-item:last-child {
-            border-bottom: none;
-        }
-        .order-item .label {
-            color: rgba(255,255,255,0.7);
-        }
-        .order-item .value {
-            font-weight: 500;
-        }
-        .order-item.total {
-            padding-top: 15px;
-            margin-top: 5px;
-            border-top: 2px solid rgba(255,255,255,0.2);
-        }
-        .order-item.total .label,
-        .order-item.total .value {
-            font-size: 18px;
-            font-weight: 600;
-        }
-        
-        .secure-badges {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        .secure-badge {
-            display: flex;
-            align-items: center;
-            font-size: 12px;
-            color: rgba(255,255,255,0.7);
-        }
-        .secure-badge i {
-            margin-right: 5px;
-            color: #04BD6C;
-        }
-        
-        .payment-method {
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .payment-method:hover {
-            border-color: var(--bs-primary);
-        }
-        .payment-method.selected {
-            border-color: var(--bs-primary);
-            background: rgba(207, 52, 37, 0.05);
-        }
-        .payment-method input[type="radio"] {
-            display: none;
-        }
-        
-        .success-animation {
-            text-align: center;
-            padding: 40px;
-        }
-        .success-animation .checkmark-circle {
-            width: 100px;
-            height: 100px;
-            background: #04BD6C;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            animation: scaleIn 0.5s ease;
-        }
-        .success-animation .checkmark-circle i {
-            font-size: 50px;
-            color: #fff;
-        }
-        @keyframes scaleIn {
-            0% { transform: scale(0); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
+        /* Sign-in button - theme aware */
+        .btn-outline-light { background: var(--bg-white, #fff) !important; color: var(--bs-primary) !important; border-color: var(--border-color, #e5e7eb) !important; }
+        .btn-outline-light:hover { background: var(--bs-primary) !important; color: #fff !important; border-color: var(--bs-primary) !important; }
+        [data-theme="dark"] .btn-outline-light { background: var(--dark-bg-light, #1e293b) !important; color: var(--bs-primary) !important; border-color: var(--dark-border, #334155) !important; }
+        [data-theme="dark"] .btn-outline-light:hover { background: var(--bs-primary) !important; color: #fff !important; border-color: var(--bs-primary) !important; }
     </style>
 </head>
 
 <body>
 
     <div class="main-header">
-        <!-- Header Topbar-->
         <div class="header-topbar text-center bg-transparent">
             <div class="container">
                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                     <p class="d-flex align-items-center fw-medium fs-14 mb-2"><i class="isax isax-call5 me-2"></i>Toll Free : +1 56565 56594</p>
                     <div class="d-flex align-items-center">
                         <p class="mb-2 me-3 d-flex align-items-center fw-medium fs-14"><i class="isax isax-message-text-15 me-2"></i>Email : info@dreamstour.com</p>
-                        <div class="dropdown flag-dropdown mb-2 me-3">
-                            <a href="javascript:void(0);" class="dropdown-toggle d-inline-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG
-                            </a>
-                            <ul class="dropdown-menu p-2 mt-2">
-                                <li><a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);"><img src="assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG</a></li>
-                                <li><a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);"><img src="assets/img/flags/arab-flag.svg" class="me-2" alt="flag">ARA</a></li>
-                                <li><a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);"><img src="assets/img/flags/france-flag.svg" class="me-2" alt="flag">FRA</a></li>
-                            </ul>
-                        </div>
-                        <div class="dropdown mb-2 me-3">
-                            <a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">USD</a>
-                            <ul class="dropdown-menu p-2 mt-2">
-                                <li><a class="dropdown-item rounded" href="javascript:void(0);">USD</a></li>
-                                <li><a class="dropdown-item rounded" href="javascript:void(0);">EUR</a></li>
-                                <li><a class="dropdown-item rounded" href="javascript:void(0);">GBP</a></li>
-                            </ul>
-                        </div>
                         <div class="fav-dropdown mb-2">
                             <a href="wishlist.html" class="position-relative">
                                 <i class="isax isax-heart"></i><span class="count-icon bg-secondary text-gray-9">0</span>
@@ -247,9 +81,7 @@
                 </div>
             </div>
         </div>
-        <!-- /Header Topbar-->
 
-        <!-- Header -->
         <header>
             <div class="container">
                 <div class="offcanvas-info">
@@ -257,15 +89,9 @@
                         <div class="offcanvas-detail">
                             <div class="offcanvas-head">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <a href="index.html" class="black-logo-responsive">
-                                        <img src="assets/img/logo-dark.svg" alt="logo-img">
-                                    </a>
-                                    <a href="index.html" class="white-logo-responsive">
-                                        <img src="assets/img/logo.svg" alt="logo-img">
-                                    </a>
-                                    <div class="offcanvas-close">
-                                        <i class="ti ti-x"></i>
-                                    </div>
+                                    <a href="index.html" class="black-logo-responsive"><img src="assets/img/logo-dark.svg" alt="logo-img"></a>
+                                    <a href="index.html" class="white-logo-responsive"><img src="assets/img/logo.svg" alt="logo-img"></a>
+                                    <div class="offcanvas-close"><i class="ti ti-x"></i></div>
                                 </div>
                             </div>
                             <div class="mobile-menu fix mb-3"></div>
@@ -276,32 +102,12 @@
                 <div class="header-nav">
                     <div class="main-menu-wrapper">
                         <div class="navbar-logo">
-                            <a class="logo-white header-logo" href="index.html">
-                                <img src="assets/img/logo.svg" class="logo" alt="Logo">
-                            </a>
-                            <a class="logo-dark header-logo" href="index.html">
-                                <img src="assets/img/logo-dark.svg" class="logo" alt="Logo">
-                            </a>
+                            <a class="logo-white header-logo" href="index.html"><img src="assets/img/logo.svg" class="logo" alt="Logo"></a>
+                            <a class="logo-dark header-logo" href="index.html"><img src="assets/img/logo-dark.svg" class="logo" alt="Logo"></a>
                         </div>
                         <nav id="mobile-menu">
                             <ul class="main-nav">
-                                <li class="has-submenu megamenu">
-                                    <a href="javascript:void(0);">Home<i class="fa-solid fa-angle-down"></i></a>
-                                    <ul class="submenu mega-submenu">
-                                        <li>
-                                            <div class="megamenu-wrapper">
-                                                <div class="row g-lg-4">
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index.html"><img src="assets/img/menu/home-01.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index.html">All Bookings</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-2.html"><img src="assets/img/menu/home-02.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-2.html">Hotels</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-3.html"><img src="assets/img/menu/home-03.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-3.html">Cars</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-4.html"><img src="assets/img/menu/home-04.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-4.html">Flight</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-5.html"><img src="assets/img/menu/home-05.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-5.html">Cruise</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-6.html"><img src="assets/img/menu/home-06.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-6.html">Tours</a></div></div></div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
+                                <li><a href="index.html">Home</a></li>
                                 <li><a href="flight-grid.html">Flight</a></li>
                                 <li><a href="hotel-grid.html">Hotel</a></li>
                                 <li><a href="car-grid.html">Car</a></li>
@@ -326,15 +132,13 @@
                 </div>
             </div>
         </header>
-        <!-- /Header -->
     </div>
 
-    <!-- Breadcrumb -->
     <div class="breadcrumb-bar breadcrumb-bg-01 text-center">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-12">
-                    <h2 class="breadcrumb-title mb-2">Complete Your Booking</h2>
+                    <h2 class="breadcrumb-title mb-2">Checkout</h2>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center mb-0">
                             <li class="breadcrumb-item"><a href="index.html"><i class="isax isax-home5"></i></a></li>
@@ -346,253 +150,175 @@
             </div>
         </div>
     </div>
-    <!-- /Breadcrumb -->
 
-    <!-- Page Content -->
     <div class="content">
         <div class="container">
-
-            <!-- Checkout Steps -->
-            <div class="checkout-steps">
-                <div class="checkout-step active" id="step1-indicator">
-                    <span class="step-number">1</span>
-                    <span class="step-label">Traveler Details</span>
-                </div>
-                <div class="checkout-step" id="step2-indicator">
-                    <span class="step-number">2</span>
-                    <span class="step-label">Payment</span>
-                </div>
-                <div class="checkout-step" id="step3-indicator">
-                    <span class="step-number">3</span>
-                    <span class="step-label">Confirmation</span>
-                </div>
-            </div>
-
             <div class="row">
-                <!-- Main Checkout Form -->
-                <div class="col-xl-8 col-lg-7">
-                    
-                    <!-- Step 1: Traveler Details -->
-                    <div id="step1" class="checkout-step-content">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h5 class="mb-4"><i class="isax isax-user text-primary me-2"></i>Primary Traveler</h5>
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <label class="form-label">First Name <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="first-name" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">Last Name <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="last-name" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">Email Address <span class="text-danger">*</span></label>
-                                        <input type="email" class="form-control" id="email" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">Phone Number <span class="text-danger">*</span></label>
-                                        <input type="tel" class="form-control" id="phone" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">Date of Birth <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control datetimepicker" id="dob" placeholder="MM/DD/YYYY">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">Nationality <span class="text-danger">*</span></label>
-                                        <select class="form-select" id="nationality">
-                                            <option value="">Select country</option>
-                                            <option value="US">United States</option>
-                                            <option value="UK">United Kingdom</option>
-                                            <option value="CA">Canada</option>
-                                            <option value="AU">Australia</option>
-                                            <option value="DE">Germany</option>
-                                            <option value="FR">France</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-12">
-                                        <label class="form-label">Passport Number</label>
-                                        <input type="text" class="form-control" id="passport" placeholder="For international travel">
-                                    </div>
+                <div class="col-lg-8">
+                    <!-- Package Overview -->
+                    <div class="checkout-card">
+                        <h6><i class="isax isax-box text-primary me-2"></i>Vacation Package Details</h6>
+                        <div class="d-flex align-items-start mb-3">
+                            <img src="" id="package-img" class="rounded me-3" style="width: 120px; height: 90px; object-fit: cover;" alt="Package">
+                            <div class="flex-fill">
+                                <h5 class="mb-1" id="package-name">Loading...</h5>
+                                <p class="text-muted mb-2 d-flex align-items-center"><i class="isax isax-location5 me-2"></i><span id="package-location"></span></p>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="badge bg-primary" id="package-type"></span>
+                                    <span class="badge badge-warning badge-xs text-gray-9" id="package-rating"></span>
+                                    <span class="text-muted fs-14" id="package-reviews"></span>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h5 class="mb-4"><i class="isax isax-note-text text-primary me-2"></i>Special Requests</h5>
-                                <textarea class="form-control" rows="4" placeholder="Any dietary requirements, accessibility needs, or special occasions? Let us know here..."></textarea>
+                        <div class="row g-3 mt-2">
+                            <div class="col-md-4">
+                                <div class="info-label">Duration</div>
+                                <div class="info-value" id="package-duration"></div>
                             </div>
-                        </div>
-
-                        <div class="d-flex justify-content-between">
-                            <a href="javascript:history.back()" class="btn btn-outline-secondary"><i class="isax isax-arrow-left me-2"></i>Back</a>
-                            <button type="button" class="btn btn-primary" onclick="nextStep(2)">Continue to Payment<i class="isax isax-arrow-right-1 ms-2"></i></button>
+                            <div class="col-md-4">
+                                <div class="info-label">Travel Date</div>
+                                <div class="info-value" id="travel-date-display"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="info-label">Travelers</div>
+                                <div class="info-value" id="travelers-count"></div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Step 2: Payment -->
-                    <div id="step2" class="checkout-step-content d-none">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h5 class="mb-4"><i class="isax isax-card text-primary me-2"></i>Payment Method</h5>
-                                
-                                <label class="payment-method selected">
-                                    <input type="radio" name="payment" value="credit-card" checked>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <i class="isax isax-card fs-28 text-primary me-3"></i>
-                                            <div>
-                                                <h6 class="mb-0">Credit / Debit Card</h6>
-                                                <small class="text-muted">Visa, MasterCard, Amex</small>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex gap-2">
-                                            <i class="fab fa-cc-visa fs-24 text-primary"></i>
-                                            <i class="fab fa-cc-mastercard fs-24 text-warning"></i>
-                                            <i class="fab fa-cc-amex fs-24 text-info"></i>
-                                        </div>
-                                    </div>
-                                </label>
+                    <!-- Add-ons -->
+                    <div class="checkout-card" id="addons-section" style="display: none;">
+                        <h6><i class="isax isax-add-circle text-primary me-2"></i>Selected Add-ons</h6>
+                        <div id="addons-container"></div>
+                    </div>
 
-                                <label class="payment-method">
-                                    <input type="radio" name="payment" value="paypal">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <i class="fab fa-paypal fs-28 text-primary me-3"></i>
-                                            <div>
-                                                <h6 class="mb-0">PayPal</h6>
-                                                <small class="text-muted">Pay securely with PayPal</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="card mb-4" id="credit-card-form">
-                            <div class="card-body">
-                                <h5 class="mb-4"><i class="isax isax-security-card text-primary me-2"></i>Card Details</h5>
-                                <div class="row g-3">
-                                    <div class="col-12">
-                                        <label class="form-label">Card Number <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" placeholder="1234 5678 9012 3456" maxlength="19">
-                                    </div>
-                                    <div class="col-12">
-                                        <label class="form-label">Name on Card <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" placeholder="As shown on card">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">Expiry Date <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" placeholder="MM/YY" maxlength="5">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">CVV <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" placeholder="123" maxlength="4">
-                                    </div>
+                    <!-- Billing Information -->
+                    <div class="checkout-card">
+                        <h6><i class="isax isax-user text-primary me-2"></i>Billing Information</h6>
+                        <form id="billing-form">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Address</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">City</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">State</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">Zip Code</label>
+                                    <input type="text" class="form-control" required>
                                 </div>
                             </div>
-                        </div>
+                        </form>
+                    </div>
 
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="terms" required>
-                                    <label class="form-check-label" for="terms">
-                                        I agree to the <a href="terms-conditions.html" class="text-primary">Terms & Conditions</a> and <a href="privacy-policy.html" class="text-primary">Privacy Policy</a>
+                    <!-- Payment Method -->
+                    <div class="checkout-card">
+                        <h6><i class="isax isax-card text-primary me-2"></i>Payment Method</h6>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="form-check card p-3">
+                                    <input class="form-check-input" type="radio" name="payment" id="credit" checked>
+                                    <label class="form-check-label" for="credit">
+                                        <i class="fa-brands fa-cc-visa fs-24 text-primary me-2"></i>Credit Card
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check card p-3">
+                                    <input class="form-check-input" type="radio" name="payment" id="paypal">
+                                    <label class="form-check-label" for="paypal">
+                                        <i class="fa-brands fa-paypal fs-24 text-info me-2"></i>PayPal
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check card p-3">
+                                    <input class="form-check-input" type="radio" name="payment" id="bank">
+                                    <label class="form-check-label" for="bank">
+                                        <i class="fa-solid fa-building-columns fs-24 text-success me-2"></i>Bank Transfer
                                     </label>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="d-flex justify-content-between">
-                            <button type="button" class="btn btn-outline-secondary" onclick="prevStep(1)"><i class="isax isax-arrow-left me-2"></i>Back</button>
-                            <button type="button" class="btn btn-primary btn-lg" onclick="nextStep(3)"><i class="isax isax-lock me-2"></i>Complete Booking</button>
-                        </div>
-                    </div>
-
-                    <!-- Step 3: Confirmation -->
-                    <div id="step3" class="checkout-step-content d-none">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="success-animation">
-                                    <div class="checkmark-circle">
-                                        <i class="isax isax-tick-circle"></i>
-                                    </div>
-                                    <h3 class="mb-3">Booking Confirmed!</h3>
-                                    <p class="text-muted mb-4">Your vacation package has been successfully booked. A confirmation email has been sent to your email address.</p>
-                                    
-                                    <div class="bg-light p-4 rounded mb-4">
-                                        <h5 class="mb-3">Booking Reference</h5>
-                                        <h2 class="text-primary mb-0" id="booking-ref">DT-VAC-000000</h2>
-                                    </div>
-
-                                    <div class="text-start bg-light p-4 rounded mb-4">
-                                        <h6 class="mb-3">What's Next?</h6>
-                                        <ul class="list-unstyled mb-0">
-                                            <li class="mb-2"><i class="isax isax-tick-circle text-success me-2"></i>Check your email for detailed itinerary</li>
-                                            <li class="mb-2"><i class="isax isax-tick-circle text-success me-2"></i>Complete online check-in when available</li>
-                                            <li class="mb-2"><i class="isax isax-tick-circle text-success me-2"></i>Download the DreamsTour app for trip updates</li>
-                                            <li><i class="isax isax-tick-circle text-success me-2"></i>Our concierge will contact you 48 hours before departure</li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="d-flex gap-3 justify-content-center flex-wrap">
-                                        <a href="vacation.html" class="btn btn-outline-primary"><i class="isax isax-arrow-left me-2"></i>Browse More Packages</a>
-                                        <a href="index.html" class="btn btn-primary"><i class="isax isax-home me-2"></i>Go to Homepage</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
-                <!-- Order Summary Sidebar -->
-                <div class="col-xl-4 col-lg-5">
-                    <div class="order-summary-card sticky-top" style="top: 100px;">
-                        <h5><i class="isax isax-receipt-2 me-2"></i>Booking Summary</h5>
-                        
-                        <div class="package-preview">
-                            <img src="assets/img/hotels/hotel-01.jpg" alt="Package" id="summary-image">
-                            <div>
-                                <h6 id="summary-name">Loading...</h6>
-                                <p id="summary-location"><i class="isax isax-location5 me-1"></i>Loading...</p>
+                <!-- Price Summary Sidebar -->
+                <div class="col-lg-4">
+                    <div class="card sticky-top" style="top: 100px;">
+                        <div class="card-body">
+                            <h5 class="mb-4"><i class="isax isax-receipt-2 text-primary me-2"></i>Price Breakdown</h5>
+                            
+                            <div class="price-breakdown">
+                                <div class="price-row">
+                                    <span>Base Package</span>
+                                    <span>$<span id="price-base">0</span></span>
+                                </div>
+                                <div class="price-row" id="price-hotel-row" style="display: none;">
+                                    <span><i class="isax isax-building-4 me-1"></i> Hotel</span>
+                                    <span>$<span id="price-hotel">0</span></span>
+                                </div>
+                                <div class="price-row" id="price-car-row" style="display: none;">
+                                    <span><i class="isax isax-car me-1"></i> Car</span>
+                                    <span>$<span id="price-car">0</span></span>
+                                </div>
+                                <div class="price-row" id="price-cruise-row" style="display: none;">
+                                    <span><i class="isax isax-ship me-1"></i> Cruise</span>
+                                    <span>$<span id="price-cruise">0</span></span>
+                                </div>
+                                <div class="price-row" id="price-flight-row" style="display: none;">
+                                    <span><i class="isax isax-airplane me-1"></i> Flight</span>
+                                    <span>$<span id="price-flight">0</span></span>
+                                </div>
+                                <div class="price-row mt-2 pt-2 border-top">
+                                    <span>Service Fee</span>
+                                    <span>$<span id="price-fee">50</span></span>
+                                </div>
+                                <div class="price-row">
+                                    <span>Tax (10%)</span>
+                                    <span>$<span id="price-tax">0</span></span>
+                                </div>
+                                <div class="price-row total">
+                                    <span>Total Amount</span>
+                                    <span>$<span id="price-total">0</span></span>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="order-item">
-                            <span class="label">Check-in</span>
-                            <span class="value" id="summary-checkin">-</span>
-                        </div>
-                        <div class="order-item">
-                            <span class="label">Check-out</span>
-                            <span class="value" id="summary-checkout">-</span>
-                        </div>
-                        <div class="order-item">
-                            <span class="label">Travelers</span>
-                            <span class="value" id="summary-travelers">2 Adults</span>
-                        </div>
-                        <div class="order-item">
-                            <span class="label">Base Package</span>
-                            <span class="value" id="summary-base">$0</span>
-                        </div>
-                        <div class="order-item" id="addons-summary" style="display: none;">
-                            <span class="label">Add-ons</span>
-                            <span class="value" id="summary-addons">$0</span>
-                        </div>
-                        <div class="order-item total">
-                            <span class="label">Total</span>
-                            <span class="value" id="summary-total">$0</span>
-                        </div>
-
-                        <div class="secure-badges">
-                            <div class="secure-badge">
-                                <i class="isax isax-shield-tick"></i>
-                                <span>Secure Payment</span>
-                            </div>
-                            <div class="secure-badge">
-                                <i class="isax isax-lock"></i>
-                                <span>SSL Encrypted</span>
+                            <div class="mt-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <input type="checkbox" class="form-check-input me-2" id="terms">
+                                    <label class="form-check-label fs-14" for="terms">
+                                        I agree to the <a href="terms-conditions.html">Terms & Conditions</a>
+                                    </label>
+                                </div>
+                                <button class="btn btn-primary w-100 py-3" id="complete-booking">
+                                    <i class="isax isax-tick-circle me-2"></i>Complete Booking
+                                </button>
+                                <a href="vacation-details.html" class="btn btn-outline-secondary w-100 mt-2">
+                                    <i class="isax isax-arrow-left me-2"></i>Back to Customize
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -600,167 +326,167 @@
             </div>
         </div>
     </div>
-    <!-- /Page Content -->
 
-    <!-- Footer -->
-    <footer class="footer">
+    <footer>
         <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="footer-widget">
-                        <a href="index.html" class="mb-4 d-block"><img src="assets/img/logo.svg" alt="Logo"></a>
-                        <p class="mb-3">Your trusted partner for unforgettable vacation experiences around the world.</p>
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-md-12 text-center">
+                        <p class="mb-0">© 2024 DreamsTour. All Rights Reserved.</p>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-6 mb-4">
-                    <div class="footer-widget">
-                        <h5 class="mb-3">Quick Links</h5>
-                        <ul class="footer-links">
-                            <li><a href="about-us.html">About Us</a></li>
-                            <li><a href="contact-us.html">Contact</a></li>
-                            <li><a href="faq.html">FAQs</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 mb-4">
-                    <div class="footer-widget">
-                        <h5 class="mb-3">Bookings</h5>
-                        <ul class="footer-links">
-                            <li><a href="flight-grid.html">Flights</a></li>
-                            <li><a href="hotel-grid.html">Hotels</a></li>
-                            <li><a href="vacation.html">Vacation</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-5 col-md-6 mb-4">
-                    <div class="footer-widget">
-                        <h5 class="mb-3">Need Help?</h5>
-                        <p class="mb-2"><i class="isax isax-call5 me-2"></i>+1 56565 56594</p>
-                        <p class="mb-0"><i class="isax isax-sms me-2"></i>support@dreamstour.com</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="text-center py-3">
-                    <p class="fs-14 mb-0">Copyright &copy; 2026. All Rights Reserved, <a href="index.html" class="text-primary fw-medium">DreamsTour</a></p>
                 </div>
             </div>
         </div>
     </footer>
-    <!-- /Footer -->
 
-    <!-- Back to Top -->
-    <div class="back-to-top">
-        <a class="back-to-top-icon align-items-center justify-content-center d-flex" href="#top"><i class="fa-solid fa-arrow-up"></i></a>
-    </div>
-
-    <!-- Scripts -->
     <script src="assets/js/jquery-3.7.1.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/jquery.meanmenu.min.js"></script>
-    <script src="assets/plugins/owlcarousel/owl.carousel.min.js"></script>
-    <script src="assets/plugins/moment/moment.js"></script>
-    <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="assets/js/meanmenu.js"></script>
     <script src="assets/js/script.js"></script>
-    <script src="assets/js/vacation-data.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get URL params
-            const urlParams = new URLSearchParams(window.location.search);
-            const packageId = urlParams.get('id');
-            const total = urlParams.get('total');
-            const addons = urlParams.get('addons');
+        $(document).ready(function() {
+            // Load booking data from localStorage
+            const bookingData = JSON.parse(localStorage.getItem('vacationBooking') || '{}');
             
-            if (!packageId) {
+            if (!bookingData.package) {
+                alert('No booking data found. Redirecting to vacation page.');
                 window.location.href = 'vacation.html';
                 return;
             }
 
-            // Get package data
-            const pkg = vacationData.getPackageById(packageId);
-            if (!pkg) {
-                window.location.href = 'vacation.html';
-                return;
+            // Populate package details
+            $('#package-img').attr('src', bookingData.package.image);
+            $('#package-name').text(bookingData.package.name);
+            $('#package-location').text(bookingData.package.location);
+            $('#package-type').text(bookingData.package.type === 'cruise' ? 'Cruise' : 'Resort');
+            $('#package-rating').text(bookingData.package.rating);
+            $('#package-reviews').text('(' + bookingData.package.reviews + ' Reviews)');
+            $('#package-duration').text(bookingData.package.duration);
+            $('#travel-date-display').text(new Date(bookingData.travelDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }));
+            $('#travelers-count').text(bookingData.travelers + ' Traveler' + (bookingData.travelers > 1 ? 's' : ''));
+
+            // Populate add-ons
+            let hasAddons = false;
+            let addonsHtml = '';
+            
+            if (bookingData.hotel) {
+                hasAddons = true;
+                addonsHtml += `
+                    <div class="addon-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6><i class="isax isax-building-4 text-primary me-2"></i>${bookingData.hotel.name}</h6>
+                                <p>Hotel Accommodation</p>
+                            </div>
+                            <span class="text-primary fw-semibold">$${bookingData.hotel.price.toLocaleString()}</span>
+                        </div>
+                    </div>
+                `;
+                $('#price-hotel-row').show();
+                $('#price-hotel').text(bookingData.hotel.price.toLocaleString());
             }
 
-            // Populate summary
-            document.getElementById('summary-name').textContent = pkg.name;
-            document.getElementById('summary-location').innerHTML = `<i class="isax isax-location5 me-1"></i>${pkg.location}`;
-            document.getElementById('summary-image').src = pkg.image;
-            document.getElementById('summary-base').textContent = `$${pkg.price.toLocaleString()}`;
-            
-            if (total) {
-                document.getElementById('summary-total').textContent = `$${parseInt(total).toLocaleString()}`;
-                
-                const addonsCost = parseInt(total) - pkg.price;
-                if (addonsCost > 0) {
-                    document.getElementById('addons-summary').style.display = 'flex';
-                    document.getElementById('summary-addons').textContent = `$${addonsCost.toLocaleString()}`;
+            if (bookingData.car) {
+                hasAddons = true;
+                addonsHtml += `
+                    <div class="addon-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6><i class="isax isax-car text-info me-2"></i>${bookingData.car.name}</h6>
+                                <p>Car Rental</p>
+                            </div>
+                            <span class="text-primary fw-semibold">$${bookingData.car.price.toLocaleString()}</span>
+                        </div>
+                    </div>
+                `;
+                $('#price-car-row').show();
+                $('#price-car').text(bookingData.car.price.toLocaleString());
+            }
+
+            if (bookingData.cruise) {
+                hasAddons = true;
+                addonsHtml += `
+                    <div class="addon-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6><i class="isax isax-ship text-secondary me-2"></i>${bookingData.cruise.name}</h6>
+                                <p>Cruise Experience</p>
+                            </div>
+                            <span class="text-primary fw-semibold">$${bookingData.cruise.price.toLocaleString()}</span>
+                        </div>
+                    </div>
+                `;
+                $('#price-cruise-row').show();
+                $('#price-cruise').text(bookingData.cruise.price.toLocaleString());
+            }
+
+            if (bookingData.flight) {
+                hasAddons = true;
+                addonsHtml += `
+                    <div class="addon-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6><i class="isax isax-airplane text-success me-2"></i>${bookingData.flight.name}</h6>
+                                <p>Flight Booking</p>
+                            </div>
+                            <span class="text-primary fw-semibold">$${bookingData.flight.price.toLocaleString()}</span>
+                        </div>
+                    </div>
+                `;
+                $('#price-flight-row').show();
+                $('#price-flight').text(bookingData.flight.price.toLocaleString());
+            }
+
+            if (hasAddons) {
+                $('#addons-section').show();
+                $('#addons-container').html(addonsHtml);
+            }
+
+            // Calculate prices
+            const basePrice = bookingData.package.price;
+            const hotelPrice = bookingData.hotel ? bookingData.hotel.price : 0;
+            const carPrice = bookingData.car ? bookingData.car.price : 0;
+            const cruisePrice = bookingData.cruise ? bookingData.cruise.price : 0;
+            const flightPrice = bookingData.flight ? bookingData.flight.price : 0;
+            const serviceFee = 50;
+            const subtotal = basePrice + hotelPrice + carPrice + cruisePrice + flightPrice + serviceFee;
+            const tax = Math.round(subtotal * 0.1);
+            const total = subtotal + tax;
+
+            $('#price-base').text(basePrice.toLocaleString());
+            $('#price-tax').text(tax.toLocaleString());
+            $('#price-total').text(total.toLocaleString());
+
+            // Complete booking
+            $('#complete-booking').on('click', function() {
+                if (!$('#terms').is(':checked')) {
+                    alert('Please agree to the Terms & Conditions');
+                    return;
                 }
-            } else {
-                document.getElementById('summary-total').textContent = `$${pkg.price.toLocaleString()}`;
-            }
+                
+                if (!$('#billing-form')[0].checkValidity()) {
+                    $('#billing-form')[0].reportValidity();
+                    return;
+                }
 
-            // Initialize datepicker
-            if ($.fn.datetimepicker) {
-                $('.datetimepicker').datetimepicker({
-                    format: 'MM/DD/YYYY',
-                    icons: {
-                        up: 'fas fa-chevron-up',
-                        down: 'fas fa-chevron-down',
-                        next: 'fas fa-chevron-right',
-                        previous: 'fas fa-chevron-left'
-                    }
-                });
-            }
-
-            // Payment method selection
-            document.querySelectorAll('.payment-method').forEach(method => {
-                method.addEventListener('click', function() {
-                    document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
-                    this.classList.add('selected');
-                    this.querySelector('input[type="radio"]').checked = true;
-                });
+                // Save completed booking
+                const completedBooking = {
+                    ...bookingData,
+                    orderId: '#VB' + Math.floor(Math.random() * 100000),
+                    bookingDate: new Date().toISOString(),
+                    status: 'Confirmed',
+                    total: total,
+                    paymentMethod: $('input[name="payment"]:checked').next('label').text().trim()
+                };
+                
+                localStorage.setItem('completedVacationBooking', JSON.stringify(completedBooking));
+                localStorage.removeItem('vacationBooking');
+                
+                alert('Booking Confirmed! Order ID: ' + completedBooking.orderId);
+                window.location.href = 'vacation.html';
             });
         });
-
-        function nextStep(step) {
-            // Hide all steps
-            document.querySelectorAll('.checkout-step-content').forEach(s => s.classList.add('d-none'));
-            
-            // Show target step
-            document.getElementById('step' + step).classList.remove('d-none');
-            
-            // Update indicators
-            for (let i = 1; i <= 3; i++) {
-                const indicator = document.getElementById('step' + i + '-indicator');
-                if (i < step) {
-                    indicator.classList.remove('active');
-                    indicator.classList.add('completed');
-                } else if (i === step) {
-                    indicator.classList.add('active');
-                    indicator.classList.remove('completed');
-                } else {
-                    indicator.classList.remove('active', 'completed');
-                }
-            }
-
-            // Generate booking reference on step 3
-            if (step === 3) {
-                const ref = 'DT-VAC-' + Math.floor(100000 + Math.random() * 900000);
-                document.getElementById('booking-ref').textContent = ref;
-            }
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function prevStep(step) {
-            nextStep(step);
-        }
     </script>
 
 </body>

@@ -1,258 +1,67 @@
-// Vacation Packages Data - Hotels & Cruises Combined
+// Vacation Packages Data - 50 Packages
 const vacationData = {
     packages: [
-        {
-            id: "maldives-paradise",
-            name: "Maldives Paradise Retreat",
-            type: "resort",
-            location: "Maldives",
-            image: "assets/img/hotels/hotel-01.jpg",
-            price: 2500,
-            originalPrice: 3200,
-            duration: "7 Days / 6 Nights",
-            rating: 4.9,
-            reviews: 245,
-            guests: "2 Adults",
-            features: ["Overwater Villa", "All Inclusive", "Spa Access", "Private Beach"],
-            description: "Experience ultimate luxury in the crystal-clear waters of the Maldives with overwater villas and world-class dining.",
-            highlights: ["Sunset Dolphin Cruise", "Private Dining on Beach", "Underwater Restaurant", "Spa Treatments"]
-        },
-        {
-            id: "caribbean-cruise",
-            name: "Caribbean Island Hopping",
-            type: "cruise",
-            location: "Caribbean Sea",
-            image: "assets/img/cruise/cruise-01.jpg",
-            price: 1800,
-            originalPrice: 2400,
-            duration: "10 Days / 9 Nights",
-            rating: 4.8,
-            reviews: 189,
-            guests: "2 Adults",
-            features: ["Luxury Cabin", "All Meals Included", "Entertainment", "Island Excursions"],
-            description: "Sail through the stunning Caribbean islands on a luxury cruise with stops at exotic destinations.",
-            highlights: ["Jamaica Beach Day", "Bahamas Snorkeling", "Cozumel Ruins Tour", "Onboard Shows"]
-        },
-        {
-            id: "santorini-escape",
-            name: "Santorini Romantic Escape",
-            type: "resort",
-            location: "Santorini, Greece",
-            image: "assets/img/hotels/hotel-02.jpg",
-            price: 1950,
-            originalPrice: 2600,
-            duration: "5 Days / 4 Nights",
-            rating: 4.9,
-            reviews: 312,
-            guests: "2 Adults",
-            features: ["Caldera View Suite", "Breakfast Included", "Wine Tasting", "Airport Transfer"],
-            description: "Fall in love with the stunning sunsets and white-washed beauty of Santorini.",
-            highlights: ["Sunset at Oia", "Volcano Tour", "Wine Tour", "Private Catamaran Cruise"]
-        },
-        {
-            id: "alaska-cruise",
-            name: "Alaska Glacier Adventure",
-            type: "cruise",
-            location: "Alaska, USA",
-            image: "assets/img/cruise/cruise-02.jpg",
-            price: 2200,
-            originalPrice: 2800,
-            duration: "8 Days / 7 Nights",
-            rating: 4.7,
-            reviews: 156,
-            guests: "2 Adults",
-            features: ["Balcony Cabin", "Glacier Viewing", "Wildlife Tours", "Gourmet Dining"],
-            description: "Witness the majestic glaciers and wildlife of Alaska on this unforgettable cruise adventure.",
-            highlights: ["Glacier Bay National Park", "Whale Watching", "Juneau Excursion", "Ketchikan Totem Poles"]
-        },
-        {
-            id: "bali-wellness",
-            name: "Bali Wellness Journey",
-            type: "resort",
-            location: "Bali, Indonesia",
-            image: "assets/img/hotels/hotel-03.jpg",
-            price: 1650,
-            originalPrice: 2100,
-            duration: "6 Days / 5 Nights",
-            rating: 4.8,
-            reviews: 278,
-            guests: "2 Adults",
-            features: ["Jungle Villa", "Daily Yoga", "Spa Treatments", "Organic Meals"],
-            description: "Rejuvenate your mind, body, and soul in the spiritual heart of Bali.",
-            highlights: ["Ubud Rice Terraces", "Temple Visits", "Balinese Cooking Class", "Waterfall Trek"]
-        },
-        {
-            id: "mediterranean-cruise",
-            name: "Mediterranean Dreams",
-            type: "cruise",
-            location: "Mediterranean Sea",
-            image: "assets/img/cruise/cruise-03.jpg",
-            price: 2800,
-            originalPrice: 3500,
-            duration: "12 Days / 11 Nights",
-            rating: 4.9,
-            reviews: 203,
-            guests: "2 Adults",
-            features: ["Premium Suite", "Shore Excursions", "Fine Dining", "Butler Service"],
-            description: "Explore the rich history and culture of the Mediterranean from the comfort of a luxury cruise.",
-            highlights: ["Rome Colosseum", "Barcelona La Sagrada", "Greek Islands", "French Riviera"]
-        },
-        {
-            id: "dubai-luxury",
-            name: "Dubai Ultra Luxury",
-            type: "resort",
-            location: "Dubai, UAE",
-            image: "assets/img/hotels/hotel-04.jpg",
-            price: 3200,
-            originalPrice: 4000,
-            duration: "5 Days / 4 Nights",
-            rating: 4.9,
-            reviews: 167,
-            guests: "2 Adults",
-            features: ["Burj View Suite", "Private Pool", "Desert Safari", "Helicopter Tour"],
-            description: "Experience the pinnacle of luxury in the world's most extravagant city.",
-            highlights: ["Burj Khalifa At The Top", "Desert Safari", "Dubai Mall", "Palm Jumeirah"]
-        },
-        {
-            id: "hawaii-adventure",
-            name: "Hawaii Island Paradise",
-            type: "resort",
-            location: "Hawaii, USA",
-            image: "assets/img/hotels/hotel-05.jpg",
-            price: 2100,
-            originalPrice: 2700,
-            duration: "7 Days / 6 Nights",
-            rating: 4.8,
-            reviews: 234,
-            guests: "2 Adults",
-            features: ["Ocean View Room", "Lei Greeting", "Luau Experience", "Island Tours"],
-            description: "Discover the magic of Hawaii with pristine beaches and volcanic wonders.",
-            highlights: ["Volcano National Park", "Snorkeling", "Luau Feast", "Na Pali Coast"]
-        },
-        {
-            id: "norway-fjords",
-            name: "Norwegian Fjords Expedition",
-            type: "cruise",
-            location: "Norway",
-            image: "assets/img/cruise/cruise-04.jpg",
-            price: 2400,
-            originalPrice: 3100,
-            duration: "9 Days / 8 Nights",
-            rating: 4.8,
-            reviews: 145,
-            guests: "2 Adults",
-            features: ["Panoramic Cabin", "Fjord Excursions", "Northern Lights", "Local Cuisine"],
-            description: "Sail through the dramatic Norwegian fjords and witness nature at its most spectacular.",
-            highlights: ["Geirangerfjord", "Bergen Old Town", "Trolltunga Views", "Northern Lights"]
-        },
-        {
-            id: "seychelles-honeymoon",
-            name: "Seychelles Honeymoon",
-            type: "resort",
-            location: "Seychelles",
-            image: "assets/img/hotels/hotel-06.jpg",
-            price: 3500,
-            originalPrice: 4500,
-            duration: "8 Days / 7 Nights",
-            rating: 5.0,
-            reviews: 98,
-            guests: "2 Adults",
-            features: ["Private Villa", "Butler Service", "Couples Spa", "Romantic Dinners"],
-            description: "The ultimate honeymoon destination with pristine beaches and unparalleled privacy.",
-            highlights: ["Private Island Tour", "Sunset Cruise", "Couples Massage", "Beach Picnic"]
-        },
-        {
-            id: "japan-cultural",
-            name: "Japan Cultural Discovery",
-            type: "resort",
-            location: "Japan",
-            image: "assets/img/hotels/hotel-07.jpg",
-            price: 2300,
-            originalPrice: 2900,
-            duration: "10 Days / 9 Nights",
-            rating: 4.9,
-            reviews: 187,
-            guests: "2 Adults",
-            features: ["Ryokan Stay", "Bullet Train Pass", "Tea Ceremony", "Temple Visits"],
-            description: "Immerse yourself in the ancient traditions and modern wonders of Japan.",
-            highlights: ["Tokyo Skytree", "Kyoto Temples", "Mt. Fuji Views", "Osaka Street Food"]
-        },
-        {
-            id: "galapagos-expedition",
-            name: "Galapagos Wildlife Expedition",
-            type: "cruise",
-            location: "Galapagos Islands",
-            image: "assets/img/cruise/cruise-05.jpg",
-            price: 4500,
-            originalPrice: 5500,
-            duration: "8 Days / 7 Nights",
-            rating: 4.9,
-            reviews: 89,
-            guests: "2 Adults",
-            features: ["Expedition Yacht", "Naturalist Guide", "Snorkeling Gear", "Island Landings"],
-            description: "Walk alongside giant tortoises and swim with sea lions in this once-in-a-lifetime adventure.",
-            highlights: ["Giant Tortoise Reserve", "Blue-Footed Boobies", "Sea Lion Snorkeling", "Volcanic Landscapes"]
-        }
+        { id: "maldives-paradise", name: "Maldives Paradise Retreat", type: "resort", location: "Maldives", image: "assets/img/hotels/hotel-01.jpg", price: 2500, originalPrice: 3200, duration: "7 Days / 6 Nights", rating: 4.9, reviews: 245, guests: "2 Adults", features: ["Overwater Villa", "All Inclusive", "Spa Access", "Private Beach"], description: "Experience ultimate luxury in the crystal-clear waters of the Maldives." },
+        { id: "caribbean-cruise", name: "Caribbean Island Hopping", type: "cruise", location: "Caribbean Sea", image: "assets/img/cruise/cruise-01.jpg", price: 1800, originalPrice: 2400, duration: "10 Days / 9 Nights", rating: 4.8, reviews: 189, guests: "2 Adults", features: ["Luxury Cabin", "All Meals Included", "Entertainment", "Island Excursions"], description: "Sail through the stunning Caribbean islands on a luxury cruise." },
+        { id: "santorini-escape", name: "Santorini Romantic Escape", type: "resort", location: "Santorini, Greece", image: "assets/img/hotels/hotel-02.jpg", price: 1950, originalPrice: 2600, duration: "5 Days / 4 Nights", rating: 4.9, reviews: 312, guests: "2 Adults", features: ["Caldera View Suite", "Breakfast Included", "Wine Tasting", "Airport Transfer"], description: "Fall in love with the stunning sunsets and white-washed beauty of Santorini." },
+        { id: "alaska-cruise", name: "Alaska Glacier Adventure", type: "cruise", location: "Alaska, USA", image: "assets/img/cruise/cruise-02.jpg", price: 2200, originalPrice: 2800, duration: "8 Days / 7 Nights", rating: 4.7, reviews: 156, guests: "2 Adults", features: ["Balcony Cabin", "Glacier Viewing", "Wildlife Tours", "Gourmet Dining"], description: "Witness the majestic glaciers and wildlife of Alaska." },
+        { id: "bali-wellness", name: "Bali Wellness Journey", type: "resort", location: "Bali, Indonesia", image: "assets/img/hotels/hotel-03.jpg", price: 1650, originalPrice: 2100, duration: "6 Days / 5 Nights", rating: 4.8, reviews: 278, guests: "2 Adults", features: ["Jungle Villa", "Daily Yoga", "Spa Treatments", "Organic Meals"], description: "Rejuvenate your mind, body, and soul in the spiritual heart of Bali." },
+        { id: "mediterranean-cruise", name: "Mediterranean Dreams", type: "cruise", location: "Mediterranean Sea", image: "assets/img/cruise/cruise-03.jpg", price: 2800, originalPrice: 3500, duration: "12 Days / 11 Nights", rating: 4.9, reviews: 203, guests: "2 Adults", features: ["Premium Suite", "Shore Excursions", "Fine Dining", "Butler Service"], description: "Explore the rich history and culture of the Mediterranean." },
+        { id: "dubai-luxury", name: "Dubai Ultra Luxury", type: "resort", location: "Dubai, UAE", image: "assets/img/hotels/hotel-04.jpg", price: 3200, originalPrice: 4000, duration: "5 Days / 4 Nights", rating: 4.9, reviews: 167, guests: "2 Adults", features: ["Burj View Suite", "Private Pool", "Desert Safari", "Helicopter Tour"], description: "Experience the pinnacle of luxury in Dubai." },
+        { id: "hawaii-adventure", name: "Hawaii Island Paradise", type: "resort", location: "Hawaii, USA", image: "assets/img/hotels/hotel-05.jpg", price: 2100, originalPrice: 2700, duration: "7 Days / 6 Nights", rating: 4.8, reviews: 234, guests: "2 Adults", features: ["Ocean View Room", "Lei Greeting", "Luau Experience", "Island Tours"], description: "Discover the magic of Hawaii with pristine beaches." },
+        { id: "norway-fjords", name: "Norwegian Fjords Expedition", type: "cruise", location: "Norway", image: "assets/img/cruise/cruise-04.jpg", price: 2400, originalPrice: 3100, duration: "9 Days / 8 Nights", rating: 4.8, reviews: 145, guests: "2 Adults", features: ["Panoramic Cabin", "Fjord Excursions", "Northern Lights", "Local Cuisine"], description: "Sail through the dramatic Norwegian fjords." },
+        { id: "seychelles-honeymoon", name: "Seychelles Honeymoon", type: "resort", location: "Seychelles", image: "assets/img/hotels/hotel-06.jpg", price: 3500, originalPrice: 4500, duration: "8 Days / 7 Nights", rating: 5.0, reviews: 98, guests: "2 Adults", features: ["Private Villa", "Butler Service", "Couples Spa", "Romantic Dinners"], description: "The ultimate honeymoon destination." },
+        { id: "japan-cultural", name: "Japan Cultural Discovery", type: "resort", location: "Japan", image: "assets/img/hotels/hotel-07.jpg", price: 2300, originalPrice: 2900, duration: "10 Days / 9 Nights", rating: 4.9, reviews: 187, guests: "2 Adults", features: ["Ryokan Stay", "Bullet Train Pass", "Tea Ceremony", "Temple Visits"], description: "Immerse yourself in the ancient traditions of Japan." },
+        { id: "galapagos-expedition", name: "Galapagos Wildlife Expedition", type: "cruise", location: "Galapagos Islands", image: "assets/img/cruise/cruise-05.jpg", price: 4500, originalPrice: 5500, duration: "8 Days / 7 Nights", rating: 4.9, reviews: 89, guests: "2 Adults", features: ["Expedition Yacht", "Naturalist Guide", "Snorkeling Gear", "Island Landings"], description: "Walk alongside giant tortoises and swim with sea lions." },
+        { id: "thailand-beaches", name: "Thailand Beach Getaway", type: "resort", location: "Phuket, Thailand", image: "assets/img/hotels/hotel-01.jpg", price: 1400, originalPrice: 1800, duration: "6 Days / 5 Nights", rating: 4.7, reviews: 342, guests: "2 Adults", features: ["Beachfront Villa", "Thai Massage", "Island Hopping", "Cooking Class"], description: "Explore the stunning beaches of Thailand." },
+        { id: "iceland-adventure", name: "Iceland Northern Lights", type: "resort", location: "Reykjavik, Iceland", image: "assets/img/hotels/hotel-02.jpg", price: 2600, originalPrice: 3200, duration: "5 Days / 4 Nights", rating: 4.8, reviews: 178, guests: "2 Adults", features: ["Geothermal Spa", "Northern Lights Tour", "Glacier Walk", "Whale Watching"], description: "Chase the aurora borealis in Iceland." },
+        { id: "fiji-islands", name: "Fiji Island Romance", type: "resort", location: "Fiji", image: "assets/img/hotels/hotel-03.jpg", price: 2900, originalPrice: 3600, duration: "7 Days / 6 Nights", rating: 4.9, reviews: 134, guests: "2 Adults", features: ["Overwater Bungalow", "Private Beach", "Couples Massage", "Sunset Cruise"], description: "Experience tropical paradise in Fiji." },
+        { id: "amazon-expedition", name: "Amazon Rainforest Adventure", type: "resort", location: "Amazon, Brazil", image: "assets/img/hotels/hotel-04.jpg", price: 1900, originalPrice: 2400, duration: "6 Days / 5 Nights", rating: 4.6, reviews: 112, guests: "2 Adults", features: ["Jungle Lodge", "Wildlife Safari", "Canoe Trips", "Indigenous Village Visit"], description: "Explore the world's largest rainforest." },
+        { id: "new-zealand-adventure", name: "New Zealand Epic Journey", type: "resort", location: "New Zealand", image: "assets/img/hotels/hotel-05.jpg", price: 3100, originalPrice: 3800, duration: "12 Days / 11 Nights", rating: 4.9, reviews: 198, guests: "2 Adults", features: ["Scenic Flights", "Hobbiton Tour", "Bungee Jumping", "Glacier Hiking"], description: "Experience the adventure capital of the world." },
+        { id: "morocco-luxury", name: "Morocco Desert & Cities", type: "resort", location: "Marrakech, Morocco", image: "assets/img/hotels/hotel-06.jpg", price: 1750, originalPrice: 2200, duration: "8 Days / 7 Nights", rating: 4.7, reviews: 223, guests: "2 Adults", features: ["Riad Stay", "Desert Camp", "Camel Trek", "Cooking Class"], description: "Discover the magic of Morocco." },
+        { id: "australia-coastal", name: "Australia Coastal Road Trip", type: "resort", location: "Sydney, Australia", image: "assets/img/hotels/hotel-07.jpg", price: 2700, originalPrice: 3400, duration: "10 Days / 9 Nights", rating: 4.8, reviews: 167, guests: "2 Adults", features: ["Great Ocean Road", "Sydney Opera House", "Great Barrier Reef", "Uluru Visit"], description: "Experience the best of Australia." },
+        { id: "swiss-alps", name: "Swiss Alps Luxury Escape", type: "resort", location: "Zermatt, Switzerland", image: "assets/img/hotels/hotel-01.jpg", price: 3400, originalPrice: 4200, duration: "6 Days / 5 Nights", rating: 4.9, reviews: 145, guests: "2 Adults", features: ["Mountain View Suite", "Ski Pass", "Gourmet Dining", "Spa Access"], description: "Experience luxury in the Swiss Alps." },
+        { id: "costa-rica-eco", name: "Costa Rica Eco Adventure", type: "resort", location: "Costa Rica", image: "assets/img/hotels/hotel-02.jpg", price: 1850, originalPrice: 2300, duration: "7 Days / 6 Nights", rating: 4.8, reviews: 256, guests: "2 Adults", features: ["Eco Lodge", "Zip-lining", "Wildlife Tours", "Volcano Hike"], description: "Explore Costa Rica's incredible biodiversity." },
+        { id: "vietnam-heritage", name: "Vietnam Heritage Tour", type: "resort", location: "Hanoi, Vietnam", image: "assets/img/hotels/hotel-03.jpg", price: 1350, originalPrice: 1700, duration: "10 Days / 9 Nights", rating: 4.7, reviews: 189, guests: "2 Adults", features: ["Ha Long Bay Cruise", "Street Food Tours", "Temple Visits", "Cycling Tours"], description: "Discover the rich heritage of Vietnam." },
+        { id: "peru-machu-picchu", name: "Peru Machu Picchu Trek", type: "resort", location: "Cusco, Peru", image: "assets/img/hotels/hotel-04.jpg", price: 2100, originalPrice: 2600, duration: "8 Days / 7 Nights", rating: 4.9, reviews: 234, guests: "2 Adults", features: ["Inca Trail", "Sacred Valley", "Local Guides", "Cusco Exploration"], description: "Trek to the legendary Machu Picchu." },
+        { id: "egypt-pharaohs", name: "Egypt Land of Pharaohs", type: "resort", location: "Cairo, Egypt", image: "assets/img/hotels/hotel-05.jpg", price: 1650, originalPrice: 2100, duration: "7 Days / 6 Nights", rating: 4.6, reviews: 312, guests: "2 Adults", features: ["Pyramids Tour", "Nile Cruise", "Luxor Temples", "Valley of Kings"], description: "Explore ancient Egypt's wonders." },
+        { id: "south-africa-safari", name: "South Africa Safari", type: "resort", location: "Kruger, South Africa", image: "assets/img/hotels/hotel-06.jpg", price: 3600, originalPrice: 4400, duration: "8 Days / 7 Nights", rating: 4.9, reviews: 167, guests: "2 Adults", features: ["Big Five Safari", "Luxury Lodge", "Bush Walks", "Cape Town Visit"], description: "Experience the ultimate African safari." },
+        { id: "portugal-coast", name: "Portugal Coastal Discovery", type: "resort", location: "Lisbon, Portugal", image: "assets/img/hotels/hotel-07.jpg", price: 1550, originalPrice: 1950, duration: "6 Days / 5 Nights", rating: 4.7, reviews: 198, guests: "2 Adults", features: ["Sintra Palaces", "Port Wine Tasting", "Algarve Beaches", "Tram Tours"], description: "Discover Portugal's stunning coast." },
+        { id: "canada-rockies", name: "Canadian Rockies Adventure", type: "resort", location: "Banff, Canada", image: "assets/img/hotels/hotel-01.jpg", price: 2450, originalPrice: 3000, duration: "7 Days / 6 Nights", rating: 4.8, reviews: 212, guests: "2 Adults", features: ["Lake Louise", "Glacier Walks", "Wildlife Viewing", "Hot Springs"], description: "Explore the majestic Canadian Rockies." },
+        { id: "croatia-coast", name: "Croatia Adriatic Coast", type: "resort", location: "Dubrovnik, Croatia", image: "assets/img/hotels/hotel-02.jpg", price: 1800, originalPrice: 2300, duration: "6 Days / 5 Nights", rating: 4.8, reviews: 178, guests: "2 Adults", features: ["Old Town Tours", "Island Hopping", "Seafood Dining", "Wine Tasting"], description: "Explore Croatia's stunning Adriatic coast." },
+        { id: "mexico-riviera", name: "Mexico Riviera Maya", type: "resort", location: "Cancun, Mexico", image: "assets/img/hotels/hotel-03.jpg", price: 1600, originalPrice: 2000, duration: "7 Days / 6 Nights", rating: 4.7, reviews: 345, guests: "2 Adults", features: ["All Inclusive Resort", "Mayan Ruins", "Cenote Swimming", "Snorkeling"], description: "Relax in Mexico's Riviera Maya." },
+        { id: "india-golden-triangle", name: "India Golden Triangle", type: "resort", location: "Delhi, India", image: "assets/img/hotels/hotel-04.jpg", price: 1450, originalPrice: 1850, duration: "8 Days / 7 Nights", rating: 4.6, reviews: 267, guests: "2 Adults", features: ["Taj Mahal Visit", "Palace Hotels", "Elephant Safari", "Cooking Classes"], description: "Explore India's Golden Triangle." },
+        { id: "kenya-safari", name: "Kenya Masai Mara Safari", type: "resort", location: "Nairobi, Kenya", image: "assets/img/hotels/hotel-05.jpg", price: 3200, originalPrice: 3900, duration: "7 Days / 6 Nights", rating: 4.9, reviews: 145, guests: "2 Adults", features: ["Game Drives", "Hot Air Balloon", "Masai Village", "Luxury Tented Camp"], description: "Witness the great migration in Kenya." },
+        { id: "cuba-heritage", name: "Cuba Cultural Journey", type: "resort", location: "Havana, Cuba", image: "assets/img/hotels/hotel-06.jpg", price: 1400, originalPrice: 1800, duration: "6 Days / 5 Nights", rating: 4.5, reviews: 189, guests: "2 Adults", features: ["Classic Cars", "Salsa Dancing", "Cigar Factory", "Old Havana Tour"], description: "Experience the vibrant culture of Cuba." },
+        { id: "scotland-highlands", name: "Scotland Highlands Tour", type: "resort", location: "Edinburgh, United Kingdom", image: "assets/img/hotels/hotel-07.jpg", price: 1950, originalPrice: 2400, duration: "7 Days / 6 Nights", rating: 4.7, reviews: 167, guests: "2 Adults", features: ["Castle Tours", "Whisky Tasting", "Loch Ness Visit", "Highland Games"], description: "Explore the Scottish Highlands." },
+        { id: "maldives-diving", name: "Maldives Diving Paradise", type: "resort", location: "Maldives", image: "assets/img/hotels/hotel-01.jpg", price: 3100, originalPrice: 3800, duration: "6 Days / 5 Nights", rating: 4.9, reviews: 123, guests: "2 Adults", features: ["PADI Certification", "Night Diving", "Manta Ray Watching", "Underwater Photography"], description: "Dive into the crystal-clear waters of Maldives." },
+        { id: "tanzania-kilimanjaro", name: "Tanzania Kilimanjaro Trek", type: "resort", location: "Arusha, Tanzania", image: "assets/img/hotels/hotel-02.jpg", price: 2800, originalPrice: 3400, duration: "9 Days / 8 Nights", rating: 4.8, reviews: 98, guests: "2 Adults", features: ["Summit Attempt", "Expert Guides", "Safari Extension", "Camping Gear"], description: "Climb Africa's highest peak." },
+        { id: "jordan-petra", name: "Jordan Petra Discovery", type: "resort", location: "Amman, Jordan", image: "assets/img/hotels/hotel-03.jpg", price: 1750, originalPrice: 2200, duration: "6 Days / 5 Nights", rating: 4.7, reviews: 178, guests: "2 Adults", features: ["Petra by Night", "Dead Sea Float", "Wadi Rum Camping", "Desert Jeep Tour"], description: "Discover the ancient city of Petra." },
+        { id: "patagonia-expedition", name: "Patagonia Expedition", type: "resort", location: "Torres del Paine, Chile", image: "assets/img/hotels/hotel-04.jpg", price: 3400, originalPrice: 4100, duration: "10 Days / 9 Nights", rating: 4.9, reviews: 89, guests: "2 Adults", features: ["Glacier Trekking", "Wildlife Watching", "Luxury Lodges", "Scenic Flights"], description: "Explore the wilderness of Patagonia." },
+        { id: "borneo-wildlife", name: "Borneo Wildlife Safari", type: "resort", location: "Sabah, Malaysia", image: "assets/img/hotels/hotel-05.jpg", price: 2100, originalPrice: 2600, duration: "7 Days / 6 Nights", rating: 4.7, reviews: 145, guests: "2 Adults", features: ["Orangutan Sanctuary", "Rainforest Treks", "Proboscis Monkeys", "River Cruises"], description: "Encounter Borneo's incredible wildlife." },
+        { id: "bhutan-happiness", name: "Bhutan Kingdom of Happiness", type: "resort", location: "Thimphu, Bhutan", image: "assets/img/hotels/hotel-06.jpg", price: 3800, originalPrice: 4600, duration: "8 Days / 7 Nights", rating: 4.9, reviews: 67, guests: "2 Adults", features: ["Tiger's Nest Trek", "Monastery Visits", "Traditional Ceremonies", "Archery Experience"], description: "Discover the world's happiest country." },
+        { id: "antarctic-expedition", name: "Antarctic Expedition", type: "cruise", location: "Antarctica", image: "assets/img/cruise/cruise-01.jpg", price: 8500, originalPrice: 10000, duration: "14 Days / 13 Nights", rating: 5.0, reviews: 45, guests: "2 Adults", features: ["Penguin Colonies", "Zodiac Landings", "Icebergs", "Expert Naturalists"], description: "Journey to the last frontier on Earth." },
+        { id: "greek-islands", name: "Greek Island Hopping", type: "cruise", location: "Athens, Greece", image: "assets/img/cruise/cruise-02.jpg", price: 2200, originalPrice: 2800, duration: "10 Days / 9 Nights", rating: 4.8, reviews: 234, guests: "2 Adults", features: ["Mykonos", "Santorini", "Rhodes", "Crete"], description: "Explore the stunning Greek islands." },
+        { id: "vietnam-cruise", name: "Vietnam Coastal Cruise", type: "cruise", location: "Ho Chi Minh, Vietnam", image: "assets/img/cruise/cruise-03.jpg", price: 1600, originalPrice: 2000, duration: "8 Days / 7 Nights", rating: 4.6, reviews: 156, guests: "2 Adults", features: ["Ha Long Bay", "Hoi An", "Mekong Delta", "Beach Days"], description: "Cruise along Vietnam's stunning coast." },
+        { id: "caribbean-luxury", name: "Caribbean Luxury Cruise", type: "cruise", location: "Miami, USA", image: "assets/img/cruise/cruise-04.jpg", price: 2400, originalPrice: 3000, duration: "8 Days / 7 Nights", rating: 4.8, reviews: 289, guests: "2 Adults", features: ["Private Island", "Gourmet Dining", "Casino", "Spa"], description: "Luxury cruise through the Caribbean." },
+        { id: "tahiti-islands", name: "Tahiti Island Paradise", type: "resort", location: "Bora Bora, French Polynesia", image: "assets/img/hotels/hotel-07.jpg", price: 4200, originalPrice: 5200, duration: "7 Days / 6 Nights", rating: 5.0, reviews: 112, guests: "2 Adults", features: ["Overwater Bungalow", "Private Beach", "Sunset Cruise", "Couples Spa"], description: "Experience ultimate luxury in Tahiti." },
+        { id: "sri-lanka-heritage", name: "Sri Lanka Heritage Tour", type: "resort", location: "Colombo, Sri Lanka", image: "assets/img/hotels/hotel-01.jpg", price: 1350, originalPrice: 1700, duration: "9 Days / 8 Nights", rating: 4.6, reviews: 178, guests: "2 Adults", features: ["Sigiriya Rock", "Tea Plantations", "Wildlife Safari", "Temple of Tooth"], description: "Discover Sri Lanka's ancient heritage." },
+        { id: "laos-adventure", name: "Laos Hidden Gem", type: "resort", location: "Luang Prabang, Laos", image: "assets/img/hotels/hotel-02.jpg", price: 1200, originalPrice: 1500, duration: "7 Days / 6 Nights", rating: 4.5, reviews: 89, guests: "2 Adults", features: ["Monk Alms Giving", "Kuang Si Falls", "Mekong Cruise", "Cooking Class"], description: "Explore the hidden gem of Southeast Asia." },
+        { id: "myanmar-temples", name: "Myanmar Temple Trail", type: "resort", location: "Yangon, Myanmar", image: "assets/img/hotels/hotel-03.jpg", price: 1450, originalPrice: 1850, duration: "8 Days / 7 Nights", rating: 4.6, reviews: 112, guests: "2 Adults", features: ["Bagan Temples", "Inle Lake", "Shwedagon Pagoda", "Hot Air Balloon"], description: "Discover Myanmar's ancient temples." },
+        { id: "oman-desert", name: "Oman Desert & Coast", type: "resort", location: "Muscat, Oman", image: "assets/img/hotels/hotel-04.jpg", price: 1850, originalPrice: 2300, duration: "6 Days / 5 Nights", rating: 4.7, reviews: 134, guests: "2 Adults", features: ["Desert Camp", "Wadi Shab", "Dolphin Watching", "Souq Exploration"], description: "Experience Oman's desert and coast." },
+        { id: "slovenia-lakes", name: "Slovenia Lakes & Mountains", type: "resort", location: "Ljubljana, Slovenia", image: "assets/img/hotels/hotel-05.jpg", price: 1650, originalPrice: 2050, duration: "6 Days / 5 Nights", rating: 4.8, reviews: 156, guests: "2 Adults", features: ["Lake Bled", "Postojna Cave", "Julian Alps", "Wine Tasting"], description: "Discover Slovenia's stunning nature." }
     ],
 
-    // Helper functions
-    getAllPackages: function() {
-        return this.packages;
-    },
-
-    getPackageById: function(id) {
-        return this.packages.find(pkg => pkg.id === id) || null;
-    },
-
-    getPackagesByType: function(type) {
-        if (type === 'all') return this.packages;
-        return this.packages.filter(pkg => pkg.type === type);
-    },
-
-    searchPackages: function(query) {
-        const searchTerm = query.toLowerCase();
-        return this.packages.filter(pkg => 
-            pkg.name.toLowerCase().includes(searchTerm) ||
-            pkg.location.toLowerCase().includes(searchTerm) ||
-            pkg.description.toLowerCase().includes(searchTerm)
-        );
-    },
-
-    filterByPrice: function(min, max) {
-        return this.packages.filter(pkg => pkg.price >= min && pkg.price <= max);
-    },
-
+    getAllPackages: function() { return this.packages; },
+    getPackageById: function(id) { return this.packages.find(function(p) { return p.id === id; }) || null; },
+    getPackagesByType: function(type) { if (type === 'all') return this.packages; return this.packages.filter(function(p) { return p.type === type; }); },
+    searchPackages: function(query) { var q = query.toLowerCase(); return this.packages.filter(function(p) { return p.name.toLowerCase().indexOf(q) > -1 || p.location.toLowerCase().indexOf(q) > -1; }); },
+    filterByPrice: function(min, max) { return this.packages.filter(function(p) { return p.price >= min && p.price <= max; }); },
     sortPackages: function(packages, sortBy) {
-        const sorted = [...packages];
-        switch(sortBy) {
-            case 'price-low':
-                return sorted.sort((a, b) => a.price - b.price);
-            case 'price-high':
-                return sorted.sort((a, b) => b.price - a.price);
-            case 'rating':
-                return sorted.sort((a, b) => b.rating - a.rating);
-            case 'duration':
-                return sorted.sort((a, b) => parseInt(a.duration) - parseInt(b.duration));
-            default:
-                return sorted;
-        }
-    },
-
-    generateStarRating: function(rating) {
-        let stars = '';
-        const fullStars = Math.floor(rating);
-        const hasHalfStar = rating % 1 >= 0.5;
-        
-        for (let i = 0; i < fullStars; i++) {
-            stars += '<i class="fas fa-star text-warning"></i>';
-        }
-        if (hasHalfStar) {
-            stars += '<i class="fas fa-star-half-alt text-warning"></i>';
-        }
-        const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-        for (let i = 0; i < emptyStars; i++) {
-            stars += '<i class="far fa-star text-warning"></i>';
-        }
-        return stars;
+        var sorted = packages.slice();
+        if (sortBy === 'price-low') return sorted.sort(function(a, b) { return a.price - b.price; });
+        if (sortBy === 'price-high') return sorted.sort(function(a, b) { return b.price - a.price; });
+        if (sortBy === 'rating') return sorted.sort(function(a, b) { return b.rating - a.rating; });
+        return sorted;
     }
 };

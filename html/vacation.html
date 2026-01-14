@@ -93,6 +93,46 @@
             border-radius: 25px;
             padding: 10px 25px;
         }
+        /* Custom Select */
+        .custom-select-wrapper { position: relative; display: inline-block; min-width: 180px; }
+        .custom-select-wrapper > select { display: none; }
+        .custom-select-box { position: relative; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 10px 40px 10px 16px; cursor: pointer; font-size: 14px; transition: all 0.2s; }
+        .custom-select-box:hover { border-color: var(--bs-primary); }
+        .custom-select-box::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 11px; color: #6b7280; transition: transform 0.2s; }
+        .custom-select-box.open::after { transform: translateY(-50%) rotate(180deg); }
+        .custom-select-dropdown { position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; margin-top: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); z-index: 100; display: none; max-height: 200px; overflow-y: auto; }
+        .custom-select-dropdown.show { display: block; }
+        .custom-option { padding: 10px 16px; cursor: pointer; transition: background 0.2s; font-size: 14px; }
+        .custom-option:hover { background: #f3f4f6; }
+        .custom-option.selected { background: var(--bs-primary); color: #fff; }
+        /* Load More */
+        .load-more-wrapper { text-align: center; padding: 30px 0; }
+        .load-more-btn { padding: 14px 40px; border-radius: 30px; font-weight: 600; }
+        .load-more-btn .spinner-border { width: 1rem; height: 1rem; margin-right: 8px; }
+        .results-info { color: #6b7280; margin-bottom: 8px; }
+        /* Hide main nav on mobile - show only in sidebar */
+        @media (max-width: 1199px) {
+            .main-nav { display: none !important; }
+            .header__hamburger { display: flex !important; }
+        }
+        /* Mobile sidebar - slides from left */
+        .offcanvas-info { left: 0; right: auto; transform: translateX(-100%); }
+        .offcanvas-info.show { transform: translateX(0); }
+        .offcanvas-overlay { position: fixed; left: 0; right: 0; top: 0; bottom: 0; background: rgba(0, 0, 0, 0.7); z-index: 900; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        .offcanvas-overlay.overlay-open { opacity: 0.8; visibility: visible; }
+        .mobile-nav-menu { list-style: none; padding: 0; margin: 0; }
+        .mobile-nav-menu li { border-bottom: 1px solid #e5e7eb; }
+        .mobile-nav-menu li:last-child { border-bottom: none; }
+        .mobile-nav-menu li a { display: block; padding: 14px 0; font-size: 15px; font-weight: 500; color: #1f2937; transition: color 0.2s; }
+        .mobile-nav-menu li a:hover, .mobile-nav-menu li.active a { color: var(--bs-primary); }
+        .mobile-nav-menu li a i { margin-right: 10px; width: 20px; }
+        [data-theme="dark"] .mobile-nav-menu li { border-color: #334155; }
+        [data-theme="dark"] .mobile-nav-menu li a { color: #e2e8f0; }
+        /* Sign-in button - theme aware */
+        .btn-outline-light { background: var(--bg-white, #fff) !important; color: var(--bs-primary) !important; border-color: var(--border-color, #e5e7eb) !important; }
+        .btn-outline-light:hover { background: var(--bs-primary) !important; color: #fff !important; border-color: var(--bs-primary) !important; }
+        [data-theme="dark"] .btn-outline-light { background: var(--dark-bg-light, #1e293b) !important; color: var(--bs-primary) !important; border-color: var(--dark-border, #334155) !important; }
+        [data-theme="dark"] .btn-outline-light:hover { background: var(--bs-primary) !important; color: #fff !important; border-color: var(--bs-primary) !important; }
     </style>
 </head>
 
@@ -142,19 +182,26 @@
                     <div class="offcanvas-wrap">
                         <div class="offcanvas-detail">
                             <div class="offcanvas-head">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <a href="index.html" class="black-logo-responsive">
-                                        <img src="assets/img/logo-dark.svg" alt="logo-img">
-                                    </a>
-                                    <a href="index.html" class="white-logo-responsive">
-                                        <img src="assets/img/logo.svg" alt="logo-img">
-                                    </a>
-                                    <div class="offcanvas-close">
-                                        <i class="ti ti-x"></i>
-                                    </div>
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <a href="index.html" class="black-logo-responsive"><img src="assets/img/logo-dark.svg" alt="logo-img"></a>
+                                    <a href="index.html" class="white-logo-responsive"><img src="assets/img/logo.svg" alt="logo-img"></a>
+                                    <div class="offcanvas-close"><i class="ti ti-x"></i></div>
                                 </div>
                             </div>
-                            <div class="mobile-menu fix mb-3"></div>
+                            <ul class="mobile-nav-menu">
+                                <li><a href="index.html"><i class="isax isax-home-2"></i>Home</a></li>
+                                <li><a href="flight-grid.html"><i class="isax isax-airplane"></i>Flight</a></li>
+                                <li><a href="hotel-grid.html"><i class="isax isax-building-4"></i>Hotel</a></li>
+                                <li><a href="car-grid.html"><i class="isax isax-car"></i>Car</a></li>
+                                <li><a href="cruise-grid.html"><i class="isax isax-ship"></i>Cruise</a></li>
+                                <li><a href="tour-grid.html"><i class="isax isax-map"></i>Tour</a></li>
+                                <li class="active"><a href="vacation.html"><i class="isax isax-sun-1"></i>Vacation</a></li>
+                                <li><a href="fan-card.html"><i class="isax isax-card"></i>Fan Card</a></li>
+                            </ul>
+                            <div class="mt-4 pt-4 border-top">
+                                <a href="login.html" class="btn btn-outline-primary w-100 mb-2"><i class="isax isax-login me-2"></i>Sign In</a>
+                                <a href="register.html" class="btn btn-primary w-100"><i class="isax isax-user-add me-2"></i>Sign Up</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -171,23 +218,7 @@
                         </div>
                         <nav id="mobile-menu">
                             <ul class="main-nav">
-                                <li class="has-submenu megamenu">
-                                    <a href="javascript:void(0);">Home<i class="fa-solid fa-angle-down"></i></a>
-                                    <ul class="submenu mega-submenu">
-                                        <li>
-                                            <div class="megamenu-wrapper">
-                                                <div class="row g-lg-4">
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index.html"><img src="assets/img/menu/home-01.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index.html">All Bookings</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-2.html"><img src="assets/img/menu/home-02.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-2.html">Hotels</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-3.html"><img src="assets/img/menu/home-03.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-3.html">Cars</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-4.html"><img src="assets/img/menu/home-04.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-4.html">Flight</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-5.html"><img src="assets/img/menu/home-05.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-5.html">Cruise</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-6.html"><img src="assets/img/menu/home-06.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-6.html">Tours</a></div></div></div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
+                                <li><a href="index.html">Home</a></li>
                                 <li><a href="flight-grid.html">Flight</a></li>
                                 <li><a href="hotel-grid.html">Hotel</a></li>
                                 <li><a href="car-grid.html">Car</a></li>
@@ -209,9 +240,7 @@
                             <a href="login.html" class="btn btn-outline-light me-2 d-none d-md-block"><i class="isax isax-login me-2"></i>Sign In</a>
                             <a href="register.html" class="btn btn-primary d-none d-md-block"><i class="isax isax-user-add me-2"></i>Sign Up</a>
                             <div class="header__hamburger d-xl-none my-auto">
-                                <div class="sidebar-menu">
-                                    <i class="isax isax-menu5"></i>
-                                </div>
+                                <div class="sidebar-menu"><i class="isax isax-menu-1"></i></div>
                             </div>
                         </div>
                     </div>
@@ -278,15 +307,21 @@
             <div class="row mb-4">
                 <div class="col-12">
                     <div class="d-flex align-items-center justify-content-between flex-wrap">
-                        <p class="mb-2"><span id="results-count">12</span> vacation packages found</p>
+                        <div class="mb-2">
+                            <span id="results-count">12</span> vacation packages found
+                            <span class="results-info" id="showing-info">(showing 12)</span>
+                        </div>
                         <div class="d-flex align-items-center">
                             <label class="me-2 text-nowrap">Sort by:</label>
-                            <select class="form-select form-select-sm" id="sort-select" style="width: 180px;">
-                                <option value="default">Featured</option>
-                                <option value="price-low">Price: Low to High</option>
-                                <option value="price-high">Price: High to Low</option>
-                                <option value="rating">Highest Rated</option>
-                            </select>
+                            <div class="custom-select-wrapper">
+                                <div class="custom-select-box" id="sort-select" data-value="default">Featured</div>
+                                <div class="custom-select-dropdown" id="sort-options">
+                                    <div class="custom-option selected" data-value="default">Featured</div>
+                                    <div class="custom-option" data-value="price-low">Price: Low to High</div>
+                                    <div class="custom-option" data-value="price-high">Price: High to Low</div>
+                                    <div class="custom-option" data-value="rating">Highest Rated</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -295,6 +330,14 @@
             <!-- Vacation Cards Grid -->
             <div class="row" id="vacation-grid">
                 <!-- Cards will be dynamically loaded here -->
+            </div>
+
+            <!-- Load More Button -->
+            <div class="load-more-wrapper" id="load-more-wrapper">
+                <button class="btn btn-outline-primary load-more-btn" id="load-more-btn">
+                    <span class="btn-text">Load More Packages</span>
+                    <span class="btn-loading d-none"><span class="spinner-border spinner-border-sm"></span>Loading...</span>
+                </button>
             </div>
 
             <!-- Loading State -->
@@ -472,12 +515,78 @@
             const searchBtn = document.getElementById('search-btn');
             const filterBtns = document.querySelectorAll('#type-filter .nav-link');
             const sortSelect = document.getElementById('sort-select');
+            const sortOptions = document.getElementById('sort-options');
             const resultsCount = document.getElementById('results-count');
+            const showingInfo = document.getElementById('showing-info');
             const noResults = document.getElementById('no-results');
+            const loadMoreBtn = document.getElementById('load-more-btn');
+            const loadMoreWrapper = document.getElementById('load-more-wrapper');
             
             let currentFilter = 'all';
             let currentSearch = '';
             let currentSort = 'default';
+            let currentPage = 1;
+            const itemsPerPage = 12;
+            let filteredPackages = [];
+
+            // Custom Select functionality
+            sortSelect.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('open');
+                sortOptions.classList.toggle('show');
+            });
+
+            sortOptions.querySelectorAll('.custom-option').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const value = this.dataset.value;
+                    const text = this.textContent;
+                    
+                    // Update selected state
+                    sortOptions.querySelectorAll('.custom-option').forEach(o => o.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    // Update display
+                    sortSelect.textContent = text;
+                    sortSelect.dataset.value = value;
+                    sortSelect.classList.remove('open');
+                    sortOptions.classList.remove('show');
+                    
+                    // Apply sort
+                    currentSort = value;
+                    currentPage = 1;
+                    renderPackages();
+                });
+            });
+
+            // Close custom select on outside click
+            document.addEventListener('click', function() {
+                sortSelect.classList.remove('open');
+                sortOptions.classList.remove('show');
+            });
+
+            // Generate skeleton card HTML
+            function generateSkeletonCard() {
+                return `
+                    <div class="col-xl-4 col-md-6 d-flex">
+                        <div class="place-item mb-4 flex-fill skeleton-card">
+                            <div class="place-img skeleton-box" style="height: 200px; background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite;"></div>
+                            <div class="place-content">
+                                <div class="skeleton-box mb-2" style="height: 16px; width: 60%; border-radius: 4px; background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite;"></div>
+                                <div class="skeleton-box mb-2" style="height: 20px; width: 80%; border-radius: 4px; background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite;"></div>
+                                <div class="skeleton-box mb-2" style="height: 14px; width: 50%; border-radius: 4px; background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite;"></div>
+                                <div class="border-top pt-2 mb-2">
+                                    <div class="skeleton-box" style="height: 14px; width: 70%; border-radius: 4px; background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite;"></div>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                    <div class="skeleton-box" style="height: 24px; width: 80px; border-radius: 4px; background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite;"></div>
+                                    <div class="skeleton-box" style="height: 32px; width: 80px; border-radius: 20px; background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
 
             // Generate vacation card HTML using place-item structure
             function generateCard(pkg) {
@@ -522,8 +631,8 @@
                 `;
             }
 
-            // Render packages
-            function renderPackages() {
+            // Get filtered and sorted packages
+            function getFilteredPackages() {
                 let packages = vacationData.getAllPackages();
                 
                 // Apply type filter
@@ -542,19 +651,80 @@
                 // Apply sort
                 packages = vacationData.sortPackages(packages, currentSort);
                 
+                return packages;
+            }
+
+            // Render packages with pagination
+            function renderPackages(append = false) {
+                filteredPackages = getFilteredPackages();
+                const totalPackages = filteredPackages.length;
+                const startIndex = 0;
+                const endIndex = currentPage * itemsPerPage;
+                const packagesToShow = filteredPackages.slice(startIndex, endIndex);
+                
                 // Update results count
-                resultsCount.textContent = packages.length;
+                resultsCount.textContent = totalPackages;
+                showingInfo.textContent = `(showing ${Math.min(endIndex, totalPackages)})`;
                 
                 // Show/hide no results
-                if (packages.length === 0) {
+                if (totalPackages === 0) {
                     grid.classList.add('d-none');
                     noResults.classList.remove('d-none');
+                    loadMoreWrapper.classList.add('d-none');
                 } else {
                     grid.classList.remove('d-none');
                     noResults.classList.add('d-none');
-                    grid.innerHTML = packages.map(generateCard).join('');
+                    
+                    if (append) {
+                        // Append new cards
+                        const newCards = filteredPackages.slice((currentPage - 1) * itemsPerPage, endIndex);
+                        grid.insertAdjacentHTML('beforeend', newCards.map(generateCard).join(''));
+                    } else {
+                        grid.innerHTML = packagesToShow.map(generateCard).join('');
+                    }
+                    
+                    // Show/hide load more button
+                    if (endIndex >= totalPackages) {
+                        loadMoreWrapper.classList.add('d-none');
+                    } else {
+                        loadMoreWrapper.classList.remove('d-none');
+                    }
                 }
             }
+
+            // Load more with skeleton loading
+            loadMoreBtn.addEventListener('click', function() {
+                const btnText = this.querySelector('.btn-text');
+                const btnLoading = this.querySelector('.btn-loading');
+                
+                // Show loading state
+                btnText.classList.add('d-none');
+                btnLoading.classList.remove('d-none');
+                this.disabled = true;
+                
+                // Add skeleton cards
+                const skeletonCount = Math.min(itemsPerPage, filteredPackages.length - (currentPage * itemsPerPage));
+                let skeletonsHtml = '';
+                for (let i = 0; i < skeletonCount; i++) {
+                    skeletonsHtml += generateSkeletonCard();
+                }
+                grid.insertAdjacentHTML('beforeend', skeletonsHtml);
+                
+                // Simulate loading delay for smooth UX
+                setTimeout(() => {
+                    // Remove skeletons
+                    grid.querySelectorAll('.skeleton-card').forEach(el => el.closest('.col-xl-4').remove());
+                    
+                    // Increment page and render new cards
+                    currentPage++;
+                    renderPackages(true);
+                    
+                    // Reset button state
+                    btnText.classList.remove('d-none');
+                    btnLoading.classList.add('d-none');
+                    this.disabled = false;
+                }, 800);
+            });
 
             // Event listeners
             filterBtns.forEach(btn => {
@@ -562,25 +732,23 @@
                     filterBtns.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
                     currentFilter = this.dataset.type;
+                    currentPage = 1;
                     renderPackages();
                 });
             });
 
             searchBtn.addEventListener('click', function() {
                 currentSearch = searchInput.value.toLowerCase().trim();
+                currentPage = 1;
                 renderPackages();
             });
 
             searchInput.addEventListener('keyup', function(e) {
                 if (e.key === 'Enter') {
                     currentSearch = this.value.toLowerCase().trim();
+                    currentPage = 1;
                     renderPackages();
                 }
-            });
-
-            sortSelect.addEventListener('change', function() {
-                currentSort = this.value;
-                renderPackages();
             });
 
             // Reset filters function
@@ -588,12 +756,21 @@
                 currentFilter = 'all';
                 currentSearch = '';
                 currentSort = 'default';
+                currentPage = 1;
                 searchInput.value = '';
-                sortSelect.value = 'default';
+                sortSelect.textContent = 'Featured';
+                sortSelect.dataset.value = 'default';
+                sortOptions.querySelectorAll('.custom-option').forEach(o => o.classList.remove('selected'));
+                sortOptions.querySelector('[data-value="default"]').classList.add('selected');
                 filterBtns.forEach(b => b.classList.remove('active'));
                 filterBtns[0].classList.add('active');
                 renderPackages();
             };
+
+            // Add shimmer animation keyframes
+            const style = document.createElement('style');
+            style.textContent = `@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }`;
+            document.head.appendChild(style);
 
             // Initial render
             renderPackages();

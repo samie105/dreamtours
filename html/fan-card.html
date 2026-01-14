@@ -1,105 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-<!-- Mirrored from dreamstour.dreamstechnologies.com/html/fan-card.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 23 Dec 2024 10:50:48 GMT -->
 <head>
-    <!-- Meta Tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fan Card - DreamsTour - Travel and Tour Booking Bootstrap 5 template</title>
+    <title>Celebrity Fan Cards - DreamsTour</title>
 
-    <meta name="description" content="DreamsTour - A premium Bootstrap 5 template crafted for travel and tour booking. Tailored for travel agencies and booking platforms, it features flight, hotel, and tour reservations, and holiday packages.">
-    <meta name="keywords" content="travel booking template, tour booking, Bootstrap 5 travel template, DreamsTour, hotel booking, flights booking, holiday packages, tour agency website, travel agency template, travel HTML template, booking system, responsive travel template, Bootstrap travel website">
+    <meta name="description" content="Get official celebrity fan cards and connect with your favorite stars.">
+    <meta name="keywords" content="celebrity fan cards, fan membership, celebrity cards">
     <meta name="author" content="Dreams Technologies">
-    <meta name="robots" content="index, follow">
 
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
-
-    <!-- Favicon -->
     <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
 
-    <!-- Theme Settings Js -->
-	<script src="assets/js/theme-script.js" type="97603d7a557bac6bae03a9b7-text/javascript"></script>
+    <script src="assets/js/theme-script.js"></script>
 
-    <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-
-    <!-- Main.css -->
     <link rel="stylesheet" href="assets/css/meanmenu.css">
-
-    <!-- Tabler Icon CSS -->
     <link rel="stylesheet" href="assets/plugins/tabler-icons/tabler-icons.css">
-
-    <!-- FancyBox CSS -->
-    <link rel="stylesheet" href="assets/plugins/fancybox/jquery.fancybox.min.css">
-
-    <!-- Fontawesome Icon CSS -->
     <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
     <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
-
-    <!-- Owlcarousel CSS -->
-    <link rel="stylesheet" href="assets/plugins/owlcarousel/owl.carousel.min.css">
-
-    <!-- Rangeslider CSS -->
-    <link rel="stylesheet" href="assets/plugins/ion-rangeslider/css/ion.rangeSlider.css">
-    <link rel="stylesheet" href="assets/plugins/ion-rangeslider/css/ion.rangeSlider.min.css">
-
-    <!-- Iconsax CSS -->
     <link rel="stylesheet" href="assets/css/iconsax.css">
-
-    <!-- Datepicker CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
-
-    <!-- Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <style>
+        .custom-select-wrapper { position: relative; }
+        .custom-select-wrapper select { display: none; }
+        .custom-select { position: relative; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px 40px 12px 16px; cursor: pointer; font-size: 14px; transition: all 0.2s; }
+        .custom-select:hover { border-color: var(--bs-primary); }
+        .custom-select::after { content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font-size: 12px; color: #6b7280; transition: transform 0.2s; }
+        .custom-select.open::after { transform: translateY(-50%) rotate(180deg); }
+        .custom-select-options { position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; margin-top: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); z-index: 100; display: none; max-height: 200px; overflow-y: auto; }
+        .custom-select-options.show { display: block; }
+        .custom-select-option { padding: 10px 16px; cursor: pointer; transition: background 0.2s; }
+        .custom-select-option:hover { background: #f3f4f6; }
+        .custom-select-option.selected { background: var(--bs-primary); color: #fff; }
+        /* Fan card grid - responsive with CSS Grid */
+        #celebrities-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+        @media (max-width: 768px) { #celebrities-container { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; } }
+        /* Fan card - smaller, cleaner design - theme aware */
+        .fan-card-item .place-img { background: var(--bg-light, #f9fafb); height: 100px; display: flex; align-items: center; justify-content: center; position: relative; border: 1px solid var(--border-color, #e5e7eb); }
+        .fan-card-item .place-img img { display: none !important; }
+        .fan-card-item { width: 100%; }
+        [data-theme="dark"] .fan-card-item .place-img { background: var(--dark-bg-light, #1e293b); border-color: var(--dark-border, #334155); }
+        /* Hide main nav on mobile - show only in sidebar */
+        @media (max-width: 1199px) {
+            .main-nav { display: none !important; }
+            .header__hamburger { display: flex !important; }
+        }
+        /* Mobile sidebar - slides from left */
+        .offcanvas-info { left: 0; right: auto; transform: translateX(-100%); }
+        .offcanvas-info.show { transform: translateX(0); }
+        .offcanvas-overlay { position: fixed; left: 0; right: 0; top: 0; bottom: 0; background: rgba(0, 0, 0, 0.7); z-index: 900; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        .offcanvas-overlay.overlay-open { opacity: 0.8; visibility: visible; }
+        .mobile-nav-menu { list-style: none; padding: 0; margin: 0; }
+        .mobile-nav-menu li { border-bottom: 1px solid #e5e7eb; }
+        .mobile-nav-menu li:last-child { border-bottom: none; }
+        .mobile-nav-menu li a { display: block; padding: 14px 0; font-size: 15px; font-weight: 500; color: #1f2937; transition: color 0.2s; }
+        .mobile-nav-menu li a:hover, .mobile-nav-menu li.active a { color: var(--bs-primary); }
+        .mobile-nav-menu li a i { margin-right: 10px; width: 20px; }
+        [data-theme="dark"] .mobile-nav-menu li { border-color: #334155; }
+        [data-theme="dark"] .mobile-nav-menu li a { color: #e2e8f0; }
+        /* Sign-in button - theme aware */
+        .btn-outline-light { background: var(--bg-white, #fff) !important; color: var(--bs-primary) !important; border-color: var(--border-color, #e5e7eb) !important; }
+        .btn-outline-light:hover { background: var(--bs-primary) !important; color: #fff !important; border-color: var(--bs-primary) !important; }
+        [data-theme="dark"] .btn-outline-light { background: var(--dark-bg-light, #1e293b) !important; color: var(--bs-primary) !important; border-color: var(--dark-border, #334155) !important; }
+        [data-theme="dark"] .btn-outline-light:hover { background: var(--bs-primary) !important; color: #fff !important; border-color: var(--bs-primary) !important; }
+    </style>
 </head>
 
 <body>
 
     <div class="main-header">
-        <!-- Header Topbar-->
         <div class="header-topbar text-center bg-transparent">
             <div class="container">
                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                     <p class="d-flex align-items-center fw-medium fs-14 mb-2"><i class="isax isax-call5 me-2"></i>Toll Free : +1 56565 56594</p>
                     <div class="d-flex align-items-center">
-                        <p class="mb-2 me-3 d-flex align-items-center fw-medium fs-14"><i class="isax isax-message-text-15 me-2"></i>Email : <a href="https://dreamstour.dreamstechnologies.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5d34333b321d38253c302d3138733e3230">[email&#160;protected]</a></p>
-                        <div class="dropdown flag-dropdown mb-2 me-3">
-                            <a href="javascript:void(0);" class="dropdown-toggle d-inline-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG
-                            </a>
-                            <ul class="dropdown-menu p-2 mt-2">
-                                <li>
-                                    <a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);">
-                                        <img src="assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);">
-                                        <img src="assets/img/flags/arab-flag.svg" class="me-2" alt="flag">ARA
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);">
-                                        <img src="assets/img/flags/france-flag.svg" class="me-2" alt="flag">FRA
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="dropdown mb-2 me-3">
-                            <a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-								USD
-							</a>
-                            <ul class="dropdown-menu p-2 mt-2">
-                                <li><a class="dropdown-item rounded" href="javascript:void(0);">USD</a></li>
-                                <li><a class="dropdown-item rounded" href="javascript:void(0);">YEN</a></li>
-                                <li><a class="dropdown-item rounded" href="javascript:void(0);">EURO</a></li>
-                            </ul>
-                        </div>
+                        <p class="mb-2 me-3 d-flex align-items-center fw-medium fs-14"><i class="isax isax-message-text-15 me-2"></i>Email : info@dreamstour.com</p>
                         <div class="fav-dropdown mb-2">
                             <a href="wishlist.html" class="position-relative">
                                 <i class="isax isax-heart"></i><span class="count-icon bg-secondary text-gray-9">0</span>
@@ -109,42 +86,32 @@
                 </div>
             </div>
         </div>
-        <!-- /Header Topbar-->
 
-        <!-- Header -->
         <header>
             <div class="container">
                 <div class="offcanvas-info">
                     <div class="offcanvas-wrap">
                         <div class="offcanvas-detail">
                             <div class="offcanvas-head">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <a href="index.html" class="black-logo-responsive">
-                                        <img src="assets/img/logo-dark.svg" alt="logo-img">
-                                    </a>
-                                    <a href="index.html" class="white-logo-responsive">
-                                        <img src="assets/img/logo.svg" alt="logo-img">
-                                    </a>
-                                    <div class="offcanvas-close">
-                                        <i class="ti ti-x"></i>
-                                    </div>
-                                </div>
-                                <div class="wishlist-info d-flex justify-content-between align-items-center">
-                                    <h6 class="fs-16 fw-medium">Wishlist</h6>
-                                    <div class="d-flex align-items-center">
-                                        <div class="fav-dropdown">
-                                            <a href="wishlist.html" class="position-relative">
-                                                <i class="isax isax-heart"></i><span class="count-icon bg-secondary text-gray-9">0</span>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <a href="index.html" class="black-logo-responsive"><img src="assets/img/logo-dark.svg" alt="logo-img"></a>
+                                    <a href="index.html" class="white-logo-responsive"><img src="assets/img/logo.svg" alt="logo-img"></a>
+                                    <div class="offcanvas-close"><i class="ti ti-x"></i></div>
                                 </div>
                             </div>
-                            <div class="mobile-menu fix mb-3"></div>
-                            <div class="offcanvas__contact">
-                                <div class="mt-4">
-                                    <a href="add-hotel.html" class="btn btn-primary w-100">Add Listing</a>
-                                </div>
+                            <ul class="mobile-nav-menu">
+                                <li><a href="index.html"><i class="isax isax-home-2"></i>Home</a></li>
+                                <li><a href="flight-grid.html"><i class="isax isax-airplane"></i>Flight</a></li>
+                                <li><a href="hotel-grid.html"><i class="isax isax-building-4"></i>Hotel</a></li>
+                                <li><a href="car-grid.html"><i class="isax isax-car"></i>Car</a></li>
+                                <li><a href="cruise-grid.html"><i class="isax isax-ship"></i>Cruise</a></li>
+                                <li><a href="tour-grid.html"><i class="isax isax-map"></i>Tour</a></li>
+                                <li><a href="vacation.html"><i class="isax isax-sun-1"></i>Vacation</a></li>
+                                <li class="active"><a href="fan-card.html"><i class="isax isax-card"></i>Fan Card</a></li>
+                            </ul>
+                            <div class="mt-4 pt-4 border-top">
+                                <a href="login.html" class="btn btn-outline-primary w-100 mb-2"><i class="isax isax-login me-2"></i>Sign In</a>
+                                <a href="register.html" class="btn btn-primary w-100"><i class="isax isax-user-add me-2"></i>Sign Up</a>
                             </div>
                         </div>
                     </div>
@@ -153,32 +120,12 @@
                 <div class="header-nav">
                     <div class="main-menu-wrapper">
                         <div class="navbar-logo">
-                            <a class="logo-white header-logo" href="index.html">
-                                <img src="assets/img/logo.svg" class="logo" alt="Logo">
-                            </a>
-                            <a class="logo-dark header-logo" href="index.html">
-                                <img src="assets/img/logo-dark.svg" class="logo" alt="Logo">
-                            </a>
+                            <a class="logo-white header-logo" href="index.html"><img src="assets/img/logo.svg" class="logo" alt="Logo"></a>
+                            <a class="logo-dark header-logo" href="index.html"><img src="assets/img/logo-dark.svg" class="logo" alt="Logo"></a>
                         </div>
                         <nav id="mobile-menu">
                             <ul class="main-nav">
-                                <li class="has-submenu megamenu">
-                                    <a href="javascript:void(0);">Home<i class="fa-solid fa-angle-down"></i></a>
-                                    <ul class="submenu mega-submenu">
-                                        <li>
-                                            <div class="megamenu-wrapper">
-                                                <div class="row g-lg-4">
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index.html"><img src="assets/img/menu/home-01.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index.html">All Bookings</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-2.html"><img src="assets/img/menu/home-02.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-2.html">Hotels</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-3.html"><img src="assets/img/menu/home-03.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-3.html">Cars</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-4.html"><img src="assets/img/menu/home-04.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-4.html">Flight</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-5.html"><img src="assets/img/menu/home-05.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-5.html">Cruise</a></div></div></div>
-                                                    <div class="col-lg-2"><div class="single-demo"><div class="demo-img"><a href="index-6.html"><img src="assets/img/menu/home-06.jpg" class="img-fluid" alt="img"></a></div><div class="demo-info"><a href="index-6.html">Tours</a></div></div></div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
+                                <li><a href="index.html">Home</a></li>
                                 <li><a href="flight-grid.html">Flight</a></li>
                                 <li><a href="hotel-grid.html">Hotel</a></li>
                                 <li><a href="car-grid.html">Car</a></li>
@@ -190,55 +137,21 @@
                         </nav>
                         <div class="header-btn d-flex align-items-center">
                             <div class="me-3">
-                                <a href="javascript:void(0);" id="dark-mode-toggle" class="theme-toggle">
-                                    <i class="isax isax-moon"></i>
-                                </a>
-                                <a href="javascript:void(0);" id="light-mode-toggle" class="theme-toggle">
-                                    <i class="isax isax-sun-1"></i>
-                                </a>
+                                <a href="javascript:void(0);" id="dark-mode-toggle" class="theme-toggle"><i class="isax isax-moon"></i></a>
+                                <a href="javascript:void(0);" id="light-mode-toggle" class="theme-toggle"><i class="isax isax-sun-1"></i></a>
                             </div>
-                            <div class="dropdown profile-dropdown">
-                                <a href="javascript:void(0);" class="d-flex align-items-center" data-bs-toggle="dropdown">
-                                    <span class="avatar avatar-md">
-										<img src="assets/img/users/user-05.jpg" alt="Img" class="img-fluid rounded-circle border border-white border-4">
-									</span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end p-3">
-                                    <li>
-                                        <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="dashboard.html">Dashboard</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="customer-hotel-booking.html">My Booking</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="my-profile.html">My Profile</a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider my-2">
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="profile-settings.html">Settings</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="login.html">Logout</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <a href="add-hotel.html" class="btn btn-primary me-0">Add Listing</a>
+                            <a href="login.html" class="btn btn-outline-light me-2 d-none d-md-block"><i class="isax isax-login me-2"></i>Sign In</a>
+                            <a href="register.html" class="btn btn-primary d-none d-md-block"><i class="isax isax-user-add me-2"></i>Sign Up</a>
                             <div class="header__hamburger d-xl-none my-auto">
-                                <div class="sidebar-menu">
-                                    <i class="isax isax-menu5"></i>
-                                </div>
+                                <div class="sidebar-menu"><i class="isax isax-menu-1"></i></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
-        <!-- /Header -->
     </div>
 
-    <!-- Breadcrumb -->
     <div class="breadcrumb-bar breadcrumb-bg-01 text-center">
         <div class="container">
             <div class="row">
@@ -254,541 +167,80 @@
             </div>
         </div>
     </div>
-    <!-- /Breadcrumb -->
 
-    <!-- Custom Styles for Celebrity Cards -->
-    <style>
-        .filter-tabs .nav-link {
-            padding: 10px 20px;
-            border-radius: 25px;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            background: #f5f5f5;
-            color: #333;
-            border: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        .filter-tabs .nav-link:hover {
-            background: #e9e9e9;
-        }
-        .filter-tabs .nav-link.active {
-            background: var(--bs-primary);
-            color: #fff;
-        }
-    </style>
-
-    <!-- Page Wrapper -->
     <div class="content">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-9">
-                    <div class="header-section text-center mb-5">
-                        <h2 class="mb-2">Get Your Official Celebrity Fan Identification Card</h2>
-                        <p>Show your love and support for your favorite celebrities with an official fan identification card. Connect with like-minded fans, access exclusive content, and enjoy special privileges from your favorite stars</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Search and Filter Section -->
+            <!-- Search and Filter -->
             <div class="row mb-4">
-                <div class="col-lg-6 mx-auto mb-4">
-                    <div class="search-box position-relative">
-                        <input type="text" id="celebrity-search" class="form-control form-control-lg ps-5" placeholder="Search celebrities by name...">
-                        <i class="isax isax-search-normal-1 position-absolute top-50 translate-middle-y ms-3 text-muted"></i>
-                        <button type="button" id="search-btn" class="btn btn-primary position-absolute top-50 translate-middle-y end-0 me-2" style="padding: 8px 20px;">
-                            <i class="isax isax-search-normal-1 me-1"></i>Search
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-4">
-                <div class="col-12">
-                    <div class="filter-tabs d-flex flex-wrap justify-content-center" id="category-filter">
-                        <a href="javascript:void(0);" class="nav-link active" data-category="all">All Celebrities</a>
-                        <a href="javascript:void(0);" class="nav-link" data-category="musician">Musicians</a>
-                        <a href="javascript:void(0);" class="nav-link" data-category="actor">Actors</a>
-                        <a href="javascript:void(0);" class="nav-link" data-category="athlete">Athletes</a>
-                        <a href="javascript:void(0);" class="nav-link" data-category="tech">Tech Icons</a>
-                        <a href="javascript:void(0);" class="nav-link" data-category="influencer">Influencers</a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Featured Celebrity Cards -->
-            <div class="row mb-4">
-                <div class="col-12 mb-3">
-                    <h4>Featured Celebrities</h4>
-                </div>
-
-                <!-- Elon Musk -->
-                <div class="col-xl-4 col-md-6 d-flex celebrity-item" data-category="tech" data-name="elon musk">
-                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="place-img">
-                            <a href="fan-card-detail.html?id=elon-musk">
-                                <img src="assets/img/fan-cards/elon-musk.jpg" class="img-fluid" alt="Elon Musk" onerror="this.src='assets/img/icons/icon-01.png'">
-                            </a>
-                            <div class="fav-item">
-                                <span class="badge bg-warning d-inline-flex align-items-center"><i class="isax isax-medal-star me-1"></i>Popular</span>
-                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
-                            </div>
-                        </div>
-                        <div class="place-content">
-                            <div class="d-flex align-items-center mb-1">
-                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.9</span>
-                                <p class="fs-14">(2.5M Fans)</p>
-                            </div>
-                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=elon-musk">Elon Musk</a></h5>
-                            <p class="d-flex align-items-center mb-2"><i class="isax isax-cpu me-2 text-primary"></i>Tech Visionary</p>
-                            <div class="border-top pt-2 mb-2">
-                                <p class="fs-14 text-muted mb-0">CEO of Tesla & SpaceX</p>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                                <h5 class="text-primary text-nowrap me-2">$49.99 <span class="fs-14 fw-normal text-default">/ year</span></h5>
-                                <a href="fan-card-detail.html?id=elon-musk" class="btn btn-primary btn-sm">Get Card</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Drake -->
-                <div class="col-xl-4 col-md-6 d-flex celebrity-item" data-category="musician" data-name="drake">
-                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.2s">
-                        <div class="place-img">
-                            <a href="fan-card-detail.html?id=drake">
-                                <img src="assets/img/fan-cards/drake.jpg" class="img-fluid" alt="Drake" onerror="this.src='assets/img/icons/icon-02.png'">
-                            </a>
-                            <div class="fav-item">
-                                <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-verify me-1"></i>Verified</span>
-                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
-                            </div>
-                        </div>
-                        <div class="place-content">
-                            <div class="d-flex align-items-center mb-1">
-                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.8</span>
-                                <p class="fs-14">(5.2M Fans)</p>
-                            </div>
-                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=drake">Drake</a></h5>
-                            <p class="d-flex align-items-center mb-2"><i class="isax isax-music me-2 text-primary"></i>Hip-Hop Artist</p>
-                            <div class="border-top pt-2 mb-2">
-                                <p class="fs-14 text-muted mb-0">Grammy-Winning Rapper & Producer</p>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                                <h5 class="text-primary text-nowrap me-2">$69.99 <span class="fs-14 fw-normal text-default">/ year</span></h5>
-                                <a href="fan-card-detail.html?id=drake" class="btn btn-primary btn-sm">Get Card</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Taylor Swift -->
-                <div class="col-xl-4 col-md-6 d-flex celebrity-item" data-category="musician" data-name="taylor swift">
-                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="place-img">
-                            <a href="fan-card-detail.html?id=taylor-swift">
-                                <img src="assets/img/fan-cards/taylor-swift.jpg" class="img-fluid" alt="Taylor Swift" onerror="this.src='assets/img/icons/icon-03.png'">
-                            </a>
-                            <div class="fav-item">
-                                <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-verify me-1"></i>Verified</span>
-                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
-                            </div>
-                        </div>
-                        <div class="place-content">
-                            <div class="d-flex align-items-center mb-1">
-                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.9</span>
-                                <p class="fs-14">(8.1M Fans)</p>
-                            </div>
-                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=taylor-swift">Taylor Swift</a></h5>
-                            <p class="d-flex align-items-center mb-2"><i class="isax isax-music me-2 text-primary"></i>Global Music Sensation</p>
-                            <div class="border-top pt-2 mb-2">
-                                <p class="fs-14 text-muted mb-0">Grammy-Winning Artist</p>
-                            </div>
-                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                                <h5 class="text-primary text-nowrap me-2">$79.99 <span class="fs-14 fw-normal text-default">/ year</span></h5>
-                                <a href="fan-card-detail.html?id=taylor-swift" class="btn btn-primary btn-sm">Get Card</a>
+                <div class="col-lg-8 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row g-3 align-items-center">
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-white border-end-0"><i class="isax isax-search-normal-1"></i></span>
+                                        <input type="text" class="form-control border-start-0" id="celebrity-search" placeholder="Search celebrities...">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="custom-select-wrapper">
+                                        <div class="custom-select" id="category-select" data-value="all">All Categories</div>
+                                        <div class="custom-select-options" id="category-options">
+                                            <div class="custom-select-option selected" data-value="all">All Categories</div>
+                                            <div class="custom-select-option" data-value="musician">Musicians</div>
+                                            <div class="custom-select-option" data-value="actor">Actors</div>
+                                            <div class="custom-select-option" data-value="athlete">Athletes</div>
+                                            <div class="custom-select-option" data-value="influencer">Influencers</div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- /Featured Celebrity Cards -->
 
-            <!-- More Celebrities -->
-            <div class="row mb-4">
-                <div class="col-12 mb-3">
-                    <h4>More Celebrities</h4>
-                </div>
-
-                <!-- Beyoncé -->
-                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="musician" data-name="beyonce">
-                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="place-img">
-                            <a href="fan-card-detail.html?id=beyonce">
-                                <img src="assets/img/fan-cards/beyonce.jpg" class="img-fluid" alt="Beyoncé" onerror="this.src='assets/img/icons/icon-04.png'">
-                            </a>
-                            <div class="fav-item">
-                                <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-verify me-1"></i>Verified</span>
-                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
-                            </div>
-                        </div>
-                        <div class="place-content">
-                            <div class="d-flex align-items-center mb-1">
-                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.9</span>
-                                <p class="fs-14">(4.8M Fans)</p>
-                            </div>
-                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=beyonce">Beyoncé</a></h5>
-                            <p class="d-flex align-items-center mb-2"><i class="isax isax-music me-2 text-primary"></i>Queen of Pop</p>
-                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                                <h5 class="text-primary text-nowrap me-2">$74.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
-                                <a href="fan-card-detail.html?id=beyonce" class="btn btn-primary btn-sm">Get Card</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- LeBron James -->
-                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="athlete" data-name="lebron james">
-                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.2s">
-                        <div class="place-img">
-                            <a href="fan-card-detail.html?id=lebron-james">
-                                <img src="assets/img/fan-cards/lebron-james.jpg" class="img-fluid" alt="LeBron James" onerror="this.src='assets/img/icons/icon-05.png'">
-                            </a>
-                            <div class="fav-item">
-                                <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-verify me-1"></i>Verified</span>
-                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
-                            </div>
-                        </div>
-                        <div class="place-content">
-                            <div class="d-flex align-items-center mb-1">
-                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.8</span>
-                                <p class="fs-14">(3.2M Fans)</p>
-                            </div>
-                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=lebron-james">LeBron James</a></h5>
-                            <p class="d-flex align-items-center mb-2"><i class="isax isax-cup me-2 text-primary"></i>Basketball Legend</p>
-                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                                <h5 class="text-primary text-nowrap me-2">$59.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
-                                <a href="fan-card-detail.html?id=lebron-james" class="btn btn-primary btn-sm">Get Card</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ariana Grande -->
-                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="musician" data-name="ariana grande">
-                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="place-img">
-                            <a href="fan-card-detail.html?id=ariana-grande">
-                                <img src="assets/img/fan-cards/ariana-grande.jpg" class="img-fluid" alt="Ariana Grande" onerror="this.src='assets/img/icons/icon-06.png'">
-                            </a>
-                            <div class="fav-item">
-                                <span class="badge bg-warning d-inline-flex align-items-center"><i class="isax isax-medal-star me-1"></i>Popular</span>
-                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
-                            </div>
-                        </div>
-                        <div class="place-content">
-                            <div class="d-flex align-items-center mb-1">
-                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.9</span>
-                                <p class="fs-14">(5.5M Fans)</p>
-                            </div>
-                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=ariana-grande">Ariana Grande</a></h5>
-                            <p class="d-flex align-items-center mb-2"><i class="isax isax-music me-2 text-primary"></i>Pop Sensation</p>
-                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                                <h5 class="text-primary text-nowrap me-2">$64.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
-                                <a href="fan-card-detail.html?id=ariana-grande" class="btn btn-primary btn-sm">Get Card</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Chris Hemsworth -->
-                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="actor" data-name="chris hemsworth">
-                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.4s">
-                        <div class="place-img">
-                            <a href="fan-card-detail.html?id=chris-hemsworth">
-                                <img src="assets/img/fan-cards/chris-hemsworth.jpg" class="img-fluid" alt="Chris Hemsworth" onerror="this.src='assets/img/icons/icon-01.png'">
-                            </a>
-                            <div class="fav-item">
-                                <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-verify me-1"></i>Verified</span>
-                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
-                            </div>
-                        </div>
-                        <div class="place-content">
-                            <div class="d-flex align-items-center mb-1">
-                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.7</span>
-                                <p class="fs-14">(2.1M Fans)</p>
-                            </div>
-                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=chris-hemsworth">Chris Hemsworth</a></h5>
-                            <p class="d-flex align-items-center mb-2"><i class="isax isax-video-play me-2 text-primary"></i>Hollywood Star</p>
-                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                                <h5 class="text-primary text-nowrap me-2">$54.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
-                                <a href="fan-card-detail.html?id=chris-hemsworth" class="btn btn-primary btn-sm">Get Card</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Dwayne Johnson -->
-                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="actor" data-name="dwayne johnson">
-                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="place-img">
-                            <a href="fan-card-detail.html?id=dwayne-johnson">
-                                <img src="assets/img/fan-cards/dwayne-johnson.jpg" class="img-fluid" alt="Dwayne Johnson" onerror="this.src='assets/img/icons/icon-02.png'">
-                            </a>
-                            <div class="fav-item">
-                                <span class="badge bg-warning d-inline-flex align-items-center"><i class="isax isax-medal-star me-1"></i>Popular</span>
-                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
-                            </div>
-                        </div>
-                        <div class="place-content">
-                            <div class="d-flex align-items-center mb-1">
-                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.9</span>
-                                <p class="fs-14">(6.8M Fans)</p>
-                            </div>
-                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=dwayne-johnson">Dwayne Johnson</a></h5>
-                            <p class="d-flex align-items-center mb-2"><i class="isax isax-video-play me-2 text-primary"></i>The Rock</p>
-                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                                <h5 class="text-primary text-nowrap me-2">$49.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
-                                <a href="fan-card-detail.html?id=dwayne-johnson" class="btn btn-primary btn-sm">Get Card</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Cristiano Ronaldo -->
-                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="athlete" data-name="cristiano ronaldo">
-                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.2s">
-                        <div class="place-img">
-                            <a href="fan-card-detail.html?id=cristiano-ronaldo">
-                                <img src="assets/img/fan-cards/cristiano-ronaldo.jpg" class="img-fluid" alt="Cristiano Ronaldo" onerror="this.src='assets/img/icons/icon-03.png'">
-                            </a>
-                            <div class="fav-item">
-                                <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-verify me-1"></i>Verified</span>
-                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
-                            </div>
-                        </div>
-                        <div class="place-content">
-                            <div class="d-flex align-items-center mb-1">
-                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.9</span>
-                                <p class="fs-14">(7.5M Fans)</p>
-                            </div>
-                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=cristiano-ronaldo">Cristiano Ronaldo</a></h5>
-                            <p class="d-flex align-items-center mb-2"><i class="isax isax-cup me-2 text-primary"></i>Football Legend</p>
-                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                                <h5 class="text-primary text-nowrap me-2">$69.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
-                                <a href="fan-card-detail.html?id=cristiano-ronaldo" class="btn btn-primary btn-sm">Get Card</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Rihanna -->
-                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="musician" data-name="rihanna">
-                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="place-img">
-                            <a href="fan-card-detail.html?id=rihanna">
-                                <img src="assets/img/fan-cards/rihanna.jpg" class="img-fluid" alt="Rihanna" onerror="this.src='assets/img/icons/icon-04.png'">
-                            </a>
-                            <div class="fav-item">
-                                <span class="badge bg-warning d-inline-flex align-items-center"><i class="isax isax-medal-star me-1"></i>Popular</span>
-                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
-                            </div>
-                        </div>
-                        <div class="place-content">
-                            <div class="d-flex align-items-center mb-1">
-                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.8</span>
-                                <p class="fs-14">(4.2M Fans)</p>
-                            </div>
-                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=rihanna">Rihanna</a></h5>
-                            <p class="d-flex align-items-center mb-2"><i class="isax isax-music me-2 text-primary"></i>Music Icon</p>
-                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                                <h5 class="text-primary text-nowrap me-2">$74.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
-                                <a href="fan-card-detail.html?id=rihanna" class="btn btn-primary btn-sm">Get Card</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Lionel Messi -->
-                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="athlete" data-name="lionel messi">
-                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.4s">
-                        <div class="place-img">
-                            <a href="fan-card-detail.html?id=lionel-messi">
-                                <img src="assets/img/fan-cards/lionel-messi.jpg" class="img-fluid" alt="Lionel Messi" onerror="this.src='assets/img/icons/icon-05.png'">
-                            </a>
-                            <div class="fav-item">
-                                <span class="badge bg-warning d-inline-flex align-items-center"><i class="isax isax-medal-star me-1"></i>Popular</span>
-                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
-                            </div>
-                        </div>
-                        <div class="place-content">
-                            <div class="d-flex align-items-center mb-1">
-                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">5.0</span>
-                                <p class="fs-14">(9.1M Fans)</p>
-                            </div>
-                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=lionel-messi">Lionel Messi</a></h5>
-                            <p class="d-flex align-items-center mb-2"><i class="isax isax-cup me-2 text-primary"></i>World Cup Champion</p>
-                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                                <h5 class="text-primary text-nowrap me-2">$79.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
-                                <a href="fan-card-detail.html?id=lionel-messi" class="btn btn-primary btn-sm">Get Card</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Zendaya -->
-                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="actor" data-name="zendaya">
-                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="place-img">
-                            <a href="fan-card-detail.html?id=zendaya">
-                                <img src="assets/img/fan-cards/zendaya.jpg" class="img-fluid" alt="Zendaya" onerror="this.src='assets/img/icons/icon-06.png'">
-                            </a>
-                            <div class="fav-item">
-                                <span class="badge bg-warning d-inline-flex align-items-center"><i class="isax isax-medal-star me-1"></i>Popular</span>
-                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
-                            </div>
-                        </div>
-                        <div class="place-content">
-                            <div class="d-flex align-items-center mb-1">
-                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.9</span>
-                                <p class="fs-14">(3.8M Fans)</p>
-                            </div>
-                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=zendaya">Zendaya</a></h5>
-                            <p class="d-flex align-items-center mb-2"><i class="isax isax-video-play me-2 text-primary"></i>Emmy-Winning Actress</p>
-                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                                <h5 class="text-primary text-nowrap me-2">$64.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
-                                <a href="fan-card-detail.html?id=zendaya" class="btn btn-primary btn-sm">Get Card</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bad Bunny -->
-                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="musician" data-name="bad bunny">
-                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.2s">
-                        <div class="place-img">
-                            <a href="fan-card-detail.html?id=bad-bunny">
-                                <img src="assets/img/fan-cards/bad-bunny.jpg" class="img-fluid" alt="Bad Bunny" onerror="this.src='assets/img/icons/icon-01.png'">
-                            </a>
-                            <div class="fav-item">
-                                <span class="badge bg-warning d-inline-flex align-items-center"><i class="isax isax-medal-star me-1"></i>Popular</span>
-                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
-                            </div>
-                        </div>
-                        <div class="place-content">
-                            <div class="d-flex align-items-center mb-1">
-                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.8</span>
-                                <p class="fs-14">(4.5M Fans)</p>
-                            </div>
-                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=bad-bunny">Bad Bunny</a></h5>
-                            <p class="d-flex align-items-center mb-2"><i class="isax isax-music me-2 text-primary"></i>Latin Superstar</p>
-                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                                <h5 class="text-primary text-nowrap me-2">$69.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
-                                <a href="fan-card-detail.html?id=bad-bunny" class="btn btn-primary btn-sm">Get Card</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Kevin Hart -->
-                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="actor" data-name="kevin hart">
-                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="place-img">
-                            <a href="fan-card-detail.html?id=kevin-hart">
-                                <img src="assets/img/fan-cards/kevin-hart.jpg" class="img-fluid" alt="Kevin Hart" onerror="this.src='assets/img/icons/icon-02.png'">
-                            </a>
-                            <div class="fav-item">
-                                <span class="badge bg-info d-inline-flex align-items-center"><i class="isax isax-verify me-1"></i>Verified</span>
-                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
-                            </div>
-                        </div>
-                        <div class="place-content">
-                            <div class="d-flex align-items-center mb-1">
-                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.7</span>
-                                <p class="fs-14">(2.9M Fans)</p>
-                            </div>
-                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=kevin-hart">Kevin Hart</a></h5>
-                            <p class="d-flex align-items-center mb-2"><i class="isax isax-video-play me-2 text-primary"></i>Comedian & Actor</p>
-                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                                <h5 class="text-primary text-nowrap me-2">$49.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
-                                <a href="fan-card-detail.html?id=kevin-hart" class="btn btn-primary btn-sm">Get Card</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Kim Kardashian -->
-                <div class="col-xl-3 col-lg-4 col-md-6 d-flex celebrity-item" data-category="influencer" data-name="kim kardashian">
-                    <div class="place-item mb-4 flex-fill wow fadeInUp" data-wow-delay="0.4s">
-                        <div class="place-img">
-                            <a href="fan-card-detail.html?id=kim-kardashian">
-                                <img src="assets/img/fan-cards/kim-kardashian.jpg" class="img-fluid" alt="Kim Kardashian" onerror="this.src='assets/img/icons/icon-03.png'">
-                            </a>
-                            <div class="fav-item">
-                                <span class="badge bg-warning d-inline-flex align-items-center"><i class="isax isax-medal-star me-1"></i>Popular</span>
-                                <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>
-                            </div>
-                        </div>
-                        <div class="place-content">
-                            <div class="d-flex align-items-center mb-1">
-                                <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">4.6</span>
-                                <p class="fs-14">(5.2M Fans)</p>
-                            </div>
-                            <h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=kim-kardashian">Kim Kardashian</a></h5>
-                            <p class="d-flex align-items-center mb-2"><i class="isax isax-star me-2 text-primary"></i>Media Mogul</p>
-                            <div class="d-flex align-items-center justify-content-between border-top pt-3">
-                                <h5 class="text-primary text-nowrap me-2">$69.99 <span class="fs-14 fw-normal text-default">/ yr</span></h5>
-                                <a href="fan-card-detail.html?id=kim-kardashian" class="btn btn-primary btn-sm">Get Card</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Celebrity Cards Grid -->
+            <div class="row" id="celebrities-container">
+                <!-- Cards populated by JavaScript -->
             </div>
-            <!-- /More Celebrities -->
 
-            <!-- How It Works Section -->
+            <!-- How It Works -->
             <div class="row mt-5">
-                <div class="col-lg-12">
+                <div class="col-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="text-center mb-4">
                                 <h3>How Celebrity Fan Cards Work</h3>
-                                <p class="text-gray-6">Get official recognition as a verified fan of your favorite celebrity</p>
+                                <p class="text-muted">Get official recognition as a verified fan</p>
                             </div>
                             <div class="row">
-                                <div class="col-md-3 mb-3">
+                                <div class="col-md-3 col-6 mb-3">
                                     <div class="text-center">
-                                        <span class="avatar avatar-xl bg-primary mb-3">
-                                            <i class="isax isax-user-search fs-32"></i>
-                                        </span>
-                                        <h5>Choose Celebrity</h5>
-                                        <p class="text-gray-6">Browse and select your favorite celebrity from our collection</p>
+                                        <span class="avatar avatar-xl bg-primary mb-3"><i class="isax isax-user-search fs-32"></i></span>
+                                        <h6>Choose Celebrity</h6>
+                                        <p class="text-muted fs-14">Browse and select your favorite celebrity</p>
                                     </div>
                                 </div>
-                                <div class="col-md-3 mb-3">
+                                <div class="col-md-3 col-6 mb-3">
                                     <div class="text-center">
-                                        <span class="avatar avatar-xl bg-secondary mb-3">
-                                            <i class="isax isax-shopping-cart fs-32 text-gray-9"></i>
-                                        </span>
-                                        <h5>Purchase Card</h5>
-                                        <p class="text-gray-6">Complete secure payment and create your fan profile</p>
+                                        <span class="avatar avatar-xl bg-secondary mb-3"><i class="isax isax-shopping-cart fs-32 text-gray-9"></i></span>
+                                        <h6>Purchase Card</h6>
+                                        <p class="text-muted fs-14">Complete secure payment</p>
                                     </div>
                                 </div>
-                                <div class="col-md-3 mb-3">
+                                <div class="col-md-3 col-6 mb-3">
                                     <div class="text-center">
-                                        <span class="avatar avatar-xl bg-info mb-3">
-                                            <i class="isax isax-card fs-32"></i>
-                                        </span>
-                                        <h5>Get Digital ID</h5>
-                                        <p class="text-gray-6">Receive your official digital fan identification card instantly</p>
+                                        <span class="avatar avatar-xl bg-info mb-3"><i class="isax isax-card fs-32"></i></span>
+                                        <h6>Get Digital ID</h6>
+                                        <p class="text-muted fs-14">Receive your official fan card</p>
                                     </div>
                                 </div>
-                                <div class="col-md-3 mb-3">
+                                <div class="col-md-3 col-6 mb-3">
                                     <div class="text-center">
-                                        <span class="avatar avatar-xl bg-success mb-3">
-                                            <i class="isax isax-star-1 fs-32"></i>
-                                        </span>
-                                        <h5>Enjoy Benefits</h5>
-                                        <p class="text-gray-6">Access exclusive content, events, and fan community perks</p>
+                                        <span class="avatar avatar-xl bg-success mb-3"><i class="isax isax-star-1 fs-32"></i></span>
+                                        <h6>Enjoy Benefits</h6>
+                                        <p class="text-muted fs-14">Access exclusive content</p>
                                     </div>
                                 </div>
                             </div>
@@ -796,514 +248,145 @@
                     </div>
                 </div>
             </div>
-            <!-- /How It Works Section -->
-
-            <!-- Benefits Section -->
-            <div class="row mt-4">
-                <div class="col-lg-12">
-                    <div class="card bg-light-400">
-                        <div class="card-body">
-                            <div class="text-center mb-4">
-                                <h3>Fan Card Benefits</h3>
-                                <p class="text-gray-6">Connect with your favorite celebrities like never before</p>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4 mb-3">
-                                    <div class="d-flex align-items-start">
-                                        <i class="isax isax-verify fs-24 text-primary me-3 mt-1"></i>
-                                        <div>
-                                            <h6>Verified Fan Status</h6>
-                                            <p class="text-gray-6 mb-0">Official recognition as an authentic supporter with digital credentials</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="d-flex align-items-start">
-                                        <i class="isax isax-video-play fs-24 text-primary me-3 mt-1"></i>
-                                        <div>
-                                            <h6>Exclusive Content</h6>
-                                            <p class="text-gray-6 mb-0">Behind-the-scenes videos, photos, and messages from celebrities</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="d-flex align-items-start">
-                                        <i class="isax isax-ticket fs-24 text-primary me-3 mt-1"></i>
-                                        <div>
-                                            <h6>Event Priority</h6>
-                                            <p class="text-gray-6 mb-0">Pre-sale tickets, meet & greets, and VIP event access</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="d-flex align-items-start">
-                                        <i class="isax isax-messages-3 fs-24 text-primary me-3 mt-1"></i>
-                                        <div>
-                                            <h6>Fan Community</h6>
-                                            <p class="text-gray-6 mb-0">Connect with fellow fans in official community forums and chats</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="d-flex align-items-start">
-                                        <i class="isax isax-gift fs-24 text-primary me-3 mt-1"></i>
-                                        <div>
-                                            <h6>Merchandise Discounts</h6>
-                                            <p class="text-gray-6 mb-0">Special pricing on official celebrity merchandise and products</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="d-flex align-items-start">
-                                        <i class="isax isax-notification-bing fs-24 text-primary me-3 mt-1"></i>
-                                        <div>
-                                            <h6>First to Know</h6>
-                                            <p class="text-gray-6 mb-0">Get notified about new releases, tours, and announcements first</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /Benefits Section -->
-
-            <!-- FAQ Section -->
-            <div class="row mt-5">
-                <div class="col-lg-8 mx-auto">
-                    <div class="text-center mb-4">
-                        <h3>Frequently Asked Questions</h3>
-                    </div>
-                    <div class="accordion" id="fanCardFaq">
-                        <div class="accordion-item mb-3">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                                    Is this the official fan card for celebrities?
-                                </button>
-                            </h2>
-                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#fanCardFaq">
-                                <div class="accordion-body">
-                                    Yes! All our fan cards are officially licensed and authorized by the celebrities or their management teams. You'll receive an authentic digital identification card with unique verification features.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item mb-3">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-                                    What do I get with my fan card?
-                                </button>
-                            </h2>
-                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#fanCardFaq">
-                                <div class="accordion-body">
-                                    Your fan card includes: official digital ID with your name and unique number, verified fan status, access to exclusive content, priority event tickets, fan community membership, merchandise discounts, and special newsletters directly from your celebrity's team.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item mb-3">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-                                    Can I purchase cards for multiple celebrities?
-                                </button>
-                            </h2>
-                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#fanCardFaq">
-                                <div class="accordion-body">
-                                    Absolutely! You can purchase fan cards for as many celebrities as you like. Each card is individually managed with its own benefits and membership perks. We offer bundle discounts for purchasing multiple cards.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item mb-3">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
-                                    How long is my fan card valid?
-                                </button>
-                            </h2>
-                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#fanCardFaq">
-                                <div class="accordion-body">
-                                    Fan cards are valid for one year from the date of purchase. You'll receive a renewal reminder 30 days before expiration. Early renewal often comes with special bonuses and loyalty rewards.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item mb-3">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
-                                    Will I get a physical card?
-                                </button>
-                            </h2>
-                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#fanCardFaq">
-                                <div class="accordion-body">
-                                    Your fan card is primarily digital for instant access and eco-friendly reasons. However, premium members can order an optional physical collectible card for an additional fee. The physical card features your photo, unique ID number, and celebrity branding.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
-                                    Can I gift a fan card to someone?
-                                </button>
-                            </h2>
-                            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#fanCardFaq">
-                                <div class="accordion-body">
-                                    Yes! Fan cards make perfect gifts. During checkout, select the gift option and provide the recipient's details. They'll receive a special gift notification email with instructions to claim and activate their fan card.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /FAQ Section -->
 
         </div>
     </div>
-    <!-- /Page Wrapper -->
 
-    <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-top">
-                <div class="row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-1">
-                    <div class="col">
-                        <div class="footer-widget">
-                            <h5>Pages</h5>
-                            <ul class="footer-menu">
-                                <li>
-                                    <a href="team.html">Our Team</a>
-                                </li>
-                                <li>
-                                    <a href="pricing-plan.html">Pricing Plans</a>
-                                </li>
-                                <li>
-                                    <a href="gallery.html">Gallery</a>
-                                </li>
-                                <li>
-                                    <a href="profile-settings.html">Settings</a>
-                                </li>
-                                <li>
-                                    <a href="my-profile.html">Profile</a>
-                                </li>
-                                <li>
-                                    <a href="agent-listings.html">Listings</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="footer-widget">
-                            <h5>Company</h5>
-                            <ul class="footer-menu">
-                                <li>
-                                    <a href="about-us.html">About Us</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">Careers</a>
-                                </li>
-                                <li>
-                                    <a href="blog-grid.html">Blog</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">Affiliate Program</a>
-                                </li>
-                                <li>
-                                    <a href="add-flight.html">Add Your Listing</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">Our Partners</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="footer-widget">
-                            <h5>Destinations</h5>
-                            <ul class="footer-menu">
-                                <li>
-                                    <a href="javascript:void(0);">Hawai</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">Istanbul</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">San Diego</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">Belgium</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">Los Angeles</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">Newyork</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="footer-widget">
-                            <h5>Support</h5>
-                            <ul class="footer-menu">
-                                <li>
-                                    <a href="contact-us.html">Contact Us</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">Legal Notice</a>
-                                </li>
-                                <li>
-                                    <a href="privacy-policy.html">Privacy Policy</a>
-                                </li>
-                                <li>
-                                    <a href="terms-conditions.html">Terms and Conditions</a>
-                                </li>
-                                <li>
-                                    <a href="chat.html">Chat Support</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">Refund Policy</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="footer-widget">
-                            <h5>Services</h5>
-                            <ul class="footer-menu">
-                                <li>
-                                    <a href="hotel-grid.html">Hotel</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">Activity Finder</a>
-                                </li>
-                                <li>
-                                    <a href="flight-grid.html">Flight Finder</a>
-                                </li>
-                                <li>
-                                    <a href="tour-grid.html">Holiday Rental</a>
-                                </li>
-                                <li>
-                                    <a href="car-grid.html">Car Rental</a>
-                                </li>
-                                <li>
-                                    <a href="tour-details.html">Holiday Packages</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-wrap bg-white">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6 col-xl-3 col-xxl-3">
-                            <div class="mb-3 text-center text-xl-start">
-                                <a href="index.html" class="d-block footer-logo-light">
-                                    <img src="assets/img/logo-dark.svg" alt="logo">
-                                </a>
-                                <a href="index.html" class="footer-logo-dark">
-                                    <img src="assets/img/logo.svg" alt="logo">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-xl-4 col-xxl-4">
-                            <div class="d-flex align-items-center justify-content-center flex-wrap">
-                                <h6 class="fs-14 fw-medium me-2 mb-2">Available on : </h6>
-                                <a href="javascript:void(0);" class="d-block mb-3 me-2">
-                                    <img src="assets/img/icons/googleplay.svg" alt="logo">
-                                </a>
-                                <a href="javascript:void(0);" class="d-block mb-3">
-                                    <img src="assets/img/icons/appstore.svg" alt="logo">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 col-xl-5 col-xxl-5">
-                            <div class="d-sm-flex align-items-center justify-content-center justify-content-xl-end">
-                                <div class="d-flex align-items-center justify-content-center justify-content-sm-start me-0 pe-0 me-sm-3 pe-sm-3 border-end mb-3">
-                                    <span class="avatar avatar-lg bg-primary rounded-circle flex-shrink-0">
-										<i class="ti ti-headphones-filled fs-24"></i>
-									</span>
-                                    <div class="ms-2">
-                                        <p class="mb-1">Customer Support</p>
-                                        <p class="fw-medium text-dark">+1 56589 54598</p>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center justify-content-sm-start mb-3">
-                                    <span class="avatar avatar-lg bg-secondary rounded-circle flex-shrink-0">
-										<i class="ti ti-message fs-24 text-gray-9"></i>
-									</span>
-                                    <div class="ms-2">
-                                        <p class="mb-1">Drop Us an Email</p>
-                                        <p class="fw-medium text-dark"><a href="https://dreamstour.dreamstechnologies.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3851565e57785d40595548545d165b5755">[email&#160;protected]</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-img">
-                    <img src="assets/img/bg/footer.svg" class="img-fluid" alt="img">
-                </div>
-            </div>
-        </div>
-        <!-- Footer Bottom -->
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="d-flex align-items-center justify-content-between flex-wrap">
-                            <p class="fs-14">Copyright &copy; 2025. All Rights Reserved, <a href="javascript:void(0);" class="text-primary fw-medium">DreamsTour</a></p>
-                            <div class="d-flex align-items-center">
-                                <ul class="social-icon">
-                                    <li>
-                                        <a href="javascript:void(0);"><i class="fa-brands fa-facebook"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);"><i class="fa-brands fa-x-twitter"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);"><i class="fa-brands fa-instagram"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);"><i class="fa-brands fa-linkedin"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);"><i class="fa-brands fa-pinterest"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <ul class="card-links">
-                                <li>
-                                    <a href="javascript:void(0);">
-                                        <img src="assets/img/icons/card-01.svg" alt="img">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">
-                                        <img src="assets/img/icons/card-02.svg" alt="img">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">
-                                        <img src="assets/img/icons/card-03.svg" alt="img">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">
-                                        <img src="assets/img/icons/card-04.svg" alt="img">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">
-                                        <img src="assets/img/icons/card-05.svg" alt="img">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">
-                                        <img src="assets/img/icons/card-06.svg" alt="img">
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-md-12 text-center">
+                        <p class="mb-0">© 2024 DreamsTour. All Rights Reserved.</p>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /Footer Bottom -->
-
     </footer>
-    <!-- /Footer -->
 
-    <!-- Cursor -->
-    <div class="xb-cursor tx-js-cursor">
-        <div class="xb-cursor-wrapper">
-            <div class="xb-cursor--follower xb-js-follower"></div>
-        </div>
-    </div>
-    <!-- /Cursor -->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/meanmenu.js"></script>
+    <script src="assets/js/script.js"></script>
 
-    <div class="back-to-top">
-		<a class="back-to-top-icon align-items-center justify-content-center d-flex"  href="#top"><i class="fa-solid fa-arrow-up"></i></a>
-	</div>
-
-    <!-- Jquery JS -->
-    <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-3.7.1.min.js" type="97603d7a557bac6bae03a9b7-text/javascript"></script>
-
-    <!-- Bootstrap JS -->
-    <script src="assets/js/bootstrap.bundle.min.js" type="97603d7a557bac6bae03a9b7-text/javascript"></script>
-
-    <!-- Wow JS -->
-    <script src="assets/js/wow.min.js" type="97603d7a557bac6bae03a9b7-text/javascript"></script>
-
-    <!-- MeanMenu Js -->
-    <script src="assets/js/jquery.meanmenu.min.js" type="97603d7a557bac6bae03a9b7-text/javascript"></script>
-
-    <!-- FancyBox JS -->
-    <script src="assets/plugins/fancybox/jquery.fancybox.min.js" type="97603d7a557bac6bae03a9b7-text/javascript"></script>
-
-    <!-- Owlcarousel Js -->
-    <script src="assets/plugins/owlcarousel/owl.carousel.min.js" type="97603d7a557bac6bae03a9b7-text/javascript"></script>
-
-    <!-- Sticky Sidebar JS -->
-    <script src="assets/plugins/theia-sticky-sidebar/ResizeSensor.js" type="97603d7a557bac6bae03a9b7-text/javascript"></script>
-    <script src="assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js" type="97603d7a557bac6bae03a9b7-text/javascript"></script>
-
-    <!-- Rangeslider JS -->
-    <script src="assets/plugins/ion-rangeslider/js/ion.rangeSlider.js" type="97603d7a557bac6bae03a9b7-text/javascript"></script>
-    <script src="assets/plugins/ion-rangeslider/js/custom-rangeslider.js" type="97603d7a557bac6bae03a9b7-text/javascript"></script>
-    <script src="assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js" type="97603d7a557bac6bae03a9b7-text/javascript"></script>
-
-    <!-- Datepicker Core JS -->
-    <script src="assets/plugins/moment/moment.js" type="97603d7a557bac6bae03a9b7-text/javascript"></script>
-    <script src="assets/js/bootstrap-datetimepicker.min.js" type="97603d7a557bac6bae03a9b7-text/javascript"></script>
-
-    <!-- cursor JS -->
-    <script src="assets/js/cursor.js" type="97603d7a557bac6bae03a9b7-text/javascript"></script>
-
-    <!-- Script JS -->
-    <script src="assets/js/script.js" type="97603d7a557bac6bae03a9b7-text/javascript"></script>
-
-    <!-- Search and Filter Script -->
     <script>
+        const celebrities = [
+            { id: "elon-musk", name: "Elon Musk", category: "influencer", title: "Tech Visionary", price: 49.99, rating: 4.9, fans: "12.5M", badge: "Most Popular", badgeClass: "bg-danger", image: "assets/img/tours/tours-01.jpg" },
+            { id: "taylor-swift", name: "Taylor Swift", category: "musician", title: "Global Music Sensation", price: 79.99, rating: 4.9, fans: "8.2M", badge: "Verified", badgeClass: "bg-success", image: "assets/img/tours/tours-03.jpg" },
+            { id: "lionel-messi", name: "Lionel Messi", category: "athlete", title: "World Cup Champion", price: 79.99, rating: 5.0, fans: "9.1M", badge: "Popular", badgeClass: "bg-info", image: "assets/img/tours/tours-04.jpg" },
+            { id: "beyonce", name: "Beyoncé", category: "musician", title: "Queen of Pop", price: 74.99, rating: 4.9, fans: "4.8M", badge: "Verified", badgeClass: "bg-success", image: "assets/img/tours/tours-05.jpg" },
+            { id: "cristiano-ronaldo", name: "Cristiano Ronaldo", category: "athlete", title: "Football Legend", price: 69.99, rating: 4.9, fans: "7.5M", badge: "Verified", badgeClass: "bg-success", image: "assets/img/tours/tours-06.jpg" },
+            { id: "ariana-grande", name: "Ariana Grande", category: "musician", title: "Pop Sensation", price: 64.99, rating: 4.9, fans: "5.5M", badge: "Popular", badgeClass: "bg-info", image: "assets/img/hotels/hotel-01.jpg" },
+            { id: "dwayne-johnson", name: "Dwayne Johnson", category: "actor", title: "The Rock", price: 49.99, rating: 4.9, fans: "6.8M", badge: "Popular", badgeClass: "bg-info", image: "assets/img/hotels/hotel-02.jpg" },
+            { id: "lebron-james", name: "LeBron James", category: "athlete", title: "Basketball Legend", price: 59.99, rating: 4.8, fans: "3.2M", badge: "Verified", badgeClass: "bg-success", image: "assets/img/hotels/hotel-03.jpg" },
+            { id: "rihanna", name: "Rihanna", category: "musician", title: "Music Icon", price: 74.99, rating: 4.8, fans: "4.2M", badge: "Popular", badgeClass: "bg-info", image: "assets/img/hotels/hotel-04.jpg" },
+            { id: "chris-hemsworth", name: "Chris Hemsworth", category: "actor", title: "Hollywood Star", price: 54.99, rating: 4.7, fans: "2.1M", badge: "Verified", badgeClass: "bg-success", image: "assets/img/hotels/hotel-05.jpg" },
+            { id: "zendaya", name: "Zendaya", category: "actor", title: "Emmy Winner", price: 64.99, rating: 4.9, fans: "3.8M", badge: "Popular", badgeClass: "bg-info", image: "assets/img/hotels/hotel-06.jpg" },
+            { id: "bad-bunny", name: "Bad Bunny", category: "musician", title: "Latin Superstar", price: 69.99, rating: 4.8, fans: "4.5M", badge: "Popular", badgeClass: "bg-info", image: "assets/img/hotels/hotel-07.jpg" },
+            { id: "kim-kardashian", name: "Kim Kardashian", category: "influencer", title: "Media Mogul", price: 69.99, rating: 4.6, fans: "5.2M", badge: "Popular", badgeClass: "bg-info", image: "assets/img/cruise/cruise-01.jpg" },
+            { id: "kevin-hart", name: "Kevin Hart", category: "actor", title: "Comedian & Actor", price: 49.99, rating: 4.7, fans: "2.9M", badge: "Verified", badgeClass: "bg-success", image: "assets/img/cruise/cruise-02.jpg" },
+            { id: "drake", name: "Drake", category: "musician", title: "Hip-Hop King", price: 69.99, rating: 4.8, fans: "5.1M", badge: "Verified", badgeClass: "bg-success", image: "assets/img/tours/tours-02.jpg" },
+            { id: "serena-williams", name: "Serena Williams", category: "athlete", title: "Tennis Legend", price: 59.99, rating: 4.9, fans: "2.8M", badge: "Verified", badgeClass: "bg-success", image: "assets/img/cruise/cruise-03.jpg" }
+        ];
+
+        function renderCelebrities(filter, search) {
+            filter = filter || 'all';
+            search = search || '';
+            var container = document.getElementById('celebrities-container');
+            var filtered = celebrities.filter(function(c) {
+                var matchCategory = filter === 'all' || c.category === filter;
+                var matchSearch = c.name.toLowerCase().indexOf(search.toLowerCase()) > -1;
+                return matchCategory && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="col-12 text-center py-5"><h5 class="text-muted">No celebrities found</h5></div>';
+                return;
+            }
+
+            var html = '';
+            for (var i = 0; i < filtered.length; i++) {
+                var c = filtered[i];
+                html += '<div class="place-item fan-card-item">' +
+                        '<div class="place-img">' +
+                            '<a href="fan-card-detail.html?id=' + c.id + '"></a>' +
+                            '<div class="fav-item">' +
+                                '<span class="badge ' + c.badgeClass + ' badge-sm">' +
+                                    '<i class="isax isax-verify me-1"></i>' + c.badge +
+                                '</span>' +
+                                '<a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5"></i></a>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="place-content">' +
+                            '<div class="d-flex align-items-center mb-1">' +
+                                '<span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">' + c.rating + '</span>' +
+                                '<p class="fs-14">(' + c.fans + ' Fans)</p>' +
+                            '</div>' +
+                            '<h5 class="mb-1 text-truncate"><a href="fan-card-detail.html?id=' + c.id + '">' + c.name + '</a></h5>' +
+                            '<p class="d-flex align-items-center mb-2"><i class="isax isax-star me-2"></i>' + c.title + '</p>' +
+                            '<div class="d-flex align-items-center justify-content-between border-top pt-3">' +
+                                '<h5 class="text-primary text-nowrap me-2">$' + c.price + ' <span class="fs-14 fw-normal text-default">/ year</span></h5>' +
+                                '<a href="fan-card-detail.html?id=' + c.id + '" class="btn btn-primary btn-sm">Get Card</a>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
+            }
+            container.innerHTML = html;
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('celebrity-search');
-            const searchBtn = document.getElementById('search-btn');
-            const filterBtns = document.querySelectorAll('#category-filter .nav-link');
-            const celebrityItems = document.querySelectorAll('.celebrity-item');
-            
-            // Search functionality
-            function performSearch() {
-                const searchTerm = searchInput.value.toLowerCase().trim();
-                const activeFilter = document.querySelector('#category-filter .nav-link.active');
-                const activeCategory = activeFilter ? activeFilter.dataset.category : 'all';
-                
-                celebrityItems.forEach(item => {
-                    const name = item.dataset.name.toLowerCase();
-                    const category = item.dataset.category;
-                    const matchesSearch = name.includes(searchTerm);
-                    const matchesCategory = activeCategory === 'all' || category === activeCategory;
+            renderCelebrities('all', '');
+
+            // Search input
+            document.getElementById('celebrity-search').addEventListener('input', function() {
+                var search = this.value;
+                var filter = document.getElementById('category-select').getAttribute('data-value');
+                renderCelebrities(filter, search);
+            });
+
+            // Custom select functionality
+            var customSelect = document.getElementById('category-select');
+            var customOptions = document.getElementById('category-options');
+
+            customSelect.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('open');
+                customOptions.classList.toggle('show');
+            });
+
+            var options = customOptions.querySelectorAll('.custom-select-option');
+            for (var i = 0; i < options.length; i++) {
+                options[i].addEventListener('click', function() {
+                    var value = this.getAttribute('data-value');
+                    var text = this.textContent;
                     
-                    if (matchesSearch && matchesCategory) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
+                    // Update selection
+                    customSelect.textContent = text;
+                    customSelect.setAttribute('data-value', value);
+                    
+                    // Update selected class
+                    for (var j = 0; j < options.length; j++) {
+                        options[j].classList.remove('selected');
                     }
+                    this.classList.add('selected');
+                    
+                    // Close dropdown
+                    customSelect.classList.remove('open');
+                    customOptions.classList.remove('show');
+                    
+                    // Filter
+                    var search = document.getElementById('celebrity-search').value;
+                    renderCelebrities(value, search);
                 });
             }
-            
-            searchBtn.addEventListener('click', performSearch);
-            searchInput.addEventListener('keyup', function(e) {
-                if (e.key === 'Enter') performSearch();
-                else performSearch();
-            });
-            
-            // Filter functionality
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    performSearch();
-                });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function() {
+                customSelect.classList.remove('open');
+                customOptions.classList.remove('show');
             });
         });
     </script>
 
-<script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="97603d7a557bac6bae03a9b7-|49" defer></script></body>
-
-
-<!-- Mirrored from dreamstour.dreamstechnologies.com/html/fan-card.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 23 Dec 2024 10:50:48 GMT -->
+</body>
 </html>
