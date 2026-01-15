@@ -142,21 +142,39 @@
                                     <div class="offcanvas-close"><i class="ti ti-x"></i></div>
                                 </div>
                             </div>
-                            <ul class="mobile-nav-menu">
+                                                        <!-- Logged Out Menu -->
+                            <ul class="mobile-nav-menu" id="mobileMenuLoggedOut">
                                 <li><a href="index.html"><i class="isax isax-home-2"></i>Home</a></li>
                                 <li><a href="flight-grid.html"><i class="isax isax-airplane"></i>Flight</a></li>
                                 <li><a href="hotel-grid.html"><i class="isax isax-building-4"></i>Hotel</a></li>
                                 <li><a href="car-grid.html"><i class="isax isax-car"></i>Car</a></li>
-                                <li class="active"><a href="cruise-grid.html"><i class="isax isax-ship"></i>Cruise</a></li>
+                                <li><a href="cruise-grid.html"><i class="isax isax-ship"></i>Cruise</a></li>
                                 <li><a href="tour-grid.html"><i class="isax isax-map"></i>Tour</a></li>
                                 <li><a href="vacation.html"><i class="isax isax-sun-1"></i>Vacation</a></li>
                                 <li><a href="fan-card.html"><i class="isax isax-card"></i>Fan Card</a></li>
                             </ul>
+                            <!-- Logged In Menu -->
+                            <ul class="mobile-nav-menu" id="mobileMenuLoggedIn" style="display: none;">
+                                <li><a href="dashboard/user-dashboard.html"><i class="isax isax-home-15"></i>Dashboard</a></li>
+                                <li><a href="dashboard/dashboard-vacations.html"><i class="isax isax-sun-1"></i>Vacations</a></li>
+                                <li><a href="dashboard/dashboard-fancard.html"><i class="isax isax-card"></i>Fan Card</a></li>
+                                <li><a href="dashboard/dashboard-hotels.html"><i class="isax isax-building-4"></i>Hotels</a></li>
+                                <li><a href="dashboard/dashboard-flights.html"><i class="isax isax-airplane"></i>Flights</a></li>
+                                <li><a href="dashboard/dashboard-cars.html"><i class="isax isax-car"></i>Cars</a></li>
+                                <li><a href="dashboard/dashboard-tours.html"><i class="isax isax-map"></i>Tours</a></li>
+                                <li><a href="dashboard/dashboard-settings.html"><i class="isax isax-setting-2"></i>Settings</a></li>
+                            </ul>
                             <div class="mt-4 pt-4 border-top">
-                                <a href="login.html" class="btn btn-outline-primary w-100 mb-2"><i class="isax isax-login me-2"></i>Sign In</a>
-                                <a href="register.html" class="btn btn-primary w-100"><i class="isax isax-user-add me-2"></i>Sign Up</a>
+                                <!-- Logged Out Buttons -->
+                                <div id="mobileActionsLoggedOut">
+                                    <a href="javascript:void(0);" class="btn btn-outline-primary w-100 mb-2" data-bs-toggle="modal" data-bs-target="#login-modal"><i class="isax isax-login me-2"></i>Sign In</a>
+                                    <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#register-modal" class="btn btn-primary w-100"><i class="isax isax-user-add me-2"></i>Sign Up</a>
+                                </div>
+                                <!-- Logged In Buttons -->
+                                <div id="mobileActionsLoggedIn" style="display: none;">
+                                    <a href="javascript:void(0);" onclick="logout()" class="btn btn-danger w-100"><i class="isax isax-logout me-2"></i>Logout</a>
+                                </div>
                             </div>
-                        </div>
                     </div>
                 </div>
                 <div class="offcanvas-overlay"></div>
@@ -191,34 +209,8 @@
                                     <i class="isax isax-sun-1"></i>
                                 </a>
                             </div>
-                            <div class="dropdown profile-dropdown">
-                                <a href="javascript:void(0);" class="d-flex align-items-center" data-bs-toggle="dropdown">
-                                    <span class="avatar avatar-md">
-										<img src="assets/img/users/user-05.jpg" alt="Img" class="img-fluid rounded-circle border border-white border-4">
-									</span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end p-3">
-                                    <li>
-                                        <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="dashboard.html">Dashboard</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="customer-hotel-booking.html">My Booking</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="my-profile.html">My Profile</a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider my-2">
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="profile-settings.html">Settings</a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="login.html">Logout</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <a href="add-cruise.html" class="btn btn-primary me-0">Add Listing</a>
+                            <div><a href="javascript:void(0);" class="btn btn-white me-3" data-bs-toggle="modal" data-bs-target="#login-modal">Sign In</a></div>
+                            <a href="javascript:void(0);" class="btn btn-primary me-0" data-bs-toggle="modal" data-bs-target="#register-modal">Sign Up</a>
                             <div class="header__hamburger d-xl-none my-auto">
                                 <div class="sidebar-menu">
                                     <i class="isax isax-menu5"></i>
@@ -1874,7 +1866,252 @@
     <!-- Script JS -->
     <script src="assets/js/script.js" type="5ca2974fdf0775ec3847bc1f-text/javascript"></script>
 
-<script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="5ca2974fdf0775ec3847bc1f-|49" defer></script></body>
+    <!-- Login Modal -->
+    <div class="modal fade" id="login-modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex align-items-center justify-content-end pb-0 border-0">
+                    <a href="javascript:void(0);" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
+                </div>
+                <div class="modal-body p-4 pt-0">
+                    <form action="index.html">
+                        <div class="text-center mb-3">
+                            <h5 class="mb-1">Sign In</h5>
+                            <p>Sign in to Start Manage your DreamsTour Account</p>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Email</label>
+                            <div class="input-icon">
+                                <span class="input-icon-addon"><i class="isax isax-message"></i></span>
+                                <input type="email" class="form-control form-control-lg" placeholder="Enter Email">
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Password</label>
+                            <div class="input-icon">
+                                <span class="input-icon-addon"><i class="isax isax-lock"></i></span>
+                                <input type="password" class="form-control form-control-lg pass-input" placeholder="Enter Password">
+                                <span class="input-icon-addon toggle-password"><i class="isax isax-eye-slash"></i></span>
+                            </div>
+                        </div>
+                        <div class="mt-3 mb-3">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap row-gap-2">
+                                <div class="form-check d-flex align-items-center mb-2">
+                                    <input class="form-check-input mt-0" type="checkbox" value="" id="remembers_me">
+                                    <label class="form-check-label ms-2 text-gray-9 fs-14" for="remembers_me">Remember Me</label>
+                                </div>
+                                <a href="javascript:void(0);" class="link-primary fw-medium fs-14 mb-2">Forgot Password?</a>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-xl btn-primary d-flex align-items-center justify-content-center w-100">Login<i class="isax isax-arrow-right-3 ms-2"></i></button>
+                        </div>
+                        <div class="login-or mb-3"><span class="span-or">Or</span></div>
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="javascript:void(0);" class="btn btn-light flex-fill d-flex align-items-center justify-content-center me-2" data-bs-toggle="modal" data-bs-target="#oauth-unavailable-modal">
+                                <img src="assets/img/icons/google-icon.svg" class="me-2" alt="Img">Google
+                            </a>
+                            <a href="javascript:void(0);" class="btn btn-light flex-fill d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#oauth-unavailable-modal">
+                                <img src="assets/img/icons/fb-icon.svg" class="me-2" alt="Img">Facebook
+                            </a>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <p class="fs-14">Don't you have an account? <a href="javascript:void(0);" class="link-primary fw-medium" data-bs-toggle="modal" data-bs-target="#register-modal">Sign up</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="register-modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex align-items-center justify-content-end pb-0 border-0">
+                    <a href="javascript:void(0);" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
+                </div>
+                <div class="modal-body p-4 pt-0">
+                    <form id="registerForm" onsubmit="handleRegister(event)">
+                        <div class="text-center border-bottom mb-3">
+                            <h5 class="mb-1">Sign Up</h5>
+                            <p class="mb-3">Create your DreamsTour Account</p>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Name</label>
+                            <div class="input-icon">
+                                <span class="input-icon-addon"><i class="isax isax-user"></i></span>
+                                <input type="text" class="form-control form-control-lg" id="register-name" name="name" placeholder="Enter Full Name" required>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Email</label>
+                            <div class="input-icon">
+                                <span class="input-icon-addon"><i class="isax isax-message"></i></span>
+                                <input type="email" class="form-control form-control-lg" id="register-email" name="email" placeholder="Enter Email" required>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Password</label>
+                            <div class="input-icon">
+                                <span class="input-icon-addon"><i class="isax isax-lock"></i></span>
+                                <input type="password" class="form-control form-control-lg pass-input" id="register-password" name="password" placeholder="Enter Password" required>
+                                <span class="input-icon-addon toggle-password"><i class="isax isax-eye-slash"></i></span>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Confirm Password</label>
+                            <div class="input-icon">
+                                <span class="input-icon-addon"><i class="isax isax-lock"></i></span>
+                                <input type="password" class="form-control form-control-lg pass-input" id="register-confirm-password" name="confirm_password" placeholder="Confirm Password" required>
+                                <span class="input-icon-addon toggle-password"><i class="isax isax-eye-slash"></i></span>
+                            </div>
+                        </div>
+                        <div class="mt-3 mb-3">
+                            <div class="d-flex">
+                                <div class="form-check d-flex align-items-center mb-2">
+                                    <input class="form-check-input mt-0" type="checkbox" value="" id="agree">
+                                    <label class="form-check-label ms-2 text-gray-9 fs-14" for="agree">I agree with the <a href="javascript:void(0);" class="link-primary fw-medium">Terms Of Service.</a></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-xl btn-primary d-flex align-items-center justify-content-center w-100">Register<i class="isax isax-arrow-right-3 ms-2"></i></button>
+                        </div>
+                        <div class="login-or mb-3"><span class="span-or">Or</span></div>
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="javascript:void(0);" class="btn btn-light flex-fill d-flex align-items-center justify-content-center me-2" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#oauth-unavailable-modal">
+                                <img src="assets/img/icons/google-icon.svg" class="me-2" alt="Img">Google
+                            </a>
+                            <a href="javascript:void(0);" class="btn btn-light flex-fill d-flex align-items-center justify-content-center" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#oauth-unavailable-modal">
+                                <img src="assets/img/icons/fb-icon.svg" class="me-2" alt="Img">Facebook
+                            </a>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <p class="fs-14">Already have an account? <a href="javascript:void(0);" class="link-primary fw-medium" data-bs-toggle="modal" data-bs-target="#login-modal">Sign In</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OAuth Unavailable Modal -->
+    <div class="modal fade" id="oauth-unavailable-modal">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-header d-flex align-items-center justify-content-end pb-0 border-0">
+                    <a href="javascript:void(0);" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
+                </div>
+                <div class="modal-body p-4 pt-0 text-center">
+                    <div class="mb-3">
+                        <i class="isax isax-info-circle" style="font-size: 48px; color: #ffc107;"></i>
+                    </div>
+                    <h5 class="mb-2">Coming Soon</h5>
+                    <p class="text-gray-9 mb-3">Social login is currently unavailable. Please use your email to sign in or sign up.</p>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Got it</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Authentication Script -->
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            const form = event.target;
+            const email = form.querySelector('input[type="email"]').value;
+            const password = form.querySelector('input[type="password"]').value;
+            const remember = form.querySelector('input[type="checkbox"]')?.checked || false;
+            
+            if (!email || !password) {
+                alert('Please enter both email and password');
+                return;
+            }
+            
+            const user = {
+                email: email,
+                name: email.split('@')[0].charAt(0).toUpperCase() + email.split('@')[0].slice(1),
+                avatar: '../assets/img/profiles/avatar-02.jpg',
+                joinDate: new Date().toISOString()
+            };
+            
+            localStorage.setItem('dreamstour_user', JSON.stringify(user));
+            localStorage.setItem('dreamstour_session', 'active');
+            if (remember) {
+                localStorage.setItem('dreamstour_remember', 'true');
+            }
+            
+            const modal = bootstrap.Modal.getInstance(document.getElementById('login-modal'));
+            if (modal) modal.hide();
+            
+            window.location.href = 'dashboard/user-dashboard.html';
+        }
+        
+        function handleRegister(event) {
+            event.preventDefault();
+            const form = event.target;
+            const name = form.querySelector('input[name="name"]').value;
+            const email = form.querySelector('input[type="email"]').value;
+            const password = form.querySelector('input[type="password"]').value;
+            const termsAccepted = form.querySelector('input[type="checkbox"]')?.checked || false;
+            
+            if (!name || !email || !password) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            if (!termsAccepted) {
+                alert('Please accept the Terms and Conditions');
+                return;
+            }
+            
+            const user = {
+                email: email,
+                name: name,
+                avatar: '../assets/img/profiles/avatar-02.jpg',
+                joinDate: new Date().toISOString()
+            };
+            
+            localStorage.setItem('dreamstour_user', JSON.stringify(user));
+            localStorage.setItem('dreamstour_session', 'active');
+            
+            const modal = bootstrap.Modal.getInstance(document.getElementById('register-modal'));
+            if (modal) modal.hide();
+            
+            window.location.href = 'dashboard/user-dashboard.html';
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const session = localStorage.getItem('dreamstour_session');
+            if (session === 'active') {
+                // User is logged in
+            }
+        });
+    </script>
+
+<script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="5ca2974fdf0775ec3847bc1f-|49" defer></script>
+    <script>
+        // Logout function
+        function logout() {
+            localStorage.removeItem('dreamstour_user');
+            localStorage.removeItem('dreamstour_session');
+            localStorage.removeItem('dreamstour_remember');
+            window.location.reload();
+        }
+        
+        // Toggle mobile menu based on login status
+        document.addEventListener('DOMContentLoaded', function() {
+            const session = localStorage.getItem('dreamstour_session');
+            if (session === 'active') {
+                document.getElementById('mobileMenuLoggedOut').style.display = 'none';
+                document.getElementById('mobileMenuLoggedIn').style.display = 'block';
+                document.getElementById('mobileActionsLoggedOut').style.display = 'none';
+                document.getElementById('mobileActionsLoggedIn').style.display = 'block';
+            }
+        });
+    </script>
+</body>
 
 
 <!-- Mirrored from dreamstour.dreamstechnologies.com/html/cruise-grid.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 23 Dec 2024 10:50:20 GMT -->

@@ -70,14 +70,14 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <form action="https://dreamstour.dreamstechnologies.com/html/index.html">
+                                <form id="loginForm" onsubmit="handleLogin(event)">
                                     <div class="mb-3">
                                         <label class="form-label">Email</label>
                                         <div class="input-icon">
                                             <span class="input-icon-addon">
 												<i class="isax isax-message"></i>
 											</span>
-                                            <input type="email" class="form-control form-control-lg" placeholder="Enter Email">
+                                            <input type="email" id="loginEmail" class="form-control form-control-lg" placeholder="Enter Email" required>
                                         </div>
                                     </div>
                                     <div class="mb-3">
@@ -86,7 +86,7 @@
                                             <span class="input-icon-addon">
 												<i class="isax isax-lock"></i>
 											</span>
-                                            <input type="password" class="form-control form-control-lg pass-input" placeholder="Enter Password">
+                                            <input type="password" id="loginPassword" class="form-control form-control-lg pass-input" placeholder="Enter Password" required>
                                             <span class="input-icon-addon toggle-password">
 												<i class="isax isax-eye-slash"></i>
 											</span>
@@ -163,6 +163,48 @@
 
     <!-- Script JS -->
     <script src="assets/js/script.js" type="75bba7eb725b54502744c53e-text/javascript"></script>
+
+    <!-- Login Handler -->
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const remember = document.getElementById('remembers_me').checked;
+            
+            if (!email || !password) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            // Create user data
+            const userData = {
+                email: email,
+                name: email.split('@')[0],
+                joinDate: new Date().toISOString()
+            };
+            
+            // Save to localStorage
+            localStorage.setItem('dreamstour_user', JSON.stringify(userData));
+            localStorage.setItem('dreamstour_session', 'active');
+            
+            if (remember) {
+                localStorage.setItem('dreamstour_remember', 'true');
+            }
+            
+            // Redirect to dashboard
+            window.location.href = '/html/dashboard/user-dashboard.html';
+        }
+        
+        // Check if already logged in
+        (function() {
+            const session = localStorage.getItem('dreamstour_session');
+            if (session === 'active') {
+                window.location.href = '/html/dashboard/user-dashboard.html';
+            }
+        })();
+    </script>
 
 <script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="75bba7eb725b54502744c53e-|49" defer></script></body>
 

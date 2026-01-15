@@ -166,47 +166,39 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="mobile-menu fix mb-3"></div>
+                            <!-- Logged Out Menu -->
+                            <ul class="mobile-nav-menu mb-4" id="mobileMenuLoggedOut">
+                                <li class="active"><a href="index.html"><i class="isax isax-home-1"></i>Home</a></li>
+                                <li><a href="flight-grid.html"><i class="isax isax-flight"></i>Flight</a></li>
+                                <li><a href="hotel-grid.html"><i class="isax isax-building"></i>Hotel</a></li>
+                                <li><a href="car-grid.html"><i class="isax isax-car"></i>Car</a></li>
+                                <li><a href="cruise-grid.html"><i class="isax isax-ship"></i>Cruise</a></li>
+                                <li><a href="tour-grid.html"><i class="isax isax-map"></i>Tour</a></li>
+                                <li><a href="vacation.html"><i class="isax isax-beach"></i>Vacation</a></li>
+                                <li><a href="fan-card.html"><i class="isax isax-card"></i>Fan Card</a></li>
+                            </ul>
+                            <!-- Logged In Menu -->
+                            <ul class="mobile-nav-menu mb-4" id="mobileMenuLoggedIn" style="display: none;">
+                                <li><a href="dashboard/user-dashboard.html"><i class="isax isax-home-15"></i>Dashboard</a></li>
+                                <li><a href="dashboard/dashboard-vacations.html"><i class="isax isax-beach"></i>Vacations</a></li>
+                                <li><a href="dashboard/dashboard-fancard.html"><i class="isax isax-card"></i>Fan Card</a></li>
+                                <li><a href="dashboard/dashboard-hotels.html"><i class="isax isax-building"></i>Hotels</a></li>
+                                <li><a href="dashboard/dashboard-flights.html"><i class="isax isax-flight"></i>Flights</a></li>
+                                <li><a href="dashboard/dashboard-cars.html"><i class="isax isax-car"></i>Cars</a></li>
+                                <li><a href="dashboard/dashboard-tours.html"><i class="isax isax-map"></i>Tours</a></li>
+                                <li><a href="dashboard/dashboard-settings.html"><i class="isax isax-setting-2"></i>Settings</a></li>
+                            </ul>
                             <div class="offcanvas__contact">
                                 <div class="mt-4">
-                                    <div class="header-dropdown d-flex flex-fill">
-                                        <div class="w-100">
-                                            <div class="dropdown flag-dropdown mb-2">
-                                                <a href="javascript:void(0);" class="dropdown-toggle bg-white border d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <img src="assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG
-                                                </a>
-                                                <ul class="dropdown-menu p-2">
-                                                    <li>
-                                                        <a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);">
-                                                            <img src="assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);">
-                                                            <img src="assets/img/flags/arab-flag.svg" class="me-2" alt="flag">ARA
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);">
-                                                            <img src="assets/img/flags/france-flag.svg" class="me-2" alt="flag">FRE
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="dropdown">
-                                                <a href="javascript:void(0);" class="dropdown-toggle bg-white border d-block" data-bs-toggle="dropdown" aria-expanded="false">
-													USD
-												</a>
-                                                <ul class="dropdown-menu p-2">
-                                                    <li><a class="dropdown-item rounded" href="javascript:void(0);">USD</a></li>
-                                                    <li><a class="dropdown-item rounded" href="javascript:void(0);">YEN</a></li>
-                                                    <li><a class="dropdown-item rounded" href="javascript:void(0);">EURO</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                    <!-- Logged Out Buttons -->
+                                    <div id="mobileActionsLoggedOut">
+                                        <div><a href="javascript:void(0);" class="text-white btn btn-dark w-100 mb-3" data-bs-toggle="modal" data-bs-target="#login-modal">Sign In</a></div>
+                                        <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#register-modal" class="btn btn-outline-primary w-100">Sign Up</a>
                                     </div>
-                                    <div><a href="javascript:void(0);" class="text-white btn btn-dark w-100 mb-3" data-bs-toggle="modal" data-bs-target="#login-modal">Sign In</a></div>
-                                    <a href="become-an-expert.html" class="btn btn-primary w-100">Become Expert</a>
+                                    <!-- Logged In Buttons -->
+                                    <div id="mobileActionsLoggedIn" style="display: none;">
+                                        <a href="javascript:void(0);" onclick="logout()" class="btn btn-danger w-100">Logout</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -245,7 +237,7 @@
                                 </a>
                             </div>
                             <div><a href="javascript:void(0);" class="btn btn-white me-3" data-bs-toggle="modal" data-bs-target="#login-modal">Sign In</a></div>
-                            <a href="become-an-expert.html" class="btn btn-primary me-0">Become Expert</a>
+                            <a href="javascript:void(0);" class="btn btn-primary me-0" data-bs-toggle="modal" data-bs-target="#register-modal">Sign Up</a>
                             <div class="header__hamburger d-xl-none my-auto">
                                 <div class="sidebar-menu">
                                     <i class="isax isax-menu5"></i>
@@ -4227,7 +4219,7 @@
 							class="ti ti-x fs-20"></i></a>
                 </div>
                 <div class="modal-body p-4 pt-0">
-                    <form action="https://dreamstour.dreamstechnologies.com/html/index.html">
+                    <form id="loginForm" onsubmit="handleLogin(event)">
                         <div class="text-center mb-3">
                             <h5 class="mb-1">Sign In</h5>
                             <p>Sign in to Start Manage your DreamsTour Account</p>
@@ -4238,7 +4230,7 @@
                                 <span class="input-icon-addon">
 									<i class="isax isax-message"></i>
                                 </span>
-                                <input type="email" class="form-control form-control-lg" placeholder="Enter Email">
+                                <input type="email" class="form-control form-control-lg" id="login-email" name="email" placeholder="Enter Email" required>
                             </div>
                         </div>
                         <div class="mb-2">
@@ -4247,7 +4239,7 @@
                                 <span class="input-icon-addon">
 									<i class="isax isax-lock"></i>
                                 </span>
-                                <input type="password" class="form-control form-control-lg pass-input" placeholder="Enter Password">
+                                <input type="password" class="form-control form-control-lg pass-input" id="login-password" name="password" placeholder="Enter Password" required>
                                 <span class="input-icon-addon toggle-password">
 									<i class="isax isax-eye-slash"></i>
                                 </span>
@@ -4271,10 +4263,10 @@
                             <span class="span-or">Or</span>
                         </div>
                         <div class="d-flex align-items-center mb-3">
-                            <a href="javascript:void(0);" class="btn btn-light flex-fill d-flex align-items-center justify-content-center me-2">
+                            <a href="javascript:void(0);" class="btn btn-light flex-fill d-flex align-items-center justify-content-center me-2" data-bs-toggle="modal" data-bs-target="#oauth-unavailable-modal">
                                 <img src="assets/img/icons/google-icon.svg" class="me-2" alt="Img">Google
                             </a>
-                            <a href="javascript:void(0);" class="btn btn-light flex-fill d-flex align-items-center justify-content-center">
+                            <a href="javascript:void(0);" class="btn btn-light flex-fill d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#oauth-unavailable-modal">
                                 <img src="assets/img/icons/fb-icon.svg" class="me-2" alt="Img">Facebook
                             </a>
                         </div>
@@ -4298,7 +4290,7 @@
 							class="ti ti-x fs-20"></i></a>
                 </div>
                 <div class="modal-body p-4 pt-0">
-                    <form action="https://dreamstour.dreamstechnologies.com/html/index.html">
+                    <form id="registerForm" onsubmit="handleRegister(event)">
                         <div class="text-center border-bottom mb-3">
                             <h5 class="mb-1">Sign Up</h5>
                             <p class="mb-3">Create your DreamsTour Account</p>
@@ -4309,7 +4301,7 @@
                                 <span class="input-icon-addon">
 									<i class="isax isax-user"></i>
                                 </span>
-                                <input type="text" class="form-control form-control-lg" placeholder="Enter Full Name">
+                                <input type="text" class="form-control form-control-lg" id="register-name" name="name" placeholder="Enter Full Name" required>
                             </div>
                         </div>
                         <div class="mb-2">
@@ -4318,7 +4310,7 @@
                                 <span class="input-icon-addon">
 									<i class="isax isax-message"></i>
                                 </span>
-                                <input type="email" class="form-control form-control-lg" placeholder="Enter Email">
+                                <input type="email" class="form-control form-control-lg" id="register-email" name="email" placeholder="Enter Email" required>
                             </div>
                         </div>
                         <div class="mb-2">
@@ -4327,7 +4319,7 @@
                                 <span class="input-icon-addon">
 									<i class="isax isax-lock"></i>
                                 </span>
-                                <input type="password" class="form-control form-control-lg pass-input" placeholder="Enter Password">
+                                <input type="password" class="form-control form-control-lg pass-input" id="register-password" name="password" placeholder="Enter Password" required>
                                 <span class="input-icon-addon toggle-password">
 									<i class="isax isax-eye-slash"></i>
                                 </span>
@@ -4339,7 +4331,7 @@
                                 <span class="input-icon-addon">
 									<i class="isax isax-lock"></i>
                                 </span>
-                                <input type="password" class="form-control form-control-lg pass-input" placeholder="Enter Password">
+                                <input type="password" class="form-control form-control-lg pass-input" id="register-confirm-password" name="confirm_password" placeholder="Confirm Password" required>
                                 <span class="input-icon-addon toggle-password">
 									<i class="isax isax-eye-slash"></i>
                                 </span>
@@ -4362,10 +4354,10 @@
                             <span class="span-or">Or</span>
                         </div>
                         <div class="d-flex align-items-center mb-3">
-                            <a href="javascript:void(0);" class="btn btn-light flex-fill d-flex align-items-center justify-content-center me-2">
+                            <a href="javascript:void(0);" class="btn btn-light flex-fill d-flex align-items-center justify-content-center me-2" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#oauth-unavailable-modal">
                                 <img src="assets/img/icons/google-icon.svg" class="me-2" alt="Img">Google
                             </a>
-                            <a href="javascript:void(0);" class="btn btn-light flex-fill d-flex align-items-center justify-content-center">
+                            <a href="javascript:void(0);" class="btn btn-light flex-fill d-flex align-items-center justify-content-center" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#oauth-unavailable-modal">
                                 <img src="assets/img/icons/fb-icon.svg" class="me-2" alt="Img">Facebook
                             </a>
                         </div>
@@ -4476,7 +4468,27 @@
 
     <div class="back-to-top">
 		<a class="back-to-top-icon align-items-center justify-content-center d-flex"  href="#top"><i class="fa-solid fa-arrow-up"></i></a>
-	</div>	
+	</div>
+
+    <!-- OAuth Unavailable Modal -->
+    <div class="modal fade" id="oauth-unavailable-modal">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-header d-flex align-items-center justify-content-end pb-0 border-0">
+                    <a href="javascript:void(0);" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
+                </div>
+                <div class="modal-body p-4 pt-0 text-center">
+                    <div class="mb-3">
+                        <i class="isax isax-info-circle" style="font-size: 48px; color: #ffc107;"></i>
+                    </div>
+                    <h5 class="mb-2">Coming Soon</h5>
+                    <p class="text-gray-9 mb-3">Social login is currently unavailable. Please use your email to sign in or sign up.</p>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Got it</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /OAuth Unavailable Modal -->	
 
     <!-- Jquery JS -->
     <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-3.7.1.min.js" type="b07d4fd4e355a82de42bd6f4-text/javascript"></script>
@@ -4509,6 +4521,120 @@
 
     <!-- Script JS -->
     <script src="assets/js/script.js" type="b07d4fd4e355a82de42bd6f4-text/javascript"></script>
+
+    <!-- Authentication Script -->
+    <script>
+        // Handle Login
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const rememberMe = document.getElementById('remembers_me').checked;
+            
+            // Validate
+            if (!email || !password) {
+                alert('Please fill in all fields');
+                return false;
+            }
+            
+            // Simulate login - In production, this would be an API call
+            const user = {
+                email: email,
+                name: email.split('@')[0].charAt(0).toUpperCase() + email.split('@')[0].slice(1),
+                loggedInAt: new Date().toISOString()
+            };
+            
+            // Store user in localStorage
+            localStorage.setItem('dreamstour_user', JSON.stringify(user));
+            localStorage.setItem('dreamstour_session', 'active');
+            
+            if (rememberMe) {
+                localStorage.setItem('dreamstour_remember', 'true');
+            }
+            
+            // Close modal and redirect to dashboard
+            const modal = bootstrap.Modal.getInstance(document.getElementById('login-modal'));
+            if (modal) modal.hide();
+            
+            window.location.href = 'dashboard/user-dashboard.html';
+            return false;
+        }
+        
+        // Handle Register
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const confirmPassword = document.getElementById('register-confirm-password').value;
+            const agree = document.getElementById('agree').checked;
+            
+            // Validate
+            if (!name || !email || !password || !confirmPassword) {
+                alert('Please fill in all fields');
+                return false;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return false;
+            }
+            
+            if (!agree) {
+                alert('Please agree to the Terms of Service');
+                return false;
+            }
+            
+            // Simulate registration - In production, this would be an API call
+            const user = {
+                name: name,
+                email: email,
+                registeredAt: new Date().toISOString(),
+                loggedInAt: new Date().toISOString()
+            };
+            
+            // Store user in localStorage
+            localStorage.setItem('dreamstour_user', JSON.stringify(user));
+            localStorage.setItem('dreamstour_session', 'active');
+            
+            // Close modal and redirect to dashboard
+            const modal = bootstrap.Modal.getInstance(document.getElementById('register-modal'));
+            if (modal) modal.hide();
+            
+            window.location.href = 'dashboard/user-dashboard.html';
+            return false;
+        }
+        
+        // Logout function
+        function logout() {
+            localStorage.removeItem('dreamstour_user');
+            localStorage.removeItem('dreamstour_session');
+            localStorage.removeItem('dreamstour_remember');
+            window.location.reload();
+        }
+        
+        // Check if user is already logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            const session = localStorage.getItem('dreamstour_session');
+            const user = localStorage.getItem('dreamstour_user');
+            
+            if (session === 'active' && user) {
+                // User is logged in - show dashboard menu
+                document.getElementById('mobileMenuLoggedOut').style.display = 'none';
+                document.getElementById('mobileMenuLoggedIn').style.display = 'block';
+                document.getElementById('mobileActionsLoggedOut').style.display = 'none';
+                document.getElementById('mobileActionsLoggedIn').style.display = 'block';
+            } else {
+                // User is logged out - show regular menu
+                document.getElementById('mobileMenuLoggedOut').style.display = 'block';
+                document.getElementById('mobileMenuLoggedIn').style.display = 'none';
+                document.getElementById('mobileActionsLoggedOut').style.display = 'block';
+                document.getElementById('mobileActionsLoggedIn').style.display = 'none';
+            }
+        });
+    </script>
 
 <script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="b07d4fd4e355a82de42bd6f4-|49" defer></script></body>
 

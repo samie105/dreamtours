@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - DreamsTour</title>
+
+    <meta name="description" content="DreamsTour - Your account settings">
+    <meta name="author" content="Dreams Technologies">
+    <meta name="robots" content="index, follow">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/apple-touch-icon.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="../assets/img/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
+
+    <!-- Theme Settings Js -->
+    <script src="../assets/js/theme-script.js"></script>
+
+    <link rel="stylesheet" href="../assets/css/animate.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/meanmenu.css">
+    <link rel="stylesheet" href="../assets/plugins/tabler-icons/tabler-icons.css">
+    <link rel="stylesheet" href="../assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="../assets/plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../assets/plugins/fancybox/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="../assets/plugins/owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="../assets/css/iconsax.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <!-- Mobile Bottom Nav Styles -->
+    <style>
+        .mobile-bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border-top: 1px solid #e5e7eb;
+            z-index: 1000;
+            padding: 8px 0;
+        }
+        .mobile-bottom-nav ul {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .mobile-bottom-nav ul li a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #6b7280;
+            font-size: 11px;
+            padding: 4px 12px;
+        }
+        .mobile-bottom-nav ul li a i {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+        .mobile-bottom-nav ul li a.active,
+        .mobile-bottom-nav ul li a:hover {
+            color: var(--bs-primary);
+        }
+        [data-theme="dark"] .mobile-bottom-nav {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        [data-theme="dark"] .mobile-bottom-nav ul li a {
+            color: #94a3b8;
+        }
+        @media (max-width: 991.98px) {
+            .mobile-bottom-nav { display: block; }
+            body { padding-bottom: 70px; }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Auth Check -->
+    <script>
+        (function() {
+            const session = localStorage.getItem('dreamstour_session');
+            if (session !== 'active') {
+                window.location.href = '../index.html';
+            }
+        })();
+    </script>
+
+    <div class="main-header">
+        <!-- Header -->
+        <header class="py-3 border-bottom">
+            <div class="container">
+                <div class="header-nav">
+                    <div class="main-menu-wrapper">
+                        <div class="navbar-logo">
+                            <a class="logo-white header-logo" href="../index.html">
+                                <img src="../assets/img/logo.svg" class="logo" alt="Logo">
+                            </a>
+                            <a class="logo-dark header-logo" href="../index.html">
+                                <img src="../assets/img/logo-dark.svg" class="logo" alt="Logo">
+                            </a>
+                        </div>
+                        <div class="header-btn d-flex align-items-center">
+                            <a href="../index.html" class="btn btn-outline-primary btn-sm me-3 d-none d-md-inline-flex">
+                                <i class="isax isax-home-15 me-2"></i>Back to Site
+                            </a>
+                            <div class="me-3">
+                                <a href="javascript:void(0);" id="dark-mode-toggle" class="theme-toggle">
+                                    <i class="isax isax-moon"></i>
+                                </a>
+                                <a href="javascript:void(0);" id="light-mode-toggle" class="theme-toggle">
+                                    <i class="isax isax-sun-1"></i>
+                                </a>
+                            </div>
+                            <div class="dropdown profile-dropdown">
+                                <a href="javascript:void(0);" class="d-flex align-items-center" data-bs-toggle="dropdown">
+                                    <span class="avatar avatar-md">
+                                        <img src="../assets/img/users/user-05.jpg" alt="Img" class="img-fluid rounded-circle border border-white border-4">
+                                    </span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end p-3">
+                                    <li>
+                                        <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="user-dashboard.html">Dashboard</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="dashboard-settings.html">Settings</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider my-2">
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-inline-flex align-items-center rounded fw-medium p-2" href="javascript:void(0);" onclick="logout()">Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- /Header -->
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-bar breadcrumb-bg-04 text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-12">
+                    <h2 class="breadcrumb-title mb-2">Settings</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center mb-0">
+                            <li class="breadcrumb-item"><a href="user-dashboard.html"><i class="isax isax-home5"></i></a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Settings</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Breadcrumb -->
+
+    <!-- Page Wrapper -->
+    <div class="content content-two">
+        <div class="container">
+
+            <div class="row">
+
+                <!-- Sidebar -->
+                <div class="col-xl-3 col-lg-4 theiaStickySidebar">
+                    <div class="card user-sidebar mb-4">
+                        <div class="card-header user-sidebar-header">
+                            <div class="profile-content rounded-pill">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <img src="../assets/img/users/user-01.jpg" alt="image" class="img-fluid avatar avatar-lg rounded-circle me-1" id="sidebarAvatar">
+                                        <div>
+                                            <h6 class="fs-16" id="sidebarUserName">User</h6>
+                                            <span class="fs-14 text-gray-6" id="sidebarJoinDate">Since Jan 2026</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <a href="dashboard-settings.html" class="p-1 rounded-circle btn btn-light d-flex align-items-center justify-content-center"><i class="isax isax-edit-2 fs-14"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body user-sidebar-body">
+                            <ul>
+                                <li>
+                                    <span class="fs-14 text-gray-3 fw-medium mb-2">Main</span>
+                                </li>
+                                <li>
+                                    <a href="user-dashboard.html" class="d-flex align-items-center">
+                                        <i class="isax isax-grid-55"></i> Dashboard
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="dashboard-vacations.html" class="d-flex align-items-center">
+                                        <i class="isax isax-sun-15"></i> My Vacations
+                                    </a>
+                                </li>
+                                <li class="mb-2">
+                                    <a href="dashboard-fancard.html" class="d-flex align-items-center">
+                                        <i class="isax isax-card5"></i> Fan Card
+                                    </a>
+                                </li>
+                                <li>
+                                    <span class="fs-14 text-gray-3 fw-medium mb-2">Bookings</span>
+                                </li>
+                                <li>
+                                    <a href="dashboard-hotels.html" class="d-flex align-items-center">
+                                        <i class="isax isax-building5"></i> Hotels
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="dashboard-flights.html" class="d-flex align-items-center">
+                                        <i class="isax isax-airplane5"></i> Flights
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="dashboard-cars.html" class="d-flex align-items-center">
+                                        <i class="isax isax-car5"></i> Cars
+                                    </a>
+                                </li>
+                                <li class="mb-2">
+                                    <a href="dashboard-tours.html" class="d-flex align-items-center">
+                                        <i class="isax isax-map5"></i> Tours
+                                    </a>
+                                </li>
+                                <li>
+                                    <span class="fs-14 text-gray-3 fw-medium mb-2">Account</span>
+                                </li>
+                                <li>
+                                    <a href="dashboard-settings.html" class="d-flex align-items-center active">
+                                        <i class="isax isax-setting-25"></i> Settings
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" onclick="logout()" class="d-flex align-items-center pb-0">
+                                        <i class="isax isax-logout-15"></i> Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Sidebar -->
+
+                <div class="col-xl-9 col-lg-8">
+                    
+                    <!-- Profile Settings -->
+                    <div class="card shadow-none mb-4">
+                        <div class="card-header border-bottom">
+                            <h6 class="mb-0">Profile Information</h6>
+                        </div>
+                        <div class="card-body">
+                            <form id="profileForm">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" id="profileName" placeholder="Enter your name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" id="profileEmail" placeholder="Enter your email">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" id="profilePhone" placeholder="Enter your phone">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Date of Birth</label>
+                                        <input type="date" class="form-control" id="profileDob">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Address</label>
+                                        <textarea class="form-control" id="profileAddress" rows="3" placeholder="Enter your address"></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="button" onclick="saveProfile()" class="btn btn-primary">Save Profile</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Change Password -->
+                    <div class="card shadow-none mb-4">
+                        <div class="card-header border-bottom">
+                            <h6 class="mb-0">Change Password</h6>
+                        </div>
+                        <div class="card-body">
+                            <form id="passwordForm">
+                                <div class="row g-3">
+                                    <div class="col-md-12">
+                                        <label class="form-label">Current Password</label>
+                                        <input type="password" class="form-control" id="currentPassword" placeholder="Enter current password">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">New Password</label>
+                                        <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Confirm Password</label>
+                                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password">
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="button" onclick="changePassword()" class="btn btn-primary">Update Password</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Preferences -->
+                    <div class="card shadow-none">
+                        <div class="card-header border-bottom">
+                            <h6 class="mb-0">Preferences</h6>
+                        </div>
+                        <div class="card-body">
+                            <form id="preferencesForm">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Preferred Currency</label>
+                                        <select class="form-select" id="preferredCurrency">
+                                            <option value="USD">USD - US Dollar</option>
+                                            <option value="EUR">EUR - Euro</option>
+                                            <option value="GBP">GBP - British Pound</option>
+                                            <option value="YEN">YEN - Japanese Yen</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Preferred Language</label>
+                                        <select class="form-select" id="preferredLanguage">
+                                            <option value="en">English</option>
+                                            <option value="fr">French</option>
+                                            <option value="ar">Arabic</option>
+                                            <option value="es">Spanish</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="emailNotifications" checked>
+                                            <label class="form-check-label" for="emailNotifications">
+                                                Receive email notifications about bookings and offers
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="smsNotifications">
+                                            <label class="form-check-label" for="smsNotifications">
+                                                Receive SMS notifications
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="button" onclick="savePreferences()" class="btn btn-primary">Save Preferences</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Wrapper -->
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-bottom-nav">
+        <ul>
+            <li><a href="user-dashboard.html"><i class="isax isax-home-15"></i>Home</a></li>
+            <li><a href="dashboard-vacations.html"><i class="isax isax-sun-15"></i>Vacations</a></li>
+            <li><a href="dashboard-fancard.html"><i class="isax isax-card5"></i>Fan Card</a></li>
+            <li><a href="dashboard-hotels.html"><i class="isax isax-building5"></i>Hotels</a></li>
+            <li><a href="dashboard-settings.html" class="active"><i class="isax isax-user5"></i>Account</a></li>
+        </ul>
+    </div>
+    <!-- /Mobile Bottom Navigation -->
+
+    <!-- Footer -->
+    <footer class="footer footer-three">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget footer-about">
+                        <div class="footer-logo mb-3">
+                            <a href="../index.html"><img src="../assets/img/logo.svg" alt="Logo"></a>
+                        </div>
+                        <p class="fs-14">Plan your dream vacation with us. Explore destinations, book hotels, flights, cars and more.</p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <div class="footer-widget footer-menus">
+                        <h5>Quick Links</h5>
+                        <ul>
+                            <li><a href="../about-us.html">About Us</a></li>
+                            <li><a href="../contact-us.html">Contact Us</a></li>
+                            <li><a href="../faq.html">FAQs</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <div class="footer-widget footer-menus">
+                        <h5>Bookings</h5>
+                        <ul>
+                            <li><a href="../flight-grid.html">Flights</a></li>
+                            <li><a href="../hotel-grid.html">Hotels</a></li>
+                            <li><a href="../car-grid.html">Cars</a></li>
+                            <li><a href="../tour-grid.html">Tours</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <div class="footer-widget footer-menus">
+                        <h5>Support</h5>
+                        <ul>
+                            <li><a href="../terms-conditions.html">Terms & Conditions</a></li>
+                            <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h5>Contact Info</h5>
+                        <div class="footer-contact-info">
+                            <p class="mb-2"><i class="isax isax-call5 me-2"></i>+1 56565 56594</p>
+                            <p class="mb-0"><i class="isax isax-sms5 me-2"></i>info@dreamstour.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="d-flex align-items-center justify-content-between flex-wrap">
+                            <p class="fs-14">Copyright &copy; 2026. All Rights Reserved, <a href="javascript:void(0);" class="text-primary fw-medium">DreamsTour</a></p>
+                            <ul class="card-links">
+                                <li><a href="javascript:void(0);"><img src="../assets/img/icons/card-01.svg" alt="img"></a></li>
+                                <li><a href="javascript:void(0);"><img src="../assets/img/icons/card-02.svg" alt="img"></a></li>
+                                <li><a href="javascript:void(0);"><img src="../assets/img/icons/card-03.svg" alt="img"></a></li>
+                                <li><a href="javascript:void(0);"><img src="../assets/img/icons/card-04.svg" alt="img"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /Footer -->
+
+    <!-- Cursor -->
+    <div class="xb-cursor tx-js-cursor">
+        <div class="xb-cursor-wrapper">
+            <div class="xb-cursor--follower xb-js-follower"></div>
+        </div>
+    </div>
+    <!-- /Cursor -->
+
+    <div class="back-to-top">
+        <a class="back-to-top-icon align-items-center justify-content-center d-flex" href="#top"><i class="fa-solid fa-arrow-up"></i></a>
+    </div>
+
+    <!-- Dashboard Script -->
+    <script>
+        function getUserData() {
+            const userData = localStorage.getItem('dreamstour_user');
+            return userData ? JSON.parse(userData) : null;
+        }
+
+        function loadUserProfile() {
+            const user = getUserData();
+            if (user) {
+                document.getElementById('sidebarUserName').textContent = user.name || 'User';
+                if (user.joinDate) {
+                    const date = new Date(user.joinDate);
+                    const options = { month: 'short', year: 'numeric' };
+                    document.getElementById('sidebarJoinDate').textContent = 'Since ' + date.toLocaleDateString('en-US', options);
+                }
+
+                // Load form data
+                document.getElementById('profileName').value = user.name || '';
+                document.getElementById('profileEmail').value = user.email || '';
+                document.getElementById('profilePhone').value = user.phone || '';
+                document.getElementById('profileDob').value = user.dob || '';
+                document.getElementById('profileAddress').value = user.address || '';
+            }
+        }
+
+        function saveProfile() {
+            const user = getUserData() || {};
+            user.name = document.getElementById('profileName').value;
+            user.email = document.getElementById('profileEmail').value;
+            user.phone = document.getElementById('profilePhone').value;
+            user.dob = document.getElementById('profileDob').value;
+            user.address = document.getElementById('profileAddress').value;
+            
+            localStorage.setItem('dreamstour_user', JSON.stringify(user));
+            alert('Profile updated successfully!');
+            loadUserProfile();
+        }
+
+        function changePassword() {
+            const current = document.getElementById('currentPassword').value;
+            const newPass = document.getElementById('newPassword').value;
+            const confirm = document.getElementById('confirmPassword').value;
+
+            if (!current || !newPass || !confirm) {
+                alert('Please fill in all password fields');
+                return;
+            }
+
+            if (newPass !== confirm) {
+                alert('New password and confirm password do not match');
+                return;
+            }
+
+            if (newPass.length < 6) {
+                alert('Password must be at least 6 characters long');
+                return;
+            }
+
+            alert('Password changed successfully!');
+            document.getElementById('passwordForm').reset();
+        }
+
+        function savePreferences() {
+            const preferences = {
+                currency: document.getElementById('preferredCurrency').value,
+                language: document.getElementById('preferredLanguage').value,
+                emailNotifications: document.getElementById('emailNotifications').checked,
+                smsNotifications: document.getElementById('smsNotifications').checked
+            };
+
+            localStorage.setItem('dreamstour_preferences', JSON.stringify(preferences));
+            alert('Preferences saved successfully!');
+        }
+
+        function logout() {
+            localStorage.removeItem('dreamstour_user');
+            localStorage.removeItem('dreamstour_session');
+            localStorage.removeItem('dreamstour_remember');
+            window.location.href = '../index.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUserProfile();
+        });
+    </script>
+
+    <!-- Jquery JS -->
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/wow.min.js"></script>
+    <script src="../assets/js/jquery.meanmenu.min.js"></script>
+    <script src="../assets/plugins/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../assets/plugins/fancybox/jquery.fancybox.min.js"></script>
+    <script src="../assets/js/jquery.counterup.min.js"></script>
+    <script src="../assets/js/jquery.waypoints.min.js"></script>
+    <script src="../assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+    <script src="../assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+    <script src="../assets/plugins/moment/moment.js"></script>
+    <script src="../assets/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../assets/js/cursor.js"></script>
+    <script src="../assets/js/script.js"></script>
+
+</body>
+
+</html>

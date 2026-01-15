@@ -72,14 +72,14 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <form action="https://dreamstour.dreamstechnologies.com/html/login.html">
+                                <form id="registerForm" onsubmit="handleRegister(event)">
                                     <div class="mb-3">
                                         <label class="form-label">Name</label>
                                         <div class="input-icon">
                                             <span class="input-icon-addon">
 												<i class="isax isax-user"></i>
 											</span>
-                                            <input type="text" class="form-control form-control-lg" placeholder="Enter Full Name">
+                                            <input type="text" id="registerName" class="form-control form-control-lg" placeholder="Enter Full Name" required>
                                         </div>
                                     </div>
                                     <div class="mb-3">
@@ -88,7 +88,7 @@
                                             <span class="input-icon-addon">
 												<i class="isax isax-message"></i>
 											</span>
-                                            <input type="email" class="form-control form-control-lg" placeholder="Enter Email">
+                                            <input type="email" id="registerEmail" class="form-control form-control-lg" placeholder="Enter Email" required>
                                         </div>
                                     </div>
                                     <div class="mb-3">
@@ -97,7 +97,7 @@
                                             <span class="input-icon-addon">
 												<i class="isax isax-lock"></i>
 											</span>
-                                            <input type="password" class="form-control form-control-lg pass-input" placeholder="Enter Password">
+                                            <input type="password" id="registerPassword" class="form-control form-control-lg pass-input" placeholder="Enter Password" required>
                                             <span class="input-icon-addon toggle-password">
 												<i class="isax isax-eye-slash"></i>
 											</span>
@@ -109,7 +109,7 @@
                                             <span class="input-icon-addon">
 												<i class="isax isax-lock"></i>
 											</span>
-                                            <input type="password" class="form-control form-control-lg pass-input" placeholder="Enter Password">
+                                            <input type="password" id="registerConfirmPassword" class="form-control form-control-lg pass-input" placeholder="Confirm Password" required>
                                             <span class="input-icon-addon toggle-password">
 												<i class="isax isax-eye-slash"></i>
 											</span>
@@ -187,6 +187,61 @@
 
     <!-- Script JS -->
     <script src="assets/js/script.js" type="b16284e62945bd60d69d99c4-text/javascript"></script>
+
+    <!-- Register Handler -->
+    <script>
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            const agree = document.getElementById('agree').checked;
+            
+            if (!name || !email || !password || !confirmPassword) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long');
+                return;
+            }
+            
+            if (!agree) {
+                alert('Please agree to the Terms of Service');
+                return;
+            }
+            
+            // Create user data
+            const userData = {
+                name: name,
+                email: email,
+                joinDate: new Date().toISOString()
+            };
+            
+            // Save to localStorage
+            localStorage.setItem('dreamstour_user', JSON.stringify(userData));
+            localStorage.setItem('dreamstour_session', 'active');
+            
+            // Redirect to dashboard
+            window.location.href = '/html/dashboard/user-dashboard.html';
+        }
+        
+        // Check if already logged in
+        (function() {
+            const session = localStorage.getItem('dreamstour_session');
+            if (session === 'active') {
+                window.location.href = '/html/dashboard/user-dashboard.html';
+            }
+        })();
+    </script>
 
 <script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="b16284e62945bd60d69d99c4-|49" defer></script></body>
 

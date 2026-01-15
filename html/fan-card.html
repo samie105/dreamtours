@@ -99,7 +99,8 @@
                                     <div class="offcanvas-close"><i class="ti ti-x"></i></div>
                                 </div>
                             </div>
-                            <ul class="mobile-nav-menu">
+                                                        <!-- Logged Out Menu -->
+                            <ul class="mobile-nav-menu" id="mobileMenuLoggedOut">
                                 <li><a href="index.html"><i class="isax isax-home-2"></i>Home</a></li>
                                 <li><a href="flight-grid.html"><i class="isax isax-airplane"></i>Flight</a></li>
                                 <li><a href="hotel-grid.html"><i class="isax isax-building-4"></i>Hotel</a></li>
@@ -107,13 +108,30 @@
                                 <li><a href="cruise-grid.html"><i class="isax isax-ship"></i>Cruise</a></li>
                                 <li><a href="tour-grid.html"><i class="isax isax-map"></i>Tour</a></li>
                                 <li><a href="vacation.html"><i class="isax isax-sun-1"></i>Vacation</a></li>
-                                <li class="active"><a href="fan-card.html"><i class="isax isax-card"></i>Fan Card</a></li>
+                                <li><a href="fan-card.html"><i class="isax isax-card"></i>Fan Card</a></li>
+                            </ul>
+                            <!-- Logged In Menu -->
+                            <ul class="mobile-nav-menu" id="mobileMenuLoggedIn" style="display: none;">
+                                <li><a href="dashboard/user-dashboard.html"><i class="isax isax-home-15"></i>Dashboard</a></li>
+                                <li><a href="dashboard/dashboard-vacations.html"><i class="isax isax-sun-1"></i>Vacations</a></li>
+                                <li><a href="dashboard/dashboard-fancard.html"><i class="isax isax-card"></i>Fan Card</a></li>
+                                <li><a href="dashboard/dashboard-hotels.html"><i class="isax isax-building-4"></i>Hotels</a></li>
+                                <li><a href="dashboard/dashboard-flights.html"><i class="isax isax-airplane"></i>Flights</a></li>
+                                <li><a href="dashboard/dashboard-cars.html"><i class="isax isax-car"></i>Cars</a></li>
+                                <li><a href="dashboard/dashboard-tours.html"><i class="isax isax-map"></i>Tours</a></li>
+                                <li><a href="dashboard/dashboard-settings.html"><i class="isax isax-setting-2"></i>Settings</a></li>
                             </ul>
                             <div class="mt-4 pt-4 border-top">
-                                <a href="login.html" class="btn btn-outline-primary w-100 mb-2"><i class="isax isax-login me-2"></i>Sign In</a>
-                                <a href="register.html" class="btn btn-primary w-100"><i class="isax isax-user-add me-2"></i>Sign Up</a>
+                                <!-- Logged Out Buttons -->
+                                <div id="mobileActionsLoggedOut">
+                                    <a href="javascript:void(0);" class="btn btn-outline-primary w-100 mb-2" data-bs-toggle="modal" data-bs-target="#login-modal"><i class="isax isax-login me-2"></i>Sign In</a>
+                                    <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#register-modal" class="btn btn-primary w-100"><i class="isax isax-user-add me-2"></i>Sign Up</a>
+                                </div>
+                                <!-- Logged In Buttons -->
+                                <div id="mobileActionsLoggedIn" style="display: none;">
+                                    <a href="javascript:void(0);" onclick="logout()" class="btn btn-danger w-100"><i class="isax isax-logout me-2"></i>Logout</a>
+                                </div>
                             </div>
-                        </div>
                     </div>
                 </div>
                 <div class="offcanvas-overlay"></div>
@@ -141,7 +159,7 @@
                                 <a href="javascript:void(0);" id="light-mode-toggle" class="theme-toggle"><i class="isax isax-sun-1"></i></a>
                             </div>
                             <a href="login.html" class="btn btn-outline-light me-2 d-none d-md-block"><i class="isax isax-login me-2"></i>Sign In</a>
-                            <a href="register.html" class="btn btn-primary d-none d-md-block"><i class="isax isax-user-add me-2"></i>Sign Up</a>
+                            <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#register-modal" class="btn btn-primary d-none d-md-block"><i class="isax isax-user-add me-2"></i>Sign Up</a>
                             <div class="header__hamburger d-xl-none my-auto">
                                 <div class="sidebar-menu"><i class="isax isax-menu-1"></i></div>
                             </div>
@@ -388,5 +406,26 @@
         });
     </script>
 
+
+    <script>
+        // Logout function
+        function logout() {
+            localStorage.removeItem('dreamstour_user');
+            localStorage.removeItem('dreamstour_session');
+            localStorage.removeItem('dreamstour_remember');
+            window.location.reload();
+        }
+        
+        // Toggle mobile menu based on login status
+        document.addEventListener('DOMContentLoaded', function() {
+            const session = localStorage.getItem('dreamstour_session');
+            if (session === 'active') {
+                document.getElementById('mobileMenuLoggedOut').style.display = 'none';
+                document.getElementById('mobileMenuLoggedIn').style.display = 'block';
+                document.getElementById('mobileActionsLoggedOut').style.display = 'none';
+                document.getElementById('mobileActionsLoggedIn').style.display = 'block';
+            }
+        });
+    </script>
 </body>
 </html>
