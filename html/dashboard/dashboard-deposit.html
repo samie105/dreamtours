@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit - DreamsTour</title>
+    <meta name="description" content="DreamsTour - Deposit funds to your account">
+    <link rel="icon" href="../assets/img/favicon.png" type="image/x-icon">
+    <script src="../assets/js/theme-script.js"></script>
+    <link rel="stylesheet" href="../assets/css/animate.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/meanmenu.css">
+    <link rel="stylesheet" href="../assets/plugins/tabler-icons/tabler-icons.css">
+    <link rel="stylesheet" href="../assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="../assets/plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/iconsax.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .mobile-bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 1px solid #e5e7eb; z-index: 1000; padding: 8px 0; }
+        .mobile-bottom-nav ul { display: flex; justify-content: space-around; align-items: center; list-style: none; margin: 0; padding: 0; }
+        .mobile-bottom-nav ul li a { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #6b7280; font-size: 11px; padding: 4px 12px; }
+        .mobile-bottom-nav ul li a i { font-size: 20px; margin-bottom: 4px; }
+        .mobile-bottom-nav ul li a.active, .mobile-bottom-nav ul li a:hover { color: var(--bs-primary); }
+        @media (max-width: 991.98px) { .mobile-bottom-nav { display: block; } body { padding-bottom: 70px; } }
+        
+        /* Crypto Selection */
+        .crypto-option { border: 2px solid #E4EBF1; border-radius: 12px; padding: 16px; cursor: pointer; transition: all 0.2s ease; background: #fff; }
+        .crypto-option:hover { border-color: #111827; }
+        .crypto-option.selected { border-color: #111827; background: #f9fafb; }
+        .crypto-option img { width: 40px; height: 40px; }
+        .crypto-option .crypto-name { font-weight: 600; color: #111827; }
+        .crypto-option .crypto-symbol { color: #6b7280; font-size: 13px; }
+        
+        /* Wallet Display */
+        .wallet-display { background: #f9fafb; border: 1px solid #E4EBF1; border-radius: 12px; padding: 20px; }
+        .wallet-address { font-family: monospace; font-size: 14px; word-break: break-all; background: #fff; padding: 12px; border-radius: 8px; border: 1px solid #E4EBF1; }
+        
+        /* QR Code Placeholder */
+        .qr-placeholder { width: 150px; height: 150px; background: #f0f0f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 0 auto; }
+        
+        /* Skeleton Loading */
+        .skeleton { background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: skeleton-loading 1.5s infinite; border-radius: 4px; }
+        @keyframes skeleton-loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        
+        /* Empty State */
+        .empty-state { text-align: center; padding: 60px 20px; background: #f9fafb; border-radius: 16px; }
+        .empty-state i { font-size: 64px; color: #d1d5db; margin-bottom: 20px; display: block; }
+        
+        /* Deposit History */
+        .deposit-item { padding: 16px; border-bottom: 1px solid #E4EBF1; }
+        .deposit-item:last-child { border-bottom: none; }
+        .status-badge { padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 500; }
+        .status-pending { background: #fef3c7; color: #92400e; }
+        .status-confirmed { background: #d1fae5; color: #065f46; }
+        .status-rejected { background: #fee2e2; color: #991b1b; }
+        
+        /* Copy Button */
+        .btn-copy { padding: 8px 16px; }
+        .btn-copy.copied { background: #10b981; border-color: #10b981; color: #fff; }
+        
+        /* Mobile Sidebar Offcanvas */
+        .mobile-sidebar-toggle { display: none; }
+        @media (max-width: 991.98px) {
+            .mobile-sidebar-toggle { display: flex; }
+        }
+        .offcanvas-dashboard { width: 280px; }
+        .offcanvas-dashboard .user-sidebar-body ul { list-style: none; padding: 0; margin: 0; }
+        .offcanvas-dashboard .user-sidebar-body ul li a { display: flex; align-items: center; padding: 12px 0; color: #374151; font-weight: 500; }
+        .offcanvas-dashboard .user-sidebar-body ul li a i { margin-right: 12px; font-size: 18px; }
+        .offcanvas-dashboard .user-sidebar-body ul li a:hover,
+        .offcanvas-dashboard .user-sidebar-body ul li a.active { color: var(--bs-primary); }
+        [data-theme="dark"] .offcanvas-dashboard .user-sidebar-body ul li a { color: #e2e8f0; }
+    </style>
+</head>
+
+<body>
+    <script>
+        (function() {
+            const token = localStorage.getItem('authToken');
+            if (!token) window.location.href = '../index.html';
+        })();
+    </script>
+
+    <div class="main-header">
+        <header class="py-3 border-bottom">
+            <div class="container">
+                <div class="header-nav">
+                    <div class="main-menu-wrapper">
+                        <div class="navbar-logo d-flex align-items-center">
+                            <button class="btn btn-link p-0 me-3 mobile-sidebar-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#dashboardSidebar">
+                                <i class="isax isax-menu-1 fs-24"></i>
+                            </button>
+                            <a class="logo-dark header-logo" href="../index.html">
+                                <img src="../assets/img/logo-dark.svg" class="logo" alt="Logo">
+                            </a>
+                        </div>
+                        <div class="header-btn d-flex align-items-center">
+                            <a href="../index.html" class="btn btn-outline-primary btn-sm me-3 d-none d-md-inline-flex">
+                                <i class="isax isax-home-15 me-2"></i>Back to Site
+                            </a>
+                            <div class="me-3">
+                                <a href="javascript:void(0);" id="dark-mode-toggle" class="theme-toggle"><i class="isax isax-moon"></i></a>
+                                <a href="javascript:void(0);" id="light-mode-toggle" class="theme-toggle"><i class="isax isax-sun-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Mobile Sidebar Offcanvas -->
+    <div class="offcanvas offcanvas-start offcanvas-dashboard" tabindex="-1" id="dashboardSidebar">
+        <div class="offcanvas-header border-bottom">
+            <div class="d-flex align-items-center">
+                <div class="avatar avatar-lg rounded-circle bg-dark text-white d-flex align-items-center justify-content-center me-2" id="offcanvasAvatar" style="width:48px;height:48px;font-weight:600;">U</div>
+                <div>
+                    <h6 class="fs-16 mb-0" id="offcanvasUserName">Loading...</h6>
+                    <span class="fs-14 text-muted" id="offcanvasJoinDate">-</span>
+                </div>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body user-sidebar-body">
+            <ul>
+                <li><span class="fs-14 text-muted fw-medium mb-2 d-block">Main</span></li>
+                <li><a href="user-dashboard.html"><i class="isax isax-grid-55"></i> Dashboard</a></li>
+                <li><a href="dashboard-vacations.html"><i class="isax isax-sun-15"></i> My Vacations</a></li>
+                <li><a href="dashboard-fancard.html"><i class="isax isax-card5"></i> Fan Card</a></li>
+                <li><a href="dashboard-deposit.html" class="active"><i class="isax isax-wallet-25"></i> Deposit</a></li>
+                <li><span class="fs-14 text-muted fw-medium mb-2 mt-3 d-block">Bookings</span></li>
+                <li><a href="dashboard-hotels.html"><i class="isax isax-building5"></i> Hotels</a></li>
+                <li><a href="dashboard-flights.html"><i class="isax isax-airplane5"></i> Flights</a></li>
+                <li><a href="dashboard-cars.html"><i class="isax isax-car5"></i> Cars</a></li>
+                <li><a href="dashboard-tours.html"><i class="isax isax-map5"></i> Tours</a></li>
+                <li><span class="fs-14 text-muted fw-medium mb-2 mt-3 d-block">Account</span></li>
+                <li><a href="dashboard-settings.html"><i class="isax isax-setting-25"></i> Settings</a></li>
+                <li><a href="javascript:void(0);" onclick="logout()"><i class="isax isax-logout-15"></i> Logout</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-xl-3 col-lg-4 theiaStickySidebar d-none d-lg-block">
+                    <div class="card user-sidebar mb-4">
+                        <div class="card-header user-sidebar-header">
+                            <div class="profile-content rounded-pill">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar avatar-lg rounded-circle bg-dark text-white d-flex align-items-center justify-content-center me-2" id="sidebarAvatar" style="width:48px;height:48px;font-weight:600;">U</div>
+                                        <div>
+                                            <h6 class="fs-16 mb-0" id="sidebarUserName">Loading...</h6>
+                                            <span class="fs-14 text-gray-6" id="sidebarJoinDate">-</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body user-sidebar-body">
+                            <ul>
+                                <li><span class="fs-14 text-gray-3 fw-medium mb-2">Main</span></li>
+                                <li><a href="user-dashboard.html"><i class="isax isax-grid-55"></i> Dashboard</a></li>
+                                <li><a href="dashboard-vacations.html"><i class="isax isax-sun-15"></i> My Vacations</a></li>
+                                <li><a href="dashboard-fancard.html"><i class="isax isax-card5"></i> Fan Card</a></li>
+                                <li><a href="dashboard-deposit.html" class="active"><i class="isax isax-wallet-25"></i> Deposit</a></li>
+                                <li><span class="fs-14 text-gray-3 fw-medium mb-2 mt-3">Bookings</span></li>
+                                <li><a href="dashboard-hotels.html"><i class="isax isax-building5"></i> Hotels</a></li>
+                                <li><a href="dashboard-flights.html"><i class="isax isax-airplane5"></i> Flights</a></li>
+                                <li><a href="dashboard-cars.html"><i class="isax isax-car5"></i> Cars</a></li>
+                                <li><a href="dashboard-tours.html"><i class="isax isax-map5"></i> Tours</a></li>
+                                <li><span class="fs-14 text-gray-3 fw-medium mb-2 mt-3">Account</span></li>
+                                <li><a href="dashboard-settings.html"><i class="isax isax-setting-25"></i> Settings</a></li>
+                                <li><a href="javascript:void(0);" onclick="logout()"><i class="isax isax-logout-15"></i> Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="col-xl-9 col-lg-8">
+                    <div class="mb-4">
+                        <h4 class="mb-1">Deposit Funds</h4>
+                        <p class="text-muted mb-0">Add funds to your account using cryptocurrency</p>
+                    </div>
+                    
+                    <!-- Balance Card -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="text-muted mb-1">Current Balance</p>
+                                    <h3 class="mb-0" id="userBalance">$0.00</h3>
+                                </div>
+                                <div class="rounded-circle bg-light d-flex align-items-center justify-content-center" style="width: 56px; height: 56px;">
+                                    <i class="isax isax-wallet-25 fs-24 text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Deposit Form -->
+                        <div class="col-lg-7 mb-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Make a Deposit</h6>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Step 1: Amount -->
+                                    <div class="mb-4">
+                                        <label class="form-label fw-medium">Amount (USD)</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">$</span>
+                                            <input type="number" class="form-control" id="depositAmount" placeholder="0.00" min="10" step="1">
+                                        </div>
+                                        <small class="text-muted">Minimum deposit: $10.00</small>
+                                    </div>
+                                    
+                                    <!-- Step 2: Select Crypto -->
+                                    <div class="mb-4">
+                                        <label class="form-label fw-medium">Select Cryptocurrency</label>
+                                        <div class="row g-3" id="cryptoOptions">
+                                            <div class="col-6 col-md-4 col-lg-3">
+                                                <div class="crypto-option" data-crypto="BTC">
+                                                    <div class="text-center">
+                                                        <img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530be6e374711a8554f31b17e4cb92c25fa5/svg/color/btc.svg" alt="BTC" class="mb-2">
+                                                        <div class="crypto-name small">Bitcoin</div>
+                                                        <div class="crypto-symbol">BTC</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-md-4 col-lg-3">
+                                                <div class="crypto-option" data-crypto="ETH">
+                                                    <div class="text-center">
+                                                        <img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530be6e374711a8554f31b17e4cb92c25fa5/svg/color/eth.svg" alt="ETH" class="mb-2">
+                                                        <div class="crypto-name small">Ethereum</div>
+                                                        <div class="crypto-symbol">ETH</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-md-4 col-lg-3">
+                                                <div class="crypto-option" data-crypto="USDT">
+                                                    <div class="text-center">
+                                                        <img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530be6e374711a8554f31b17e4cb92c25fa5/svg/color/usdt.svg" alt="USDT" class="mb-2">
+                                                        <div class="crypto-name small">Tether</div>
+                                                        <div class="crypto-symbol">USDT</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-md-4 col-lg-3">
+                                                <div class="crypto-option" data-crypto="BNB">
+                                                    <div class="text-center">
+                                                        <img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530be6e374711a8554f31b17e4cb92c25fa5/svg/color/bnb.svg" alt="BNB" class="mb-2">
+                                                        <div class="crypto-name small">BNB</div>
+                                                        <div class="crypto-symbol">BEP20</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-md-4 col-lg-3">
+                                                <div class="crypto-option" data-crypto="SOL">
+                                                    <div class="text-center">
+                                                        <img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530be6e374711a8554f31b17e4cb92c25fa5/svg/color/sol.svg" alt="SOL" class="mb-2">
+                                                        <div class="crypto-name small">Solana</div>
+                                                        <div class="crypto-symbol">SOL</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-md-4 col-lg-3">
+                                                <div class="crypto-option" data-crypto="XRP">
+                                                    <div class="text-center">
+                                                        <img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530be6e374711a8554f31b17e4cb92c25fa5/svg/color/xrp.svg" alt="XRP" class="mb-2">
+                                                        <div class="crypto-name small">Ripple</div>
+                                                        <div class="crypto-symbol">XRP</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Wallet Address Display -->
+                                    <div class="wallet-display mb-4" id="walletDisplay" style="display: none;">
+                                        <div class="text-center mb-3">
+                                            <div class="qr-placeholder mb-3">
+                                                <i class="isax isax-scan-barcode fs-48 text-gray-4"></i>
+                                            </div>
+                                            <p class="mb-2 fw-medium">Send <span id="selectedCrypto">-</span> to this address:</p>
+                                        </div>
+                                        <div class="wallet-address mb-3" id="walletAddress">-</div>
+                                        <div class="d-flex gap-2">
+                                            <button class="btn btn-outline-dark btn-copy flex-grow-1" onclick="copyAddress()">
+                                                <i class="isax isax-copy me-2"></i>Copy Address
+                                            </button>
+                                        </div>
+                                        <div class="mt-3 p-3 bg-warning-subtle rounded">
+                                            <small class="text-warning-emphasis">
+                                                <i class="isax isax-warning-2 me-1"></i>
+                                                Only send <strong id="cryptoWarning">-</strong> to this address. Sending any other cryptocurrency may result in permanent loss.
+                                            </small>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Error Display -->
+                                    <div class="alert alert-danger d-none mb-3" id="depositError"></div>
+                                    
+                                    <!-- Submit -->
+                                    <button class="btn btn-dark w-100" id="submitDeposit" disabled onclick="submitDeposit()">
+                                        <span id="submitText">Select cryptocurrency to continue</span>
+                                        <span class="spinner-border spinner-border-sm ms-2 d-none" id="submitSpinner"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Deposit History -->
+                        <div class="col-lg-5 mb-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">Recent Deposits</h6>
+                                </div>
+                                <div class="card-body p-0" id="depositHistory">
+                                    <div class="text-center py-5">
+                                        <div class="spinner-border spinner-border-sm text-muted mb-2"></div>
+                                        <p class="text-muted mb-0 small">Loading deposits...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Proof Modal -->
+    <div class="modal fade" id="proofModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title">Upload Payment Proof</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted mb-4">Please upload a screenshot or image of your payment confirmation to speed up verification.</p>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Transaction Hash (Optional)</label>
+                        <input type="text" class="form-control" id="txHash" placeholder="Enter transaction hash">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Payment Screenshot</label>
+                        <div class="border rounded p-4 text-center" id="uploadArea" style="cursor: pointer;">
+                            <input type="file" id="proofImage" accept="image/*" class="d-none">
+                            <i class="isax isax-gallery-add fs-48 text-gray-4 mb-2 d-block"></i>
+                            <p class="mb-2">Click to upload or drag and drop</p>
+                            <small class="text-muted">PNG, JPG up to 5MB</small>
+                        </div>
+                        <div id="previewArea" class="d-none mt-3">
+                            <img id="imagePreview" class="img-fluid rounded" style="max-height: 200px;">
+                            <button class="btn btn-sm btn-outline-danger mt-2" onclick="clearImage()">Remove</button>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-danger d-none" id="proofError"></div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-dark" onclick="submitProof()" id="submitProofBtn">
+                        Submit Deposit Request
+                        <span class="spinner-border spinner-border-sm ms-2 d-none" id="proofSpinner"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-bottom-nav">
+        <ul>
+            <li><a href="user-dashboard.html"><i class="isax isax-home-15"></i>Home</a></li>
+            <li><a href="dashboard-vacations.html"><i class="isax isax-sun-15"></i>Vacations</a></li>
+            <li><a href="dashboard-fancard.html"><i class="isax isax-card5"></i>Fan Card</a></li>
+            <li><a href="dashboard-deposit.html" class="active"><i class="isax isax-wallet-25"></i>Deposit</a></li>
+            <li><a href="dashboard-settings.html"><i class="isax isax-user5"></i>Account</a></li>
+        </ul>
+    </div>
+
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/script.js"></script>
+    
+    <script>
+        const API_BASE_URL = 'http://localhost:5001/api';
+        const CLOUDINARY_CLOUD_NAME = 'dgqjunu7l';
+        const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/upload`;
+        const CLOUDINARY_UPLOAD_PRESET = 'ml_default'; // unsigned preset
+        
+        let selectedCrypto = null;
+        let pendingDepositData = null;
+        let WALLET_ADDRESSES = {};
+        
+        // Load wallet addresses from backend
+        async function loadWalletAddresses() {
+            const token = localStorage.getItem('authToken');
+            try {
+                const response = await fetch(`${API_BASE_URL}/deposits/admin-wallets`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    WALLET_ADDRESSES = result.data || {};
+                }
+            } catch (error) {
+                console.error('Error loading wallet addresses:', error);
+            }
+        }
+        
+        async function loadUserData() {
+            const token = localStorage.getItem('authToken');
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/me`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (!response.ok) throw new Error('Failed to load');
+                
+                const result = await response.json();
+                const user = result.data;
+                
+                // Update sidebar
+                document.getElementById('sidebarUserName').textContent = `${user.firstName} ${user.lastName}`;
+                document.getElementById('sidebarAvatar').textContent = `${user.firstName[0]}${user.lastName[0]}`;
+                if (user.createdAt) {
+                    document.getElementById('sidebarJoinDate').textContent = 'Since ' + new Date(user.createdAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+                }
+                
+                // Update mobile offcanvas sidebar
+                document.getElementById('offcanvasUserName').textContent = `${user.firstName} ${user.lastName}`;
+                document.getElementById('offcanvasAvatar').textContent = `${user.firstName[0]}${user.lastName[0]}`;
+                if (user.createdAt) {
+                    document.getElementById('offcanvasJoinDate').textContent = 'Since ' + new Date(user.createdAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+                }
+                
+                // Update balance
+                const balance = user.balance || 0;
+                document.getElementById('userBalance').textContent = `$${balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                
+            } catch (error) {
+                console.error('Error loading user:', error);
+            }
+        }
+        
+        async function loadDepositHistory() {
+            const container = document.getElementById('depositHistory');
+            const token = localStorage.getItem('authToken');
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/deposits/my`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (!response.ok) throw new Error('Failed to load');
+                
+                const result = await response.json();
+                const deposits = result.data?.deposits || result.data || [];
+                
+                if (!Array.isArray(deposits) || deposits.length === 0) {
+                    container.innerHTML = `
+                        <div class="text-center py-5">
+                            <i class="isax isax-wallet-minus fs-48 text-gray-4 mb-2 d-block"></i>
+                            <p class="text-muted mb-0">No deposits yet</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                let html = '';
+                deposits.slice(0, 10).forEach(deposit => {
+                    const statusClass = deposit.status === 'confirmed' ? 'status-confirmed' : 
+                                       deposit.status === 'rejected' ? 'status-rejected' : 'status-pending';
+                    const date = new Date(deposit.createdAt).toLocaleDateString('en-US', { 
+                        month: 'short', day: 'numeric', year: 'numeric' 
+                    });
+                    
+                    html += `
+                        <div class="deposit-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p class="fw-medium mb-1">$${deposit.amount.toLocaleString()}</p>
+                                    <small class="text-muted">${deposit.currency} • ${date}</small>
+                                </div>
+                                <span class="status-badge ${statusClass}">${deposit.status}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                container.innerHTML = html;
+                
+            } catch (error) {
+                console.error('Error loading deposits:', error);
+                container.innerHTML = `
+                    <div class="text-center py-5">
+                        <i class="isax isax-warning-2 fs-48 text-gray-4 mb-2 d-block"></i>
+                        <p class="text-muted mb-0">Failed to load deposits</p>
+                        <button class="btn btn-sm btn-outline-primary mt-2" onclick="loadDepositHistory()">Try Again</button>
+                    </div>
+                `;
+            }
+        }
+        
+        // Crypto selection
+        document.querySelectorAll('.crypto-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.crypto-option').forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+                
+                selectedCrypto = this.dataset.crypto;
+                const address = WALLET_ADDRESSES[selectedCrypto];
+                
+                document.getElementById('selectedCrypto').textContent = selectedCrypto;
+                document.getElementById('cryptoWarning').textContent = selectedCrypto;
+                document.getElementById('walletAddress').textContent = address;
+                document.getElementById('walletDisplay').style.display = 'block';
+                
+                updateSubmitButton();
+            });
+        });
+        
+        // Amount input
+        document.getElementById('depositAmount').addEventListener('input', updateSubmitButton);
+        
+        function updateSubmitButton() {
+            const amount = parseFloat(document.getElementById('depositAmount').value);
+            const btn = document.getElementById('submitDeposit');
+            const text = document.getElementById('submitText');
+            
+            if (!selectedCrypto) {
+                btn.disabled = true;
+                text.textContent = 'Select cryptocurrency to continue';
+            } else if (!amount || amount < 10) {
+                btn.disabled = true;
+                text.textContent = 'Enter amount (min $10)';
+            } else {
+                btn.disabled = false;
+                text.textContent = `Continue with ${selectedCrypto} deposit`;
+            }
+        }
+        
+        function copyAddress() {
+            const address = document.getElementById('walletAddress').textContent;
+            navigator.clipboard.writeText(address).then(() => {
+                const btn = document.querySelector('.btn-copy');
+                btn.classList.add('copied');
+                btn.innerHTML = '<i class="isax isax-tick-circle me-2"></i>Copied!';
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = '<i class="isax isax-copy me-2"></i>Copy Address';
+                }, 2000);
+            });
+        }
+        
+        function submitDeposit() {
+            const amount = parseFloat(document.getElementById('depositAmount').value);
+            const errorEl = document.getElementById('depositError');
+            
+            errorEl.classList.add('d-none');
+            
+            if (!selectedCrypto || !amount || amount < 10) {
+                errorEl.textContent = 'Please select a cryptocurrency and enter a valid amount (min $10).';
+                errorEl.classList.remove('d-none');
+                return;
+            }
+            
+            // Store pending deposit data and show proof modal
+            pendingDepositData = {
+                amount: amount,
+                currency: selectedCrypto,
+                walletAddress: WALLET_ADDRESSES[selectedCrypto]
+            };
+            
+            new bootstrap.Modal(document.getElementById('proofModal')).show();
+        }
+        
+        // File upload handling
+        const uploadArea = document.getElementById('uploadArea');
+        const proofInput = document.getElementById('proofImage');
+        
+        uploadArea.addEventListener('click', () => proofInput.click());
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('border-primary');
+        });
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('border-primary');
+        });
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('border-primary');
+            if (e.dataTransfer.files.length) {
+                proofInput.files = e.dataTransfer.files;
+                handleFileSelect();
+            }
+        });
+        
+        proofInput.addEventListener('change', handleFileSelect);
+        
+        function handleFileSelect() {
+            const file = proofInput.files[0];
+            if (file) {
+                if (file.size > 5 * 1024 * 1024) {
+                    document.getElementById('proofError').textContent = 'File size must be less than 5MB';
+                    document.getElementById('proofError').classList.remove('d-none');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    document.getElementById('imagePreview').src = e.target.result;
+                    document.getElementById('uploadArea').classList.add('d-none');
+                    document.getElementById('previewArea').classList.remove('d-none');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        function clearImage() {
+            proofInput.value = '';
+            document.getElementById('uploadArea').classList.remove('d-none');
+            document.getElementById('previewArea').classList.add('d-none');
+        }
+        
+        async function uploadToCloudinary(file) {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+            formData.append('folder', 'deposit-proofs');
+            
+            const response = await fetch(CLOUDINARY_UPLOAD_URL, {
+                method: 'POST',
+                body: formData
+            });
+            
+            if (!response.ok) {
+                throw new Error('Failed to upload image');
+            }
+            
+            const data = await response.json();
+            return data.secure_url;
+        }
+        
+        async function submitProof() {
+            const token = localStorage.getItem('authToken');
+            const txHash = document.getElementById('txHash').value;
+            const proofImage = proofInput.files[0];
+            const errorEl = document.getElementById('proofError');
+            const spinner = document.getElementById('proofSpinner');
+            const btn = document.getElementById('submitProofBtn');
+            
+            errorEl.classList.add('d-none');
+            spinner.classList.remove('d-none');
+            btn.disabled = true;
+            
+            try {
+                let proofImageUrl = null;
+                
+                // Upload proof image to Cloudinary if provided
+                if (proofImage) {
+                    try {
+                        proofImageUrl = await uploadToCloudinary(proofImage);
+                    } catch (uploadError) {
+                        console.error('Image upload error:', uploadError);
+                        // Continue without image if upload fails
+                    }
+                }
+                
+                const depositData = {
+                    ...pendingDepositData,
+                    txHash: txHash || null,
+                    proofImage: proofImageUrl
+                };
+                
+                const response = await fetch(`${API_BASE_URL}/deposits`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(depositData)
+                });
+                
+                const result = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(result.message || 'Failed to submit deposit');
+                }
+                
+                // Success - close modal and refresh
+                bootstrap.Modal.getInstance(document.getElementById('proofModal')).hide();
+                
+                // Reset form
+                document.getElementById('depositAmount').value = '';
+                document.getElementById('txHash').value = '';
+                clearImage();
+                document.querySelectorAll('.crypto-option').forEach(o => o.classList.remove('selected'));
+                document.getElementById('walletDisplay').style.display = 'none';
+                selectedCrypto = null;
+                pendingDepositData = null;
+                updateSubmitButton();
+                
+                // Reload deposit history
+                loadDepositHistory();
+                
+                // Show success toast instead of alert
+                showToast('Deposit request submitted! It will be reviewed shortly.', 'success');
+                
+            } catch (error) {
+                console.error('Error submitting deposit:', error);
+                errorEl.textContent = error.message || 'Failed to submit deposit. Please try again.';
+                errorEl.classList.remove('d-none');
+            } finally {
+                spinner.classList.add('d-none');
+                btn.disabled = false;
+            }
+        }
+        
+        function showToast(message, type = 'info') {
+            // Create toast container if not exists
+            let container = document.getElementById('toastContainer');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'toastContainer';
+                container.className = 'position-fixed top-0 end-0 p-3';
+                container.style.zIndex = '1100';
+                document.body.appendChild(container);
+            }
+            
+            const bgClass = type === 'success' ? 'bg-success' : type === 'error' ? 'bg-danger' : 'bg-dark';
+            const toast = document.createElement('div');
+            toast.className = `toast align-items-center text-white ${bgClass} border-0`;
+            toast.innerHTML = `
+                <div class="d-flex">
+                    <div class="toast-body">${message}</div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>
+            `;
+            container.appendChild(toast);
+            new bootstrap.Toast(toast).show();
+            toast.addEventListener('hidden.bs.toast', () => toast.remove());
+        }
+        
+        function logout() {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('authUser');
+            window.location.href = '../index.html';
+        }
+        
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadWalletAddresses();
+            loadUserData();
+            loadDepositHistory();
+        });
+    </script>
+</body>
+</html>

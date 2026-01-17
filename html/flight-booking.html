@@ -58,6 +58,9 @@
 
     <!-- Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Nav Auth CSS -->
+    <link rel="stylesheet" href="assets/css/nav-auth.css">
 
 </head>
 
@@ -407,29 +410,51 @@
                             <h5>Payment Details</h5>
                         </div>
                         <div class="card-body">
-                            <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
-                                <div class="d-flex align-items-center flex-wrap payment-form">
-                                    <div class="form-check d-flex align-items-center me-3 mb-2">
-                                        <input class="form-check-input mt-0" type="radio" name="Radio" id="credit-card"
-                                            value="credit-card" checked>
-                                        <label class="form-check-label fs-14 ms-2" for="credit-card">
-                                            Crypto Payment
-                                        </label>
+                            <!-- Balance Payment Option (shown if logged in) -->
+                            <div id="balance-payment-section" class="mb-4" style="display: none;">
+                                <div class="alert alert-info d-flex align-items-center justify-content-between mb-3">
+                                    <div>
+                                        <strong><i class="isax isax-wallet-2 me-2"></i>Pay with Balance</strong>
+                                        <p class="mb-0 small">Current Balance: <span id="user-balance" class="fw-bold text-success">$0</span></p>
                                     </div>
-                                    <!-- <div class="form-check d-flex align-items-center me-3 mb-2">
-                                        <input class="form-check-input mt-0" type="radio" name="Radio" id="paypal"
-                                            value="paypal">
-                                        <label class="form-check-label fs-14 ms-2" for="paypal">
-                                            Paypal
-                                        </label>
-                                    </div> -->
-                                    <!-- <div class="form-check d-flex align-items-center me-3 mb-2">
-                                        <input class="form-check-input mt-0" type="radio" name="Radio" id="stripe"
-                                            value="stripe" checked>
-                                        <label class="form-check-label fs-14 ms-2" for="stripe">
-                                            Crypto Payment
-                                        </label>
-                                    </div> -->
+                                    <a href="dashboard-deposit.html" class="btn btn-sm btn-outline-primary">
+                                        <i class="isax isax-add me-1"></i>Add Funds
+                                    </a>
+                                </div>
+                                <div class="form-check d-flex align-items-center mb-3 p-3 border border-primary rounded bg-primary bg-opacity-10">
+                                    <input class="form-check-input mt-0 me-2" type="radio" name="Radio" id="balance-payment" value="balance" checked>
+                                    <label class="form-check-label fs-14" for="balance-payment">
+                                        <i class="isax isax-wallet-check me-2 text-primary"></i>
+                                        <strong>Pay with Account Balance</strong>
+                                        <small class="d-block text-muted">Instant payment from your balance</small>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Login prompt (shown if not logged in) -->
+                            <div id="login-prompt-section" class="mb-4" style="display: none;">
+                                <div class="alert alert-warning">
+                                    <i class="isax isax-info-circle me-2"></i>
+                                    <strong>Please sign in to complete your booking</strong>
+                                    <p class="mb-2 small">Sign in to use your account balance and earn loyalty points.</p>
+                                    <a href="login.html" class="btn btn-sm btn-primary">
+                                        <i class="isax isax-login me-1"></i>Sign In
+                                    </a>
+                                    <a href="register.html" class="btn btn-sm btn-outline-primary ms-2">Register</a>
+                                </div>
+                            </div>
+                            
+                            <div id="other-payment-methods" style="display: none;">
+                                <p class="text-muted mb-3"><small>Or pay with other methods:</small></p>
+                                <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+                                    <div class="d-flex align-items-center flex-wrap payment-form">
+                                        <div class="form-check d-flex align-items-center me-3 mb-2">
+                                            <input class="form-check-input mt-0" type="radio" name="Radio" id="credit-card" value="credit-card">
+                                            <label class="form-check-label fs-14 ms-2" for="credit-card">
+                                                Crypto Payment
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -538,8 +563,9 @@
                             <!-- /Stripe -->
 
                             <div class="d-flex align-items-center justify-content-end flex-wrap gap-2">
-                                <a href="javascript:void(0);" id="price-ticket" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#booking-success">Confirm & Pay $9569 </a>
+                                <button type="button" id="confirm-booking-btn" class="btn btn-primary">
+                                    <i class="isax isax-tick-circle me-2"></i>Confirm & Pay <span id="total-amount-btn">$9569</span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -656,7 +682,7 @@
                             </p>
                         </div>
                         <div class="d-flex align-items-center justify-content-center ">
-                            <a href="index.html" class="btn btn-primary d-flex flex-shrink-0">Close</a>
+                            <a href="user-dashboard.html" class="btn btn-primary d-flex flex-shrink-0">View My Bookings</a>
                         </div>
                     </div>
                 </div>
@@ -664,6 +690,51 @@
         </div>
     </div>
     <!-- BookingSuccess -->
+    
+    <!-- Insufficient Balance Modal -->
+    <div class="modal fade" id="insufficient-balance-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-body text-center p-4">
+                    <div class="mb-3">
+                        <i class="isax isax-wallet-remove text-danger" style="font-size: 48px;"></i>
+                    </div>
+                    <h5 class="mb-3">Insufficient Balance</h5>
+                    <p class="text-muted mb-3">
+                        Required: <strong class="text-dark" id="required-amount">$0</strong><br>
+                        Your Balance: <strong class="text-danger" id="current-balance-modal">$0</strong>
+                    </p>
+                    <div class="d-flex gap-2 justify-content-center">
+                        <a href="dashboard-deposit.html" class="btn btn-primary">
+                            <i class="isax isax-add me-1"></i>Add Funds
+                        </a>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Login Required Modal -->
+    <div class="modal fade" id="login-required-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-body text-center p-4">
+                    <div class="mb-3">
+                        <i class="isax isax-login text-primary" style="font-size: 48px;"></i>
+                    </div>
+                    <h5 class="mb-3">Login Required</h5>
+                    <p class="text-muted mb-3">Please sign in to complete your booking and use your account balance.</p>
+                    <div class="d-flex gap-2 justify-content-center">
+                        <a href="login.html" class="btn btn-primary">
+                            <i class="isax isax-login me-1"></i>Sign In
+                        </a>
+                        <a href="register.html" class="btn btn-outline-primary">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -982,15 +1053,117 @@
 
     <script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
         data-cf-settings="671d257c38d4887ee85370f1-|49" defer></script>
-        <script>
-    // Load the saved option from localStorage on page load
-    window.addEventListener('DOMContentLoaded', () => {
+    
+    <!-- Auth & Booking JS -->
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/nav-auth.js"></script>
+    <script src="assets/js/booking-system.js"></script>
+    
+    <script>
+    const API_BASE_URL = 'http://localhost:5001/api';
+    
+    $(document).ready(async function() {
+        let totalAmount = 9569;
+        
+        // Load the saved option from localStorage on page load
         const savedOption = localStorage.getItem('selectedClass');
-        document.getElementById("price-ticket").textContent =" I have transferred for " + savedOption
-        document.getElementById("modal-ticket").textContent =  savedOption
+        if (savedOption) {
+            document.getElementById("modal-ticket").textContent = savedOption;
+        }
+        
+        const token = localStorage.getItem('authToken');
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        
+        if (token && user) {
+            $('#balance-payment-section').show();
+            $('#other-payment-methods').show();
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/dashboard/overview`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (response.ok) {
+                    const result = await response.json();
+                    const balance = result.data?.balance || 0;
+                    $('#user-balance').text('$' + balance.toLocaleString());
+                    user.balance = balance;
+                    localStorage.setItem('user', JSON.stringify(user));
+                }
+            } catch (e) {
+                $('#user-balance').text('$' + (user.balance || 0).toLocaleString());
+            }
+        } else {
+            $('#login-prompt-section').show();
+        }
+        
+        $('input[name="Radio"]').on('change', function() {
+            const selected = $(this).val();
+            $('.credit-card-details, .paypal-details, .stripe-details').hide();
+            if (selected === 'credit-card') $('.credit-card-details').show();
+        });
+        
+        $('#confirm-booking-btn').on('click', async function() {
+            const token = localStorage.getItem('authToken');
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            const paymentMethod = $('input[name="Radio"]:checked').val();
+            
+            if (paymentMethod === 'balance') {
+                if (!token) {
+                    new bootstrap.Modal($('#login-required-modal')[0]).show();
+                    return;
+                }
+                
+                const currentBalance = user.balance || 0;
+                if (currentBalance < totalAmount) {
+                    $('#required-amount').text('$' + totalAmount.toLocaleString());
+                    $('#current-balance-modal').text('$' + currentBalance.toLocaleString());
+                    new bootstrap.Modal($('#insufficient-balance-modal')[0]).show();
+                    return;
+                }
+                
+                const btn = $(this);
+                btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm me-2"></span>Processing...');
+                
+                try {
+                    const response = await fetch(`${API_BASE_URL}/bookings`, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            bookingType: 'flight',
+                            totalAmount: totalAmount,
+                            paymentMethod: 'balance',
+                            pricing: { subtotal: 8565, tax: 85, bookingFee: 89, discount: -20, total: totalAmount },
+                            details: { flightClass: savedOption || 'Economy', origin: 'New York', destination: 'Los Angeles', departureDate: '15 Sep 2025', returnDate: '21 Sep 2025' }
+                        })
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (response.ok && result.success) {
+                        user.balance = (user.balance || 0) - totalAmount;
+                        localStorage.setItem('user', JSON.stringify(user));
+                        $('#booking-reference').text(result.data?.bookingReference || '#FB' + Date.now());
+                        $('#booking-balance-info').text('New Balance: $' + user.balance.toLocaleString());
+                        new bootstrap.Modal($('#booking-success')[0]).show();
+                    } else {
+                        throw new Error(result.error || result.message || 'Booking failed');
+                    }
+                } catch (error) {
+                    console.error('Booking error:', error);
+                    alert(error.message || 'Failed to complete booking. Please try again.');
+                } finally {
+                    btn.prop('disabled', false).html('<i class="isax isax-tick-circle me-2"></i>Confirm & Pay <span id="total-amount-btn">$' + totalAmount.toLocaleString() + '</span>');
+                }
+            } else {
+                alert('Please sign in and use your account balance to complete this booking.');
+            }
+        });
     });
+    </script>
 
-</script>
 <script type="text/javascript">
     var _smartsupp = _smartsupp || {};
     _smartsupp.key = 'fdad8ac9c8863265614d6c83899ab2b80b288b5e';

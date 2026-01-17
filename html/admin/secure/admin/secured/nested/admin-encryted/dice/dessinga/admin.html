@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - DreamsTour</title>
+    <link rel="icon" href="../../../../../../../../assets/img/favicon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../../../../../../assets/css/iconsax.css">
+    <style>
+        :root {
+            --primary: #0d6efd;
+            --dark: #1e293b;
+            --darker: #0f172a;
+            --light: #f8fafc;
+            --border: #334155;
+        }
+        * { box-sizing: border-box; }
+        body { 
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--darker);
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+        
+        /* Login Modal - Unclosable */
+        .login-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-modal {
+            background: var(--dark);
+            border-radius: 16px;
+            padding: 40px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border);
+        }
+        .login-modal h2 { 
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .login-modal p {
+            color: #94a3b8;
+            margin-bottom: 32px;
+        }
+        .form-control {
+            background: var(--darker);
+            border: 1px solid var(--border);
+            color: #fff;
+            padding: 12px 16px;
+            border-radius: 8px;
+        }
+        .form-control:focus {
+            background: var(--darker);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+            color: #fff;
+        }
+        .form-control::placeholder { color: #64748b; }
+        .btn-primary {
+            background: var(--primary);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            width: 100%;
+        }
+        .btn-primary:hover { background: #0b5ed7; }
+        .login-error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            display: none;
+        }
+        .login-error.show { display: block; }
+        
+        /* Admin Layout */
+        .admin-hidden { display: none !important; }
+        .admin-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 260px;
+            background: var(--dark);
+            border-right: 1px solid var(--border);
+            padding: 24px 0;
+            overflow-y: auto;
+        }
+        .admin-logo {
+            padding: 0 24px 24px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 24px;
+        }
+        .admin-logo h3 {
+            color: #fff;
+            font-weight: 700;
+            margin: 0;
+        }
+        .admin-logo span {
+            color: var(--primary);
+        }
+        .admin-nav { list-style: none; padding: 0; margin: 0; }
+        .admin-nav li a {
+            display: flex;
+            align-items: center;
+            padding: 12px 24px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .admin-nav li a i {
+            margin-right: 12px;
+            font-size: 18px;
+        }
+        .admin-nav li a:hover,
+        .admin-nav li a.active {
+            background: rgba(13, 110, 253, 0.1);
+            color: var(--primary);
+        }
+        .admin-nav li a.active {
+            border-right: 3px solid var(--primary);
+        }
+        .admin-main {
+            margin-left: 260px;
+            padding: 24px;
+            min-height: 100vh;
+        }
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+        .admin-header h1 {
+            color: #fff;
+            font-weight: 700;
+            margin: 0;
+        }
+        .admin-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .admin-user-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 600;
+        }
+        .btn-logout {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .btn-logout:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+        
+        /* Stats Cards */
+        .stat-card {
+            background: var(--dark);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+        .stat-card h3 {
+            font-size: 32px;
+            color: #fff;
+            margin: 0 0 8px;
+            font-weight: 700;
+        }
+        .stat-card p {
+            color: #94a3b8;
+            margin: 0;
+        }
+        .stat-card.pending { border-left: 4px solid #f59e0b; }
+        .stat-card.success { border-left: 4px solid #10b981; }
+        .stat-card.info { border-left: 4px solid #3b82f6; }
+        
+        /* Data Tables */
+        .data-card {
+            background: var(--dark);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .data-card-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .data-card-header h4 {
+            color: #fff;
+            margin: 0;
+            font-weight: 600;
+        }
+        .data-table {
+            width: 100%;
+            color: #e2e8f0;
+        }
+        .data-table th {
+            background: var(--darker);
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            color: #94a3b8;
+        }
+        .data-table td {
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        .data-table tr:last-child td { border-bottom: none; }
+        .data-table tr:hover td { background: rgba(255, 255, 255, 0.02); }
+        
+        /* Badges */
+        .badge-status {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge-pending { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+        .badge-confirmed { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+        .badge-rejected { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+        
+        /* Action Buttons */
+        .btn-approve {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .btn-approve:hover { background: rgba(16, 185, 129, 0.2); }
+        .btn-reject {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .btn-reject:hover { background: rgba(239, 68, 68, 0.2); }
+        .btn-view {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-view:hover { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
+        
+        /* Tabs */
+        .admin-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0;
+        }
+        .admin-tab {
+            padding: 12px 20px;
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-weight: 500;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -1px;
+        }
+        .admin-tab:hover { color: #e2e8f0; }
+        .admin-tab.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        
+        /* Section visibility */
+        .admin-section { display: none; }
+        .admin-section.active { display: block; }
+        
+        /* Proof Image Modal */
+        .proof-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9998;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .proof-modal.show { display: flex; }
+        .proof-modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+        }
+        .proof-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        /* Filter Buttons */
+        .filter-btn {
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: #94a3b8;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+        }
+        
+        /* Loading */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #64748b;
+        }
+        .empty-state i {
+            font-size: 48px;
+            margin-bottom: 16px;
+            display: block;
+        }
+        
+        /* Responsive */
+        @media (max-width: 991px) {
+            .admin-sidebar { width: 80px; }
+            .admin-sidebar .admin-logo h3 span:not(:first-child),
+            .admin-nav li a span { display: none; }
+            .admin-nav li a { justify-content: center; padding: 16px; }
+            .admin-nav li a i { margin: 0; font-size: 22px; }
+            .admin-main { margin-left: 80px; }
+        }
+        @media (max-width: 767px) {
+            .admin-sidebar { display: none; }
+            .admin-main { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Modal (Unclosable until successful login) -->
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-modal">
+            <h2>🔐 Admin Access</h2>
+            <p>Enter your credentials to access the admin panel</p>
+            <div class="login-error" id="loginError">Invalid credentials</div>
+            <form id="loginForm">
+                <div class="mb-3">
+                    <label class="form-label text-muted small">Email Address</label>
+                    <input type="email" class="form-control" id="loginEmail" placeholder="admin@example.com" required autocomplete="off">
+                </div>
+                <div class="mb-4">
+                    <label class="form-label text-muted small">Password</label>
+                    <input type="password" class="form-control" id="loginPassword" placeholder="Enter password" required autocomplete="off">
+                </div>
+                <button type="submit" class="btn btn-primary" id="loginBtn">
+                    <span id="loginBtnText">Sign In</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Proof Image Modal -->
+    <div class="proof-modal" id="proofModal">
+        <button class="proof-modal-close" onclick="closeProofModal()">&times;</button>
+        <img src="" alt="Proof" id="proofImage">
+    </div>
+
+    <!-- Admin Panel (Hidden until login) -->
+    <div class="admin-container admin-hidden" id="adminContainer">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <h3><span>D</span>essinga</h3>
+            </div>
+            <ul class="admin-nav">
+                <li><a href="#" class="active" data-section="dashboard"><i class="isax isax-category-2"></i><span>Dashboard</span></a></li>
+                <li><a href="#" data-section="users"><i class="isax isax-people"></i><span>Users</span></a></li>
+                <li><a href="#" data-section="deposits"><i class="isax isax-wallet-2"></i><span>Deposits</span></a></li>
+                <li><a href="#" data-section="bookings"><i class="isax isax-calendar-1"></i><span>Bookings</span></a></li>
+                <li><a href="#" data-section="fancards"><i class="isax isax-card"></i><span>Fan Cards</span></a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="admin-header">
+                <h1 id="sectionTitle">Dashboard</h1>
+                <div class="admin-user">
+                    <div class="admin-user-avatar" id="adminAvatar">A</div>
+                    <span id="adminName">Admin</span>
+                    <button class="btn-logout" onclick="logout()">Logout</button>
+                </div>
+            </div>
+
+            <!-- Dashboard Section -->
+            <section class="admin-section active" id="dashboardSection">
+                <div class="row g-4 mb-4">
+                    <div class="col-md-3">
+                        <div class="stat-card info">
+                            <h3 id="statUsers">0</h3>
+                            <p>Total Users</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card pending">
+                            <h3 id="statPending">0</h3>
+                            <p>Pending Deposits</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card success">
+                            <h3 id="statDeposits">$0</h3>
+                            <p>Total Deposits</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-card info">
+                            <h3 id="statBookings">0</h3>
+                            <p>Total Bookings</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="data-card">
+                            <div class="data-card-header">
+                                <h4>Recent Pending Deposits</h4>
+                            </div>
+                            <div id="recentDepositsTable"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="data-card">
+                            <div class="data-card-header">
+                                <h4>Recent Users</h4>
+                            </div>
+                            <div id="recentUsersTable"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Users Section -->
+            <section class="admin-section" id="usersSection">
+                <div class="data-card">
+                    <div class="data-card-header">
+                        <h4>All Users</h4>
+                        <input type="text" class="form-control" style="max-width: 250px;" placeholder="Search users..." id="userSearch">
+                    </div>
+                    <div id="usersTable"></div>
+                </div>
+            </section>
+
+            <!-- Deposits Section -->
+            <section class="admin-section" id="depositsSection">
+                <div class="d-flex gap-2 mb-4">
+                    <button class="filter-btn active" data-filter="">All</button>
+                    <button class="filter-btn" data-filter="pending">Pending</button>
+                    <button class="filter-btn" data-filter="confirmed">Confirmed</button>
+                    <button class="filter-btn" data-filter="rejected">Rejected</button>
+                </div>
+                <div class="data-card">
+                    <div class="data-card-header">
+                        <h4>Deposits</h4>
+                        <div>
+                            <span class="badge badge-pending me-2" id="depositPendingCount">0 Pending</span>
+                        </div>
+                    </div>
+                    <div id="depositsTable"></div>
+                </div>
+            </section>
+
+            <!-- Bookings Section -->
+            <section class="admin-section" id="bookingsSection">
+                <div class="admin-tabs">
+                    <button class="admin-tab active" data-type="">All</button>
+                    <button class="admin-tab" data-type="hotel">Hotels</button>
+                    <button class="admin-tab" data-type="flight">Flights</button>
+                    <button class="admin-tab" data-type="car">Cars</button>
+                    <button class="admin-tab" data-type="cruise">Cruises</button>
+                    <button class="admin-tab" data-type="tour">Tours</button>
+                    <button class="admin-tab" data-type="vacation">Vacations</button>
+                </div>
+                <div class="data-card">
+                    <div class="data-card-header">
+                        <h4>Bookings</h4>
+                    </div>
+                    <div id="bookingsTable"></div>
+                </div>
+            </section>
+
+            <!-- Fan Cards Section -->
+            <section class="admin-section" id="fancardsSection">
+                <div class="data-card">
+                    <div class="data-card-header">
+                        <h4>Active Fan Cards</h4>
+                    </div>
+                    <div id="fancardsTable"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const API_BASE_URL = 'http://localhost:5001/api';
+        let adminToken = localStorage.getItem('adminToken');
+        let currentDepositFilter = '';
+        let currentBookingType = '';
+
+        // Check if already logged in
+        document.addEventListener('DOMContentLoaded', () => {
+            if (adminToken) {
+                verifyToken();
+            }
+        });
+
+        // Login Form
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const errorEl = document.getElementById('loginError');
+            const btnText = document.getElementById('loginBtnText');
+            
+            errorEl.classList.remove('show');
+            btnText.innerHTML = '<span class="loading-spinner"></span>';
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                const result = await response.json();
+                
+                if (!response.ok || !result.success) {
+                    throw new Error(result.message || 'Login failed');
+                }
+                
+                // Save token and show admin panel
+                adminToken = result.data.token;
+                localStorage.setItem('adminToken', adminToken);
+                
+                showAdminPanel(result.data.admin);
+            } catch (error) {
+                errorEl.textContent = error.message;
+                errorEl.classList.add('show');
+            } finally {
+                btnText.textContent = 'Sign In';
+            }
+        });
+
+        // Verify existing token
+        async function verifyToken() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/auth/verify`, {
+                    headers: { 'Authorization': `Bearer ${adminToken}` }
+                });
+                
+                if (!response.ok) throw new Error('Invalid token');
+                
+                const result = await response.json();
+                showAdminPanel(result.data.admin);
+            } catch (error) {
+                localStorage.removeItem('adminToken');
+                adminToken = null;
+            }
+        }
+
+        // Show Admin Panel
+        function showAdminPanel(admin) {
+            document.getElementById('loginOverlay').style.display = 'none';
+            document.getElementById('adminContainer').classList.remove('admin-hidden');
+            document.getElementById('adminName').textContent = admin.name || admin.email;
+            document.getElementById('adminAvatar').textContent = (admin.name || admin.email)[0].toUpperCase();
+            
+            loadDashboard();
+        }
+
+        // Logout
+        function logout() {
+            localStorage.removeItem('adminToken');
+            adminToken = null;
+            window.location.reload();
+        }
+
+        // Navigation
+        document.querySelectorAll('.admin-nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const section = link.dataset.section;
+                
+                // Update active nav
+                document.querySelectorAll('.admin-nav a').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                
+                // Update section title
+                document.getElementById('sectionTitle').textContent = section.charAt(0).toUpperCase() + section.slice(1);
+                
+                // Show section
+                document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+                document.getElementById(`${section}Section`).classList.add('active');
+                
+                // Load data
+                switch(section) {
+                    case 'dashboard': loadDashboard(); break;
+                    case 'users': loadUsers(); break;
+                    case 'deposits': loadDeposits(); break;
+                    case 'bookings': loadBookings(); break;
+                    case 'fancards': loadFancards(); break;
+                }
+            });
+        });
+
+        // Load Dashboard
+        async function loadDashboard() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/stats`, {
+                    headers: { 'Authorization': `Bearer ${adminToken}` }
+                });
+                const result = await response.json();
+                
+                if (result.success) {
+                    document.getElementById('statUsers').textContent = result.data.totalUsers;
+                    document.getElementById('statPending').textContent = result.data.pendingDeposits;
+                    document.getElementById('statDeposits').textContent = `$${result.data.totalDepositValue.toLocaleString()}`;
+                    document.getElementById('statBookings').textContent = result.data.totalBookings;
+                }
+                
+                // Load recent pending deposits
+                const depositsRes = await fetch(`${API_BASE_URL}/admin/deposits?status=pending&limit=5`, {
+                    headers: { 'Authorization': `Bearer ${adminToken}` }
+                });
+                const depositsData = await depositsRes.json();
+                
+                if (depositsData.success && depositsData.data.deposits.length > 0) {
+                    document.getElementById('recentDepositsTable').innerHTML = `
+                        <table class="data-table">
+                            <thead><tr><th>User</th><th>Amount</th><th>Currency</th><th>Action</th></tr></thead>
+                            <tbody>
+                                ${depositsData.data.deposits.map(d => `
+                                    <tr>
+                                        <td>${d.user?.firstName || 'Unknown'} ${d.user?.lastName || ''}</td>
+                                        <td>$${d.amount.toLocaleString()}</td>
+                                        <td>${d.currency}</td>
+                                        <td>
+                                            <button class="btn-approve btn-sm" onclick="approveDeposit('${d._id}')">Approve</button>
+                                        </td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    `;
+                } else {
+                    document.getElementById('recentDepositsTable').innerHTML = '<div class="empty-state"><i class="isax isax-tick-circle"></i><p>No pending deposits</p></div>';
+                }
+                
+                // Load recent users
+                const usersRes = await fetch(`${API_BASE_URL}/admin/users?limit=5`, {
+                    headers: { 'Authorization': `Bearer ${adminToken}` }
+                });
+                const usersData = await usersRes.json();
+                
+                if (usersData.success && usersData.data.users.length > 0) {
+                    document.getElementById('recentUsersTable').innerHTML = `
+                        <table class="data-table">
+                            <thead><tr><th>Name</th><th>Email</th><th>Balance</th></tr></thead>
+                            <tbody>
+                                ${usersData.data.users.map(u => `
+                                    <tr>
+                                        <td>${u.firstName} ${u.lastName}</td>
+                                        <td>${u.email}</td>
+                                        <td>$${(u.balance || 0).toLocaleString()}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    `;
+                } else {
+                    document.getElementById('recentUsersTable').innerHTML = '<div class="empty-state"><i class="isax isax-people"></i><p>No users yet</p></div>';
+                }
+            } catch (error) {
+                console.error('Dashboard error:', error);
+            }
+        }
+
+        // Load Users
+        async function loadUsers(search = '') {
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/users?search=${search}`, {
+                    headers: { 'Authorization': `Bearer ${adminToken}` }
+                });
+                const result = await response.json();
+                
+                if (result.success && result.data.users.length > 0) {
+                    document.getElementById('usersTable').innerHTML = `
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Balance</th>
+                                    <th>Fan Card</th>
+                                    <th>Joined</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${result.data.users.map(u => `
+                                    <tr>
+                                        <td>${u.firstName} ${u.lastName}</td>
+                                        <td>${u.email}</td>
+                                        <td>$${(u.balance || 0).toLocaleString()}</td>
+                                        <td>${u.fanCard?.isActive ? '<span class="badge-status badge-confirmed">Active</span>' : '<span class="badge-status badge-pending">None</span>'}</td>
+                                        <td>${new Date(u.createdAt).toLocaleDateString()}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    `;
+                } else {
+                    document.getElementById('usersTable').innerHTML = '<div class="empty-state"><i class="isax isax-people"></i><p>No users found</p></div>';
+                }
+            } catch (error) {
+                console.error('Users error:', error);
+            }
+        }
+
+        // User search
+        document.getElementById('userSearch').addEventListener('input', (e) => {
+            clearTimeout(window.userSearchTimeout);
+            window.userSearchTimeout = setTimeout(() => loadUsers(e.target.value), 300);
+        });
+
+        // Load Deposits
+        async function loadDeposits() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/deposits?status=${currentDepositFilter}`, {
+                    headers: { 'Authorization': `Bearer ${adminToken}` }
+                });
+                const result = await response.json();
+                
+                document.getElementById('depositPendingCount').textContent = `${result.data.stats.pending} Pending`;
+                
+                if (result.success && result.data.deposits.length > 0) {
+                    document.getElementById('depositsTable').innerHTML = `
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Amount</th>
+                                    <th>Currency</th>
+                                    <th>Proof</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${result.data.deposits.map(d => `
+                                    <tr>
+                                        <td>${d.user?.firstName || 'Unknown'} ${d.user?.lastName || ''}<br><small class="text-muted">${d.user?.email || ''}</small></td>
+                                        <td>$${d.amount.toLocaleString()}</td>
+                                        <td>${d.currency}</td>
+                                        <td>${d.proofImage ? `<a href="#" class="btn-view" onclick="viewProof('${d.proofImage}')">View</a>` : '-'}</td>
+                                        <td><span class="badge-status badge-${d.status}">${d.status}</span></td>
+                                        <td>${new Date(d.createdAt).toLocaleDateString()}</td>
+                                        <td>
+                                            ${d.status === 'pending' ? `
+                                                <button class="btn-approve me-1" onclick="approveDeposit('${d._id}')">Approve</button>
+                                                <button class="btn-reject" onclick="rejectDeposit('${d._id}')">Reject</button>
+                                            ` : '-'}
+                                        </td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    `;
+                } else {
+                    document.getElementById('depositsTable').innerHTML = '<div class="empty-state"><i class="isax isax-wallet-2"></i><p>No deposits found</p></div>';
+                }
+            } catch (error) {
+                console.error('Deposits error:', error);
+            }
+        }
+
+        // Deposit filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentDepositFilter = btn.dataset.filter;
+                loadDeposits();
+            });
+        });
+
+        // Approve Deposit
+        async function approveDeposit(id) {
+            if (!confirm('Approve this deposit and add balance to user?')) return;
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/deposits/${id}/approve`, {
+                    method: 'PATCH',
+                    headers: { 'Authorization': `Bearer ${adminToken}` }
+                });
+                
+                if (response.ok) {
+                    alert('Deposit approved successfully!');
+                    loadDeposits();
+                    loadDashboard();
+                }
+            } catch (error) {
+                alert('Error approving deposit');
+            }
+        }
+
+        // Reject Deposit
+        async function rejectDeposit(id) {
+            const reason = prompt('Enter rejection reason (optional):');
+            if (reason === null) return;
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/deposits/${id}/reject`, {
+                    method: 'PATCH',
+                    headers: { 
+                        'Authorization': `Bearer ${adminToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ reason })
+                });
+                
+                if (response.ok) {
+                    alert('Deposit rejected');
+                    loadDeposits();
+                }
+            } catch (error) {
+                alert('Error rejecting deposit');
+            }
+        }
+
+        // View Proof Image
+        function viewProof(url) {
+            document.getElementById('proofImage').src = url;
+            document.getElementById('proofModal').classList.add('show');
+        }
+
+        function closeProofModal() {
+            document.getElementById('proofModal').classList.remove('show');
+        }
+
+        // Load Bookings
+        async function loadBookings() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/bookings?type=${currentBookingType}`, {
+                    headers: { 'Authorization': `Bearer ${adminToken}` }
+                });
+                const result = await response.json();
+                
+                if (result.success && result.data.bookings.length > 0) {
+                    document.getElementById('bookingsTable').innerHTML = `
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Type</th>
+                                    <th>Details</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${result.data.bookings.map(b => `
+                                    <tr>
+                                        <td>${b.user?.firstName || 'Unknown'} ${b.user?.lastName || ''}</td>
+                                        <td><span class="badge-status badge-info">${b.bookingType}</span></td>
+                                        <td>${b.details?.name || b.details?.destination || '-'}</td>
+                                        <td>$${(b.totalAmount || 0).toLocaleString()}</td>
+                                        <td><span class="badge-status badge-${b.status === 'confirmed' ? 'confirmed' : 'pending'}">${b.status}</span></td>
+                                        <td>${new Date(b.createdAt).toLocaleDateString()}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    `;
+                } else {
+                    document.getElementById('bookingsTable').innerHTML = '<div class="empty-state"><i class="isax isax-calendar-1"></i><p>No bookings found</p></div>';
+                }
+            } catch (error) {
+                console.error('Bookings error:', error);
+            }
+        }
+
+        // Booking type tabs
+        document.querySelectorAll('.admin-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentBookingType = tab.dataset.type;
+                loadBookings();
+            });
+        });
+
+        // Load Fan Cards
+        async function loadFancards() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/fancards`, {
+                    headers: { 'Authorization': `Bearer ${adminToken}` }
+                });
+                const result = await response.json();
+                
+                if (result.success && result.data.fancards.length > 0) {
+                    document.getElementById('fancardsTable').innerHTML = `
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Email</th>
+                                    <th>Card Number</th>
+                                    <th>Celebrity</th>
+                                    <th>Points</th>
+                                    <th>Tier</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${result.data.fancards.map(u => `
+                                    <tr>
+                                        <td>${u.firstName} ${u.lastName}</td>
+                                        <td>${u.email}</td>
+                                        <td>${u.fanCard?.cardNumber || '-'}</td>
+                                        <td>${u.fanCard?.celebrity?.name || '-'}</td>
+                                        <td>${u.fanCard?.points || 0}</td>
+                                        <td><span class="badge-status badge-confirmed">${u.fanCard?.tier || 'Bronze'}</span></td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    `;
+                } else {
+                    document.getElementById('fancardsTable').innerHTML = '<div class="empty-state"><i class="isax isax-card"></i><p>No active fan cards</p></div>';
+                }
+            } catch (error) {
+                console.error('Fancards error:', error);
+            }
+        }
+
+        // Close proof modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeProofModal();
+        });
+    </script>
+</body>
+</html>

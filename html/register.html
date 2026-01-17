@@ -74,7 +74,7 @@
                             <div class="card-body">
                                 <form id="registerForm" onsubmit="handleRegister(event)">
                                     <div class="mb-3">
-                                        <label class="form-label">Name</label>
+                                        <label class="form-label">Full Name</label>
                                         <div class="input-icon">
                                             <span class="input-icon-addon">
 												<i class="isax isax-user"></i>
@@ -89,6 +89,15 @@
 												<i class="isax isax-message"></i>
 											</span>
                                             <input type="email" id="registerEmail" class="form-control form-control-lg" placeholder="Enter Email" required>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Phone (Optional)</label>
+                                        <div class="input-icon">
+                                            <span class="input-icon-addon">
+												<i class="isax isax-call"></i>
+											</span>
+                                            <input type="tel" id="registerPhone" class="form-control form-control-lg" placeholder="Enter Phone Number">
                                         </div>
                                     </div>
                                     <div class="mb-3">
@@ -188,57 +197,19 @@
     <!-- Script JS -->
     <script src="assets/js/script.js" type="b16284e62945bd60d69d99c4-text/javascript"></script>
 
-    <!-- Register Handler -->
-    <script>
-        function handleRegister(event) {
-            event.preventDefault();
-            
-            const name = document.getElementById('registerName').value;
-            const email = document.getElementById('registerEmail').value;
-            const password = document.getElementById('registerPassword').value;
-            const confirmPassword = document.getElementById('registerConfirmPassword').value;
-            const agree = document.getElementById('agree').checked;
-            
-            if (!name || !email || !password || !confirmPassword) {
-                alert('Please fill in all fields');
-                return;
-            }
-            
-            if (password !== confirmPassword) {
-                alert('Passwords do not match');
-                return;
-            }
-            
-            if (password.length < 6) {
-                alert('Password must be at least 6 characters long');
-                return;
-            }
-            
-            if (!agree) {
-                alert('Please agree to the Terms of Service');
-                return;
-            }
-            
-            // Create user data
-            const userData = {
-                name: name,
-                email: email,
-                joinDate: new Date().toISOString()
-            };
-            
-            // Save to localStorage
-            localStorage.setItem('dreamstour_user', JSON.stringify(userData));
-            localStorage.setItem('dreamstour_session', 'active');
-            
-            // Redirect to dashboard
-            window.location.href = '/html/dashboard/user-dashboard.html';
-        }
-        
-        // Check if already logged in
-        (function() {
-            const session = localStorage.getItem('dreamstour_session');
-            if (session === 'active') {
-                window.location.href = '/html/dashboard/user-dashboard.html';
+    <!-- Authentication System -->
+    <script src="assets/js/auth.js" type="b16284e62945bd60d69d99c4-text/javascript"></script>
+    
+    <!-- Check if already logged in -->
+    <script type="b16284e62945bd60d69d99c4-text/javascript">
+        (async function() {
+            if (AuthManager.isAuthenticated()) {
+                const isValid = await checkAuthStatus();
+                if (isValid) {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const redirect = urlParams.get('redirect') || '../index.html';
+                    window.location.href = redirect;
+                }
             }
         })();
     </script>

@@ -82,6 +82,16 @@
             .mobile-bottom-nav { display: block; }
             body { padding-bottom: 70px; }
         }
+        
+        /* Mobile Sidebar Offcanvas */
+        .mobile-sidebar-toggle { display: none; }
+        @media (max-width: 991.98px) { .mobile-sidebar-toggle { display: flex; } }
+        .offcanvas-dashboard { width: 280px; }
+        .offcanvas-dashboard .user-sidebar-body ul { list-style: none; padding: 0; margin: 0; }
+        .offcanvas-dashboard .user-sidebar-body ul li a { display: flex; align-items: center; padding: 12px 0; color: #374151; font-weight: 500; }
+        .offcanvas-dashboard .user-sidebar-body ul li a i { margin-right: 12px; font-size: 18px; }
+        .offcanvas-dashboard .user-sidebar-body ul li a:hover, .offcanvas-dashboard .user-sidebar-body ul li a.active { color: var(--bs-primary); }
+        [data-theme="dark"] .offcanvas-dashboard .user-sidebar-body ul li a { color: #e2e8f0; }
     </style>
 
 </head>
@@ -91,8 +101,8 @@
     <!-- Auth Check -->
     <script>
         (function() {
-            const session = localStorage.getItem('dreamstour_session');
-            if (session !== 'active') {
+            const token = localStorage.getItem('authToken');
+            if (!token) {
                 window.location.href = '../index.html';
             }
         })();
@@ -104,7 +114,10 @@
             <div class="container">
                 <div class="header-nav">
                     <div class="main-menu-wrapper">
-                        <div class="navbar-logo">
+                        <div class="navbar-logo d-flex align-items-center">
+                            <button class="btn btn-link p-0 me-3 mobile-sidebar-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#dashboardSidebar">
+                                <i class="isax isax-menu-1 fs-24"></i>
+                            </button>
                             <a class="logo-white header-logo" href="../index.html">
                                 <img src="../assets/img/logo.svg" class="logo" alt="Logo">
                             </a>
@@ -151,6 +164,37 @@
             </div>
         </header>
         <!-- /Dashboard Header -->
+    </div>
+
+    <!-- Mobile Sidebar Offcanvas -->
+    <div class="offcanvas offcanvas-start offcanvas-dashboard" tabindex="-1" id="dashboardSidebar">
+        <div class="offcanvas-header border-bottom">
+            <div class="d-flex align-items-center">
+                <div class="avatar avatar-lg rounded-circle bg-dark text-white d-flex align-items-center justify-content-center me-2" id="offcanvasAvatar" style="width:48px;height:48px;font-weight:600;">U</div>
+                <div>
+                    <h6 class="fs-16 mb-0" id="offcanvasUserName">Loading...</h6>
+                    <span class="fs-14 text-muted" id="offcanvasJoinDate">-</span>
+                </div>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body user-sidebar-body">
+            <ul>
+                <li><span class="fs-14 text-muted fw-medium mb-2 d-block">Main</span></li>
+                <li><a href="user-dashboard.html"><i class="isax isax-grid-55"></i> Dashboard</a></li>
+                <li><a href="dashboard-vacations.html" class="active"><i class="isax isax-sun-15"></i> My Vacations</a></li>
+                <li><a href="dashboard-fancard.html"><i class="isax isax-card5"></i> Fan Card</a></li>
+                <li><a href="dashboard-deposit.html"><i class="isax isax-wallet-25"></i> Deposit</a></li>
+                <li><span class="fs-14 text-muted fw-medium mb-2 mt-3 d-block">Bookings</span></li>
+                <li><a href="dashboard-hotels.html"><i class="isax isax-building5"></i> Hotels</a></li>
+                <li><a href="dashboard-flights.html"><i class="isax isax-airplane5"></i> Flights</a></li>
+                <li><a href="dashboard-cars.html"><i class="isax isax-car5"></i> Cars</a></li>
+                <li><a href="dashboard-tours.html"><i class="isax isax-map5"></i> Tours</a></li>
+                <li><span class="fs-14 text-muted fw-medium mb-2 mt-3 d-block">Account</span></li>
+                <li><a href="dashboard-settings.html"><i class="isax isax-setting-25"></i> Settings</a></li>
+                <li><a href="javascript:void(0);" onclick="logout()"><i class="isax isax-logout-15"></i> Logout</a></li>
+            </ul>
+        </div>
     </div>
 
     <!-- Breadcrumb -->
@@ -378,124 +422,133 @@
 
     <!-- Dashboard Script -->
     <script>
-        const mockVacations = [
-            {
-                id: 1,
-                destination: 'Maldives Paradise',
-                package: '7 Days All Inclusive',
-                startDate: '25 Mar 2026',
-                endDate: '01 Apr 2026',
-                guests: '2 Adults',
-                status: 'upcoming',
-                image: 'assets/img/tours/tours-24.jpg',
-                price: '$4,500'
-            },
-            {
-                id: 2,
-                destination: 'Bali Tropical Getaway',
-                package: '5 Days Beach Resort',
-                startDate: '15 May 2026',
-                endDate: '20 May 2026',
-                guests: '2 Adults, 1 Child',
-                status: 'upcoming',
-                image: 'assets/img/tours/tours-15.jpg',
-                price: '$3,200'
-            }
-        ];
+        const API_BASE_URL = 'http://localhost:5001/api';
 
-        function getUserData() {
-            const userData = localStorage.getItem('dreamstour_user');
-            return userData ? JSON.parse(userData) : null;
-        }
-
-        function loadUserProfile() {
-            const user = getUserData();
-            if (user) {
-                document.getElementById('sidebarUserName').textContent = user.name || 'User';
-                if (user.joinDate) {
-                    const date = new Date(user.joinDate);
-                    const options = { month: 'short', year: 'numeric' };
-                    document.getElementById('sidebarJoinDate').textContent = 'Since ' + date.toLocaleDateString('en-US', options);
+        async function loadUserProfile() {
+            const token = localStorage.getItem('authToken');
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/me`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (!response.ok) throw new Error('Failed to load');
+                const result = await response.json();
+                const user = result.data;
+                
+                document.getElementById('sidebarUserName').textContent = `${user.firstName} ${user.lastName}`;
+                
+                const avatarEl = document.getElementById('sidebarAvatar');
+                if (avatarEl) {
+                    avatarEl.outerHTML = `<div class="avatar avatar-lg rounded-circle bg-dark text-white d-flex align-items-center justify-content-center me-1" id="sidebarAvatar" style="width:48px;height:48px;font-weight:600;">${user.firstName[0]}${user.lastName[0]}</div>`;
                 }
+                
+                if (user.createdAt) {
+                    const date = new Date(user.createdAt);
+                    document.getElementById('sidebarJoinDate').textContent = 'Since ' + date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+                }
+                
+                // Update mobile offcanvas sidebar
+                const offcanvasAvatar = document.getElementById('offcanvasAvatar');
+                const offcanvasUserName = document.getElementById('offcanvasUserName');
+                const offcanvasJoinDate = document.getElementById('offcanvasJoinDate');
+                if (offcanvasAvatar) offcanvasAvatar.textContent = `${user.firstName[0]}${user.lastName[0]}`;
+                if (offcanvasUserName) offcanvasUserName.textContent = `${user.firstName} ${user.lastName}`;
+                if (offcanvasJoinDate && user.createdAt) {
+                    offcanvasJoinDate.textContent = 'Since ' + new Date(user.createdAt).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+                }
+            } catch (error) {
+                console.error('Error loading profile:', error);
             }
         }
 
-        function loadVacations() {
+        async function loadVacations() {
             const container = document.getElementById('vacationsContainer');
+            const token = localStorage.getItem('authToken');
             
-            if (mockVacations.length === 0) {
+            container.innerHTML = `
+                <div class="text-center py-5">
+                    <div class="spinner-border text-primary mb-3"></div>
+                    <p class="text-muted">Loading your vacations...</p>
+                </div>
+            `;
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/bookings/my?bookingType=vacation`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (!response.ok) throw new Error('Failed to load');
+                
+                const result = await response.json();
+                const vacations = result.data || [];
+                
+                if (vacations.length === 0) {
+                    container.innerHTML = `
+                        <div class="card shadow-none">
+                            <div class="card-body text-center py-5">
+                                <i class="isax isax-sun-1 fs-64 text-gray-4 mb-3 d-block"></i>
+                                <h6 class="mb-2">No Vacations Booked</h6>
+                                <p class="text-gray-5 mb-3">Start planning your dream vacation today!</p>
+                                <a href="../vacation.html" class="btn btn-primary">Browse Vacations</a>
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
+
+                let html = '';
+                vacations.forEach((vacation) => {
+                    const statusColors = { confirmed: 'success', pending: 'warning', upcoming: 'purple', cancelled: 'danger' };
+                    const status = vacation.status || 'pending';
+                    const date = new Date(vacation.createdAt).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
+
+                    html += `
+                        <div class="card shadow-none mb-3">
+                            <div class="card-body">
+                                <div class="d-flex align-items-start">
+                                    <span class="avatar avatar-xxl rounded me-3 bg-light d-flex align-items-center justify-content-center">
+                                        <i class="isax isax-sun-15 fs-36 text-warning"></i>
+                                    </span>
+                                    <div class="flex-fill">
+                                        <div class="d-flex justify-content-between align-items-start mb-2">
+                                            <div>
+                                                <h6 class="mb-1">${vacation.itemName || 'Vacation Package'}</h6>
+                                                <p class="text-muted mb-0 small">${vacation.details?.destination || 'Destination TBD'}</p>
+                                            </div>
+                                            <span class="badge badge-${statusColors[status] || 'warning'} badge-sm rounded-pill">
+                                                ${status.charAt(0).toUpperCase() + status.slice(1)}
+                                            </span>
+                                        </div>
+                                        <div class="d-flex gap-4 text-muted small">
+                                            <span><i class="isax isax-calendar-25 me-1"></i>${date}</span>
+                                            <span><i class="isax isax-dollar-circle me-1"></i>$${vacation.pricing?.total || '0'}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = html;
+                
+            } catch (error) {
+                console.error('Error loading vacations:', error);
                 container.innerHTML = `
                     <div class="card shadow-none">
                         <div class="card-body text-center py-5">
-                            <i class="isax isax-sun-1 fs-64 text-gray-4 mb-3"></i>
+                            <i class="isax isax-sun-1 fs-64 text-gray-4 mb-3 d-block"></i>
                             <h6 class="mb-2">No Vacations Booked</h6>
                             <p class="text-gray-5 mb-3">Start planning your dream vacation today!</p>
                             <a href="../vacation.html" class="btn btn-primary">Browse Vacations</a>
                         </div>
                     </div>
                 `;
-                return;
             }
-
-            let html = '';
-            mockVacations.forEach((vacation) => {
-                const statusColors = {
-                    upcoming: 'purple',
-                    completed: 'success',
-                    cancelled: 'danger'
-                };
-
-                html += `
-                    <div class="card shadow-none mb-3">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <div class="col-lg-3 col-md-4">
-                                    <a href="javascript:void(0);">
-                                        <img src="${vacation.image}" class="img-fluid rounded" alt="${vacation.destination}">
-                                    </a>
-                                </div>
-                                <div class="col-lg-9 col-md-8">
-                                    <div class="d-flex justify-content-between align-items-start mb-2">
-                                        <div>
-                                            <h6 class="mb-1">${vacation.destination}</h6>
-                                            <p class="text-gray-5 mb-2">${vacation.package}</p>
-                                        </div>
-                                        <span class="badge badge-${statusColors[vacation.status]} badge-sm rounded-pill">
-                                            <i class="ti ti-point-filled me-1"></i>${vacation.status.charAt(0).toUpperCase() + vacation.status.slice(1)}
-                                        </span>
-                                    </div>
-                                    <div class="row g-2 mb-3">
-                                        <div class="col-md-3">
-                                            <p class="fs-14 mb-0"><i class="isax isax-calendar5 me-2"></i>Start: ${vacation.startDate}</p>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <p class="fs-14 mb-0"><i class="isax isax-calendar-circle5 me-2"></i>End: ${vacation.endDate}</p>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <p class="fs-14 mb-0"><i class="isax isax-profile-2user5 me-2"></i>${vacation.guests}</p>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <p class="fs-14 mb-0 fw-semibold text-primary">${vacation.price}</p>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex gap-2">
-                                        <a href="javascript:void(0);" class="btn btn-sm btn-outline-primary">View Details</a>
-                                        <a href="javascript:void(0);" class="btn btn-sm btn-outline-secondary">Cancel Booking</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-
-            container.innerHTML = html;
         }
 
         function logout() {
-            localStorage.removeItem('dreamstour_user');
-            localStorage.removeItem('dreamstour_session');
-            localStorage.removeItem('dreamstour_remember');
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('authUser');
             window.location.href = '../index.html';
         }
 
@@ -521,6 +574,9 @@
     <script src="../assets/js/cursor.js"></script>
     <script src="../assets/js/script.js"></script>
 
+    <script src="../assets/js/auth-fixed.js"></script>
+    <script src="../assets/js/dashboard-ui-enhanced.js"></script>
+    <script src="../assets/js/mobile-dashboard-nav.js"></script>
 </body>
 
 </html>

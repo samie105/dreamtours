@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vacation Checkout - DreamsTour</title>
+
+    <meta name="description" content="Complete your vacation package checkout and booking.">
+    <meta name="keywords" content="vacation checkout, vacation booking, package checkout">
+    <meta name="author" content="Dreams Technologies">
+
+    <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+    <script src="assets/js/theme-script.js"></script>
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/meanmenu.css">
+    <link rel="stylesheet" href="assets/plugins/tabler-icons/tabler-icons.css">
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/iconsax.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        .checkout-card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+        .checkout-card h6 { margin-bottom: 16px; font-weight: 600; }
+        .info-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f3f4f6; }
+        .info-row:last-child { border-bottom: none; }
+        .info-label { color: #6b7280; font-size: 14px; }
+        .info-value { font-weight: 500; font-size: 14px; }
+        .addon-item { padding: 12px; background: #f9fafb; border-radius: 8px; margin-bottom: 12px; }
+        .addon-item h6 { font-size: 15px; margin-bottom: 4px; }
+        .addon-item p { font-size: 13px; color: #6b7280; margin-bottom: 0; }
+        .price-breakdown { background: #f9fafb; border-radius: 12px; padding: 20px; }
+        .price-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 15px; }
+        .price-row.total { border-top: 2px solid #e5e7eb; padding-top: 16px; margin-top: 12px; font-size: 18px; font-weight: 700; color: var(--bs-primary); }
+        /* Mobile nav bottom sheet - theme aware */
+        @media (max-width: 1199px) {
+            .header-nav { position: fixed; bottom: -100%; left: 0; right: 0; width: 100%; height: auto; max-height: 80vh; background: var(--bg-white, #fff); z-index: 9999; transition: bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 24px 24px 0 0; box-shadow: 0 -10px 40px rgba(0,0,0,0.2); }
+            .header-nav.active { bottom: 0; }
+            [data-theme="dark"] .header-nav { background: var(--dark-bg, #0f172a); box-shadow: 0 -10px 40px rgba(0,0,0,0.6); }
+            .main-menu-wrapper { padding: 24px 20px; flex-direction: column; }
+            .main-menu-wrapper::before { content: ''; width: 40px; height: 4px; background: var(--border-color, #e5e7eb); border-radius: 2px; display: block; margin: 0 auto 20px; }
+            [data-theme="dark"] .main-menu-wrapper::before { background: var(--dark-border, #334155); }
+            .navbar-logo { display: none; }
+            .main-nav { display: flex; flex-direction: column; width: 100%; gap: 4px; }
+            .main-nav li { width: 100%; border-bottom: none; }
+            .main-nav li a { display: block; padding: 14px 16px; border-radius: 12px; font-size: 16px; font-weight: 500; color: var(--text-default, #1f2937); transition: all 0.2s; }
+            [data-theme="dark"] .main-nav li a { color: var(--dark-text, #e2e8f0); }
+            .main-nav li a:hover, .main-nav li.active a { background: var(--bs-primary); color: #fff; }
+            .header-btn { width: 100%; justify-content: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border-color, #e5e7eb); }
+            [data-theme="dark"] .header-btn { border-top-color: var(--dark-border, #334155); }
+            .offcanvas-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 9998; opacity: 0; visibility: hidden; transition: all 0.3s ease; backdrop-filter: blur(2px); }
+            .offcanvas-overlay.active { opacity: 1; visibility: visible; }
+            .header__hamburger { display: block; }
+        }
+        /* Sign-in button - theme aware */
+        .btn-outline-light { background: var(--bg-white, #fff) !important; color: var(--bs-primary) !important; border-color: var(--border-color, #e5e7eb) !important; }
+        .btn-outline-light:hover { background: var(--bs-primary) !important; color: #fff !important; border-color: var(--bs-primary) !important; }
+        [data-theme="dark"] .btn-outline-light { background: var(--dark-bg-light, #1e293b) !important; color: var(--bs-primary) !important; border-color: var(--dark-border, #334155) !important; }
+        [data-theme="dark"] .btn-outline-light:hover { background: var(--bs-primary) !important; color: #fff !important; border-color: var(--bs-primary) !important; }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-header">
+        <div class="header-topbar text-center bg-transparent">
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-between flex-wrap">
+                    <p class="d-flex align-items-center fw-medium fs-14 mb-2"><i class="isax isax-call5 me-2"></i>Toll Free : +1 56565 56594</p>
+                    <div class="d-flex align-items-center">
+                        <p class="mb-2 me-3 d-flex align-items-center fw-medium fs-14"><i class="isax isax-message-text-15 me-2"></i>Email : info@dreamstour.com</p>
+                        <div class="fav-dropdown mb-2">
+                            <a href="wishlist.html" class="position-relative">
+                                <i class="isax isax-heart"></i><span class="count-icon bg-secondary text-gray-9">0</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <header>
+            <div class="container">
+                <div class="offcanvas-info">
+                    <div class="offcanvas-wrap">
+                        <div class="offcanvas-detail">
+                            <div class="offcanvas-head">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <a href="index.html" class="black-logo-responsive"><img src="assets/img/logo-dark.svg" alt="logo-img"></a>
+                                    <a href="index.html" class="white-logo-responsive"><img src="assets/img/logo.svg" alt="logo-img"></a>
+                                    <div class="offcanvas-close"><i class="ti ti-x"></i></div>
+                                </div>
+                            </div>
+                            <div class="mobile-menu fix mb-3"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="offcanvas-overlay"></div>
+                <div class="header-nav">
+                    <div class="main-menu-wrapper">
+                        <div class="navbar-logo">
+                            <a class="logo-white header-logo" href="index.html"><img src="assets/img/logo.svg" class="logo" alt="Logo"></a>
+                            <a class="logo-dark header-logo" href="index.html"><img src="assets/img/logo-dark.svg" class="logo" alt="Logo"></a>
+                        </div>
+                        <nav id="mobile-menu">
+                            <ul class="main-nav">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="flight-grid.html">Flight</a></li>
+                                <li><a href="hotel-grid.html">Hotel</a></li>
+                                <li><a href="car-grid.html">Car</a></li>
+                                <li><a href="cruise-grid.html">Cruise</a></li>
+                                <li><a href="tour-grid.html">Tour</a></li>
+                                <li class="active"><a href="vacation.html">Vacation</a></li>
+                                <li><a href="fan-card.html">Fan Card</a></li>
+                            </ul>
+                        </nav>
+                        <div class="header-btn d-flex align-items-center">
+                            <div class="me-3">
+                                <a href="javascript:void(0);" id="dark-mode-toggle" class="theme-toggle"><i class="isax isax-moon"></i></a>
+                                <a href="javascript:void(0);" id="light-mode-toggle" class="theme-toggle"><i class="isax isax-sun-1"></i></a>
+                            </div>
+                            <a href="login.html" class="btn btn-outline-light me-2 d-none d-md-block"><i class="isax isax-login me-2"></i>Sign In</a>
+                            <a href="register.html" class="btn btn-primary d-none d-md-block"><i class="isax isax-user-add me-2"></i>Sign Up</a>
+                            <div class="header__hamburger d-xl-none my-auto">
+                                <div class="sidebar-menu"><i class="isax isax-menu5"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <div class="breadcrumb-bar breadcrumb-bg-01 text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-12">
+                    <h2 class="breadcrumb-title mb-2">Checkout</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center mb-0">
+                            <li class="breadcrumb-item"><a href="index.html"><i class="isax isax-home5"></i></a></li>
+                            <li class="breadcrumb-item"><a href="vacation.html">Vacation</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Package Overview -->
+                    <div class="checkout-card">
+                        <h6><i class="isax isax-box text-primary me-2"></i>Vacation Package Details</h6>
+                        <div class="d-flex align-items-start mb-3">
+                            <img src="" id="package-img" class="rounded me-3" style="width: 120px; height: 90px; object-fit: cover;" alt="Package">
+                            <div class="flex-fill">
+                                <h5 class="mb-1" id="package-name">Loading...</h5>
+                                <p class="text-muted mb-2 d-flex align-items-center"><i class="isax isax-location5 me-2"></i><span id="package-location"></span></p>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="badge bg-primary" id="package-type"></span>
+                                    <span class="badge badge-warning badge-xs text-gray-9" id="package-rating"></span>
+                                    <span class="text-muted fs-14" id="package-reviews"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-3 mt-2">
+                            <div class="col-md-4">
+                                <div class="info-label">Duration</div>
+                                <div class="info-value" id="package-duration"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="info-label">Travel Date</div>
+                                <div class="info-value" id="travel-date-display"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="info-label">Travelers</div>
+                                <div class="info-value" id="travelers-count"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add-ons -->
+                    <div class="checkout-card" id="addons-section" style="display: none;">
+                        <h6><i class="isax isax-add-circle text-primary me-2"></i>Selected Add-ons</h6>
+                        <div id="addons-container"></div>
+                    </div>
+
+                    <!-- Billing Information -->
+                    <div class="checkout-card">
+                        <h6><i class="isax isax-user text-primary me-2"></i>Billing Information</h6>
+                        <form id="billing-form">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Address</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">City</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">State</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">Zip Code</label>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Payment Method -->
+                    <div class="checkout-card">
+                        <h6><i class="isax isax-card text-primary me-2"></i>Payment Method</h6>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="form-check card p-3">
+                                    <input class="form-check-input" type="radio" name="payment" id="credit" checked>
+                                    <label class="form-check-label" for="credit">
+                                        <i class="fa-brands fa-cc-visa fs-24 text-primary me-2"></i>Credit Card
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check card p-3">
+                                    <input class="form-check-input" type="radio" name="payment" id="paypal">
+                                    <label class="form-check-label" for="paypal">
+                                        <i class="fa-brands fa-paypal fs-24 text-info me-2"></i>PayPal
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check card p-3">
+                                    <input class="form-check-input" type="radio" name="payment" id="bank">
+                                    <label class="form-check-label" for="bank">
+                                        <i class="fa-solid fa-building-columns fs-24 text-success me-2"></i>Bank Transfer
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Price Summary Sidebar -->
+                <div class="col-lg-4">
+                    <div class="card sticky-top" style="top: 100px;">
+                        <div class="card-body">
+                            <h5 class="mb-4"><i class="isax isax-receipt-2 text-primary me-2"></i>Price Breakdown</h5>
+                            
+                            <div class="price-breakdown">
+                                <div class="price-row">
+                                    <span>Base Package</span>
+                                    <span>$<span id="price-base">0</span></span>
+                                </div>
+                                <div class="price-row" id="price-hotel-row" style="display: none;">
+                                    <span><i class="isax isax-building-4 me-1"></i> Hotel</span>
+                                    <span>$<span id="price-hotel">0</span></span>
+                                </div>
+                                <div class="price-row" id="price-car-row" style="display: none;">
+                                    <span><i class="isax isax-car me-1"></i> Car</span>
+                                    <span>$<span id="price-car">0</span></span>
+                                </div>
+                                <div class="price-row" id="price-cruise-row" style="display: none;">
+                                    <span><i class="isax isax-ship me-1"></i> Cruise</span>
+                                    <span>$<span id="price-cruise">0</span></span>
+                                </div>
+                                <div class="price-row" id="price-flight-row" style="display: none;">
+                                    <span><i class="isax isax-airplane me-1"></i> Flight</span>
+                                    <span>$<span id="price-flight">0</span></span>
+                                </div>
+                                <div class="price-row mt-2 pt-2 border-top">
+                                    <span>Service Fee</span>
+                                    <span>$<span id="price-fee">50</span></span>
+                                </div>
+                                <div class="price-row">
+                                    <span>Tax (10%)</span>
+                                    <span>$<span id="price-tax">0</span></span>
+                                </div>
+                                <div class="price-row total">
+                                    <span>Total Amount</span>
+                                    <span>$<span id="price-total">0</span></span>
+                                </div>
+                            </div>
+
+                            <div class="mt-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <input type="checkbox" class="form-check-input me-2" id="terms">
+                                    <label class="form-check-label fs-14" for="terms">
+                                        I agree to the <a href="terms-conditions.html">Terms & Conditions</a>
+                                    </label>
+                                </div>
+                                <button class="btn btn-primary w-100 py-3" id="complete-booking">
+                                    <i class="isax isax-tick-circle me-2"></i>Complete Booking
+                                </button>
+                                <a href="vacation-details.html" class="btn btn-outline-secondary w-100 mt-2">
+                                    <i class="isax isax-arrow-left me-2"></i>Back to Customize
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-md-12 text-center">
+                        <p class="mb-0">© 2024 DreamsTour. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/meanmenu.js"></script>
+    <script src="assets/js/script.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Load booking data from localStorage
+            const bookingData = JSON.parse(localStorage.getItem('vacationBooking') || '{}');
+            
+            if (!bookingData.package) {
+                alert('No booking data found. Redirecting to vacation page.');
+                window.location.href = 'vacation.html';
+                return;
+            }
+
+            // Populate package details
+            $('#package-img').attr('src', bookingData.package.image);
+            $('#package-name').text(bookingData.package.name);
+            $('#package-location').text(bookingData.package.location);
+            $('#package-type').text(bookingData.package.type === 'cruise' ? 'Cruise' : 'Resort');
+            $('#package-rating').text(bookingData.package.rating);
+            $('#package-reviews').text('(' + bookingData.package.reviews + ' Reviews)');
+            $('#package-duration').text(bookingData.package.duration);
+            $('#travel-date-display').text(new Date(bookingData.travelDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }));
+            $('#travelers-count').text(bookingData.travelers + ' Traveler' + (bookingData.travelers > 1 ? 's' : ''));
+
+            // Populate add-ons
+            let hasAddons = false;
+            let addonsHtml = '';
+            
+            if (bookingData.hotel) {
+                hasAddons = true;
+                addonsHtml += `
+                    <div class="addon-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6><i class="isax isax-building-4 text-primary me-2"></i>${bookingData.hotel.name}</h6>
+                                <p>Hotel Accommodation</p>
+                            </div>
+                            <span class="text-primary fw-semibold">$${bookingData.hotel.price.toLocaleString()}</span>
+                        </div>
+                    </div>
+                `;
+                $('#price-hotel-row').show();
+                $('#price-hotel').text(bookingData.hotel.price.toLocaleString());
+            }
+
+            if (bookingData.car) {
+                hasAddons = true;
+                addonsHtml += `
+                    <div class="addon-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6><i class="isax isax-car text-info me-2"></i>${bookingData.car.name}</h6>
+                                <p>Car Rental</p>
+                            </div>
+                            <span class="text-primary fw-semibold">$${bookingData.car.price.toLocaleString()}</span>
+                        </div>
+                    </div>
+                `;
+                $('#price-car-row').show();
+                $('#price-car').text(bookingData.car.price.toLocaleString());
+            }
+
+            if (bookingData.cruise) {
+                hasAddons = true;
+                addonsHtml += `
+                    <div class="addon-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6><i class="isax isax-ship text-secondary me-2"></i>${bookingData.cruise.name}</h6>
+                                <p>Cruise Experience</p>
+                            </div>
+                            <span class="text-primary fw-semibold">$${bookingData.cruise.price.toLocaleString()}</span>
+                        </div>
+                    </div>
+                `;
+                $('#price-cruise-row').show();
+                $('#price-cruise').text(bookingData.cruise.price.toLocaleString());
+            }
+
+            if (bookingData.flight) {
+                hasAddons = true;
+                addonsHtml += `
+                    <div class="addon-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6><i class="isax isax-airplane text-success me-2"></i>${bookingData.flight.name}</h6>
+                                <p>Flight Booking</p>
+                            </div>
+                            <span class="text-primary fw-semibold">$${bookingData.flight.price.toLocaleString()}</span>
+                        </div>
+                    </div>
+                `;
+                $('#price-flight-row').show();
+                $('#price-flight').text(bookingData.flight.price.toLocaleString());
+            }
+
+            if (hasAddons) {
+                $('#addons-section').show();
+                $('#addons-container').html(addonsHtml);
+            }
+
+            // Calculate prices
+            const basePrice = bookingData.package.price;
+            const hotelPrice = bookingData.hotel ? bookingData.hotel.price : 0;
+            const carPrice = bookingData.car ? bookingData.car.price : 0;
+            const cruisePrice = bookingData.cruise ? bookingData.cruise.price : 0;
+            const flightPrice = bookingData.flight ? bookingData.flight.price : 0;
+            const serviceFee = 50;
+            const subtotal = basePrice + hotelPrice + carPrice + cruisePrice + flightPrice + serviceFee;
+            const tax = Math.round(subtotal * 0.1);
+            const total = subtotal + tax;
+
+            $('#price-base').text(basePrice.toLocaleString());
+            $('#price-tax').text(tax.toLocaleString());
+            $('#price-total').text(total.toLocaleString());
+
+            // Complete booking
+            $('#complete-booking').on('click', function() {
+                if (!$('#terms').is(':checked')) {
+                    alert('Please agree to the Terms & Conditions');
+                    return;
+                }
+                
+                if (!$('#billing-form')[0].checkValidity()) {
+                    $('#billing-form')[0].reportValidity();
+                    return;
+                }
+
+                // Save completed booking
+                const completedBooking = {
+                    ...bookingData,
+                    orderId: '#VB' + Math.floor(Math.random() * 100000),
+                    bookingDate: new Date().toISOString(),
+                    status: 'Confirmed',
+                    total: total,
+                    paymentMethod: $('input[name="payment"]:checked').next('label').text().trim()
+                };
+                
+                localStorage.setItem('completedVacationBooking', JSON.stringify(completedBooking));
+                localStorage.removeItem('vacationBooking');
+                
+                alert('Booking Confirmed! Order ID: ' + completedBooking.orderId);
+                window.location.href = 'vacation.html';
+            });
+        });
+    </script>
+
+</body>
+</html>

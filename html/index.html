@@ -53,6 +53,9 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <!-- Navigation Auth CSS -->
+    <link rel="stylesheet" href="assets/css/nav-auth.css">
+
     <style>
         /* Hide main nav on mobile - show only in sidebar */
         @media (max-width: 1199px) {
@@ -4246,18 +4249,20 @@
                             </div>
                         </div>
                         <div class="mt-3 mb-3">
-                            <div class="d-flex align-items-center justify-content-between flex-wrap row-gap-2">
-                                <div class="form-check d-flex align-items-center mb-2">
-                                    <input class="form-check-input mt-0" type="checkbox" value="" id="remembers_me">
-                                    <label class="form-check-label ms-2 text-gray-9 fs-14" for="remembers_me">
-                                        Remember Me
-                                    </label>
-                                </div>
-                                <a href="javascript:void(0);" class="link-primary fw-medium fs-14 mb-2" data-bs-toggle="modal" data-bs-target="#forgot-modal">Forgot Password?</a>
+                            <div class="form-check d-flex align-items-center mb-2">
+                                <input class="form-check-input mt-0" type="checkbox" value="" id="remembers_me">
+                                <label class="form-check-label ms-2 text-gray-9 fs-14" for="remembers_me">
+                                    Remember Me
+                                </label>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-xl btn-primary d-flex align-items-center justify-content-center w-100">Login<i class="isax isax-arrow-right-3 ms-2"></i></button>
+                            <button type="submit" id="loginBtn" class="btn btn-xl btn-primary d-flex align-items-center justify-content-center w-100">
+                                <span id="loginBtnText">Login<i class="isax isax-arrow-right-3 ms-2"></i></span>
+                                <span id="loginBtnLoading" style="display: none;">
+                                    <span class="spinner-border spinner-border-sm me-2" role="status"></span>Signing in...
+                                </span>
+                            </button>
                         </div>
                         <div class="login-or mb-3">
                             <span class="span-or">Or</span>
@@ -4522,119 +4527,10 @@
     <!-- Script JS -->
     <script src="assets/js/script.js" type="b07d4fd4e355a82de42bd6f4-text/javascript"></script>
 
-    <!-- Authentication Script -->
-    <script>
-        // Handle Login
-        function handleLogin(event) {
-            event.preventDefault();
-            
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-            const rememberMe = document.getElementById('remembers_me').checked;
-            
-            // Validate
-            if (!email || !password) {
-                alert('Please fill in all fields');
-                return false;
-            }
-            
-            // Simulate login - In production, this would be an API call
-            const user = {
-                email: email,
-                name: email.split('@')[0].charAt(0).toUpperCase() + email.split('@')[0].slice(1),
-                loggedInAt: new Date().toISOString()
-            };
-            
-            // Store user in localStorage
-            localStorage.setItem('dreamstour_user', JSON.stringify(user));
-            localStorage.setItem('dreamstour_session', 'active');
-            
-            if (rememberMe) {
-                localStorage.setItem('dreamstour_remember', 'true');
-            }
-            
-            // Close modal and redirect to dashboard
-            const modal = bootstrap.Modal.getInstance(document.getElementById('login-modal'));
-            if (modal) modal.hide();
-            
-            window.location.href = 'dashboard/user-dashboard.html';
-            return false;
-        }
-        
-        // Handle Register
-        function handleRegister(event) {
-            event.preventDefault();
-            
-            const name = document.getElementById('register-name').value;
-            const email = document.getElementById('register-email').value;
-            const password = document.getElementById('register-password').value;
-            const confirmPassword = document.getElementById('register-confirm-password').value;
-            const agree = document.getElementById('agree').checked;
-            
-            // Validate
-            if (!name || !email || !password || !confirmPassword) {
-                alert('Please fill in all fields');
-                return false;
-            }
-            
-            if (password !== confirmPassword) {
-                alert('Passwords do not match');
-                return false;
-            }
-            
-            if (!agree) {
-                alert('Please agree to the Terms of Service');
-                return false;
-            }
-            
-            // Simulate registration - In production, this would be an API call
-            const user = {
-                name: name,
-                email: email,
-                registeredAt: new Date().toISOString(),
-                loggedInAt: new Date().toISOString()
-            };
-            
-            // Store user in localStorage
-            localStorage.setItem('dreamstour_user', JSON.stringify(user));
-            localStorage.setItem('dreamstour_session', 'active');
-            
-            // Close modal and redirect to dashboard
-            const modal = bootstrap.Modal.getInstance(document.getElementById('register-modal'));
-            if (modal) modal.hide();
-            
-            window.location.href = 'dashboard/user-dashboard.html';
-            return false;
-        }
-        
-        // Logout function
-        function logout() {
-            localStorage.removeItem('dreamstour_user');
-            localStorage.removeItem('dreamstour_session');
-            localStorage.removeItem('dreamstour_remember');
-            window.location.reload();
-        }
-        
-        // Check if user is already logged in
-        document.addEventListener('DOMContentLoaded', function() {
-            const session = localStorage.getItem('dreamstour_session');
-            const user = localStorage.getItem('dreamstour_user');
-            
-            if (session === 'active' && user) {
-                // User is logged in - show dashboard menu
-                document.getElementById('mobileMenuLoggedOut').style.display = 'none';
-                document.getElementById('mobileMenuLoggedIn').style.display = 'block';
-                document.getElementById('mobileActionsLoggedOut').style.display = 'none';
-                document.getElementById('mobileActionsLoggedIn').style.display = 'block';
-            } else {
-                // User is logged out - show regular menu
-                document.getElementById('mobileMenuLoggedOut').style.display = 'block';
-                document.getElementById('mobileMenuLoggedIn').style.display = 'none';
-                document.getElementById('mobileActionsLoggedOut').style.display = 'block';
-                document.getElementById('mobileActionsLoggedIn').style.display = 'none';
-            }
-        });
-    </script>
+    <!-- Authentication Scripts -->
+    <script src="assets/js/auth-fixed.js" type="b07d4fd4e355a82de42bd6f4-text/javascript"></script>
+    <script src="assets/js/nav-auth.js" type="b07d4fd4e355a82de42bd6f4-text/javascript"></script>
+    <script src="assets/js/booking.js" type="b07d4fd4e355a82de42bd6f4-text/javascript"></script>
 
 <script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="b07d4fd4e355a82de42bd6f4-|49" defer></script></body>
 

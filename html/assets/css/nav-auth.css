@@ -1,0 +1,187 @@
+/**
+ * Navigation Authentication Styles
+ */
+
+/* User Avatar */
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #111827;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.avatar-initials {
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+.user-avatar-large {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #111827;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.avatar-initials-large {
+    color: white;
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+/* User Dropdown Button */
+.user-dropdown .btn {
+    padding: 8px 16px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.user-dropdown .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.user-info {
+    max-width: 140px;
+    overflow: hidden;
+}
+
+.user-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-tier {
+    white-space: nowrap;
+    text-transform: capitalize;
+}
+
+/* Dropdown Menu Customization */
+.user-dropdown .dropdown-menu {
+    min-width: 280px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    padding: 0;
+    margin-top: 8px;
+    border: 1px solid #E4EBF1;
+    background-color: #FFF;
+}
+
+.user-dropdown .dropdown-header {
+    padding: 24px 20px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #E4EBF1;
+    border-radius: 12px 12px 0 0;
+}
+
+.user-dropdown .dropdown-header .text-muted {
+    color: #6c757d !important;
+    font-size: 13px;
+}
+
+.user-dropdown .dropdown-header .fw-semibold {
+    color: #111827;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.user-dropdown .dropdown-item {
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #4E5561;
+    transition: all 0.2s ease;
+}
+
+.user-dropdown .dropdown-item:hover {
+    background-color: #F8F9FA;
+    color: #111827;
+}
+
+.user-dropdown .dropdown-item i {
+    width: 20px;
+    opacity: 0.7;
+    color: #6c757d;
+}
+
+.user-dropdown .dropdown-divider {
+    margin: 0;
+    border-color: #E4EBF1;
+}
+
+/* Badge Styling */
+.badge.bg-warning {
+    background-color: #cd7f32 !important; /* Bronze */
+    color: white;
+}
+
+.badge.bg-secondary {
+    background-color: #c0c0c0 !important; /* Silver */
+    color: #333;
+}
+
+.badge.bg-primary {
+    background-color: #ffd700 !important; /* Gold */
+    color: #333;
+}
+
+.badge.bg-dark {
+    background-color: #e5e4e2 !important; /* Platinum */
+    color: #333;
+}
+
+.badge.bg-info {
+    background-color: #b9f2ff !important; /* Diamond */
+    color: #333;
+}
+
+/* Mobile Responsive */
+@media (max-width: 991px) {
+    .user-dropdown .btn {
+        padding: 8px 12px;
+    }
+    
+    .user-avatar {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .avatar-initials {
+        font-size: 13px;
+    }
+}
+
+/* Dark Mode Support */
+[data-theme="dark"] .user-dropdown .dropdown-menu {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+}
+
+[data-theme="dark"] .user-dropdown .dropdown-item {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .user-dropdown .dropdown-item:hover {
+    background-color: rgba(102, 126, 234, 0.2);
+}
+
+[data-theme="dark"] .btn-white {
+    background-color: #2a2a2a;
+    border-color: #3a3a3a;
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .btn-white:hover {
+    background-color: #3a3a3a;
+    border-color: #4a4a4a;
+}

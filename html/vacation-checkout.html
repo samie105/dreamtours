@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="assets/css/iconsax.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Nav Auth CSS -->
+    <link rel="stylesheet" href="assets/css/nav-auth.css">
 
     <style>
         .checkout-card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
@@ -236,10 +239,50 @@
                     <!-- Payment Method -->
                     <div class="checkout-card">
                         <h6><i class="isax isax-card text-primary me-2"></i>Payment Method</h6>
-                        <div class="row g-3">
+                        
+                        <!-- Balance Payment Option (shown if logged in) -->
+                        <div id="balance-payment-section" class="mb-4" style="display: none;">
+                            <div class="alert alert-info d-flex align-items-center justify-content-between mb-3">
+                                <div>
+                                    <strong><i class="isax isax-wallet-2 me-2"></i>Pay with Balance</strong>
+                                    <p class="mb-0 small">Current Balance: <span id="user-balance" class="fw-bold text-success">$0</span></p>
+                                </div>
+                                <a href="dashboard-deposit.html" class="btn btn-sm btn-outline-primary">
+                                    <i class="isax isax-add me-1"></i>Add Funds
+                                </a>
+                            </div>
+                            <div class="form-check card p-3 border-primary bg-primary bg-opacity-10">
+                                <input class="form-check-input" type="radio" name="payment" id="balance" checked>
+                                <label class="form-check-label d-flex align-items-center" for="balance">
+                                    <i class="isax isax-wallet-check fs-24 text-primary me-2"></i>
+                                    <div>
+                                        <strong>Account Balance</strong>
+                                        <small class="d-block text-muted">Instant payment from your balance</small>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Login prompt (shown if not logged in) -->
+                        <div id="login-prompt-section" class="mb-4" style="display: none;">
+                            <div class="alert alert-warning">
+                                <i class="isax isax-info-circle me-2"></i>
+                                <strong>Please sign in to complete your booking</strong>
+                                <p class="mb-2 small">Sign in to use your account balance and earn loyalty points.</p>
+                                <a href="login.html" class="btn btn-sm btn-primary">
+                                    <i class="isax isax-login me-1"></i>Sign In
+                                </a>
+                                <a href="register.html" class="btn btn-sm btn-outline-primary ms-2">Register</a>
+                            </div>
+                        </div>
+                        
+                        <div class="row g-3" id="other-payment-methods" style="display: none;">
+                            <div class="col-12 mb-2">
+                                <small class="text-muted">Or pay with:</small>
+                            </div>
                             <div class="col-md-4">
                                 <div class="form-check card p-3">
-                                    <input class="form-check-input" type="radio" name="payment" id="credit" checked>
+                                    <input class="form-check-input" type="radio" name="payment" id="credit">
                                     <label class="form-check-label" for="credit">
                                         <i class="fa-brands fa-cc-visa fs-24 text-primary me-2"></i>Credit Card
                                     </label>
@@ -343,9 +386,45 @@
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/meanmenu.js"></script>
     <script src="assets/js/script.js"></script>
+    
+    <!-- Auth Manager -->
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/nav-auth.js"></script>
+    <!-- Booking System -->
+    <script src="assets/js/booking-system.js"></script>
 
     <script>
-        $(document).ready(function() {
+        const API_BASE_URL = 'http://localhost:5001/api';
+        let totalAmount = 0;
+        
+        $(document).ready(async function() {
+            // Check authentication and show appropriate payment options
+            const token = localStorage.getItem('authToken');
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            
+            if (token && user) {
+                $('#balance-payment-section').show();
+                $('#other-payment-methods').show();
+                
+                // Fetch and display current balance
+                try {
+                    const response = await fetch(`${API_BASE_URL}/dashboard/overview`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (response.ok) {
+                        const result = await response.json();
+                        const balance = result.data?.balance || 0;
+                        $('#user-balance').text('$' + balance.toLocaleString());
+                        user.balance = balance;
+                        localStorage.setItem('user', JSON.stringify(user));
+                    }
+                } catch (e) {
+                    $('#user-balance').text('$' + (user.balance || 0).toLocaleString());
+                }
+            } else {
+                $('#login-prompt-section').show();
+            }
+            
             // Load booking data from localStorage
             const bookingData = JSON.parse(localStorage.getItem('vacationBooking') || '{}');
             
@@ -452,14 +531,14 @@
             const serviceFee = 50;
             const subtotal = basePrice + hotelPrice + carPrice + cruisePrice + flightPrice + serviceFee;
             const tax = Math.round(subtotal * 0.1);
-            const total = subtotal + tax;
+            totalAmount = subtotal + tax;
 
             $('#price-base').text(basePrice.toLocaleString());
             $('#price-tax').text(tax.toLocaleString());
-            $('#price-total').text(total.toLocaleString());
+            $('#price-total').text(totalAmount.toLocaleString());
 
             // Complete booking
-            $('#complete-booking').on('click', function() {
+            $('#complete-booking').on('click', async function() {
                 if (!$('#terms').is(':checked')) {
                     alert('Please agree to the Terms & Conditions');
                     return;
@@ -470,21 +549,87 @@
                     return;
                 }
 
-                // Save completed booking
-                const completedBooking = {
-                    ...bookingData,
-                    orderId: '#VB' + Math.floor(Math.random() * 100000),
-                    bookingDate: new Date().toISOString(),
-                    status: 'Confirmed',
-                    total: total,
-                    paymentMethod: $('input[name="payment"]:checked').next('label').text().trim()
-                };
+                const token = localStorage.getItem('authToken');
+                const user = JSON.parse(localStorage.getItem('user') || '{}');
+                const paymentMethod = $('input[name="payment"]:checked').attr('id');
                 
-                localStorage.setItem('completedVacationBooking', JSON.stringify(completedBooking));
-                localStorage.removeItem('vacationBooking');
-                
-                alert('Booking Confirmed! Order ID: ' + completedBooking.orderId);
-                window.location.href = 'vacation.html';
+                // If paying with balance
+                if (paymentMethod === 'balance') {
+                    if (!token) {
+                        BookingSystem.showLoginRequired();
+                        return;
+                    }
+                    
+                    const currentBalance = user.balance || 0;
+                    if (currentBalance < totalAmount) {
+                        BookingSystem.showInsufficientBalance(totalAmount, currentBalance);
+                        return;
+                    }
+                    
+                    // Process booking via API
+                    const btn = $(this);
+                    btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm me-2"></span>Processing...');
+                    
+                    try {
+                        const response = await fetch(`${API_BASE_URL}/bookings`, {
+                            method: 'POST',
+                            headers: {
+                                'Authorization': `Bearer ${token}`,
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                bookingType: 'vacation',
+                                totalAmount: totalAmount,
+                                paymentMethod: 'balance',
+                                pricing: {
+                                    subtotal: subtotal,
+                                    tax: tax,
+                                    total: totalAmount
+                                },
+                                details: {
+                                    package: bookingData.package,
+                                    hotel: bookingData.hotel,
+                                    car: bookingData.car,
+                                    cruise: bookingData.cruise,
+                                    flight: bookingData.flight,
+                                    travelDate: bookingData.travelDate,
+                                    travelers: bookingData.travelers
+                                }
+                            })
+                        });
+                        
+                        const result = await response.json();
+                        
+                        if (response.ok && result.success) {
+                            // Update local balance
+                            user.balance = (user.balance || 0) - totalAmount;
+                            localStorage.setItem('user', JSON.stringify(user));
+                            
+                            const pointsEarned = Math.floor(totalAmount / 10);
+                            
+                            localStorage.removeItem('vacationBooking');
+                            
+                            BookingSystem.showBookingSuccess({
+                                bookingId: result.data?.bookingReference || '#VB' + Date.now(),
+                                amount: totalAmount,
+                                newBalance: user.balance,
+                                pointsEarned: pointsEarned,
+                                message: 'Your vacation package has been booked successfully!',
+                                dashboardLink: 'user-dashboard.html'
+                            });
+                        } else {
+                            throw new Error(result.error || result.message || 'Booking failed');
+                        }
+                    } catch (error) {
+                        console.error('Booking error:', error);
+                        alert(error.message || 'Failed to complete booking. Please try again.');
+                    } finally {
+                        btn.prop('disabled', false).html('<i class="isax isax-tick-circle me-2"></i>Complete Booking');
+                    }
+                } else {
+                    // Handle other payment methods (credit card, paypal, bank)
+                    alert('Please sign in and use your account balance to complete this booking.');
+                }
             });
         });
     </script>

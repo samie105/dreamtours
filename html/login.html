@@ -164,44 +164,19 @@
     <!-- Script JS -->
     <script src="assets/js/script.js" type="75bba7eb725b54502744c53e-text/javascript"></script>
 
-    <!-- Login Handler -->
-    <script>
-        function handleLogin(event) {
-            event.preventDefault();
-            
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-            const remember = document.getElementById('remembers_me').checked;
-            
-            if (!email || !password) {
-                alert('Please fill in all fields');
-                return;
-            }
-            
-            // Create user data
-            const userData = {
-                email: email,
-                name: email.split('@')[0],
-                joinDate: new Date().toISOString()
-            };
-            
-            // Save to localStorage
-            localStorage.setItem('dreamstour_user', JSON.stringify(userData));
-            localStorage.setItem('dreamstour_session', 'active');
-            
-            if (remember) {
-                localStorage.setItem('dreamstour_remember', 'true');
-            }
-            
-            // Redirect to dashboard
-            window.location.href = '/html/dashboard/user-dashboard.html';
-        }
-        
-        // Check if already logged in
-        (function() {
-            const session = localStorage.getItem('dreamstour_session');
-            if (session === 'active') {
-                window.location.href = '/html/dashboard/user-dashboard.html';
+    <!-- Authentication System -->
+    <script src="assets/js/auth.js" type="75bba7eb725b54502744c53e-text/javascript"></script>
+    
+    <!-- Check if already logged in -->
+    <script type="75bba7eb725b54502744c53e-text/javascript">
+        (async function() {
+            if (AuthManager.isAuthenticated()) {
+                const isValid = await checkAuthStatus();
+                if (isValid) {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const redirect = urlParams.get('redirect') || '../index.html';
+                    window.location.href = redirect;
+                }
             }
         })();
     </script>

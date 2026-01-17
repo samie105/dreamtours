@@ -1,0 +1,2113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from dreamstour.dreamstechnologies.com/html/flight-grid.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 23 Dec 2024 10:49:38 GMT -->
+<head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DreamsTour - Travel and Tour </title>
+
+    <meta name="description" content="DreamsTour - A premium Bootstrap 5 template crafted for travel and tour booking. Tailored for travel agencies and booking platforms, it features flight, hotel, and tour reservations, and holiday packages.">
+    <meta name="keywords" content="travel booking template, tour booking, Bootstrap 5 travel template, DreamsTour, hotel booking, flights booking, holiday packages, tour agency website, travel agency template, travel HTML template, booking system, responsive travel template, Bootstrap travel website">
+    <meta name="author" content="Dreams Technologies">
+    <meta name="robots" content="index, follow">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/img/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+    <!-- Theme Settings Js -->
+	<script src="assets/js/theme-script.js" type="b127770d761bae132fa9e07e-text/javascript"></script>
+
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <!-- Main.css -->
+    <link rel="stylesheet" href="assets/css/meanmenu.css">
+
+    <!-- Tabler Icon CSS -->
+    <link rel="stylesheet" href="assets/plugins/tabler-icons/tabler-icons.css">
+
+    <!-- Fontawesome Icon CSS -->
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Owlcarousel CSS -->
+    <link rel="stylesheet" href="assets/plugins/owlcarousel/owl.carousel.min.css">
+
+    <!-- Rangeslider CSS -->
+    <link rel="stylesheet" href="assets/plugins/ion-rangeslider/css/ion.rangeSlider.css">
+    <link rel="stylesheet" href="assets/plugins/ion-rangeslider/css/ion.rangeSlider.min.css">
+
+    <!-- Iconsax CSS -->
+    <link rel="stylesheet" href="assets/css/iconsax.css">
+
+    <!-- Datepicker CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        /* Hide main nav on mobile - show only in sidebar */
+        @media (max-width: 1199px) {
+            .main-nav { display: none !important; }
+            .header__hamburger { display: flex !important; }
+        }
+        /* Mobile sidebar - slides from left */
+        .offcanvas-info { left: 0; right: auto; transform: translateX(-100%); }
+        .offcanvas-info.show { transform: translateX(0); }
+        .offcanvas-overlay { position: fixed; left: 0; right: 0; top: 0; bottom: 0; background: rgba(0, 0, 0, 0.7); z-index: 900; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        .offcanvas-overlay.overlay-open { opacity: 0.8; visibility: visible; }
+        .mobile-nav-menu { list-style: none; padding: 0; margin: 0; }
+        .mobile-nav-menu li { border-bottom: 1px solid #e5e7eb; }
+        .mobile-nav-menu li:last-child { border-bottom: none; }
+        .mobile-nav-menu li a { display: block; padding: 14px 0; font-size: 15px; font-weight: 500; color: #1f2937; transition: color 0.2s; }
+        .mobile-nav-menu li a:hover, .mobile-nav-menu li.active a { color: var(--bs-primary); }
+        .mobile-nav-menu li a i { margin-right: 10px; width: 20px; }
+        [data-theme="dark"] .mobile-nav-menu li { border-color: #334155; }
+        [data-theme="dark"] .mobile-nav-menu li a { color: #e2e8f0; }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="main-header">
+        <!-- Header Topbar-->
+        <div class="header-topbar text-center bg-transparent">
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-between flex-wrap">
+                    <p class="d-flex align-items-center fw-medium fs-14 mb-2"><i class="isax isax-call5 me-2"></i>Toll Free : +1 56565 56594</p>
+                    <div class="d-flex align-items-center">
+                        <p class="mb-2 me-3 d-flex align-items-center fw-medium fs-14"><i class="isax isax-message-text-15 me-2"></i>Email : <a href="https://dreamstour.dreamstechnologies.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ff96919990bf9a879e928f939ad19c9092">[email&#160;protected]</a></p>
+                        <div class="dropdown flag-dropdown mb-2 me-3">
+                            <a href="javascript:void(0);" class="dropdown-toggle d-inline-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG
+                            </a>
+                            <ul class="dropdown-menu p-2 mt-2">
+                                <li>
+                                    <a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);">
+                                        <img src="assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);">
+                                        <img src="assets/img/flags/arab-flag.svg" class="me-2" alt="flag">ARA
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);">
+                                        <img src="assets/img/flags/france-flag.svg" class="me-2" alt="flag">FRA
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="dropdown mb-2 me-3">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+								USD
+							</a>
+                            <ul class="dropdown-menu p-2 mt-2">
+                                <li><a class="dropdown-item rounded" href="javascript:void(0);">USD</a></li>
+                                <li><a class="dropdown-item rounded" href="javascript:void(0);">YEN</a></li>
+                                <li><a class="dropdown-item rounded" href="javascript:void(0);">EURO</a></li>
+                            </ul>
+                        </div>
+                        <div class="fav-dropdown mb-2">
+                            <a href="wishlist.html" class="position-relative">
+                                <i class="isax isax-heart"></i><span class="count-icon bg-secondary text-gray-9">0</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Header Topbar-->
+
+        <!-- Header -->
+        <header>
+            <div class="container">
+                <div class="offcanvas-info">
+                    <div class="offcanvas-wrap">
+                        <div class="offcanvas-detail">
+                            <div class="offcanvas-head">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <a href="index.html" class="black-logo-responsive"><img src="assets/img/logo-dark.svg" alt="logo-img"></a>
+                                    <a href="index.html" class="white-logo-responsive"><img src="assets/img/logo.svg" alt="logo-img"></a>
+                                    <div class="offcanvas-close"><i class="ti ti-x"></i></div>
+                                </div>
+                            </div>
+                                                        <!-- Logged Out Menu -->
+                            <ul class="mobile-nav-menu" id="mobileMenuLoggedOut">
+                                <li><a href="index.html"><i class="isax isax-home-2"></i>Home</a></li>
+                                <li><a href="flight-grid.html"><i class="isax isax-airplane"></i>Flight</a></li>
+                                <li><a href="hotel-grid.html"><i class="isax isax-building-4"></i>Hotel</a></li>
+                                <li><a href="car-grid.html"><i class="isax isax-car"></i>Car</a></li>
+                                <li><a href="cruise-grid.html"><i class="isax isax-ship"></i>Cruise</a></li>
+                                <li><a href="tour-grid.html"><i class="isax isax-map"></i>Tour</a></li>
+                                <li><a href="vacation.html"><i class="isax isax-sun-1"></i>Vacation</a></li>
+                                <li><a href="fan-card.html"><i class="isax isax-card"></i>Fan Card</a></li>
+                            </ul>
+                            <!-- Logged In Menu -->
+                            <ul class="mobile-nav-menu" id="mobileMenuLoggedIn" style="display: none;">
+                                <li><a href="dashboard/user-dashboard.html"><i class="isax isax-home-15"></i>Dashboard</a></li>
+                                <li><a href="dashboard/dashboard-vacations.html"><i class="isax isax-sun-1"></i>Vacations</a></li>
+                                <li><a href="dashboard/dashboard-fancard.html"><i class="isax isax-card"></i>Fan Card</a></li>
+                                <li><a href="dashboard/dashboard-hotels.html"><i class="isax isax-building-4"></i>Hotels</a></li>
+                                <li><a href="dashboard/dashboard-flights.html"><i class="isax isax-airplane"></i>Flights</a></li>
+                                <li><a href="dashboard/dashboard-cars.html"><i class="isax isax-car"></i>Cars</a></li>
+                                <li><a href="dashboard/dashboard-tours.html"><i class="isax isax-map"></i>Tours</a></li>
+                                <li><a href="dashboard/dashboard-settings.html"><i class="isax isax-setting-2"></i>Settings</a></li>
+                            </ul>
+                            <div class="mt-4 pt-4 border-top">
+                                <!-- Logged Out Buttons -->
+                                <div id="mobileActionsLoggedOut">
+                                    <a href="javascript:void(0);" class="btn btn-outline-primary w-100 mb-2" data-bs-toggle="modal" data-bs-target="#login-modal"><i class="isax isax-login me-2"></i>Sign In</a>
+                                    <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#register-modal" class="btn btn-primary w-100"><i class="isax isax-user-add me-2"></i>Sign Up</a>
+                                </div>
+                                <!-- Logged In Buttons -->
+                                <div id="mobileActionsLoggedIn" style="display: none;">
+                                    <a href="javascript:void(0);" onclick="logout()" class="btn btn-danger w-100"><i class="isax isax-logout me-2"></i>Logout</a>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="offcanvas-overlay"></div>
+                <div class="header-nav">
+                    <div class="main-menu-wrapper">
+                        <div class="navbar-logo">
+                            <a class="logo-white header-logo" href="index.html">
+                                <img src="assets/img/logo.svg" class="logo" alt="Logo">
+                            </a>
+                            <a class="logo-dark header-logo" href="index.html">
+                                <img src="assets/img/logo-dark.svg" class="logo" alt="Logo">
+                            </a>
+                        </div>
+                        <nav id="mobile-menu">
+                            <ul class="main-nav">
+                                <li><a href="index.html">Home</a></li>
+                                <li class="active"><a href="flight-grid.html">Flight</a></li>
+                                <li><a href="hotel-grid.html">Hotel</a></li>
+                                <li><a href="car-grid.html">Car</a></li>
+                                <li><a href="cruise-grid.html">Cruise</a></li>
+                                <li><a href="tour-grid.html">Tour</a></li>
+                                <li><a href="vacation.html">Vacation</a></li>
+                                <li><a href="fan-card.html">Fan Card</a></li>
+                            </ul>
+                        </nav>
+                        <div class="header-btn d-flex align-items-center">
+                            <div class="me-3">
+                                <a href="javascript:void(0);" id="dark-mode-toggle" class="theme-toggle">
+                                    <i class="isax isax-moon"></i>
+                                </a>
+                                <a href="javascript:void(0);" id="light-mode-toggle" class="theme-toggle">
+                                    <i class="isax isax-sun-1"></i>
+                                </a>
+                            </div>
+                            <div><a href="javascript:void(0);" class="btn btn-white me-3" data-bs-toggle="modal" data-bs-target="#login-modal">Sign In</a></div>
+                            <a href="javascript:void(0);" class="btn btn-primary me-0" data-bs-toggle="modal" data-bs-target="#register-modal">Sign Up</a>
+                            <div class="header__hamburger d-xl-none my-auto">
+                                <div class="sidebar-menu">
+                                    <i class="isax isax-menu5"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- /Header -->
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-bar breadcrumb-bg-05 text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-12">
+                    <h2 class="breadcrumb-title mb-2">Flight</h2>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center mb-0">
+                            <li class="breadcrumb-item"><a href="index.html"><i class="isax isax-home5"></i></a></li>
+                            <li class="breadcrumb-item">Flight</li>
+                            <!-- <li class="breadcrumb-item active" aria-current="page">Flight Grid</li> -->
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Breadcrumb -->
+
+    <!-- Page Wrapper -->
+    <div class="content">
+        <div class="container">
+
+            <!-- Flight Search -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="banner-form">
+                        <form class="">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap mb-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="form-check d-flex align-items-center me-3 mb-2">
+                                        <input class="form-check-input mt-0" type="radio" name="Radio" id="oneway" value="oneway" checked>
+                                        <label class="form-check-label fs-14 ms-2" for="oneway">
+                                            Oneway
+                                        </label>
+                                    </div>
+                                    <!-- <div class="form-check d-flex align-items-center me-3 mb-2">
+                                        <input class="form-check-input mt-0" type="radio" name="Radio" id="roundtrip" value="roundtrip">
+                                        <label class="form-check-label fs-14 ms-2" for="roundtrip">
+                                            Round Trip
+                                        </label>
+                                    </div>
+                                    <div class="form-check d-flex align-items-center me-3 mb-2">
+                                        <input class="form-check-input mt-0" type="radio" name="Radio" id="multiway" value="multiway">
+                                        <label class="form-check-label fs-14 ms-2" for="multiway">
+                                            Multi Trip
+                                        </label>
+                                    </div> -->
+                                </div>
+                                <h6 class="fw-medium fs-16 mb-2">Millions of cheap flights. One simple search</h6>
+                            </div>
+                            <div class="normal-trip">
+                                <div class="d-lg-flex">
+                                    <div class="d-flex  form-info">
+                                        <div class="form-item dropdown">
+                                            <div data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="menu">
+                                                <label class="form-label fs-14 text-default mb-1">From</label>
+                                                <input type="text" class="form-control" value="Slovakia">
+                                                <p class="fs-12 mb-0">M. R. Štefánik Airport</p>
+                                            </div>
+                                        
+                                        </div>
+                                        <div class="form-item dropdown ps-2 ps-sm-3">
+                                            <div data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="menu">
+                                                <label class="form-label fs-14 text-default mb-1">To</label>
+                                                <h5>London</h5>
+                                                <p class="fs-12 mb-0">London city airport</p>
+                                                <span class="way-icon badge badge-primary rounded-pill translate-middle">
+                                                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                                                </span>
+                                            </div>
+                                         
+                                        </div>
+                                        <div class="form-item">
+                                            <label class="form-label fs-14 text-default mb-1">Departure</label>
+                                            <input type="text" class="form-control datetimepicker" value="28-12-2024">
+                                            <p class="fs-12 mb-0">Monday</p>
+                                        </div>
+                                        <div class="form-item round-drip">
+                                            <label class="form-label fs-14 text-default mb-1">Return</label>
+                                            <input type="text" class="form-control datetimepicker" value="23-10-2024">
+                                            <p class="fs-12 mb-0">Wednesday</p>
+                                        </div>
+                                        <!-- <div class="form-item dropdown">
+                                            <div data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="menu">
+                                                <label class="form-label fs-14 text-default mb-1">Travellers and cabin class</label>
+                                                <h5>1 <span class="fw-normal fs-14">Persons</span></h5>
+                                                <p class="fs-12 mb-0">1 Adult, Economy</p>
+                                            </div>
+                                            <div class="dropdown-menu dropdown-menu-end dropdown-xl">
+                                                <h5 class="mb-3">Select Travelers &  Class</h5>
+                                                <div class="mb-3 border br-10 info-item pb-1">
+                                                    <h6 class="fs-16 fw-medium mb-2">Travellers</h6>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="mb-3">
+                                                                <label class="form-label text-gray-9 mb-2">Adults <span class="text-default fw-normal">( 12+ Yrs )</span></label>
+                                                                <div class="custom-increment">
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-btn float-start">
+                                                                            <button type="button" class="quantity-left-minus btn btn-light btn-number"  data-type="minus" data-field="">
+                                                                              <span><i class="isax isax-minus"></i></span>
+                                                                            </button>
+                                                                        </span>
+                                                                        <input type="text" name="quantity" class=" input-number" value="01">
+                                                                        <span class="input-group-btn float-end">
+                                                                            <button type="button" class="quantity-right-plus btn btn-light btn-number" data-type="plus" data-field="">
+                                                                                <span><i class="isax isax-add"></i></span>
+                                                                            </button>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="mb-3">
+                                                                <label class="form-label text-gray-9 mb-2">Childrens <span class="text-default fw-normal">( 2-12 Yrs )</span></label>
+                                                                <div class="custom-increment">
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-btn float-start">
+                                                                            <button type="button" class="quantity-left-minus btn btn-light btn-number"  data-type="minus" data-field="">
+                                                                              <span><i class="isax isax-minus"></i></span>
+                                                                            </button>
+                                                                        </span>
+                                                                        <input type="text" name="quantity" class=" input-number" value="01">
+                                                                        <span class="input-group-btn float-end">
+                                                                            <button type="button" class="quantity-right-plus btn btn-light btn-number" data-type="plus" data-field="">
+                                                                                <span><i class="isax isax-add"></i></span>
+                                                                            </button>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="mb-3">
+                                                                <label class="form-label text-gray-9 mb-2">Infants<span class="text-default fw-normal">( 0-12 Yrs )</span></label>
+                                                                <div class="custom-increment">
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-btn float-start">
+                                                                            <button type="button" class="quantity-left-minus btn btn-light btn-number"  data-type="minus" data-field="">
+                                                                              <span><i class="isax isax-minus"></i></span>
+                                                                        </button>
+                                                                        </span>
+                                                                        <input type="text" name="quantity" class=" input-number" value="01">
+                                                                        <span class="input-group-btn float-end">
+                                                                            <button type="button" class="quantity-right-plus btn btn-light btn-number" data-type="plus" data-field="">
+                                                                                <span><i class="isax isax-add"></i></span>
+                                                                            </button>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 border br-10 info-item pb-1">
+                                                    <h6 class="fs-16 fw-medium mb-2">Travellers</h6>
+                                                    <div class="d-flex align-items-center flex-wrap">
+                                                        <div class="form-check me-3 mb-3">
+                                                            <input class="form-check-input" type="radio" value="Economy" name="cabin-class" id="economy" checked>
+                                                            <label class="form-check-label" for="economy">
+                                                                Economy
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check me-3 mb-3">
+                                                            <input class="form-check-input" type="radio" value="Economy" name="cabin-class" id="premium-economy">
+                                                            <label class="form-check-label" for="premium-economy">
+                                                                Premium Economy
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check me-3 mb-3">
+                                                            <input class="form-check-input" type="radio" value="Business" name="cabin-class" id="business">
+                                                            <label class="form-check-label" for="business">
+                                                                Business
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check mb-3">
+                                                            <input class="form-check-input" type="radio" value="First Class" name="cabin-class" id="first-class">
+                                                            <label class="form-check-label" for="first-class">
+                                                                First Class
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex justify-content-end">
+                                                    <a href="javascript:void(0);" class="btn btn-light btn-sm me-2">Cancel</a>
+                                                    <button type="submit" class="btn btn-primary btn-sm">Apply</button>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                    <!-- <button type="submit" class="btn btn-primary search-btn rounded">Search</button> -->
+                                </div>
+                            </div>
+                            <div class="multi-trip">
+                                <div class="d-lg-flex">
+                                    <div class="d-flex  form-info">
+                                        <div class="form-item dropdown">
+                                            <div data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="menu">
+                                                <label class="form-label fs-14 text-default mb-1">From</label>
+                                                <input type="text" class="form-control" value="Newyork">
+                                                <p class="fs-12 mb-0">Ken International Airport</p>
+                                            </div>
+                                            <div class="dropdown-menu dropdown-md p-0">
+                                                <div class="input-search p-3 border-bottom">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" placeholder="Search Location">
+                                                        <span class="input-group-text px-2 border-start-0"><i class="isax isax-search-normal"></i></span>
+                                                    </div>
+                                                </div>
+                                                <ul>
+                                                    <li class="border-bottom">
+                                                        <a class="dropdown-item" href="javascript:void(0);">
+                                                            <h6 class="fs-16 fw-medium">Newyork</h6>
+                                                            <p>Ken International Airport</p>
+                                                        </a>
+                                                    </li>
+                                                    <li class="border-bottom">
+                                                        <a class="dropdown-item" href="javascript:void(0);">
+                                                            <h6 class="fs-16 fw-medium">Boston</h6>
+                                                            <p>Boston Logan International Airport</p>
+                                                        </a>
+                                                    </li>
+                                                    <li class="border-bottom">
+                                                        <a class="dropdown-item" href="javascript:void(0);">
+                                                            <h6 class="fs-16 fw-medium">Northern Virginia</h6>
+                                                            <p>Dulles International Airport</p>
+                                                        </a>
+                                                    </li>
+                                                    <li class="border-bottom">
+                                                        <a class="dropdown-item" href="javascript:void(0);">
+                                                            <h6 class="fs-16 fw-medium">Los Angeles</h6>
+                                                            <p>Los Angeles International Airport</p>
+                                                        </a>
+                                                    </li>
+                                                    <li class="border-bottom">
+                                                        <a class="dropdown-item" href="javascript:void(0);">
+                                                            <h6 class="fs-16 fw-medium">Orlando</h6>
+                                                            <p>Orlando International Airport</p>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="form-item dropdown ps-2 ps-sm-3">
+                                            <div data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" role="menu">
+                                                <label class="form-label fs-14 text-default mb-1">To</label>
+                                                <h5>Las Vegas</h5>
+                                                <p class="fs-12 mb-0">Martini International Airport</p>
+                                                <span class="way-icon badge badge-primary rounded-pill translate-middle">
+                                                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                                                </span>
+                                            </div>
+                                            <div class="dropdown-menu dropdown-md p-0">
+                                                <div class="input-search p-3 border-bottom">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" placeholder="Search Location">
+                                                        <span class="input-group-text px-2 border-start-0"><i class="isax isax-search-normal"></i></span>
+                                                    </div>
+                                                </div>
+                                                <ul>
+                                                    <li class="border-bottom">
+                                                        <a class="dropdown-item" href="javascript:void(0);">
+                                                            <h6 class="fs-16 fw-medium">Newyork</h6>
+                                                            <p>Ken International Airport</p>
+                                                        </a>
+                                                    </li>
+                                                    <li class="border-bottom">
+                                                        <a class="dropdown-item" href="javascript:void(0);">
+                                                            <h6 class="fs-16 fw-medium">Boston</h6>
+                                                            <p>Boston Logan International Airport</p>
+                                                        </a>
+                                                    </li>
+                                                    <li class="border-bottom">
+                                                        <a class="dropdown-item" href="javascript:void(0);">
+                                                            <h6 class="fs-16 fw-medium">Northern Virginia</h6>
+                                                            <p>Dulles International Airport</p>
+                                                        </a>
+                                                    </li>
+                                                    <li class="border-bottom">
+                                                        <a class="dropdown-item" href="javascript:void(0);">
+                                                            <h6 class="fs-16 fw-medium">Los Angeles</h6>
+                                                            <p>Los Angeles International Airport</p>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="javascript:void(0);">
+                                                            <h6 class="fs-16 fw-medium">Orlando</h6>
+                                                            <p>Orlando International Airport</p>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="form-item">
+                                            <label class="form-label fs-14 text-default mb-1">Departure</label>
+                                            <input type="text" class="form-control datetimepicker" value="21-10-2024">
+                                            <p class="fs-12 mb-0">Monday</p>
+                                        </div>
+                                    </div>
+                                    <!-- <button type="submit" class="btn btn-primary search-btn rounded">Search</button> -->
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /Flight Search -->
+
+            <!-- Flight Types -->
+            <div class="mb-2">
+                <div class="mb-3">
+                    <h5 class="mb-2">Available Flights </h5>
+                </div>
+                <div class="row">
+                    <div class="col-xxl-2 col-lg-3 col-md-4 col-sm-6">
+                        <div class="d-flex align-items-center hotel-type-item mb-3">
+                            <a href="flight-grid.html" class="avatar avatar-lg">
+                                <img src="assets/img/flight/flight-company-01.svg" class="rounded-circle" alt="img">
+                            </a>
+                            <div class="ms-2">
+                                <h6 class="fs-16 fw-medium"><a href="flight-grid.html">American Airline</a></h6>
+                                <p class="fs-14">216 Flights</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-2 col-lg-3 col-md-4 col-sm-6">
+                        <div class="d-flex align-items-center hotel-type-item mb-3">
+                            <a href="flight-grid.html" class="avatar avatar-lg">
+                                <img src="assets/img/flight/flight-company-02.svg" class="rounded-circle" alt="img">
+                            </a>
+                            <div class="ms-2">
+                                <h6 class="fs-16 fw-medium"><a href="flight-grid.html">Delta Airlines</a></h6>
+                                <p class="fs-14">569 Flights</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-xxl-2 col-lg-3 col-md-4 col-sm-6">
+                        <div class="d-flex align-items-center hotel-type-item mb-3">
+                            <a href="flight-grid.html" class="avatar avatar-lg">
+                                <img src="assets/img/flight/flight-company-03.svg" class="rounded-circle" alt="img">
+                            </a>
+                            <div class="ms-2">
+                                <h6 class="fs-16 fw-medium"><a href="flight-grid.html">Emirates</a></h6>
+                                <p class="fs-14">129 Flights</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-2 col-lg-3 col-md-4 col-sm-6">
+                        <div class="d-flex align-items-center hotel-type-item mb-3">
+                            <a href="flight-grid.html" class="avatar avatar-lg">
+                                <img src="assets/img/flight/flight-company-04.svg" class="rounded-circle" alt="img">
+                            </a>
+                            <div class="ms-2">
+                                <h6 class="fs-16 fw-medium"><a href="flight-grid.html">Air France</a></h6>
+                                <p class="fs-14">600 Flights</p>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-xxl-2 col-lg-3 col-md-4 col-sm-6">
+                        <div class="d-flex align-items-center hotel-type-item mb-3">
+                            <a href="flight-grid.html" class="avatar avatar-lg">
+                                <img src="assets/img/flight/flight-company-05.svg" class="rounded-circle" alt="img">
+                            </a>
+                            <div class="ms-2">
+                                <h6 class="fs-16 fw-medium"><a href="flight-grid.html">Qatar Airways</a></h6>
+                                <p class="fs-14">200 Flights</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-2 col-lg-3 col-md-4 col-sm-6">
+                        <div class="d-flex align-items-center hotel-type-item mb-3">
+                            <a href="flight-grid.html" class="avatar avatar-lg">
+                                <img src="assets/img/flight/flight-company-06.svg" class="rounded-circle" alt="img">
+                            </a>
+                            <div class="ms-2">
+                                <h6 class="fs-16 fw-medium"><a href="flight-grid.html">Air India</a></h6>
+                                <p class="fs-14">180 Flights</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Flight Types -->
+
+            <div class="row">
+
+                <!-- Sidebar -->
+                <div class="col-xl-3 col-lg-4 theiaStickySidebar">
+                    <div class="card filter-sidebar mb-4 mb-lg-0">
+                        <div class="card-header d-flex align-items-center justify-content-between">
+                            <h5>Filters</h5>
+                            <a href="javascript:void(0);" class="fs-14 link-primary">Reset</a>
+                        </div>
+                        <div class="card-body p-0">
+                            <form action="https://dreamstour.dreamstechnologies.com/html/search.html">
+                                <div class="p-3 border-bottom">
+                                    <label class="form-label fs-16">Search by Airline Names</label>
+                                    <div class="input-icon">
+                                        <span class="input-icon-addon">
+											<i class="isax isax-search-normal"></i>
+										</span>
+                                        <input type="text" class="form-control" placeholder="Search by Airline Names">
+                                    </div>
+                                </div>
+                                <div class="accordion accordion-list">
+                                    <div class="accordion-item border-bottom p-3">
+                                        <div class="accordion-header">
+                                            <div class="accordion-button p-0" data-bs-toggle="collapse" data-bs-target="#accordion-populars" aria-expanded="true" aria-controls="accordion-populars" role="button">
+                                                <i class="isax isax-ranking me-2 text-primary"></i>Popular
+                                            </div>
+                                        </div>
+                                        <div id="accordion-populars" class="accordion-collapse collapse show">
+                                            <div class="accordion-body pt-2">
+                                                <div class="form-checkbox form-check form-check-inline d-inline-flex align-items-center mt-2 me-2">
+                                                    <input class="form-check-input ms-0 mt-0" name="popular1" type="checkbox" id="popular1" checked>
+                                                    <label class="form-check-label ms-2" for="popular1">
+                                                        Breakfast Included
+                                                    </label>
+                                                </div>
+                                                <div class="form-checkbox form-check form-check-inline d-inline-flex align-items-center mt-2 me-2">
+                                                    <input class="form-check-input ms-0 mt-0" name="popular2" type="checkbox" id="popular2">
+                                                    <label class="form-check-label ms-2" for="popular2">
+                                                        Budget
+                                                    </label>
+                                                </div>
+                                                <div class="form-checkbox form-check form-check-inline d-inline-flex align-items-center mt-2 me-2">
+                                                    <input class="form-check-input ms-0 mt-0" name="popular3" type="checkbox" id="popular3">
+                                                    <label class="form-check-label ms-2" for="popular3">
+                                                        4 Star Hotels
+                                                    </label>
+                                                </div>
+                                                <div class="form-checkbox form-check form-check-inline d-inline-flex align-items-center mt-2 me-2">
+                                                    <input class="form-check-input ms-0 mt-0" name="popular4" type="checkbox" id="popular4">
+                                                    <label class="form-check-label ms-2" for="popular4">
+                                                        5 Star Hotels
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item border-bottom p-3">
+                                        <div class="accordion-header">
+                                            <div class="accordion-button p-0" data-bs-toggle="collapse" data-bs-target="#accordion-popular" aria-expanded="true" aria-controls="accordion-popular" role="button">
+                                                <i class="isax isax-coin me-2 text-primary"></i>Price Per Night
+                                            </div>
+                                        </div>
+                                        <div id="accordion-popular" class="accordion-collapse collapse show">
+                                            <div class="accordion-body">
+                                                <div class="filter-range">
+                                                    <input type="text" id="range_03">
+                                                </div>
+                                                <div class="filter-range-amount">
+                                                    <p class="fs-14">Range : <span class="text-gray-9 fw-medium">£1000 - £5695</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item border-bottom p-3">
+                                        <div class="accordion-header">
+                                            <div class="accordion-button p-0" data-bs-toggle="collapse" data-bs-target="#accordion-flight" aria-expanded="true" aria-controls="accordion-flight" role="button">
+                                                <i class="isax isax-airplane4 me-2 text-primary"></i>Airline Names
+                                            </div>
+                                        </div>
+                                        <div id="accordion-flight" class="accordion-collapse collapse show">
+                                            <div class="accordion-body">
+                                                <div class="more-content">
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="flight1" type="checkbox" id="flight1">
+                                                        <label class="form-check-label ms-2" for="flight1">
+                                                            American Airlines
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="flight2" type="checkbox" id="flight2">
+                                                        <label class="form-check-label ms-2" for="flight2">
+                                                            Delta Air Lines
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="flight3" type="checkbox" id="flight3">
+                                                        <label class="form-check-label ms-2" for="flight3">
+                                                            Emirates
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="flight4" type="checkbox" id="flight4">
+                                                        <label class="form-check-label ms-2" for="flight4">
+                                                            Air France
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="flight5" type="checkbox" id="flight5">
+                                                        <label class="form-check-label ms-2" for="flight5">
+                                                            Japan Airlines
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="flight6" type="checkbox" id="flight6">
+                                                        <label class="form-check-label ms-2" for="flight6">
+                                                            Qatar Airways
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="flight7" type="checkbox" id="flight7">
+                                                        <label class="form-check-label ms-2" for="flight7">
+                                                            Air Canada
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="flight8" type="checkbox" id="flight8">
+                                                        <label class="form-check-label ms-2" for="flight8">
+                                                            United Airlines
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <a href="javascript:void(0);" class="more-view fw-medium fs-14">Show More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item border-bottom p-3">
+                                        <div class="accordion-header">
+                                            <div class="accordion-button p-0" data-bs-toggle="collapse" data-bs-target="#accordion-amenity" aria-expanded="true" aria-controls="accordion-amenity" role="button">
+                                                <i class="isax isax-candle me-2 text-primary"></i>Amenities
+                                            </div>
+                                        </div>
+                                        <div id="accordion-amenity" class="accordion-collapse collapse show">
+                                            <div class="accordion-body">
+                                                <div class="more-content">
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="amenity1" type="checkbox" id="amenity1">
+                                                        <label class="form-check-label ms-2" for="amenity1">
+                                                            Free Wifi
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="amenity2" type="checkbox" id="amenity2">
+                                                        <label class="form-check-label ms-2" for="amenity2">
+                                                            Charging Ports
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="amenity3" type="checkbox" id="amenity3">
+                                                        <label class="form-check-label ms-2" for="amenity3">
+                                                            Entertainment
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="amenity4" type="checkbox" id="amenity4">
+                                                        <label class="form-check-label ms-2" for="amenity4">
+                                                            Blankets & Pillows
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="amenity5" type="checkbox" id="amenity5">
+                                                        <label class="form-check-label ms-2" for="amenity5">
+                                                            Adjustable headrests
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="amenity6" type="checkbox" id="amenity6">
+                                                        <label class="form-check-label ms-2" for="amenity6">
+                                                            Complimentary meals
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="amenity7" type="checkbox" id="amenity7">
+                                                        <label class="form-check-label ms-2" for="amenity7">
+                                                            Privacy dividers
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <a href="javascript:void(0);" class="more-view fw-medium fs-14">Show More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item border-bottom p-3">
+                                        <div class="accordion-header">
+                                            <div class="accordion-button p-0" data-bs-toggle="collapse" data-bs-target="#accordion-cabin" aria-expanded="true" aria-controls="accordion-cabin" role="button">
+                                                <i class="isax isax-home-2 me-2 text-primary"></i>Cabin Class
+                                            </div>
+                                        </div>
+                                        <div id="accordion-cabin" class="accordion-collapse collapse show">
+                                            <div class="accordion-body">
+                                                <div class="more-content">
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="cabin1" type="checkbox" id="cabin1">
+                                                        <label class="form-check-label ms-2" for="cabin1">
+                                                            Economy
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="cabin2" type="checkbox" id="cabin2">
+                                                        <label class="form-check-label ms-2" for="cabin2">
+                                                            Premium Economy
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="cabin3" type="checkbox" id="cabin3">
+                                                        <label class="form-check-label ms-2" for="cabin3">
+                                                            Business Class
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="cabin4" type="checkbox" id="cabin4">
+                                                        <label class="form-check-label ms-2" for="cabin4">
+                                                            First Class
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="cabin5" type="checkbox" id="cabin5">
+                                                        <label class="form-check-label ms-2" for="cabin5">
+                                                            Basic Economy
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                        <input class="form-check-input ms-0 mt-0" name="cabin6" type="checkbox" id="cabin6">
+                                                        <label class="form-check-label ms-2" for="cabin6">
+                                                            Suite Class
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <a href="javascript:void(0);" class="more-view fw-medium fs-14">Show More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item border-bottom p-3">
+                                        <div class="accordion-header">
+                                            <div class="accordion-button p-0" data-bs-toggle="collapse" data-bs-target="#accordion-meal" aria-expanded="true" aria-controls="accordion-meal" role="button">
+                                                <i class="isax isax-reserve me-2 text-primary"></i>Meal plans available
+                                            </div>
+                                        </div>
+                                        <div id="accordion-meal" class="accordion-collapse collapse show">
+                                            <div class="accordion-body pt-2">
+                                                <div class="form-checkbox form-check form-check-inline d-inline-flex align-items-center mt-2 me-2">
+                                                    <input class="form-check-input ms-0 mt-0" name="meals1" type="checkbox" id="meals1">
+                                                    <label class="form-check-label ms-2" for="meals1">
+                                                        All inclusive
+                                                    </label>
+                                                </div>
+                                                <div class="form-checkbox form-check form-check-inline d-inline-flex align-items-center mt-2 me-2">
+                                                    <input class="form-check-input ms-0 mt-0" name="meals2" type="checkbox" id="meals2">
+                                                    <label class="form-check-label ms-2" for="meals2">
+                                                        Breakfast
+                                                    </label>
+                                                </div>
+                                                <div class="form-checkbox form-check form-check-inline d-inline-flex align-items-center mt-2 me-2">
+                                                    <input class="form-check-input ms-0 mt-0" name="meals3" type="checkbox" id="meals3">
+                                                    <label class="form-check-label ms-2" for="meals3">
+                                                        Lunch
+                                                    </label>
+                                                </div>
+                                                <div class="form-checkbox form-check form-check-inline d-inline-flex align-items-center mt-2 me-2">
+                                                    <input class="form-check-input ms-0 mt-0" name="meals4" type="checkbox" id="meals4">
+                                                    <label class="form-check-label ms-2" for="meals4">
+                                                        Dinner
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item border-bottom p-3">
+                                        <div class="accordion-header">
+                                            <div class="accordion-button p-0" data-bs-toggle="collapse" data-bs-target="#accordion-brand" aria-expanded="true" aria-controls="accordion-brand" role="button">
+                                                <i class="isax isax-discount-shape me-2 text-primary"></i>Reviews
+                                            </div>
+                                        </div>
+                                        <div id="accordion-brand" class="accordion-collapse collapse show">
+                                            <div class="accordion-body">
+                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                    <input class="form-check-input ms-0 mt-0" name="review1" type="checkbox" id="review1">
+                                                    <label class="form-check-label ms-2" for="review1">
+                                                        <span class="rating d-flex align-items-center">
+                                                            <i class="fas fa-star filled text-primary me-1"></i>
+                                                            <i class="fas fa-star filled text-primary me-1"></i>
+                                                            <i class="fas fa-star filled text-primary me-1"></i>
+                                                            <i class="fas fa-star filled text-primary me-1"></i>
+                                                            <i class="fas fa-star filled text-primary"></i>
+                                                            <span class="ms-2">5 Star</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                    <input class="form-check-input ms-0 mt-0" name="review2" type="checkbox" id="review2">
+                                                    <label class="form-check-label ms-2" for="review2">
+                                                        <span class="rating d-flex align-items-center">
+                                                            <i class="fas fa-star filled text-primary me-1"></i>
+                                                            <i class="fas fa-star filled text-primary me-1"></i>
+                                                            <i class="fas fa-star filled text-primary me-1"></i>
+                                                            <i class="fas fa-star filled text-primary"></i>
+                                                            <span class="ms-2">4 Star</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                    <input class="form-check-input ms-0 mt-0" name="review3" type="checkbox" id="review3">
+                                                    <label class="form-check-label ms-2" for="review3">
+                                                        <span class="rating d-flex align-items-center">
+                                                            <i class="fas fa-star filled text-primary me-1"></i>
+                                                            <i class="fas fa-star filled text-primary me-1"></i>
+                                                            <i class="fas fa-star filled text-primary"></i>
+                                                            <span class="ms-2">3 Star</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                                    <input class="form-check-input ms-0 mt-0" name="review4" type="checkbox" id="review4">
+                                                    <label class="form-check-label ms-2" for="review4">
+                                                        <span class="rating d-flex align-items-center">
+                                                            <i class="fas fa-star filled text-primary me-1"></i>
+                                                            <i class="fas fa-star filled text-primary"></i>
+                                                            <span class="ms-2">2 Star</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check d-flex align-items-center ps-0 mb-0">
+                                                    <input class="form-check-input ms-0 mt-0" name="review5" type="checkbox" id="review5">
+                                                    <label class="form-check-label ms-2" for="review5">
+                                                        <span class="rating d-flex align-items-center">
+                                                            <i class="fas fa-star filled text-primary"></i>
+                                                            <span class="ms-2">1 Star</span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Sidebar -->
+
+                <div class="col-xl-9 col-lg-8">
+                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                        <h6 class="mb-3">1920 Flights Found on Your Search</h6>
+                        <div class="d-flex align-items-center flex-wrap">
+                            <div class="list-item d-flex align-items-center mb-3">
+                                <a href="flight-grid.html" class="list-icon active me-2"><i class="isax isax-grid-1"></i></a>
+                                <a href="flight-list.html" class="list-icon me-2"><i class="isax isax-firstline"></i></a>
+                            </div>
+                            <div class="dropdown mb-3">
+                                <a href="javascript:void(0);" class="dropdown-toggle py-2" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="fw-medium text-gray-9">Sort By : </span>Recommended
+                                </a>
+                                <div class="dropdown-menu dropdown-sm">
+                                    <form action="https://dreamstour.dreamstechnologies.com/html/flight-grid.html">
+                                        <h6 class="fw-medium fs-16 mb-3">Sort By</h6>
+                                        <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                            <input class="form-check-input ms-0 mt-0" name="recommend" type="checkbox" id="recommend1" checked>
+                                            <label class="form-check-label ms-2" for="recommend1">Recommended</label>
+                                        </div>
+                                        <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                            <input class="form-check-input ms-0 mt-0" name="recommend" type="checkbox" id="recommend2">
+                                            <label class="form-check-label ms-2" for="recommend2">Price: low to high</label>
+                                        </div>
+                                        <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                            <input class="form-check-input ms-0 mt-0" name="recommend" type="checkbox" id="recommend3">
+                                            <label class="form-check-label ms-2" for="recommend3">Price: high to low</label>
+                                        </div>
+                                        <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                            <input class="form-check-input ms-0 mt-0" name="recommend" type="checkbox" id="recommend4">
+                                            <label class="form-check-label ms-2" for="recommend4">Newest</label>
+                                        </div>
+                                        <div class="form-check d-flex align-items-center ps-0 mb-2">
+                                            <input class="form-check-input ms-0 mt-0" name="recommend" type="checkbox" id="recommend5">
+                                            <label class="form-check-label ms-2" for="recommend5">Ratings</label>
+                                        </div>
+                                        <div class="form-check d-flex align-items-center ps-0 mb-0">
+                                            <input class="form-check-input ms-0 mt-0" name="recommend" type="checkbox" id="recommend6">
+                                            <label class="form-check-label ms-2" for="recommend6">Reviews</label>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-end border-top pt-3 mt-3">
+                                            <a href="javascript:void(0);" class="btn btn-light btn-sm me-2">Reset</a>
+                                            <button type="submit" class="btn btn-primary btn-sm">Apply</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="bg-info br-10 p-3 pb-2 mb-4">
+                        <div class="d-flex align-items-center justify-content-between flex-wrap">
+                            <p class="fs-14 fw-medium mb-2 d-inline-flex align-items-center"><i class="isax isax-info-circle me-2"></i>Save an average of 15% on thousands of flights when you're signed in</p>
+                            <a href="login.html" class="btn btn-white btn-sm mb-2">Sign In</a>
+                        </div>
+                    </div> -->
+                    <div class="row justify-content-center">
+
+                        <!-- Flight Grid -->
+                        <div class="col-xxl-4 col-md-6 d-flex">
+                            <div class="place-item mb-4 flex-fill">
+                                <div class="place-img">
+                                    <div class="img-slider image-slide owl-carousel nav-center">
+                                        <div class="slide-images">
+                                            <a href="flight-details.html">
+                                                <img src="assets/img/flight/flight-09.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="slide-images">
+                                            <a href="flight-details.html">
+                                                <img src="assets/img/flight/flight-05.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="slide-images">
+                                            <a href="flight-details.html">
+                                                <img src="assets/img/flight/flight-07.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="fav-item">
+                                        <div class="d-flex align-items-center">
+                                            <a href="javascript:void(0);" class="fav-icon me-2 selected">
+                                                <i class="isax isax-heart5"></i>
+                                            </a>
+                                            <span class="badge bg-indigo">Cheapest</span>
+                                        </div>
+                                        <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium rounded">5.0</span>
+                                    </div>
+                                </div>
+                                <div class="place-content">
+                                    <div class="flight-loc d-flex align-items-center justify-content-between mb-2">
+                                        <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-45 me-2"></i>Slovakia</span>
+                                        <a href="javascript:void(0);" class="arrow-icon flex-shrink-0"><i class="isax isax-arrow-2"></i></a>
+                                        <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-135 me-2"></i>London</span>
+                                    </div>
+                                    <h5 class="text-truncate mb-1"><a href="flight-details.html">Airbus A320</a></h5>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <span class="avatar avatar-sm me-2">
+                                            <img src="data:image/jpeg;base64,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" class="rounded-circle" alt="icon">
+                                        </span>
+                                        <p class="fs-14 mb-0 me-2">Ryanair</p>
+                                        <!-- <p class="fs-14 mb-0"><i class="ti ti-point-filled text-primary me-2"></i>1-stop at Texas</p> -->
+                                    </div>
+                                    <div class="date-info p-2 mb-3">
+                                        <p class="d-flex align-items-center"><i class="isax isax-calendar-2 me-2"></i>Dec 12, 2024 - Dec 28, 2024</p>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                        <h6 class="text-primary"><span class="fs-14 fw-normal text-default">From </span>£1500</h6>
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge bg-outline-success fs-10 fw-medium me-2">20 Seats Left</span>
+                                            <a href="javascript:void(0);" class="avatar avatar-sm">
+                                                <img src="assets/img/users/user-08.jpg" class="rounded-circle" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Flight Grid -->
+
+                        <!-- Flight Grid -->
+                        <div class="col-xxl-4 col-md-6 d-flex">
+                            <div class="place-item mb-4 flex-fill">
+                                <div class="place-img">
+                                    <a href="flight-details.html">
+                                        <img src="assets/img/flight/flight-08.jpg" class="img-fluid" alt="img">
+                                    </a>
+                                    <div class="fav-item">
+                                        <div class="d-flex align-items-center">
+                                            <a href="javascript:void(0);" class="fav-icon me-2">
+                                                <i class="isax isax-heart5"></i>
+                                            </a>
+                                            <span class="badge bg-indigo">Cheapest</span>
+                                        </div>
+                                        <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium rounded">4.3</span>
+                                    </div>
+                                </div>
+                                <div class="place-content">
+                                    <div class="flight-loc d-flex align-items-center justify-content-between mb-2">
+                                        <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-45 me-2"></i>London</span>
+                                        <a href="javascript:void(0);" class="arrow-icon flex-shrink-0"><i class="isax isax-arrow-2"></i></a>
+                                        <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-135 me-2"></i>London</span>
+                                    </div>
+                                    <h5 class="text-truncate mb-1"><a href="flight-details.html">SkyBound 102</a></h5>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <span class="avatar avatar-sm me-2">
+                                            <img src="assets/img/icons/airindia.svg" class="rounded-circle" alt="icon">
+                                        </span>
+                                        <p class="fs-14 mb-0 me-2">Indigo</p>
+                                        <p class="fs-14 mb-0"><i class="ti ti-point-filled text-primary me-2"></i>1-stop at Dubai</p>
+                                    </div>
+                                    <div class="date-info p-2 mb-3">
+                                        <p class="d-flex align-items-center"><i class="isax isax-calendar-2 me-2"></i>Dec 10, 2024 - Jan 2, 2024</p>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                        <h6 class="text-primary"><span class="fs-14 fw-normal text-default">From </span>£1350</h6>
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge bg-outline-success fs-10 fw-medium me-2">18 Seats Left</span>
+                                            <a href="javascript:void(0);" class="avatar avatar-sm">
+                                                <img src="assets/img/users/user-09.jpg" class="rounded-circle" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Flight Grid -->
+
+                        <!-- Flight Grid -->
+                        <div class="col-xxl-4 col-md-6 d-flex">
+                            <div class="place-item mb-4 flex-fill">
+                                <div class="place-img">
+                                    <a href="flight-details.html">
+                                        <img src="assets/img/flight/flight-06.jpg" class="img-fluid" alt="img">
+                                    </a>
+                                    <div class="fav-item">
+                                        <div class="d-flex align-items-center">
+                                            <a href="javascript:void(0);" class="fav-icon me-2">
+                                                <i class="isax isax-heart5"></i>
+                                            </a>
+                                            <span class="badge bg-indigo">Cheapest</span>
+                                        </div>
+                                        <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium rounded">4.8</span>
+                                    </div>
+                                </div>
+                                <div class="place-content">
+                                    <div class="flight-loc d-flex align-items-center justify-content-between mb-2">
+                                        <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-45 me-2"></i>Paris</span>
+                                        <a href="javascript:void(0);" class="arrow-icon flex-shrink-0"><i class="isax isax-arrow-2"></i></a>
+                                        <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-135 me-2"></i>Cape Town</span>
+                                    </div>
+                                    <h5 class="text-truncate mb-1"><a href="flight-details.html">Nimbus 345</a></h5>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <span class="avatar avatar-sm me-2">
+                                            <img src="assets/img/icons/airindia.svg" class="rounded-circle" alt="icon">
+                                        </span>
+                                        <p class="fs-14 mb-0 me-2">Indigo</p>
+                                        <p class="fs-14 mb-0"><i class="ti ti-point-filled text-primary me-2"></i>1-stop at Dubai</p>
+                                    </div>
+                                    <div class="date-info p-2 mb-3">
+                                        <p class="d-flex align-items-center"><i class="isax isax-calendar-2 me-2"></i>Aug 26, 2024 - Aug 27, 2024</p>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                        <h6 class="text-primary"><span class="fs-14 fw-normal text-default">From </span>£1000</h6>
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge bg-outline-success fs-10 fw-medium me-2">27 Seats Left</span>
+                                            <a href="javascript:void(0);" class="avatar avatar-sm">
+                                                <img src="assets/img/users/user-10.jpg" class="rounded-circle" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Flight Grid -->
+
+                        <!-- Flight Grid -->
+                        <div class="col-xxl-4 col-md-6 d-flex">
+                            <div class="place-item mb-4 flex-fill">
+                                <div class="place-img">
+                                    <a href="flight-details.html">
+                                        <img src="assets/img/flight/flight-01.jpg" class="img-fluid" alt="img">
+                                    </a>
+                                    <div class="fav-item">
+                                        <div class="d-flex align-items-center">
+                                            <a href="javascript:void(0);" class="fav-icon me-2">
+                                                <i class="isax isax-heart5"></i>
+                                            </a>
+                                            <span class="badge bg-indigo">Cheapest</span>
+                                        </div>
+                                        <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium rounded">4.3</span>
+                                    </div>
+                                </div>
+                                <div class="place-content">
+                                    <div class="flight-loc d-flex align-items-center justify-content-between mb-2">
+                                        <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-45 me-2"></i>Toronto</span>
+                                        <a href="javascript:void(0);" class="arrow-icon flex-shrink-0"><i class="isax isax-arrow-2"></i></a>
+                                        <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-135 me-2"></i>Bangkok</span>
+                                    </div>
+                                    <h5 class="text-truncate mb-1"><a href="flight-details.html">AstraFlight 215</a></h5>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <span class="avatar avatar-sm me-2">
+                                            <img src="assets/img/icons/airindia.svg" class="rounded-circle" alt="icon">
+                                        </span>
+                                        <p class="fs-14 mb-0 me-2">Indigo</p>
+                                        <p class="fs-14 mb-0"><i class="ti ti-point-filled text-primary me-2"></i>1-stop at Frankfurt</p>
+                                    </div>
+                                    <div class="date-info p-2 mb-3">
+                                        <p class="d-flex align-items-center"><i class="isax isax-calendar-2 me-2"></i>Sep 04, 2024 - Sep 07, 2024</p>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                        <h6 class="text-primary"><span class="fs-14 fw-normal text-default">From </span>£1000</h6>
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge bg-outline-success fs-10 fw-medium me-2">27 Seats Left</span>
+                                            <a href="javascript:void(0);" class="avatar avatar-sm">
+                                                <img src="assets/img/users/user-11.jpg" class="rounded-circle" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Flight Grid -->
+
+                        <!-- Flight Grid -->
+                        <div class="col-xxl-4 col-md-6 d-flex">
+                            <div class="place-item mb-4 flex-fill">
+                                <div class="place-img">
+                                    <div class="img-slider image-slide owl-carousel nav-center">
+                                        <div class="slide-images">
+                                            <a href="flight-details.html">
+                                                <img src="assets/img/flight/flight-02.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="slide-images">
+                                            <a href="flight-details.html">
+                                                <img src="assets/img/flight/flight-04.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="slide-images">
+                                            <a href="flight-details.html">
+                                                <img src="assets/img/flight/flight-07.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="fav-item">
+                                        <div class="d-flex align-items-center">
+                                            <a href="javascript:void(0);" class="fav-icon me-2">
+                                                <i class="isax isax-heart5"></i>
+                                            </a>
+                                            <span class="badge bg-indigo">Cheapest</span>
+                                        </div>
+                                        <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium rounded">4.7</span>
+                                    </div>
+                                </div>
+                                <div class="place-content">
+                                    <div class="flight-loc d-flex align-items-center justify-content-between mb-2">
+                                        <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-45 me-2"></i>Chicago</span>
+                                        <a href="javascript:void(0);" class="arrow-icon flex-shrink-0"><i class="isax isax-arrow-2"></i></a>
+                                        <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-135 me-2"></i>Melbourne</span>
+                                    </div>
+                                    <h5 class="text-truncate mb-1"><a href="flight-details.html">Cloudrider 789</a></h5>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <span class="avatar avatar-sm me-2">
+                                            <img src="assets/img/icons/airindia.svg" class="rounded-circle" alt="icon">
+                                        </span>
+                                        <p class="fs-14 mb-0 me-2">Air India</p>
+                                        <p class="fs-14 mb-0"><i class="ti ti-point-filled text-primary me-2"></i>1-stop at Dallas</p>
+                                    </div>
+                                    <div class="date-info p-2 mb-3">
+                                        <p class="d-flex align-items-center"><i class="isax isax-calendar-2 me-2"></i>Sep 11, 2024 - Sep 13, 2024</p>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                        <h6 class="text-primary"><span class="fs-14 fw-normal text-default">From </span>£1250</h6>
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge bg-outline-success fs-10 fw-medium me-2">14 Seats Left</span>
+                                            <a href="javascript:void(0);" class="avatar avatar-sm">
+                                                <img src="assets/img/users/user-12.jpg" class="rounded-circle" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Flight Grid -->
+
+                        <!-- Flight Grid -->
+                        <div class="col-xxl-4 col-md-6 d-flex">
+                            <div class="place-item mb-4 flex-fill">
+                                <div class="place-img">
+                                    <a href="flight-details.html">
+                                        <img src="assets/img/flight/flight-03.jpg" class="img-fluid" alt="img">
+                                    </a>
+                                    <div class="fav-item">
+                                        <div class="d-flex align-items-center">
+                                            <a href="javascript:void(0);" class="fav-icon me-2">
+                                                <i class="isax isax-heart5"></i>
+                                            </a>
+                                            <span class="badge bg-indigo">Cheapest</span>
+                                        </div>
+                                        <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium rounded">4.5</span>
+                                    </div>
+                                </div>
+                                <div class="place-content">
+                                    <div class="flight-loc d-flex align-items-center justify-content-between mb-2">
+                                        <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-45 me-2"></i>Miami</span>
+                                        <a href="javascript:void(0);" class="arrow-icon flex-shrink-0"><i class="isax isax-arrow-2"></i></a>
+                                        <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-135 me-2"></i>Tokyo</span>
+                                    </div>
+                                    <h5 class="text-truncate mb-1"><a href="flight-details.html">Aether Express 901</a></h5>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <span class="avatar avatar-sm me-2">
+                                            <img src="assets/img/icons/airindia.svg" class="rounded-circle" alt="icon">
+                                        </span>
+                                        <p class="fs-14 mb-0 me-2">Indigo</p>
+                                        <p class="fs-14 mb-0"><i class="ti ti-point-filled text-primary me-2"></i>1-stop at Seoul</p>
+                                    </div>
+                                    <div class="date-info p-2 mb-3">
+                                        <p class="d-flex align-items-center"><i class="isax isax-calendar-2 me-2"></i>Sep 22, 2024 - Sep 24, 2024</p>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                        <h6 class="text-primary"><span class="fs-14 fw-normal text-default">From </span>£1150</h6>
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge bg-outline-success fs-10 fw-medium me-2">12 Seats Left</span>
+                                            <a href="javascript:void(0);" class="avatar avatar-sm">
+                                                <img src="assets/img/users/user-13.jpg" class="rounded-circle" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Flight Grid -->
+
+                        <!-- Flight Grid -->
+                        <div class="col-xxl-4 col-md-6 d-flex">
+                            <div class="place-item mb-4 flex-fill">
+                                <div class="place-img">
+                                    <div class="img-slider image-slide owl-carousel nav-center">
+                                        <div class="slide-images">
+                                            <a href="flight-details.html">
+                                                <img src="assets/img/flight/flight-07.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="slide-images">
+                                            <a href="flight-details.html">
+                                                <img src="assets/img/flight/flight-03.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="slide-images">
+                                            <a href="flight-details.html">
+                                                <img src="assets/img/flight/flight-01.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="fav-item">
+                                        <div class="d-flex align-items-center">
+                                            <a href="javascript:void(0);" class="fav-icon me-2">
+                                                <i class="isax isax-heart5"></i>
+                                            </a>
+                                            <span class="badge bg-indigo">Cheapest</span>
+                                        </div>
+                                        <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium rounded">4.6</span>
+                                    </div>
+                                </div>
+                                <div class="place-content">
+                                    <div class="flight-loc d-flex align-items-center justify-content-between mb-2">
+                                        <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-45 me-2"></i>Frankfurt</span>
+                                        <a href="javascript:void(0);" class="arrow-icon flex-shrink-0"><i class="isax isax-arrow-2"></i></a>
+                                        <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-135 me-2"></i>Auckland</span>
+                                    </div>
+                                    <h5 class="text-truncate mb-1"><a href="flight-details.html">Voyager 658</a></h5>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <span class="avatar avatar-sm me-2">
+                                            <img src="assets/img/icons/airindia.svg" class="rounded-circle" alt="icon">
+                                        </span>
+                                        <p class="fs-14 mb-0 me-2">Air India</p>
+                                        <p class="fs-14 mb-0"><i class="ti ti-point-filled text-primary me-2"></i>1-stop at Sydney</p>
+                                    </div>
+                                    <div class="date-info p-2 mb-3">
+                                        <p class="d-flex align-items-center"><i class="isax isax-calendar-2 me-2"></i>Oct 04, 2024 - Oct 07, 2024</p>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                        <h6 class="text-primary"><span class="fs-14 fw-normal text-default">From </span>£1000</h6>
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge bg-outline-success fs-10 fw-medium me-2">21 Seats Left</span>
+                                            <a href="javascript:void(0);" class="avatar avatar-sm">
+                                                <img src="assets/img/users/user-14.jpg" class="rounded-circle" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Flight Grid -->
+
+                        <!-- Flight Grid -->
+                        <div class="col-xxl-4 col-md-6 d-flex">
+                            <div class="place-item mb-4 flex-fill">
+                                <div class="place-img">
+                                    <div class="img-slider image-slide owl-carousel nav-center">
+                                        <div class="slide-images">
+                                            <a href="flight-details.html">
+                                                <img src="assets/img/flight/flight-04.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="slide-images">
+                                            <a href="flight-details.html">
+                                                <img src="assets/img/flight/flight-07.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="slide-images">
+                                            <a href="flight-details.html">
+                                                <img src="assets/img/flight/flight-01.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="fav-item">
+                                        <div class="d-flex align-items-center">
+                                            <a href="javascript:void(0);" class="fav-icon me-2">
+                                                <i class="isax isax-heart5"></i>
+                                            </a>
+                                            <span class="badge bg-indigo">Cheapest</span>
+                                        </div>
+                                        <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium rounded">4.9</span>
+                                    </div>
+                                </div>
+                                <div class="place-content">
+                                    <div class="flight-loc d-flex align-items-center justify-content-between mb-2">
+                                        <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-45 me-2"></i>Boston</span>
+                                        <a href="javascript:void(0);" class="arrow-icon flex-shrink-0"><i class="isax isax-arrow-2"></i></a>
+                                        <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-135 me-2"></i>Singapore</span>
+                                    </div>
+                                    <h5 class="text-truncate mb-1"><a href="flight-details.html">Silverwing 505</a></h5>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <span class="avatar avatar-sm me-2">
+                                            <img src="assets/img/icons/airindia.svg" class="rounded-circle" alt="icon">
+                                        </span>
+                                        <p class="fs-14 mb-0 me-2">Air India</p>
+                                        <p class="fs-14 mb-0"><i class="ti ti-point-filled text-primary me-2"></i>1-stop at London</p>
+                                    </div>
+                                    <div class="date-info p-2 mb-3">
+                                        <p class="d-flex align-items-center"><i class="isax isax-calendar-2 me-2"></i>Oct 17, 2024 - Oct 19, 2024</p>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                        <h6 class="text-primary"><span class="fs-14 fw-normal text-default">From </span>£1450</h6>
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge bg-outline-success fs-10 fw-medium me-2">18 Seats Left</span>
+                                            <a href="javascript:void(0);" class="avatar avatar-sm">
+                                                <img src="assets/img/users/user-15.jpg" class="rounded-circle" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Flight Grid -->
+
+                        <!-- Flight Grid -->
+                        <div class="col-xxl-4 col-md-6 d-flex">
+                            <div class="place-item mb-4 flex-fill">
+                                <div class="place-img">
+                                    <div class="img-slider image-slide owl-carousel nav-center">
+                                        <div class="slide-images">
+                                            <a href="flight-details.html">
+                                                <img src="assets/img/flight/flight-05.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="slide-images">
+                                            <a href="flight-details.html">
+                                                <img src="assets/img/flight/flight-06.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                        <div class="slide-images">
+                                            <a href="flight-details.html">
+                                                <img src="assets/img/flight/flight-02.jpg" class="img-fluid" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="fav-item">
+                                        <div class="d-flex align-items-center">
+                                            <a href="javascript:void(0);" class="fav-icon me-2">
+                                                <i class="isax isax-heart5"></i>
+                                            </a>
+                                            <span class="badge bg-indigo">Cheapest</span>
+                                        </div>
+                                        <span class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium rounded">4.1</span>
+                                    </div>
+                                </div>
+                                <div class="place-content">
+                                    <div class="flight-loc d-flex align-items-center justify-content-between mb-2">
+                                        <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-45 me-2"></i>London</span>
+                                        <a href="javascript:void(0);" class="arrow-icon flex-shrink-0"><i class="isax isax-arrow-2"></i></a>
+                                        <span class="loc-name d-inline-flex align-items-center"><i class="isax isax-airplane rotate-135 me-2"></i>Honolulu</span>
+                                    </div>
+                                    <h5 class="text-truncate mb-1"><a href="flight-details.html">Altair 333</a></h5>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <span class="avatar avatar-sm me-2">
+                                            <img src="assets/img/icons/airindia.svg" class="rounded-circle" alt="icon">
+                                        </span>
+                                        <p class="fs-14 mb-0 me-2">Air India</p>
+                                        <p class="fs-14 mb-0"><i class="ti ti-point-filled text-primary me-2"></i>1-stop at Los Angeles</p>
+                                    </div>
+                                    <div class="date-info p-2 mb-3">
+                                        <p class="d-flex align-items-center"><i class="isax isax-calendar-2 me-2"></i>Oct 20, 2024 - Oct 22, 2024</p>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between border-top pt-3">
+                                        <h6 class="text-primary"><span class="fs-14 fw-normal text-default">From </span>£1400</h6>
+                                        <div class="d-flex align-items-center">
+                                            <span class="badge bg-outline-success fs-10 fw-medium me-2">25 Seats Left</span>
+                                            <a href="javascript:void(0);" class="avatar avatar-sm">
+                                                <img src="assets/img/users/user-16.jpg" class="rounded-circle" alt="img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Flight Grid -->
+
+                    </div>
+
+                    <!-- Pagination -->
+                    <nav class="pagination-nav">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="javascript:void(0);" aria-label="Previous">
+                                    <span aria-hidden="true"><i class="fa-solid fa-chevron-left"></i></span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+                            <li class="page-item active"><a class="page-link" href="javascript:void(0);">4</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);">5</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:void(0);" aria-label="Next">
+                                    <span aria-hidden="true"><i class="fa-solid fa-chevron-right"></i></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- /Pagination -->
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- /Page Wrapper -->
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="row row-cols-lg-5 row-cols-md-3 row-cols-sm-2 row-cols-1">
+                    <div class="col">
+                        <div class="footer-widget">
+                            <h5>Pages</h5>
+                            <ul class="footer-menu">
+                                <li>
+                                    <a href="team.html">Our Team</a>
+                                </li>
+                                <li>
+                                    <a href="pricing-plan.html">Pricing Plans</a>
+                                </li>
+                                <li>
+                                    <a href="gallery.html">Gallery</a>
+                                </li>
+                                <li>
+                                    <a href="profile-settings.html">Settings</a>
+                                </li>
+                                <li>
+                                    <a href="my-profile.html">Profile</a>
+                                </li>
+                                <li>
+                                    <a href="agent-listings.html">Listings</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="footer-widget">
+                            <h5>Company</h5>
+                            <ul class="footer-menu">
+                                <li>
+                                    <a href="about-us.html">About Us</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">Careers</a>
+                                </li>
+                                <li>
+                                    <a href="blog-grid.html">Blog</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">Affiliate Program</a>
+                                </li>
+                                <li>
+                                    <a href="add-flight.html">Add Your Listing</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">Our Partners</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="footer-widget">
+                            <h5>Destinations</h5>
+                            <ul class="footer-menu">
+                                <li>
+                                    <a href="javascript:void(0);">Hawai</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">Istanbul</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">San Diego</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">Belgium</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">Los Angeles</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">Newyork</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="footer-widget">
+                            <h5>Support</h5>
+                            <ul class="footer-menu">
+                                <li>
+                                    <a href="contact-us.html">Contact Us</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">Legal Notice</a>
+                                </li>
+                                <li>
+                                    <a href="privacy-policy.html">Privacy Policy</a>
+                                </li>
+                                <li>
+                                    <a href="terms-conditions.html">Terms and Conditions</a>
+                                </li>
+                                <li>
+                                    <a href="chat.html">Chat Support</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">Refund Policy</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="footer-widget">
+                            <h5>Services</h5>
+                            <ul class="footer-menu">
+                                <li>
+                                    <a href="hotel-grid.html">Hotel</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">Activity Finder</a>
+                                </li>
+                                <li>
+                                    <a href="flight-grid.html">Flight Finder</a>
+                                </li>
+                                <li>
+                                    <a href="tour-grid.html">Holiday Rental</a>
+                                </li>
+                                <li>
+                                    <a href="car-grid.html">Car Rental</a>
+                                </li>
+                                <li>
+                                    <a href="tour-details.html">Holiday Packages</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-wrap bg-white">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 col-xl-3 col-xxl-3">
+                            <div class="mb-3 text-center text-xl-start">
+                                <a href="index.html" class="d-block footer-logo-light">
+                                    <img src="assets/img/logo-dark.svg" alt="logo">
+                                </a>
+                                <a href="index.html" class="footer-logo-dark">
+                                    <img src="assets/img/logo.svg" alt="logo">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-4 col-xxl-4">
+                            <div class="d-flex align-items-center justify-content-center flex-wrap">
+                                <h6 class="fs-14 fw-medium me-2 mb-2">Available on : </h6>
+                                <a href="javascript:void(0);" class="d-block mb-3 me-2">
+                                    <img src="assets/img/icons/googleplay.svg" alt="logo">
+                                </a>
+                                <a href="javascript:void(0);" class="d-block mb-3">
+                                    <img src="assets/img/icons/appstore.svg" alt="logo">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-xl-5 col-xxl-5">
+                            <div class="d-sm-flex align-items-center justify-content-center justify-content-xl-end">
+                                <div class="d-flex align-items-center justify-content-center justify-content-sm-start me-0 pe-0 me-sm-3 pe-sm-3 border-end mb-3">
+                                    <span class="avatar avatar-lg bg-primary rounded-circle flex-shrink-0">
+										<i class="ti ti-headphones-filled fs-24"></i>
+									</span>
+                                    <div class="ms-2">
+                                        <p class="mb-1">Customer Support</p>
+                                        <p class="fw-medium text-dark">+1 56589 54598</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center justify-content-sm-start mb-3">
+                                    <span class="avatar avatar-lg bg-secondary rounded-circle flex-shrink-0">
+										<i class="ti ti-message fs-24 text-gray-9"></i>
+									</span>
+                                    <div class="ms-2">
+                                        <p class="mb-1">Drop Us an Email</p>
+                                        <p class="fw-medium text-dark"><a href="https://dreamstour.dreamstechnologies.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a5cccbc3cae5c0ddc4c8d5c9c08bc6cac8">[email&#160;protected]</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-img">
+                    <img src="assets/img/bg/footer.svg" class="img-fluid" alt="img">
+                </div>
+            </div>
+        </div>
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="d-flex align-items-center justify-content-between flex-wrap">
+                            <p class="fs-14">Copyright &copy; 2025. All Rights Reserved, <a href="javascript:void(0);" class="text-primary fw-medium">DreamsTour</a></p>
+                            <div class="d-flex align-items-center">
+                                <ul class="social-icon">
+                                    <li>
+                                        <a href="javascript:void(0);"><i class="fa-brands fa-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);"><i class="fa-brands fa-x-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);"><i class="fa-brands fa-instagram"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);"><i class="fa-brands fa-linkedin"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);"><i class="fa-brands fa-pinterest"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <ul class="card-links">
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <img src="assets/img/icons/card-01.svg" alt="img">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <img src="assets/img/icons/card-02.svg" alt="img">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <img src="assets/img/icons/card-03.svg" alt="img">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <img src="assets/img/icons/card-04.svg" alt="img">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <img src="assets/img/icons/card-05.svg" alt="img">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <img src="assets/img/icons/card-06.svg" alt="img">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Footer Bottom -->
+
+    </footer>
+    <!-- /Footer -->
+
+    <!-- Cursor -->
+    <div class="xb-cursor tx-js-cursor">
+        <div class="xb-cursor-wrapper">
+            <div class="xb-cursor--follower xb-js-follower"></div>
+        </div>
+    </div>
+    <!-- /Cursor -->
+
+    <div class="back-to-top">
+		<a class="back-to-top-icon align-items-center justify-content-center d-flex"  href="#top"><i class="fa-solid fa-arrow-up"></i></a>
+	</div>
+
+    <!-- Jquery JS -->
+    <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-3.7.1.min.js" type="b127770d761bae132fa9e07e-text/javascript"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="assets/js/bootstrap.bundle.min.js" type="b127770d761bae132fa9e07e-text/javascript"></script>
+
+    <!-- Wow JS -->
+    <script src="assets/js/wow.min.js" type="b127770d761bae132fa9e07e-text/javascript"></script>
+
+    <!-- MeanMenu Js -->
+    <script src="assets/js/jquery.meanmenu.min.js" type="b127770d761bae132fa9e07e-text/javascript"></script>
+
+    <!-- Owlcarousel Js -->
+    <script src="assets/plugins/owlcarousel/owl.carousel.min.js" type="b127770d761bae132fa9e07e-text/javascript"></script>
+
+    <!-- Sticky Sidebar JS -->
+    <script src="assets/plugins/theia-sticky-sidebar/ResizeSensor.js" type="b127770d761bae132fa9e07e-text/javascript"></script>
+    <script src="assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js" type="b127770d761bae132fa9e07e-text/javascript"></script>
+
+    <!-- Rangeslider JS -->
+    <script src="assets/plugins/ion-rangeslider/js/ion.rangeSlider.js" type="b127770d761bae132fa9e07e-text/javascript"></script>
+    <script src="assets/plugins/ion-rangeslider/js/custom-rangeslider.js" type="b127770d761bae132fa9e07e-text/javascript"></script>
+    <script src="assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js" type="b127770d761bae132fa9e07e-text/javascript"></script>
+
+    <!-- Datepicker Core JS -->
+    <script src="assets/plugins/moment/moment.js" type="b127770d761bae132fa9e07e-text/javascript"></script>
+    <script src="assets/js/bootstrap-datetimepicker.min.js" type="b127770d761bae132fa9e07e-text/javascript"></script>
+
+    <!-- cursor JS -->
+    <script src="assets/js/cursor.js" type="b127770d761bae132fa9e07e-text/javascript"></script>
+
+    <!-- Script JS -->
+    <script src="assets/js/script.js" type="b127770d761bae132fa9e07e-text/javascript"></script>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="login-modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex align-items-center justify-content-end pb-0 border-0">
+                    <a href="javascript:void(0);" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
+                </div>
+                <div class="modal-body p-4 pt-0">
+                    <form action="index.html">
+                        <div class="text-center mb-3">
+                            <h5 class="mb-1">Sign In</h5>
+                            <p>Sign in to Start Manage your DreamsTour Account</p>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Email</label>
+                            <div class="input-icon">
+                                <span class="input-icon-addon"><i class="isax isax-message"></i></span>
+                                <input type="email" class="form-control form-control-lg" placeholder="Enter Email">
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Password</label>
+                            <div class="input-icon">
+                                <span class="input-icon-addon"><i class="isax isax-lock"></i></span>
+                                <input type="password" class="form-control form-control-lg pass-input" placeholder="Enter Password">
+                                <span class="input-icon-addon toggle-password"><i class="isax isax-eye-slash"></i></span>
+                            </div>
+                        </div>
+                        <div class="mt-3 mb-3">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap row-gap-2">
+                                <div class="form-check d-flex align-items-center mb-2">
+                                    <input class="form-check-input mt-0" type="checkbox" value="" id="remembers_me">
+                                    <label class="form-check-label ms-2 text-gray-9 fs-14" for="remembers_me">Remember Me</label>
+                                </div>
+                                <a href="javascript:void(0);" class="link-primary fw-medium fs-14 mb-2">Forgot Password?</a>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-xl btn-primary d-flex align-items-center justify-content-center w-100">Login<i class="isax isax-arrow-right-3 ms-2"></i></button>
+                        </div>
+                        <div class="login-or mb-3"><span class="span-or">Or</span></div>
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="javascript:void(0);" class="btn btn-light flex-fill d-flex align-items-center justify-content-center me-2" data-bs-toggle="modal" data-bs-target="#oauth-unavailable-modal">
+                                <img src="assets/img/icons/google-icon.svg" class="me-2" alt="Img">Google
+                            </a>
+                            <a href="javascript:void(0);" class="btn btn-light flex-fill d-flex align-items-center justify-content-center" data-bs-toggle="modal" data-bs-target="#oauth-unavailable-modal">
+                                <img src="assets/img/icons/fb-icon.svg" class="me-2" alt="Img">Facebook
+                            </a>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <p class="fs-14">Don't you have an account? <a href="javascript:void(0);" class="link-primary fw-medium" data-bs-toggle="modal" data-bs-target="#register-modal">Sign up</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="register-modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex align-items-center justify-content-end pb-0 border-0">
+                    <a href="javascript:void(0);" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
+                </div>
+                <div class="modal-body p-4 pt-0">
+                    <form id="registerForm" onsubmit="handleRegister(event)">
+                        <div class="text-center border-bottom mb-3">
+                            <h5 class="mb-1">Sign Up</h5>
+                            <p class="mb-3">Create your DreamsTour Account</p>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Name</label>
+                            <div class="input-icon">
+                                <span class="input-icon-addon"><i class="isax isax-user"></i></span>
+                                <input type="text" class="form-control form-control-lg" id="register-name" name="name" placeholder="Enter Full Name" required>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Email</label>
+                            <div class="input-icon">
+                                <span class="input-icon-addon"><i class="isax isax-message"></i></span>
+                                <input type="email" class="form-control form-control-lg" id="register-email" name="email" placeholder="Enter Email" required>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Password</label>
+                            <div class="input-icon">
+                                <span class="input-icon-addon"><i class="isax isax-lock"></i></span>
+                                <input type="password" class="form-control form-control-lg pass-input" id="register-password" name="password" placeholder="Enter Password" required>
+                                <span class="input-icon-addon toggle-password"><i class="isax isax-eye-slash"></i></span>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Confirm Password</label>
+                            <div class="input-icon">
+                                <span class="input-icon-addon"><i class="isax isax-lock"></i></span>
+                                <input type="password" class="form-control form-control-lg pass-input" id="register-confirm-password" name="confirm_password" placeholder="Confirm Password" required>
+                                <span class="input-icon-addon toggle-password"><i class="isax isax-eye-slash"></i></span>
+                            </div>
+                        </div>
+                        <div class="mt-3 mb-3">
+                            <div class="d-flex">
+                                <div class="form-check d-flex align-items-center mb-2">
+                                    <input class="form-check-input mt-0" type="checkbox" value="" id="agree">
+                                    <label class="form-check-label ms-2 text-gray-9 fs-14" for="agree">I agree with the <a href="javascript:void(0);" class="link-primary fw-medium">Terms Of Service.</a></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-xl btn-primary d-flex align-items-center justify-content-center w-100">Register<i class="isax isax-arrow-right-3 ms-2"></i></button>
+                        </div>
+                        <div class="login-or mb-3"><span class="span-or">Or</span></div>
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="javascript:void(0);" class="btn btn-light flex-fill d-flex align-items-center justify-content-center me-2" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#oauth-unavailable-modal">
+                                <img src="assets/img/icons/google-icon.svg" class="me-2" alt="Img">Google
+                            </a>
+                            <a href="javascript:void(0);" class="btn btn-light flex-fill d-flex align-items-center justify-content-center" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#oauth-unavailable-modal">
+                                <img src="assets/img/icons/fb-icon.svg" class="me-2" alt="Img">Facebook
+                            </a>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <p class="fs-14">Already have an account? <a href="javascript:void(0);" class="link-primary fw-medium" data-bs-toggle="modal" data-bs-target="#login-modal">Sign In</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OAuth Unavailable Modal -->
+    <div class="modal fade" id="oauth-unavailable-modal">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-header d-flex align-items-center justify-content-end pb-0 border-0">
+                    <a href="javascript:void(0);" data-bs-dismiss="modal" aria-label="Close"><i class="ti ti-x fs-20"></i></a>
+                </div>
+                <div class="modal-body p-4 pt-0 text-center">
+                    <div class="mb-3">
+                        <i class="isax isax-info-circle" style="font-size: 48px; color: #ffc107;"></i>
+                    </div>
+                    <h5 class="mb-2">Coming Soon</h5>
+                    <p class="text-gray-9 mb-3">Social login is currently unavailable. Please use your email to sign in or sign up.</p>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Got it</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Authentication Script -->
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            const form = event.target;
+            const email = form.querySelector('input[type="email"]').value;
+            const password = form.querySelector('input[type="password"]').value;
+            const remember = form.querySelector('input[type="checkbox"]')?.checked || false;
+            
+            if (!email || !password) {
+                alert('Please enter both email and password');
+                return;
+            }
+            
+            // Simulate login - create user session
+            const user = {
+                email: email,
+                name: email.split('@')[0].charAt(0).toUpperCase() + email.split('@')[0].slice(1),
+                avatar: '../assets/img/profiles/avatar-02.jpg',
+                joinDate: new Date().toISOString()
+            };
+            
+            localStorage.setItem('dreamstour_user', JSON.stringify(user));
+            localStorage.setItem('dreamstour_session', 'active');
+            if (remember) {
+                localStorage.setItem('dreamstour_remember', 'true');
+            }
+            
+            // Close modal and redirect
+            const modal = bootstrap.Modal.getInstance(document.getElementById('login-modal'));
+            if (modal) modal.hide();
+            
+            window.location.href = 'dashboard/user-dashboard.html';
+        }
+        
+        function handleRegister(event) {
+            event.preventDefault();
+            const form = event.target;
+            const name = form.querySelector('input[name="name"]').value;
+            const email = form.querySelector('input[type="email"]').value;
+            const password = form.querySelector('input[type="password"]').value;
+            const termsAccepted = form.querySelector('input[type="checkbox"]')?.checked || false;
+            
+            if (!name || !email || !password) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            if (!termsAccepted) {
+                alert('Please accept the Terms and Conditions');
+                return;
+            }
+            
+            // Simulate registration - create user session
+            const user = {
+                email: email,
+                name: name,
+                avatar: '../assets/img/profiles/avatar-02.jpg',
+                joinDate: new Date().toISOString()
+            };
+            
+            localStorage.setItem('dreamstour_user', JSON.stringify(user));
+            localStorage.setItem('dreamstour_session', 'active');
+            
+            // Close modal and redirect
+            const modal = bootstrap.Modal.getInstance(document.getElementById('register-modal'));
+            if (modal) modal.hide();
+            
+            window.location.href = 'dashboard/user-dashboard.html';
+        }
+        
+        // Check if user is already logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            const session = localStorage.getItem('dreamstour_session');
+            if (session === 'active') {
+                // User is logged in - could update UI here if needed
+            }
+        });
+    </script>
+
+<script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="b127770d761bae132fa9e07e-|49" defer></script>
+    <script>
+        // Logout function
+        function logout() {
+            localStorage.removeItem('dreamstour_user');
+            localStorage.removeItem('dreamstour_session');
+            localStorage.removeItem('dreamstour_remember');
+            window.location.reload();
+        }
+        
+        // Toggle mobile menu based on login status
+        document.addEventListener('DOMContentLoaded', function() {
+            const session = localStorage.getItem('dreamstour_session');
+            if (session === 'active') {
+                document.getElementById('mobileMenuLoggedOut').style.display = 'none';
+                document.getElementById('mobileMenuLoggedIn').style.display = 'block';
+                document.getElementById('mobileActionsLoggedOut').style.display = 'none';
+                document.getElementById('mobileActionsLoggedIn').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+
+<!-- Smartsupp Live Chat script -->
+<script type="text/javascript">
+    var _smartsupp = _smartsupp || {};
+    _smartsupp.key = 'fdad8ac9c8863265614d6c83899ab2b80b288b5e';
+    window.smartsupp||(function(d) {
+      var s,c,o=smartsupp=function(){ o.push(arguments)};o=[];
+      s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+      c.type='text/javascript';c.charset='utf-8';c.async=true;
+      c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+    })(document);
+    </script>
+<!-- Mirrored from dreamstour.dreamstechnologies.com/html/flight-grid.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 23 Dec 2024 10:49:43 GMT -->
+</html>
