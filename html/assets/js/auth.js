@@ -3,7 +3,7 @@
  * Handles login, register, logout, and session management with backend API
  */
 
-const API_BASE_URL = 'http://localhost:5001/api';
+const API_BASE_URL = 'https://dreamtoursbackend.vercel.app/api';
 
 // Authentication State Manager
 const AuthManager = {

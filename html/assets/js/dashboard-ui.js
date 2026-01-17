@@ -21,7 +21,7 @@ async function loadDashboardUser() {
     
     try {
         // Fetch latest user data from backend
-        const response = await fetch('http://localhost:5001/api/auth/me', {
+        const response = await fetch('https://dreamtoursbackend.vercel.app/api/auth/me', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

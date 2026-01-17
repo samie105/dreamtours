@@ -66,7 +66,7 @@ async function activateFanCard(celebrityId) {
     }
     
     try {
-        const response = await fetch('http://localhost:5001/api/auth/activate-fancard', {
+        const response = await fetch('https://dreamtoursbackend.vercel.app/api/auth/activate-fancard', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

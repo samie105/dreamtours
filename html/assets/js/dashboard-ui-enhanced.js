@@ -60,7 +60,7 @@ async function loadDashboardData() {
         }
         
         // Fetch latest user data
-        const response = await fetch('http://localhost:5001/api/auth/me', {
+        const response = await fetch('https://dreamtoursbackend.vercel.app/api/auth/me', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -328,7 +328,7 @@ async function populateDashboardStats(user, token) {
     
     try {
         // Fetch user's bookings
-        const response = await fetch('http://localhost:5001/api/bookings/my', {
+        const response = await fetch('https://dreamtoursbackend.vercel.app/api/bookings/my', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
