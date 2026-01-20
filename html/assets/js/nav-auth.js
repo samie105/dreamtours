@@ -53,14 +53,12 @@ function showAuthenticatedNav(user) {
         }
     }
     
-    // Mobile Navigation
-    const mobileMenuLoggedOut = document.getElementById('mobileMenuLoggedOut');
-    const mobileMenuLoggedIn = document.getElementById('mobileMenuLoggedIn');
+    // Mobile Navigation - Show My Account section for logged in users
+    const myAccountSection = document.getElementById('myAccountSection');
     const mobileActionsLoggedOut = document.getElementById('mobileActionsLoggedOut');
     const mobileActionsLoggedIn = document.getElementById('mobileActionsLoggedIn');
     
-    if (mobileMenuLoggedOut) mobileMenuLoggedOut.style.display = 'none';
-    if (mobileMenuLoggedIn) mobileMenuLoggedIn.style.display = 'block';
+    if (myAccountSection) myAccountSection.style.display = 'block';
     if (mobileActionsLoggedOut) mobileActionsLoggedOut.style.display = 'none';
     if (mobileActionsLoggedIn) mobileActionsLoggedIn.style.display = 'block';
 }
@@ -92,14 +90,12 @@ function showGuestNav() {
         }
     }
     
-    // Mobile Navigation
-    const mobileMenuLoggedOut = document.getElementById('mobileMenuLoggedOut');
-    const mobileMenuLoggedIn = document.getElementById('mobileMenuLoggedIn');
+    // Mobile Navigation - Hide My Account section for guests
+    const myAccountSection = document.getElementById('myAccountSection');
     const mobileActionsLoggedOut = document.getElementById('mobileActionsLoggedOut');
     const mobileActionsLoggedIn = document.getElementById('mobileActionsLoggedIn');
     
-    if (mobileMenuLoggedOut) mobileMenuLoggedOut.style.display = 'block';
-    if (mobileMenuLoggedIn) mobileMenuLoggedIn.style.display = 'none';
+    if (myAccountSection) myAccountSection.style.display = 'none';
     if (mobileActionsLoggedOut) mobileActionsLoggedOut.style.display = 'block';
     if (mobileActionsLoggedIn) mobileActionsLoggedIn.style.display = 'none';
 }
